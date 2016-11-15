@@ -1,0 +1,18 @@
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.Tool\obj\Debug\JH.ACU.Tool.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.Tool\bin\Debug\JH.ACU.Tool.dll
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.Tool\bin\Debug\JH.ACU.Tool.pdb
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.Tool\obj\Debug\JH.ACU.Tool.dll
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.Tool\obj\Debug\JH.ACU.Tool.pdb
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\obj\Debug\JH.ACU.Tool.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\obj\Debug\JH.ACU.Tool.pdb
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\JH.ACU.Tool.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\JH.ACU.Tool.pdb
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\Infragistics4.Shared.v12.1.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\Infragistics4.Win.Misc.v12.1.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\Infragistics4.Win.UltraWinGrid.v12.1.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\Infragistics4.Win.v12.1.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\log4net.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\Infragistics4.Shared.v12.1.xml
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\Infragistics4.Win.Misc.v12.1.xml
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\Infragistics4.Win.UltraWinGrid.v12.1.xml
+E:\项目\WD\JH.ACU Git\JH.ACU.Tool\bin\Debug\Infragistics4.Win.v12.1.xml

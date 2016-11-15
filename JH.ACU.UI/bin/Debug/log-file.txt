@@ -1,0 +1,7 @@
+[Header] 2016-11-13 21:46:42,381 [1] INFO  testApp.Logging [(null)]  - 2016/11/13 星期日 21:46:42: login success
+[Footer] [Header] 2016-11-15 20:50:48,489 [1] INFO  testApp.Logging [(null)]  - 2016/11/15 星期二 20:50:48: login success
+[Footer] [Header] 2016-11-15 20:53:48,064 [1] INFO  testApp.Logging [(null)]  - 2016/11/15 星期二 20:53:48: login success
+[Footer] [Header] 2016-11-15 20:54:17,709 [1] INFO  testApp.Logging [(null)]  - 2016/11/15 星期二 20:54:17: login success
+[Footer] [Header] 2016-11-15 20:55:53,995 [1] INFO  testApp.Logging [(null)]  - 2016/11/15 星期二 20:55:53: login success
+[Footer] [Header] 2016-11-15 21:18:38,671 [1] INFO  testApp.Logging [(null)]  - 2016/11/15 星期二 21:18:38: login success
+[Footer] 

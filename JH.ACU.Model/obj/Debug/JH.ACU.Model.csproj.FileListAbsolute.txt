@@ -1,0 +1,9 @@
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.Model\obj\Debug\JH.ACU.Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.Model\bin\Debug\JH.ACU.Model.dll
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.Model\bin\Debug\JH.ACU.Model.pdb
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.Model\obj\Debug\JH.ACU.Model.dll
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.Model\obj\Debug\JH.ACU.Model.pdb
+E:\项目\WD\JH.ACU Git\JH.ACU.Model\bin\Debug\JH.ACU.Model.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.Model\bin\Debug\JH.ACU.Model.pdb
+E:\项目\WD\JH.ACU Git\JH.ACU.Model\obj\Debug\JH.ACU.Model.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.Model\obj\Debug\JH.ACU.Model.pdb

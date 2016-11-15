@@ -1,0 +1,9 @@
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.BLL\obj\Debug\JH.ACU.BLL.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.BLL\bin\Debug\JH.ACU.BLL.dll
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.BLL\bin\Debug\JH.ACU.BLL.pdb
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.BLL\obj\Debug\JH.ACU.BLL.dll
+C:\Users\Administrator\Source\Workspaces\JH.ACU\JH.ACU\JH.ACU.BLL\obj\Debug\JH.ACU.BLL.pdb
+E:\项目\WD\JH.ACU Git\JH.ACU.BLL\bin\Debug\JH.ACU.BLL.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.BLL\bin\Debug\JH.ACU.BLL.pdb
+E:\项目\WD\JH.ACU Git\JH.ACU.BLL\obj\Debug\JH.ACU.BLL.dll
+E:\项目\WD\JH.ACU Git\JH.ACU.BLL\obj\Debug\JH.ACU.BLL.pdb
