@@ -5,4 +5,5 @@
 [Footer] [Header] 2016-11-15 20:55:53,995 [1] INFO  testApp.Logging [(null)]  - 2016/11/15 星期二 20:55:53: login success
 [Footer] [Header] 2016-11-15 21:18:38,671 [1] INFO  testApp.Logging [(null)]  - 2016/11/15 星期二 21:18:38: login success
 [Footer] [Header] 2016-11-15 21:44:13,139 [1] INFO  testApp.Logging [(null)]  - 2016/11/15 21:44:13: login success
+[Footer] [Header] 2016-11-17 16:48:08,861 [1] INFO  testApp.Logging [(null)]  - 2016/11/17 16:48:08: login success
 [Footer] 
