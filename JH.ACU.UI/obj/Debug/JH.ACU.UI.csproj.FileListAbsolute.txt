@@ -36,3 +36,27 @@ E:\项目\WD\JH.ACU Git\JH.ACU.UI\bin\Debug\Infragistics4.Win.Misc.v12.1.xml
 E:\项目\WD\JH.ACU Git\JH.ACU.UI\bin\Debug\Infragistics4.Win.UltraWinGrid.v12.1.xml
 E:\项目\WD\JH.ACU Git\JH.ACU.UI\bin\Debug\Infragistics4.Win.UltraWinStatusBar.v12.1.xml
 E:\项目\WD\JH.ACU Git\JH.ACU.UI\bin\Debug\Infragistics4.Win.v12.1.xml
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.UI.exe.config
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.UI.exe
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.UI.pdb
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.BLL.dll
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.Model.dll
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.Tool.dll
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\log4net.dll
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.DAL.dll
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.BLL.pdb
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.Model.pdb
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.Tool.pdb
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\Infragistics4.Shared.v12.1.xml
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\Infragistics4.Win.Misc.v12.1.xml
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\Infragistics4.Win.UltraWinGrid.v12.1.xml
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\Infragistics4.Win.UltraWinStatusBar.v12.1.xml
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\Infragistics4.Win.v12.1.xml
+E:\项目\WD\JH.ACU\JH.ACU.UI\bin\Debug\JH.ACU.DAL.pdb
+E:\项目\WD\JH.ACU\JH.ACU.UI\obj\Debug\JH.ACU.UI.csprojResolveAssemblyReference.cache
+E:\项目\WD\JH.ACU\JH.ACU.UI\obj\Debug\JH.ACU.UI.MainForm.resources
+E:\项目\WD\JH.ACU\JH.ACU.UI\obj\Debug\JH.ACU.UI.Properties.Resources.resources
+E:\项目\WD\JH.ACU\JH.ACU.UI\obj\Debug\JH.ACU.UI.csproj.GenerateResource.Cache
+E:\项目\WD\JH.ACU\JH.ACU.UI\obj\Debug\JH.ACU.UI.exe.licenses
+E:\项目\WD\JH.ACU\JH.ACU.UI\obj\Debug\JH.ACU.UI.exe
+E:\项目\WD\JH.ACU\JH.ACU.UI\obj\Debug\JH.ACU.UI.pdb

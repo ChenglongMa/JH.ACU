@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DalGPIB.cs" />
     <Compile Include="DalSerialPort.cs" />
     <Compile Include="Interface\ISerialPort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
