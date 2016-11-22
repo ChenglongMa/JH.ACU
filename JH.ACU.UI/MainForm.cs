@@ -19,9 +19,9 @@ namespace JH.ACU.UI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            var log = log4net.LogManager.GetLogger("testApp.Logging");//获取一个日志记录器
+            //var log = log4net.LogManager.GetLogger("testApp.Logging");//获取一个日志记录器
 
-            log.Info(DateTime.Now + ": login success");//写入一条新log
+            //log.Info(DateTime.Now + ": login success");//写入一条新log
         }
 
     }

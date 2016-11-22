@@ -4,3 +4,5 @@ bin
 # user files
 .user
 .suo
+/JH.ACU.UI/obj
+/JH.ACU.UI/bin
