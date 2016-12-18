@@ -54,6 +54,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NationalInstruments.Common, Version=15.0.40.49154, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL" />
+    <Reference Include="NationalInstruments.NI4882, Version=13.0.40.159, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -63,10 +65,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DalDevice.cs" />
     <Compile Include="DalGPIB.cs" />
+    <Compile Include="DalNIGpib.cs" />
     <Compile Include="DalSerialPort.cs" />
-    <Compile Include="Interface\ISerialPort.cs" />
+    <Compile Include="Interface\IDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

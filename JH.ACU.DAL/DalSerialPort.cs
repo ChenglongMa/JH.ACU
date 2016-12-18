@@ -2,31 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using JH.ACU.DAL.Interface;
+using System.IO.Ports;
 
 namespace JH.ACU.DAL
 {
-    public class DalSerialPort:ISerialPort
+    public class DalSerialPort:SerialPort
     {
-        public void Open()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Read()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Write()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Close()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
