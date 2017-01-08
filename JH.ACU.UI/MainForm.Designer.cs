@@ -45,15 +45,18 @@
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             this.statusBar = new Infragistics.Win.UltraWinStatusBar.UltraStatusBar();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button1 = new System.Windows.Forms.Button();
+            this.ultraGrid2 = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.ultraProgressBar1 = new Infragistics.Win.UltraWinProgressBar.UltraProgressBar();
             this.ultraGrid1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.ultraGrid2 = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.statusBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGrid2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
             this.SuspendLayout();
             // 
             // statusBar
@@ -81,8 +84,13 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.button2);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
             // 
             // splitContainer1.Panel2
             // 
@@ -92,20 +100,15 @@
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
             // 
-            // ultraProgressBar1
+            // button1
             // 
-            this.ultraProgressBar1.Location = new System.Drawing.Point(0, 0);
-            this.ultraProgressBar1.Name = "ultraProgressBar1";
-            this.ultraProgressBar1.Size = new System.Drawing.Size(0, 0);
-            this.ultraProgressBar1.TabIndex = 0;
-            this.ultraProgressBar1.Text = "[Formatted]";
-            // 
-            // ultraGrid1
-            // 
-            this.ultraGrid1.Location = new System.Drawing.Point(0, 0);
-            this.ultraGrid1.Name = "ultraGrid1";
-            this.ultraGrid1.Size = new System.Drawing.Size(550, 80);
-            this.ultraGrid1.TabIndex = 0;
+            this.button1.Location = new System.Drawing.Point(134, 110);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ultraGrid2
             // 
@@ -169,6 +172,31 @@
             this.ultraGrid2.TabIndex = 0;
             this.ultraGrid2.Text = "ultraGrid2";
             // 
+            // ultraProgressBar1
+            // 
+            this.ultraProgressBar1.Location = new System.Drawing.Point(0, 0);
+            this.ultraProgressBar1.Name = "ultraProgressBar1";
+            this.ultraProgressBar1.Size = new System.Drawing.Size(0, 0);
+            this.ultraProgressBar1.TabIndex = 0;
+            this.ultraProgressBar1.Text = "[Formatted]";
+            // 
+            // ultraGrid1
+            // 
+            this.ultraGrid1.Location = new System.Drawing.Point(0, 0);
+            this.ultraGrid1.Name = "ultraGrid1";
+            this.ultraGrid1.Size = new System.Drawing.Size(550, 80);
+            this.ultraGrid1.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(134, 148);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -176,16 +204,17 @@
             this.ClientSize = new System.Drawing.Size(1196, 712);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusBar);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "ACU Benchmark System";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.statusBar)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGrid2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -197,6 +226,8 @@
         private Infragistics.Win.UltraWinProgressBar.UltraProgressBar ultraProgressBar1;
         private Infragistics.Win.UltraWinGrid.UltraGrid ultraGrid1;
         private Infragistics.Win.UltraWinGrid.UltraGrid ultraGrid2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
 
 
     }
