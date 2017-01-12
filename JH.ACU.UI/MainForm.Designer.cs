@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel1 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel2 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel3 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel4 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel5 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel6 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
@@ -45,11 +45,13 @@
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             this.statusBar = new Infragistics.Win.UltraWinStatusBar.UltraStatusBar();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.ultraGrid2 = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.ultraProgressBar1 = new Infragistics.Win.UltraWinProgressBar.UltraProgressBar();
             this.ultraGrid1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.statusBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -64,19 +66,19 @@
             this.statusBar.Location = new System.Drawing.Point(0, 682);
             this.statusBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.statusBar.Name = "statusBar";
-            ultraStatusPanel1.Width = 200;
-            ultraStatusPanel2.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Spring;
-            ultraStatusPanel2.Width = 200;
-            ultraStatusPanel3.DateTimeFormat = "yyyy年MM月dd日 HH:mm:ss";
-            ultraStatusPanel3.Key = "time";
-            ultraStatusPanel3.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Spring;
-            ultraStatusPanel3.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.Time;
-            ultraStatusPanel3.Tag = new System.DateTime(((long)(0)));
-            ultraStatusPanel3.Width = 300;
+            ultraStatusPanel4.Width = 200;
+            ultraStatusPanel5.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Spring;
+            ultraStatusPanel5.Width = 200;
+            ultraStatusPanel6.DateTimeFormat = "yyyy年MM月dd日 HH:mm:ss";
+            ultraStatusPanel6.Key = "time";
+            ultraStatusPanel6.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Spring;
+            ultraStatusPanel6.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.Time;
+            ultraStatusPanel6.Tag = new System.DateTime(((long)(0)));
+            ultraStatusPanel6.Width = 300;
             this.statusBar.Panels.AddRange(new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel[] {
-            ultraStatusPanel1,
-            ultraStatusPanel2,
-            ultraStatusPanel3});
+            ultraStatusPanel4,
+            ultraStatusPanel5,
+            ultraStatusPanel6});
             this.statusBar.Size = new System.Drawing.Size(1196, 30);
             this.statusBar.TabIndex = 0;
             // 
@@ -89,6 +91,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button4);
+            this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
             // 
@@ -100,13 +104,23 @@
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(134, 148);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Stop";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(134, 110);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -187,15 +201,25 @@
             this.ultraGrid1.Size = new System.Drawing.Size(550, 80);
             this.ultraGrid1.TabIndex = 0;
             // 
-            // button2
+            // button3
             // 
-            this.button2.Location = new System.Drawing.Point(134, 148);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button3.Location = new System.Drawing.Point(134, 177);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "RTFault";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(134, 207);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "StopRT";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // MainForm
             // 
@@ -228,6 +252,8 @@
         private Infragistics.Win.UltraWinGrid.UltraGrid ultraGrid2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
 
 
     }

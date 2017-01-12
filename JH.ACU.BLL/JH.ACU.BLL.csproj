@@ -59,6 +59,7 @@
     <Reference Include="Ivi.Visa, Version=5.6.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=MSIL" />
     <Reference Include="NationalInstruments.Common, Version=15.0.40.49154, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL" />
     <Reference Include="NationalInstruments.Visa, Version=15.5.0.49152, Culture=neutral, PublicKeyToken=2eaa5af0834e221d, processorArchitecture=MSIL" />
+    <Reference Include="NationalInstruments.VisaNS, Version=13.0.40.167, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -69,13 +70,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BllAcu.cs" />
-    <Compile Include="BllGpib.cs" />
+    <Compile Include="BllGpibObsolete.cs" />
+    <Compile Include="BllPWR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JH.ACU.DAL\JH.ACU.DAL.csproj">
       <Project>{58D9FC54-3A4B-4587-BD97-CCB037947732}</Project>
       <Name>JH.ACU.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JH.ACU.Model\JH.ACU.Model.csproj">
+      <Project>{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}</Project>
+      <Name>JH.ACU.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JH.ACU.Tool\JH.ACU.Tool.csproj">
+      <Project>{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}</Project>
+      <Name>JH.ACU.Tool</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

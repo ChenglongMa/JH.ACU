@@ -44,5 +44,15 @@ namespace JH.ACU.UI
             MessageBoxHelper.ShowInformationOK(acu.Stop().ToString());
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            acu.ReadRtFault();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            acu.StopRtFault();
+        }
+
     }
 }

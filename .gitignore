@@ -6,3 +6,6 @@ bin
 .suo
 /JH.ACU.UI/obj
 /JH.ACU.UI/bin
+/*.suo
+/*.user
+/*.DotSettings
