@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using JH.ACU.DAL;
 using Ivi.Visa;
+using JH.ACU.Model;
 using NationalInstruments.Restricted;
 using NationalInstruments.VisaNS;
 using LineState = NationalInstruments.VisaNS.LineState;
@@ -19,13 +20,14 @@ namespace JH.ACU.BLL
     public class BllAcu
     {
         #region 构造函数
+
         /// <summary>
-        /// 
+        /// 读取方式待定，因不知DAQ板卡怎样读取
         /// </summary>
-        /// <param name="name">端口名称</param>
-        public BllAcu(string name)
+        public BllAcu()
         {
-            _serial = new SerialSession(name) {BaudRate = 9600};
+            _serial = new SerialSession(Config.PortNumber) {BaudRate = Config.BaudRate};
+            throw new NotImplementedException("了解板卡后完成");
         }
 
         #endregion
@@ -34,6 +36,11 @@ namespace JH.ACU.BLL
 
         private readonly SerialSession _serial;
         private bool _realTimeFlag;
+        private static Instr Config
+        {
+            get { return DalConfig.GetInstrConfig("Power"); }
+        }
+
         public enum MemoryWrite
         {
             RAM = 0x73,
