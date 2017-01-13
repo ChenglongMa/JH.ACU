@@ -7,7 +7,8 @@ using JH.ACU.DAL;
 
 namespace JH.ACU.BLL
 {
-    public class BllGpib
+    [Obsolete]
+    public class BllGpibObsolete
     {
         #region GPIB操作包括DMM,PWR,PRS0,PRS1
         
@@ -18,36 +19,36 @@ namespace JH.ACU.BLL
         {
             //Open and intialize an GPIB instrument  
 
-            int dev = DalGpib.ibdev(0, addr, 0, (int)DalGpib.gpib_timeout.T1s, 1, 0);
-            DalGpib.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
-            if ((ibsta & (int)DalGpib.ibsta_bits.ERR) != 0)
+            int dev = DalGpibObsolete.ibdev(0, addr, 0, (int)DalGpibObsolete.gpib_timeout.T1s, 1, 0);
+            DalGpibObsolete.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
+            if ((ibsta & (int)DalGpibObsolete.ibsta_bits.ERR) != 0)
             {
                 //MessageBox.Show("Error in initializing the GPIB instrument.");  
                 return false;
             }
 
             //clear the specific GPIB instrument  
-            DalGpib.ibclr(dev);
-            DalGpib.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
-            if ((ibsta & (int)DalGpib.ibsta_bits.ERR) != 0)
+            DalGpibObsolete.ibclr(dev);
+            DalGpibObsolete.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
+            if ((ibsta & (int)DalGpibObsolete.ibsta_bits.ERR) != 0)
             {
                 //MessageBox.Show("Error in clearing the GPIB device.");  
                 return false;
             }
 
             //Write a string command to a GPIB instrument using the ibwrt() command  
-            DalGpib.ibwrt(dev, strWrite, strWrite.Length);
-            DalGpib.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
-            if ((ibsta & (int)DalGpib.ibsta_bits.ERR) != 0)
+            DalGpibObsolete.ibwrt(dev, strWrite, strWrite.Length);
+            DalGpibObsolete.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
+            if ((ibsta & (int)DalGpibObsolete.ibsta_bits.ERR) != 0)
             {
                 //MessageBox.Show("Error in writing the string command to the GPIB instrument.");  
                 return false;
             }
 
             //Offline the GPIB interface card  
-            DalGpib.ibonl(dev, 0);
-            DalGpib.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
-            if ((ibsta & (int)DalGpib.ibsta_bits.ERR) != 0)
+            DalGpibObsolete.ibonl(dev, 0);
+            DalGpibObsolete.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
+            if ((ibsta & (int)DalGpibObsolete.ibsta_bits.ERR) != 0)
             {
                 //MessageBox.Show("Error in offline the GPIB interface card.");  
                 return false;
@@ -59,46 +60,46 @@ namespace JH.ACU.BLL
         {
             StringBuilder str = new StringBuilder(100);
             //Open and intialize an GPIB instrument  
-            int dev = DalGpib.ibdev(0, addr, 0, (int)DalGpib.gpib_timeout.T1s, 1, 0);
-            DalGpib.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
-            if ((ibsta & (int)DalGpib.ibsta_bits.ERR) != 0)
+            int dev = DalGpibObsolete.ibdev(0, addr, 0, (int)DalGpibObsolete.gpib_timeout.T1s, 1, 0);
+            DalGpibObsolete.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
+            if ((ibsta & (int)DalGpibObsolete.ibsta_bits.ERR) != 0)
             {
                 //MessageBox.Show("Error in initializing the GPIB instrument.");  
                 return false;
             }
 
             //clear the specific GPIB instrument  
-            DalGpib.ibclr(dev);
-            DalGpib.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
-            if ((ibsta & (int)DalGpib.ibsta_bits.ERR) != 0)
+            DalGpibObsolete.ibclr(dev);
+            DalGpibObsolete.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
+            if ((ibsta & (int)DalGpibObsolete.ibsta_bits.ERR) != 0)
             {
                 //MessageBox.Show("Error in clearing the GPIB device.");  
                 return false;
             }
 
             //Write a string command to a GPIB instrument using the ibwrt() command  
-            DalGpib.ibwrt(dev, strWrite, strWrite.Length);
-            DalGpib.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
-            if ((ibsta & (int)DalGpib.ibsta_bits.ERR) != 0)
+            DalGpibObsolete.ibwrt(dev, strWrite, strWrite.Length);
+            DalGpibObsolete.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
+            if ((ibsta & (int)DalGpibObsolete.ibsta_bits.ERR) != 0)
             {
                 //MessageBox.Show("Error in writing the string command to the GPIB instrument.");  
                 return false;
             }
 
             //Read the response string from the GPIB instrument using the ibrd() command  
-            DalGpib.ibrd(dev, str, 100);
+            DalGpibObsolete.ibrd(dev, str, 100);
             strRead = str.ToString();
-            DalGpib.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
-            if ((ibsta & (int)DalGpib.ibsta_bits.ERR) != 0)
+            DalGpibObsolete.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
+            if ((ibsta & (int)DalGpibObsolete.ibsta_bits.ERR) != 0)
             {
                 //MessageBox.Show("Error in reading the response string from the GPIB instrument.");  
                 return false;
             }
 
             //Offline the GPIB interface card  
-            DalGpib.ibonl(dev, 0);
-            DalGpib.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
-            if ((ibsta & (int)DalGpib.ibsta_bits.ERR) != 0)
+            DalGpibObsolete.ibonl(dev, 0);
+            DalGpibObsolete.gpib_get_globals(out ibsta, out iberr, out ibcnt, out ibcntl);
+            if ((ibsta & (int)DalGpibObsolete.ibsta_bits.ERR) != 0)
             {
                 //MessageBox.Show("Error in offline the GPIB interface card.");  
                 return false;

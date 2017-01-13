@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Ivi.Visa;
 using NationalInstruments.Visa;
 
 namespace JH.ACU.DAL
 {
-    public class DalGpib:IDalVisa
+    /// <summary>
+    /// 串口基础类
+    /// </summary>
+    public class DalSerial : IDalVisa
     {
-        public DalGpib(string name)
+        public DalSerial(string name, int baudRate = 9600)
         {
-            MbSession = new GpibSession(name);
+            MbSession = new SerialSession(name) { BaudRate = baudRate };
             RawIo = MbSession.RawIO;
         }
+
         public MessageBasedSession MbSession { get; set; }
         public IMessageBasedRawIO RawIo { get; set; }
     }
