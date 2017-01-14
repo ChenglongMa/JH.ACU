@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Ivi.Visa;
 using JH.ACU.DAL;
 using JH.ACU.Model;
@@ -48,15 +49,18 @@ namespace JH.ACU.BLL
 
         #region 私有方法
 
-        private void Write(string command)
+        private string WriteAndRead(string command,int delay=50)
         {
             _rawIo.Write(command+"\n");
-        }
-
-        private string Read()
-        {
+            Thread.Sleep(delay);
             return _rawIo.ReadString();
         }
+
+        private void WriteNoRead(string command)
+        {
+            _rawIo.Write(command + "\n");
+        }
+
         #endregion
 
         #region 公有方法

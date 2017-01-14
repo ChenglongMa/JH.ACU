@@ -119,14 +119,14 @@ namespace JH.ACU.BLL
         /// 发送命令并读取返回值
         /// </summary>
         /// <param name="dataBytes"></param>
-        /// <param name="timeout">超时时间（默认：200ms）</param>
+        /// <param name="delay">超时时间（默认：200ms）</param>
         /// <returns></returns>
-        public byte[] WriteAndRead(byte[] dataBytes, int timeout = 200)
+        public byte[] WriteAndRead(byte[] dataBytes, int delay = 200)
         {
             var errorArray = new byte[] {0x0a};
             var dataWithCs = AddChecksum(dataBytes);
             _serial.Write(dataWithCs);
-            Thread.Sleep(timeout);
+            Thread.Sleep(delay);
             var length = _serial.AvailableNumber;
             var res = _serial.ReadByteArray(length);
             if (res.Length - dataWithCs.Length == 1)
