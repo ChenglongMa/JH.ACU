@@ -30,24 +30,27 @@ namespace JH.ACU.Model
         public string Type { get; set; }
 
         private string _portNumber = "";
+
         /// <summary>
         /// 端口号或设备地址
         /// </summary>
         [XmlAttribute("PortNumber")]
-        public string PortNumber { 
-            get
+        public string PortNumber
         {
-            switch (Type.ToUpper())
+            get
             {
-                case "GPIB":
-                    return string.Format("GPIB0::{0}::INSTR", _portNumber);
-                case "SERIAL":
-                    return string.Format("ASRL{0}::INSTR", _portNumber);
-                default:  
-                    throw new ArgumentNullException("Type","端口类型设置无效");
+                switch (Type.ToUpper())
+                {
+                    case "GPIB":
+                        return String.Format("GPIB0::{0}::INSTR", _portNumber);
+                    case "SERIAL":
+                        return String.Format("ASRL{0}::INSTR", _portNumber);
+                    default:
+                        throw new ArgumentNullException("Type", "端口类型设置无效");
+                }
             }
+            set { _portNumber = value; }
         }
-            set { _portNumber=value; }}
 
         /// <summary>
         /// 波特率
@@ -56,6 +59,7 @@ namespace JH.ACU.Model
         public int BaudRate { get; set; }
 
         private SerialParity _parity = SerialParity.None;
+
         /// <summary>
         /// 校检位
         /// </summary>
@@ -67,6 +71,7 @@ namespace JH.ACU.Model
         }
 
         private short _dataBits = 8;
+
         /// <summary>
         /// 数据位
         /// </summary>
@@ -76,5 +81,31 @@ namespace JH.ACU.Model
             get { return _dataBits; }
             set { _dataBits = value; }
         }
+
     }
+    /// <summary>
+    /// 仪器名称枚举
+    /// </summary>
+    public enum InstrName
+    {
+
+        ACU,
+        /// <summary>
+        /// 程控电源
+        /// </summary>
+        PWR,
+        /// <summary>
+        /// 程控电阻箱0
+        /// </summary>
+        PRS0,
+        /// <summary>
+        /// 程控电阻箱1
+        /// </summary>
+        PRS1,
+        /// <summary>
+        /// 数字万用表
+        /// </summary>
+        DMM
+    }
+
 }

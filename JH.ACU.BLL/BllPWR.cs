@@ -39,7 +39,7 @@ namespace JH.ACU.BLL
 
         private static Instr Config
         {
-            get { return DalConfig.GetInstrConfig("Power"); }
+            get { return DalConfig.GetInstrConfig(InstrName.PWR); }
         }
 
         private const string Chanel = ":CHANnel1:"; //通道号:PSS & PSH can only be 1.

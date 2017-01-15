@@ -22,9 +22,9 @@ namespace JH.ACU.DAL
             return XmlHelper.XmlDeserializeFromFile<InstrConfig>(SettingFileName, Encoding.UTF8);
         }
 
-        public static Instr GetInstrConfig(string name)
+        public static Instr GetInstrConfig(InstrName name)
         {
-            return GetInstrConfigs().Find(i => i.Name == name);
+            return GetInstrConfigs().Find(i => i.Name == name.ToString());
         }
     }
 }
