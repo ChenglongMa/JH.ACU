@@ -11,6 +11,7 @@ namespace JH.ACU.DAL
     /// <summary>
     /// 未完成
     /// </summary>
+    [Obsolete("暂时不用该接口")]
     public interface IDalVisa
     {
         MessageBasedSession MbSession { get; set; }
