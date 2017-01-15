@@ -10,17 +10,17 @@ using NationalInstruments.Visa;
 
 namespace JH.ACU.BLL
 {
-    public class BllPwr //暂时先不调用IDalVisa
+    public class BllPwr :BllVisa//暂时先不调用IDalVisa
     {
         public BllPwr()
         {
             switch (Config.Type)
             {
                 case "GPIB":
-                    _mbSession = new GpibSession(Config.PortNumber);
+                    MbSession = new GpibSession(Config.PortNumber);
                     break;
                 case "Serial":
-                    _mbSession = new SerialSession(Config.PortNumber)
+                    MbSession = new SerialSession(Config.PortNumber)
                     {
                         BaudRate = Config.BaudRate,
                         Parity = Config.Parity,
@@ -29,15 +29,11 @@ namespace JH.ACU.BLL
                     break;
 
             }
-            _rawIo = _mbSession.RawIO;
         }
 
         #region 私有字段属性
 
-        private readonly MessageBasedSession _mbSession;
-        private readonly IMessageBasedRawIO _rawIo;
-
-        private static Instr Config
+        protected sealed override Instr Config
         {
             get { return DalConfig.GetInstrConfig(InstrName.PWR); }
         }
@@ -78,7 +74,7 @@ namespace JH.ACU.BLL
         /// <summary>
         /// 获取实际输出电流
         /// </summary>
-        public decimal ActualOutputCurrent
+        public decimal ActualCurrent
         {
             get { return Convert.ToDecimal(WriteAndRead(Chanel + "MEASure:CURRent?")); }
         }
@@ -86,7 +82,7 @@ namespace JH.ACU.BLL
         /// <summary>
         /// 获取实际输出电压
         /// </summary>
-        public decimal ActualOutputVoltage
+        public decimal ActualVoltage
         {
             get { return Convert.ToDecimal(WriteAndRead(Chanel + "MEASure:VOLTage?")); }
         }
@@ -147,17 +143,6 @@ namespace JH.ACU.BLL
 
         #region 私有方法
 
-        private string WriteAndRead(string command, int delay = 50)
-        {
-            _rawIo.Write(command + "\n");
-            Thread.Sleep(delay);
-            return _rawIo.ReadString();
-        }
-
-        private void WriteNoRead(string command)
-        {
-            _rawIo.Write(command + "\n");
-        }
 
         #endregion
 

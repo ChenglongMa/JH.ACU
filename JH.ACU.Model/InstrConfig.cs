@@ -42,9 +42,9 @@ namespace JH.ACU.Model
                 switch (Type.ToUpper())
                 {
                     case "GPIB":
-                        return String.Format("GPIB0::{0}::INSTR", _portNumber);
+                        return string.Format("GPIB0::{0}::INSTR", _portNumber);
                     case "SERIAL":
-                        return String.Format("ASRL{0}::INSTR", _portNumber);
+                        return string.Format("ASRL{0}::INSTR", _portNumber);
                     default:
                         throw new ArgumentNullException("Type", "端口类型设置无效");
                 }
