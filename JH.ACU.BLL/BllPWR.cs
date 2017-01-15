@@ -12,25 +12,6 @@ namespace JH.ACU.BLL
 {
     public class BllPwr :BllVisa//暂时先不调用IDalVisa
     {
-        public BllPwr()
-        {
-            switch (Config.Type)
-            {
-                case "GPIB":
-                    MbSession = new GpibSession(Config.PortNumber);
-                    break;
-                case "Serial":
-                    MbSession = new SerialSession(Config.PortNumber)
-                    {
-                        BaudRate = Config.BaudRate,
-                        Parity = Config.Parity,
-                        DataBits = Config.DataBits
-                    };
-                    break;
-
-            }
-        }
-
         #region 私有字段属性
 
         protected sealed override Instr Config
@@ -45,13 +26,7 @@ namespace JH.ACU.BLL
 
         #region 公有属性
 
-        /// <summary>
-        /// Return the unique identification code of the power supply.
-        /// </summary>
-        public string Idn
-        {
-            get { return WriteAndRead("*IDN?"); }
-        }
+
 
         /// <summary>
         /// 获取或设置输出电流
@@ -148,23 +123,7 @@ namespace JH.ACU.BLL
 
         #region 公有方法
 
-        /// <summary>
-        /// 清除所有的事件寄存器
-        /// </summary>
-        public void Clear()
-        {
-            WriteNoRead("*CLS");
-        }
 
-        /// <summary>
-        /// Self-test and test the RAM, ROM
-        /// </summary>
-        /// <returns></returns>
-        public bool SelfTest()
-        {
-            var res = WriteAndRead("*TST?");
-            return res == "0";
-        }
 
         /// <summary>
         /// 暂停命令执行或查询，直到完成所有挂起操作
@@ -183,14 +142,7 @@ namespace JH.ACU.BLL
             WriteNoRead(Output + "PROTection:CLEar");
         }
 
-        /// <summary>
-        /// Set all control settings of power supply to their default values but does
-        /// not purge stored setting. 
-        /// </summary>
-        public void Reset()
-        {
-            WriteNoRead("*RST");
-        }
+
 
         #endregion
 
