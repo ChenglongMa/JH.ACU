@@ -67,7 +67,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DalConfig.cs" />
     <Compile Include="DalGpib.cs" />
     <Compile Include="DalGpibObsolete.cs" />
     <Compile Include="DalSerial.cs" />
