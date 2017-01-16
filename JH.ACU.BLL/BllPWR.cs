@@ -35,7 +35,7 @@ namespace JH.ACU.BLL
 
         protected sealed override Instr Config
         {
-            get { return DalConfig.GetInstrConfig(InstrName.PWR); }
+            get { return BllConfig.GetInstrConfig(InstrName.PWR); }
         }
 
         private const string Chanel = ":CHANnel1:"; //通道号:PSS & PSH can only be 1.

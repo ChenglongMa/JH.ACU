@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using JH.ACU.Model;
 using JH.ACU.Tool;
 
-namespace JH.ACU.DAL
+namespace JH.ACU.BLL
 {
-    public static class DalConfig
+    public static class BllConfig
     {
         private static readonly string SettingFileName = Environment.CurrentDirectory +
                                                  "\\InstrumentConfig\\InstrConfig.xml";
