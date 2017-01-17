@@ -11,7 +11,7 @@ namespace JH.ACU.BLL
     {
         protected sealed override Instr Config
         {
-            get { return DalConfig.GetInstrConfig(InstrName.DMM); }
+            get { return BllConfig.GetInstrConfig(InstrName.DMM); }
         }
     }
 }

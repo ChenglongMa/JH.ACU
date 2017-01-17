@@ -106,13 +106,7 @@ namespace JH.ACU.BLL
             }
         }
 
-        /// <summary>
-        /// 获取错误信息
-        /// </summary>
-        public string Error
-        {
-            get { return WriteAndRead("SYSTem:ERRor?"); }
-        }
+
 
         #endregion
 

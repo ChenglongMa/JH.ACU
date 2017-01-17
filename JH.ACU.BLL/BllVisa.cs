@@ -16,6 +16,39 @@ namespace JH.ACU.BLL
     {
         protected BllVisa()
         {
+            CreateSession();
+        }
+
+        #region 属性字段
+
+        private MessageBasedSession MbSession { get; set; }
+
+        private IMessageBasedRawIO RawIo
+        {
+            get { return MbSession == null ? null : MbSession.RawIO; }
+        }
+
+        protected abstract Instr Config { get; }
+        /// <summary>
+        /// Return the unique identification code of the instrument supply.
+        /// </summary>
+        public string Idn
+        {
+            get { return WriteAndRead("*IDN?"); }
+        }
+        /// <summary>
+        /// 获取错误信息
+        /// </summary>
+        public string Error
+        {
+            get { return WriteAndRead("SYSTem:ERRor?"); }
+        }
+        #endregion
+
+        #region 私有方法
+
+        private void CreateSession()
+        {
             switch (Config.Type)
             {
                 case "GPIB":
@@ -31,23 +64,8 @@ namespace JH.ACU.BLL
                     break;
 
             }
+
         }
-
-        #region 属性字段
-
-        private MessageBasedSession MbSession { get; set; }
-
-        private IMessageBasedRawIO RawIo
-        {
-            get { return MbSession == null ? null : MbSession.RawIO; }
-        }
-
-        protected abstract Instr Config { get; }
-
-        #endregion
-
-        #region 私有方法
-
         protected string WriteAndRead(string command, int delay = 50)
         {
             RawIo.Write(command + "\n");
@@ -64,16 +82,10 @@ namespace JH.ACU.BLL
 
         #region 公有方法
 
-        /// <summary>
-        /// Return the unique identification code of the power supply.
-        /// </summary>
-        public string Idn
-        {
-            get { return WriteAndRead("*IDN?"); }
-        }
+
 
         /// <summary>
-        /// Set all control settings of power supply to their default values but does
+        /// Set all control settings of instrument supply to their default values but does
         /// not purge stored setting. 
         /// </summary>
         public void Reset()
