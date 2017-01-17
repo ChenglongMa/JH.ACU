@@ -38,7 +38,7 @@ namespace JH.ACU.BLL
         private bool _realTimeFlag;
         private static Instr Config
         {
-            get { return DalConfig.GetInstrConfig("Power"); }
+            get { return BllConfig.GetInstrConfig("Power"); }
         }
 
         public enum MemoryWrite
