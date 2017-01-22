@@ -12,12 +12,12 @@ namespace JH.ACU.BLL
 {
     public class BllPwr :BllVisa//暂时先不调用IDalVisa
     {
+        public BllPwr(InstrName instr)
+            : base(instr)
+        {
+        }
         #region 私有字段属性
 
-        protected sealed override Instr Config
-        {
-            get { return BllConfig.GetInstrConfig(InstrName.PWR); }
-        }
 
         private const string Chanel = ":CHANnel1:"; //通道号:PSS & PSH can only be 1.
         private const string Output = ":OUTPut:"; //QUES:有没有冒号不确定
@@ -139,6 +139,7 @@ namespace JH.ACU.BLL
 
 
         #endregion
+
 
     }
 }

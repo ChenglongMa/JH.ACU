@@ -72,8 +72,8 @@
     <Compile Include="BllAcu.cs" />
     <Compile Include="BllDmm.cs" />
     <Compile Include="BllConfig.cs" />
-    <Compile Include="BllGpibObsolete.cs" />
-    <Compile Include="BllPWR.cs" />
+    <Compile Include="BllPrs.cs" />
+    <Compile Include="BllPwr.cs" />
     <Compile Include="BllVisa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

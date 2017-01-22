@@ -14,11 +14,10 @@ namespace JH.ACU.BLL
     /// </summary>
     public abstract class BllVisa
     {
-        protected BllVisa()
+        protected BllVisa(InstrName instr) 
         {
-            CreateSession();
+            CreateSession(instr);
         }
-
         #region 属性字段
 
         private MessageBasedSession MbSession { get; set; }
@@ -28,7 +27,6 @@ namespace JH.ACU.BLL
             get { return MbSession == null ? null : MbSession.RawIO; }
         }
 
-        protected abstract Instr Config { get; }
         /// <summary>
         /// Return the unique identification code of the instrument supply.
         /// </summary>
@@ -47,19 +45,20 @@ namespace JH.ACU.BLL
 
         #region 私有方法
 
-        private void CreateSession()
+        private void CreateSession(InstrName name)
         {
-            switch (Config.Type)
+            var config = BllConfig.GetInstrConfig(name);
+            switch (config.Type)
             {
                 case "GPIB":
-                    MbSession = new GpibSession(Config.PortNumber);
+                    MbSession = new GpibSession(config.PortNumber);
                     break;
                 case "Serial":
-                    MbSession = new SerialSession(Config.PortNumber)
+                    MbSession = new SerialSession(config.PortNumber)
                     {
-                        BaudRate = Config.BaudRate,
-                        Parity = Config.Parity,
-                        DataBits = Config.DataBits
+                        BaudRate = config.BaudRate,
+                        Parity = config.Parity,
+                        DataBits = config.DataBits
                     };
                     break;
 
