@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using JH.ACU.BLL;
-using JH.ACU.Tool;
+using JH.ACU.Lib;
 
 namespace JH.ACU.UI
 {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace JH.ACU.Tool
+namespace JH.ACU.Lib
 {
     public static class XmlHelper
     {

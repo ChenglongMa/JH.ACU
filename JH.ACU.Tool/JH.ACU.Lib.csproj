@@ -23,8 +23,8 @@
     <ProjectGuid>{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JH.ACU.Tool</RootNamespace>
-    <AssemblyName>JH.ACU.Tool</AssemblyName>
+    <RootNamespace>JH.ACU.Lib</RootNamespace>
+    <AssemblyName>JH.ACU.Lib</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -82,6 +82,15 @@
     <Compile Include="MessageBoxHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\D2K-Dask.dll" />
+    <Content Include="Lib\D2K-Dask64.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lib\D2K-Dask.lib" />
+    <None Include="Lib\D2K-Dask64.lib" />
+    <None Include="Lib\d2kdask_bc.lib" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

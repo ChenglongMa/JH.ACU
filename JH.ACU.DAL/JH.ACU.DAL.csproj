@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="D2KDask.cs" />
     <Compile Include="DalGpib.cs" />
     <Compile Include="DalGpibObsolete.cs" />
     <Compile Include="DalSerial.cs" />
@@ -81,9 +82,9 @@
       <Project>{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}</Project>
       <Name>JH.ACU.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JH.ACU.Tool\JH.ACU.Tool.csproj">
+    <ProjectReference Include="..\JH.ACU.Tool\JH.ACU.Lib.csproj">
       <Project>{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}</Project>
-      <Name>JH.ACU.Tool</Name>
+      <Name>JH.ACU.Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

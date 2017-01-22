@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JH.ACU.Tool
+namespace JH.ACU.Lib
 {
     /// <summary>
     /// 显示消息服务

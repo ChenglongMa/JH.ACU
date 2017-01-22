@@ -9,7 +9,7 @@ using Infragistics.Win;
 using System.Windows.Forms;
 //using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
-namespace JH.ACU.Tool
+namespace JH.ACU.Lib
 {
     /// <summary>
     /// 格式化UltraGrid
