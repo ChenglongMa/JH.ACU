@@ -105,7 +105,11 @@ namespace JH.ACU.Model
         /// <summary>
         /// 数字万用表
         /// </summary>
-        DMM
+        DMM,
+        /// <summary>
+        /// 温箱
+        /// </summary>
+        Chamber,
     }
-
+    
 }

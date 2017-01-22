@@ -16,8 +16,9 @@ namespace JH.ACU.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            log4net.Config.XmlConfigurator.Configure();
-            Application.Run(new MainForm());
+            //log4net.Config.XmlConfigurator.Configure();
+            //Application.Run(new MainForm());
+            Application.Run(new InstrConfigForm());
         }
     }
 }
