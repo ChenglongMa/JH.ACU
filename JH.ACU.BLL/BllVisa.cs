@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Ivi.Visa;
+using JH.ACU.Lib;
 using JH.ACU.Model;
 using NationalInstruments.Visa;
 
@@ -47,24 +48,29 @@ namespace JH.ACU.BLL
 
         private void CreateSession(InstrName name)
         {
-            var config = BllConfig.GetInstrConfig(name);
+            var config = BllConfig.GetInstr(name);
             switch (config.Type)
             {
-                case "GPIB":
-                    MbSession = new GpibSession(config.PortNumber);
+                case InstrType.Gpib:
+                    MbSession = new GpibSession(VisaHelper.GetPortNumber(config));
                     break;
-                case "Serial":
-                    MbSession = new SerialSession(config.PortNumber)
+                case InstrType.Serial:
+                    MbSession = new SerialSession(VisaHelper.GetPortNumber(config))
                     {
                         BaudRate = config.BaudRate,
                         Parity = config.Parity,
-                        DataBits = config.DataBits
+                        DataBits = config.DataBits,
+                        StopBits = config.StopBits,
                     };
                     break;
-
+                case InstrType.Tcp:
+                    throw new NotImplementedException();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-
         }
+
         protected string WriteAndRead(string command, int delay = 50)
         {
             RawIo.Write(command + "\n");
@@ -81,8 +87,6 @@ namespace JH.ACU.BLL
 
         #region 公有方法
 
-
-
         /// <summary>
         /// Set all control settings of instrument supply to their default values but does
         /// not purge stored setting. 
@@ -91,6 +95,7 @@ namespace JH.ACU.BLL
         {
             WriteNoRead("*RST");
         }
+
         /// <summary>
         /// 清除所有的事件寄存器
         /// </summary>
@@ -108,7 +113,7 @@ namespace JH.ACU.BLL
             var res = WriteAndRead("*TST?");
             return res == "0";
         }
-        #endregion
 
+        #endregion
     }
 }

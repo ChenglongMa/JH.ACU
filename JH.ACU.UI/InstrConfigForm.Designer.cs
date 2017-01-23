@@ -28,104 +28,188 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbInstrName = new Infragistics.Win.UltraWinGrid.UltraCombo();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbInstrName)).BeginInit();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblType = new System.Windows.Forms.Label();
+            this.lblPortNum = new System.Windows.Forms.Label();
+            this.lblBaudRate = new System.Windows.Forms.Label();
+            this.lblParity = new System.Windows.Forms.Label();
+            this.lblDataBits = new System.Windows.Forms.Label();
+            this.cmbInstrName = new System.Windows.Forms.ComboBox();
+            this.cmbInstrType = new System.Windows.Forms.ComboBox();
+            this.cmbDataBits = new System.Windows.Forms.ComboBox();
+            this.cmbParity = new System.Windows.Forms.ComboBox();
+            this.cmbBaudRate = new System.Windows.Forms.ComboBox();
+            this.cmbPortNum = new System.Windows.Forms.ComboBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.lblStopBits = new System.Windows.Forms.Label();
+            this.cmbStopBits = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // label1
+            // lblName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "仪器名称";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(50, 54);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(53, 12);
+            this.lblName.TabIndex = 1;
+            this.lblName.Text = "仪器名称";
+            // 
+            // lblType
+            // 
+            this.lblType.AutoSize = true;
+            this.lblType.Location = new System.Drawing.Point(40, 93);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(53, 12);
+            this.lblType.TabIndex = 1;
+            this.lblType.Text = "接口类型";
+            // 
+            // lblPortNum
+            // 
+            this.lblPortNum.AutoSize = true;
+            this.lblPortNum.Location = new System.Drawing.Point(52, 134);
+            this.lblPortNum.Name = "lblPortNum";
+            this.lblPortNum.Size = new System.Drawing.Size(41, 12);
+            this.lblPortNum.TabIndex = 1;
+            this.lblPortNum.Text = "端口号";
+            // 
+            // lblBaudRate
+            // 
+            this.lblBaudRate.AutoSize = true;
+            this.lblBaudRate.Location = new System.Drawing.Point(50, 183);
+            this.lblBaudRate.Name = "lblBaudRate";
+            this.lblBaudRate.Size = new System.Drawing.Size(41, 12);
+            this.lblBaudRate.TabIndex = 1;
+            this.lblBaudRate.Text = "波特率";
+            // 
+            // lblParity
+            // 
+            this.lblParity.AutoSize = true;
+            this.lblParity.Location = new System.Drawing.Point(40, 233);
+            this.lblParity.Name = "lblParity";
+            this.lblParity.Size = new System.Drawing.Size(53, 12);
+            this.lblParity.TabIndex = 1;
+            this.lblParity.Text = "奇偶校验";
+            // 
+            // lblDataBits
+            // 
+            this.lblDataBits.AutoSize = true;
+            this.lblDataBits.Location = new System.Drawing.Point(40, 280);
+            this.lblDataBits.Name = "lblDataBits";
+            this.lblDataBits.Size = new System.Drawing.Size(41, 12);
+            this.lblDataBits.TabIndex = 1;
+            this.lblDataBits.Text = "数据位";
             // 
             // cmbInstrName
             // 
-            appearance1.BackColor = System.Drawing.SystemColors.Window;
-            appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
-            this.cmbInstrName.DisplayLayout.Appearance = appearance1;
-            this.cmbInstrName.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            this.cmbInstrName.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            appearance2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            appearance2.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance2.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance2.BorderColor = System.Drawing.SystemColors.Window;
-            this.cmbInstrName.DisplayLayout.GroupByBox.Appearance = appearance2;
-            appearance3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.cmbInstrName.DisplayLayout.GroupByBox.BandLabelAppearance = appearance3;
-            this.cmbInstrName.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            appearance4.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            appearance4.BackColor2 = System.Drawing.SystemColors.Control;
-            appearance4.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.cmbInstrName.DisplayLayout.GroupByBox.PromptAppearance = appearance4;
-            this.cmbInstrName.DisplayLayout.MaxColScrollRegions = 1;
-            this.cmbInstrName.DisplayLayout.MaxRowScrollRegions = 1;
-            appearance5.BackColor = System.Drawing.SystemColors.Window;
-            appearance5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbInstrName.DisplayLayout.Override.ActiveCellAppearance = appearance5;
-            appearance6.BackColor = System.Drawing.SystemColors.Highlight;
-            appearance6.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.cmbInstrName.DisplayLayout.Override.ActiveRowAppearance = appearance6;
-            this.cmbInstrName.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
-            this.cmbInstrName.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
-            appearance7.BackColor = System.Drawing.SystemColors.Window;
-            this.cmbInstrName.DisplayLayout.Override.CardAreaAppearance = appearance7;
-            appearance8.BorderColor = System.Drawing.Color.Silver;
-            appearance8.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
-            this.cmbInstrName.DisplayLayout.Override.CellAppearance = appearance8;
-            this.cmbInstrName.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
-            this.cmbInstrName.DisplayLayout.Override.CellPadding = 0;
-            appearance9.BackColor = System.Drawing.SystemColors.Control;
-            appearance9.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance9.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance9.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance9.BorderColor = System.Drawing.SystemColors.Window;
-            this.cmbInstrName.DisplayLayout.Override.GroupByRowAppearance = appearance9;
-            appearance10.TextHAlignAsString = "Left";
-            this.cmbInstrName.DisplayLayout.Override.HeaderAppearance = appearance10;
-            this.cmbInstrName.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-            this.cmbInstrName.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
-            appearance11.BackColor = System.Drawing.SystemColors.Window;
-            appearance11.BorderColor = System.Drawing.Color.Silver;
-            this.cmbInstrName.DisplayLayout.Override.RowAppearance = appearance11;
-            this.cmbInstrName.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
-            appearance12.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cmbInstrName.DisplayLayout.Override.TemplateAddRowAppearance = appearance12;
-            this.cmbInstrName.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-            this.cmbInstrName.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.cmbInstrName.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
-            this.cmbInstrName.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
-            this.cmbInstrName.Location = new System.Drawing.Point(119, 94);
+            this.cmbInstrName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbInstrName.FormattingEnabled = true;
+            this.cmbInstrName.Location = new System.Drawing.Point(109, 51);
             this.cmbInstrName.Name = "cmbInstrName";
-            this.cmbInstrName.Size = new System.Drawing.Size(123, 22);
-            this.cmbInstrName.TabIndex = 2;
+            this.cmbInstrName.Size = new System.Drawing.Size(121, 20);
+            this.cmbInstrName.TabIndex = 4;
+            this.cmbInstrName.SelectedIndexChanged += new System.EventHandler(this.cmbInstrName_SelectedIndexChanged);
+            // 
+            // cmbInstrType
+            // 
+            this.cmbInstrType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbInstrType.FormattingEnabled = true;
+            this.cmbInstrType.Location = new System.Drawing.Point(109, 85);
+            this.cmbInstrType.Name = "cmbInstrType";
+            this.cmbInstrType.Size = new System.Drawing.Size(121, 20);
+            this.cmbInstrType.TabIndex = 4;
+            this.cmbInstrType.SelectedIndexChanged += new System.EventHandler(this.cmbInstrType_SelectedIndexChanged);
+            // 
+            // cmbDataBits
+            // 
+            this.cmbDataBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDataBits.FormattingEnabled = true;
+            this.cmbDataBits.Location = new System.Drawing.Point(109, 277);
+            this.cmbDataBits.Name = "cmbDataBits";
+            this.cmbDataBits.Size = new System.Drawing.Size(121, 20);
+            this.cmbDataBits.TabIndex = 5;
+            this.cmbDataBits.SelectedIndexChanged += new System.EventHandler(this.cmbDataBits_SelectedIndexChanged);
+            // 
+            // cmbParity
+            // 
+            this.cmbParity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbParity.FormattingEnabled = true;
+            this.cmbParity.Location = new System.Drawing.Point(109, 230);
+            this.cmbParity.Name = "cmbParity";
+            this.cmbParity.Size = new System.Drawing.Size(121, 20);
+            this.cmbParity.TabIndex = 6;
+            this.cmbParity.SelectedIndexChanged += new System.EventHandler(this.cmbParity_SelectedIndexChanged);
+            // 
+            // cmbBaudRate
+            // 
+            this.cmbBaudRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBaudRate.FormattingEnabled = true;
+            this.cmbBaudRate.Location = new System.Drawing.Point(109, 180);
+            this.cmbBaudRate.Name = "cmbBaudRate";
+            this.cmbBaudRate.Size = new System.Drawing.Size(121, 20);
+            this.cmbBaudRate.TabIndex = 7;
+            this.cmbBaudRate.SelectedIndexChanged += new System.EventHandler(this.cmbBaudRate_SelectedIndexChanged);
+            // 
+            // cmbPortNum
+            // 
+            this.cmbPortNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPortNum.FormattingEnabled = true;
+            this.cmbPortNum.Location = new System.Drawing.Point(109, 126);
+            this.cmbPortNum.Name = "cmbPortNum";
+            this.cmbPortNum.Size = new System.Drawing.Size(121, 20);
+            this.cmbPortNum.TabIndex = 8;
+            this.cmbPortNum.SelectedIndexChanged += new System.EventHandler(this.cmbPortNum_SelectedIndexChanged);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(109, 333);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 9;
+            this.btnSave.Text = "保存";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // lblStopBits
+            // 
+            this.lblStopBits.AutoSize = true;
+            this.lblStopBits.Location = new System.Drawing.Point(40, 310);
+            this.lblStopBits.Name = "lblStopBits";
+            this.lblStopBits.Size = new System.Drawing.Size(41, 12);
+            this.lblStopBits.TabIndex = 1;
+            this.lblStopBits.Text = "停止位";
+            // 
+            // cmbStopBits
+            // 
+            this.cmbStopBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStopBits.FormattingEnabled = true;
+            this.cmbStopBits.Location = new System.Drawing.Point(109, 307);
+            this.cmbStopBits.Name = "cmbStopBits";
+            this.cmbStopBits.Size = new System.Drawing.Size(121, 20);
+            this.cmbStopBits.TabIndex = 5;
+            this.cmbStopBits.SelectedIndexChanged += new System.EventHandler(this.cmbStopBits_SelectedIndexChanged);
             // 
             // InstrConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 513);
+            this.ClientSize = new System.Drawing.Size(324, 469);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.cmbPortNum);
+            this.Controls.Add(this.cmbBaudRate);
+            this.Controls.Add(this.cmbParity);
+            this.Controls.Add(this.cmbStopBits);
+            this.Controls.Add(this.cmbDataBits);
+            this.Controls.Add(this.cmbInstrType);
+            this.Controls.Add(this.lblStopBits);
             this.Controls.Add(this.cmbInstrName);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblDataBits);
+            this.Controls.Add(this.lblParity);
+            this.Controls.Add(this.lblBaudRate);
+            this.Controls.Add(this.lblPortNum);
+            this.Controls.Add(this.lblType);
+            this.Controls.Add(this.lblName);
             this.Name = "InstrConfigForm";
             this.Text = "仪器接口配置";
-            ((System.ComponentModel.ISupportInitialize)(this.cmbInstrName)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,8 +217,21 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private Infragistics.Win.UltraWinGrid.UltraCombo cmbInstrName;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblType;
+        private System.Windows.Forms.Label lblPortNum;
+        private System.Windows.Forms.Label lblBaudRate;
+        private System.Windows.Forms.Label lblParity;
+        private System.Windows.Forms.Label lblDataBits;
+        private System.Windows.Forms.ComboBox cmbInstrName;
+        private System.Windows.Forms.ComboBox cmbInstrType;
+        private System.Windows.Forms.ComboBox cmbDataBits;
+        private System.Windows.Forms.ComboBox cmbParity;
+        private System.Windows.Forms.ComboBox cmbBaudRate;
+        private System.Windows.Forms.ComboBox cmbPortNum;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblStopBits;
+        private System.Windows.Forms.ComboBox cmbStopBits;
 
 
     }

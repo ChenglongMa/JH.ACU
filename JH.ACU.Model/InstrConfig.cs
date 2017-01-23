@@ -21,33 +21,25 @@ namespace JH.ACU.Model
         /// 仪器名称
         /// </summary>
         [XmlAttribute("Name")]
-        public string Name { get; set; }
+        public InstrName Name { get; set; }
 
         /// <summary>
         /// 连接类型
         /// </summary>
         [XmlAttribute("Type")]
-        public string Type { get; set; }
+        public InstrType Type { get; set; }
 
-        private string _portNumber = "";
+        private int _portNumber = 1;
 
         /// <summary>
         /// 端口号或设备地址
         /// </summary>
         [XmlAttribute("PortNumber")]
-        public string PortNumber
+        public int PortNumber
         {
             get
             {
-                switch (Type.ToUpper())
-                {
-                    case "GPIB":
-                        return string.Format("GPIB0::{0}::INSTR", _portNumber);
-                    case "SERIAL":
-                        return string.Format("ASRL{0}::INSTR", _portNumber);
-                    default:
-                        throw new ArgumentNullException("Type", "端口类型设置无效");
-                }
+                return _portNumber;
             }
             set { _portNumber = value; }
         }
@@ -81,35 +73,17 @@ namespace JH.ACU.Model
             get { return _dataBits; }
             set { _dataBits = value; }
         }
-
+        private SerialStopBitsMode _stopBits=SerialStopBitsMode.One;
+        /// <summary>
+        /// 停止位
+        /// </summary>
+        [XmlAttribute("StopBits")]
+        public SerialStopBitsMode StopBits
+        {
+            get { return _stopBits; }
+            set { _stopBits = value; }
+        }
     }
-    /// <summary>
-    /// 仪器名称枚举
-    /// </summary>
-    public enum InstrName
-    {
 
-        ACU,
-        /// <summary>
-        /// 程控电源
-        /// </summary>
-        PWR,
-        /// <summary>
-        /// 程控电阻箱0
-        /// </summary>
-        PRS0,
-        /// <summary>
-        /// 程控电阻箱1
-        /// </summary>
-        PRS1,
-        /// <summary>
-        /// 数字万用表
-        /// </summary>
-        DMM,
-        /// <summary>
-        /// 温箱
-        /// </summary>
-        Chamber,
-    }
-    
+
 }

@@ -55,9 +55,9 @@
     <Reference Include="Infragistics4.Win.Misc.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics4.Win.UltraWinGrid.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics4.Win.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
-    <Reference Include="log4net">
-      <HintPath>..\Assembly\log4net.dll</HintPath>
-    </Reference>
+    <Reference Include="Ivi.Visa, Version=5.6.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=MSIL" />
+    <Reference Include="NationalInstruments.Common, Version=15.0.40.49154, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL" />
+    <Reference Include="NationalInstruments.Visa, Version=15.5.0.49152, Culture=neutral, PublicKeyToken=2eaa5af0834e221d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -73,6 +73,7 @@
     <Compile Include="UltraGridHelper.cs" />
     <Compile Include="MessageBoxHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisaHelper.cs" />
     <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +84,15 @@
     <None Include="Lib\D2K-Dask.lib" />
     <None Include="Lib\D2K-Dask64.lib" />
     <None Include="Lib\d2kdask_bc.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JH.ACU.Model\JH.ACU.Model.csproj">
+      <Project>{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}</Project>
+      <Name>JH.ACU.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

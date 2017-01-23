@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using JH.ACU.DAL;
 using Ivi.Visa;
+using JH.ACU.Lib;
 using JH.ACU.Model;
 using NationalInstruments.Restricted;
 using NationalInstruments.VisaNS;
@@ -21,13 +22,9 @@ namespace JH.ACU.BLL
     {
         #region 构造函数
 
-        /// <summary>
-        /// 读取方式待定，因不知DAQ板卡怎样读取
-        /// </summary>
         public BllAcu()
         {
-            _serial = new SerialSession(Config.PortNumber) {BaudRate = Config.BaudRate};
-            throw new NotImplementedException("了解板卡后完成");
+            _serial = new SerialSession(VisaHelper.GetPortNumber(Config)) {BaudRate = Config.BaudRate};
         }
 
         #endregion
@@ -38,7 +35,7 @@ namespace JH.ACU.BLL
         private bool _realTimeFlag;
         private static Instr Config
         {
-            get { return BllConfig.GetInstrConfig(InstrName.ACU); }
+            get { return BllConfig.GetInstr(InstrName.ACU); }
         }
 
         public enum MemoryWrite

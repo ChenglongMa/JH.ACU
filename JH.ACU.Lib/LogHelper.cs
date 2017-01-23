@@ -6,6 +6,9 @@ using System.Text;
 
 namespace JH.ACU.Lib
 {
+    /// <summary>
+    /// 日志帮助类
+    /// </summary>
     public static class LogHelper
     {
         private static string _rootPath = AppDomain.CurrentDomain.BaseDirectory + "Log";
