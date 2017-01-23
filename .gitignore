@@ -4,8 +4,6 @@ bin
 # user files
 .user
 .suo
-/JH.ACU.UI/obj
-/JH.ACU.UI/bin
 /*.suo
 /*.user
 /*.DotSettings
@@ -41,3 +39,4 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
+licenses.licx
