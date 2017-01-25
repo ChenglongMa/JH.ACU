@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BllAcu.cs" />
+    <Compile Include="BllDaq.cs" />
     <Compile Include="BllDmm.cs" />
     <Compile Include="BllConfig.cs" />
     <Compile Include="BllPrs.cs" />

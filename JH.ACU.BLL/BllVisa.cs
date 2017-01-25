@@ -15,18 +15,21 @@ namespace JH.ACU.BLL
     /// </summary>
     public abstract class BllVisa
     {
-        protected BllVisa(InstrName instr) 
+        protected BllVisa(InstrName instr)
         {
             CreateSession(instr);
         }
+
         #region 属性字段
 
-        private MessageBasedSession MbSession { get; set; }
+        protected MessageBasedSession MbSession { get; set; }
 
-        private IMessageBasedRawIO RawIo
+        protected IMessageBasedRawIO RawIo
         {
             get { return MbSession == null ? null : MbSession.RawIO; }
         }
+
+        protected Instr Config { get; set; }
 
         /// <summary>
         /// Return the unique identification code of the instrument supply.
@@ -35,6 +38,7 @@ namespace JH.ACU.BLL
         {
             get { return WriteAndRead("*IDN?"); }
         }
+
         /// <summary>
         /// 获取错误信息
         /// </summary>
@@ -42,25 +46,26 @@ namespace JH.ACU.BLL
         {
             get { return WriteAndRead("SYSTem:ERRor?"); }
         }
+
         #endregion
 
         #region 私有方法
 
         private void CreateSession(InstrName name)
         {
-            var config = BllConfig.GetInstr(name);
-            switch (config.Type)
+            Config = BllConfig.GetInstr(name);
+            switch (Config.Type)
             {
                 case InstrType.Gpib:
-                    MbSession = new GpibSession(VisaHelper.GetPortNumber(config));
+                    MbSession = new GpibSession(VisaHelper.GetPortNumber(Config));
                     break;
                 case InstrType.Serial:
-                    MbSession = new SerialSession(VisaHelper.GetPortNumber(config))
+                    MbSession = new SerialSession(VisaHelper.GetPortNumber(Config))
                     {
-                        BaudRate = config.BaudRate,
-                        Parity = config.Parity,
-                        DataBits = config.DataBits,
-                        StopBits = config.StopBits,
+                        BaudRate = Config.BaudRate,
+                        Parity = Config.Parity,
+                        DataBits = Config.DataBits,
+                        StopBits = Config.StopBits,
                     };
                     break;
                 case InstrType.Tcp:
@@ -112,6 +117,34 @@ namespace JH.ACU.BLL
         {
             var res = WriteAndRead("*TST?");
             return res == "0";
+        }
+
+        /// <summary>
+        /// 暂停命令执行或查询，直到完成所有挂起操作
+        /// </summary>
+        public void Wait()
+        {
+            WriteNoRead("*WAI");
+        }
+
+        /// <summary>
+        /// 等待操作完成
+        /// QUES:使用方法待确定
+        /// </summary>
+        public void WaitComplete(int timeout = 30000)
+        {
+            var t = Environment.TickCount;
+            do
+            {
+                if (string.IsNullOrEmpty(Error))
+                {
+                    Thread.Sleep(100);
+                }
+                else
+                {
+                    return;
+                }
+            } while (WriteAndRead("*OPC?") == "0" && Environment.TickCount - t < timeout);
         }
 
         #endregion

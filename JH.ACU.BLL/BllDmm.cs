@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Ivi.Visa;
 using JH.ACU.DAL;
 using JH.ACU.Model;
+using NationalInstruments.Visa;
 
 namespace JH.ACU.BLL
 {
@@ -23,6 +25,87 @@ namespace JH.ACU.BLL
                * 6、从输出缓冲器或内部存储器上取出读数
                * 7、将测量的数据读进总线控制器
                */
+        }
+
+        #region 属性 字段
+
+        private enum ControlMode
+        {
+            Local,
+            Remote,
+            RemoteWithLock
+        }
+
+        #endregion
+
+        public bool Initialize()
+        {
+
+        }
+
+        private void SetControlMode(ControlMode mode, int timeout = 30000)
+        {
+            if (MbSession.HardwareInterfaceType!=HardwareInterfaceType.Serial)return;
+            switch (mode)
+            {
+                case ControlMode.Local:
+                    WriteNoRead("SYST:LOC");
+                    return;//退出该方法
+                case ControlMode.Remote:
+                    WriteNoRead("SYST:REM");
+
+                    break;
+                case ControlMode.RemoteWithLock:
+                    WriteNoRead("SYST:RWL");
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("mode", mode, null);
+            }
+            WaitComplete(timeout);
+        }
+
+        private void DmmClear()
+        {
+            switch (MbSession.HardwareInterfaceType)
+            {
+                case HardwareInterfaceType.Gpib:
+                    MbSession.Clear();
+                    break;
+
+                case HardwareInterfaceType.Serial:
+                    var serial = MbSession as SerialSession;
+                    try
+                    {
+                        // ReSharper disable once PossibleNullReferenceException
+                        serial.FlowControl = SerialFlowControlModes.DtrDsr;
+                    }
+                    catch (Exception)
+                    {
+                        // ReSharper disable once PossibleNullReferenceException
+                        serial.FlowControl = SerialFlowControlModes.None;
+                    }
+                    serial.ReadTermination = SerialTerminationMethod.TerminationCharacter;
+                    serial.WriteTermination = SerialTerminationMethod.TerminationCharacter;
+                    serial.TerminationCharacter = 0x0A;
+                    serial.BaudRate = Config.BaudRate;
+                    serial.Parity = Config.Parity;
+                    serial.DataBits = Config.DataBits;
+                    serial.StopBits = SerialStopBitsMode.Two;
+                    serial.IOProtocol = IOProtocol.Ieee4882;
+                    serial.Flush(IOBuffers.ReadWrite, true);
+                    serial.SetBufferSize(IOBuffers.ReadWrite, 4096);
+                    SetControlMode(ControlMode.Remote);
+                    var id = Idn;
+                    if (id.Contains("34401")||id.Contains("34410")||id.Contains("4411"))
+                    {
+                        
+                    }
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

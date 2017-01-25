@@ -6,6 +6,9 @@ using JH.ACU.Lib;
 
 namespace JH.ACU.BLL
 {
+    /// <summary>
+    /// 仪器配置类
+    /// </summary>
     public static class BllConfig
     {
         private static readonly string SettingFileName = Environment.CurrentDirectory +

@@ -3,9 +3,11 @@ using System.Runtime.InteropServices;
 
 namespace JH.ACU.DAL
 {
-    public delegate void CallbackDelegate();  
-
-    public class D2KDask
+    public delegate void CallbackDelegate();
+    /// <summary>
+    /// DAQ SDK
+    /// </summary>
+    public static class D2KDask
     {
         //DAQ2000 Device
 
@@ -516,7 +518,7 @@ namespace JH.ACU.DAL
 	** PCIS-DASK Function prototype
 	------------------------------------------------------------------*/
 
-        #region 
+        #region
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_Register_Card(ushort CardType, ushort card_num);
@@ -539,16 +541,18 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region 
+        #region
 
         /*---------------------------------------------------------------------------*/
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AI_Config(ushort wCardNumber, ushort ConfigCtrl, uint TrigCtrl, uint MidOrDlyScans,
+        public static extern short D2K_AI_Config(ushort wCardNumber, ushort ConfigCtrl, uint TrigCtrl,
+            uint MidOrDlyScans,
             ushort MCnt, ushort ReTrgCnt, bool AutoResetBuf);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AI_ConfigEx(ushort wCardNumber, ushort ConfigCtrl, uint TrigCtrl, uint MidOrDlyScans,
+        public static extern short D2K_AI_ConfigEx(ushort wCardNumber, ushort ConfigCtrl, uint TrigCtrl,
+            uint MidOrDlyScans,
             uint MCnt, uint ReTrgCnt, bool AutoResetBuf);
 
         [DllImport("D2K-Dask.dll")]
@@ -568,7 +572,8 @@ namespace JH.ACU.DAL
             uint DlyScans, ushort ReTrgEn, uint ReTrgCnt, bool AutoResetBuf);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AI_PreTrig_Config(ushort wCardNumber, ushort ClkSrc, uint TrigSrcCtrl, ushort MCtrEn,
+        public static extern short D2K_AI_PreTrig_Config(ushort wCardNumber, ushort ClkSrc, uint TrigSrcCtrl,
+            ushort MCtrEn,
             ushort MCnt, bool AutoResetBuf);
 
         [DllImport("D2K-Dask.dll")]
@@ -676,10 +681,12 @@ namespace JH.ACU.DAL
         public static extern short D2K_AI_AsyncClear(ushort CardNumber, out uint StartPos, out uint AccessCnt);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AI_AsyncClearEx(ushort CardNumber, out uint StartPos, out uint AccessCnt, uint NoWait);
+        public static extern short D2K_AI_AsyncClearEx(ushort CardNumber, out uint StartPos, out uint AccessCnt,
+            uint NoWait);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AI_AsyncDblBufferHalfReady(ushort CardNumber, out byte HalfReady, out byte StopFlag);
+        public static extern short D2K_AI_AsyncDblBufferHalfReady(ushort CardNumber, out byte HalfReady,
+            out byte StopFlag);
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_AsyncDblBufferMode(ushort CardNumber, bool Enable);
@@ -729,7 +736,8 @@ namespace JH.ACU.DAL
             out ushort RdyTrigCnt);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AI_AsyncReTrigNextReadyEx(ushort wCardNumber, out byte trgReady, out byte StopFlag,
+        public static extern short D2K_AI_AsyncReTrigNextReadyEx(ushort wCardNumber, out byte trgReady,
+            out byte StopFlag,
             out uint RdyTrigCnt);
 
         [DllImport("D2K-Dask.dll")]
@@ -743,7 +751,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region 
+        #region
 
         /*---------------------------------------------------------------------------*/
 
@@ -773,7 +781,8 @@ namespace JH.ACU.DAL
         public static extern short D2K_AO_VWriteChannel(ushort CardNumber, ushort Channel, double Voltage);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AO_VoltScale(ushort CardNumber, ushort Channel, double Voltage, out short binValue);
+        public static extern short D2K_AO_VoltScale(ushort CardNumber, ushort Channel, double Voltage,
+            out short binValue);
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AO_ContWriteChannel(ushort wCardNumber, ushort wChannel,
@@ -794,7 +803,8 @@ namespace JH.ACU.DAL
         public static extern short D2K_AO_AsyncClear(ushort CardNumber, out uint WriteCnt, ushort stop_mode);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AO_AsyncClearEx(ushort CardNumber, out uint WriteCnt, ushort stop_mode, uint NoWait);
+        public static extern short D2K_AO_AsyncClearEx(ushort CardNumber, out uint WriteCnt, ushort stop_mode,
+            uint NoWait);
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AO_AsyncDblBufferHalfReady(ushort CardNumber, out byte HalfReady);
@@ -847,12 +857,13 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region 
+        #region
 
         /*---------------------------------------------------------------------------*/
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AO_Group_Setup(ushort wCardNumber, ushort group, ushort wNumChans, ushort[] pwChans);
+        public static extern short D2K_AO_Group_Setup(ushort wCardNumber, ushort group, ushort wNumChans,
+            ushort[] pwChans);
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AO_Group_Setup(ushort wCardNumber, ushort group, ushort wNumChans, IntPtr pwChans);
@@ -870,10 +881,12 @@ namespace JH.ACU.DAL
         public static extern short D2K_AO_Group_VUpdate(ushort CardNumber, ushort group, IntPtr pVoltage);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AO_Group_FIFOLoad(ushort wCardNumber, ushort group, ushort BufId, uint dwWriteCount);
+        public static extern short D2K_AO_Group_FIFOLoad(ushort wCardNumber, ushort group, ushort BufId,
+            uint dwWriteCount);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_AO_Group_FIFOLoad_2(ushort wCardNumber, ushort group, ushort BufId, uint dwWriteCount);
+        public static extern short D2K_AO_Group_FIFOLoad_2(ushort wCardNumber, ushort group, ushort BufId,
+            uint dwWriteCount);
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AO_Group_WFM_StopConfig(ushort wCardNumber, ushort group, ushort stopSrc,
@@ -894,7 +907,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region 
+        #region
 
         /*---------------------------------------------------------------------------*/
 
@@ -906,7 +919,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region 
+        #region
 
         /*---------------------------------------------------------------------------*/
 
@@ -924,7 +937,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region 
+        #region
 
         /*---------------------------------------------------------------------------*/
 
@@ -939,12 +952,13 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region 
+        #region
 
         /*---------------------------------------------------------------------------*/
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_GCTR_Setup(ushort wCardNumber, ushort wGCtr, ushort wMode, byte SrcCtrl, byte PolCtrl,
+        public static extern short D2K_GCTR_Setup(ushort wCardNumber, ushort wGCtr, ushort wMode, byte SrcCtrl,
+            byte PolCtrl,
             ushort LReg1_Val, ushort LReg2_Val);
 
         [DllImport("D2K-Dask.dll")]
@@ -984,7 +998,8 @@ namespace JH.ACU.DAL
             out float da0v_err, out float da5v_err);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short DAQ2205_Acquire_AD_Error(ushort wCardNumber, out float gain_err, out float bioffset_err,
+        public static extern short DAQ2205_Acquire_AD_Error(ushort wCardNumber, out float gain_err,
+            out float bioffset_err,
             out float unioffset_err, out float hg_bios_err);
 
         [DllImport("D2K-Dask.dll")]
@@ -992,11 +1007,13 @@ namespace JH.ACU.DAL
             out float da0v_err, out float da5v_err);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short DAQ2206_Acquire_AD_Error(ushort wCardNumber, out float gain_err, out float bioffset_err,
+        public static extern short DAQ2206_Acquire_AD_Error(ushort wCardNumber, out float gain_err,
+            out float bioffset_err,
             out float unioffset_err, out float hg_bios_err);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short DAQ2213_Acquire_AD_Error(ushort wCardNumber, out float gain_err, out float bioffset_err,
+        public static extern short DAQ2213_Acquire_AD_Error(ushort wCardNumber, out float gain_err,
+            out float bioffset_err,
             out float unioffset_err, out float hg_bios_err);
 
         [DllImport("D2K-Dask.dll")]
@@ -1004,7 +1021,8 @@ namespace JH.ACU.DAL
             out float da0v_err, out float da5v_err);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short DAQ2214_Acquire_AD_Error(ushort wCardNumber, out float gain_err, out float bioffset_err,
+        public static extern short DAQ2214_Acquire_AD_Error(ushort wCardNumber, out float gain_err,
+            out float bioffset_err,
             out float unioffset_err, out float hg_bios_err);
 
         [DllImport("D2K-Dask.dll")]
@@ -1044,11 +1062,13 @@ namespace JH.ACU.DAL
             out float da0v_err, out float da5v_err);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short DAQ2204_Acquire_AD_Error(ushort wCardNumber, out float gain_err, out float bioffset_err,
+        public static extern short DAQ2204_Acquire_AD_Error(ushort wCardNumber, out float gain_err,
+            out float bioffset_err,
             out float unioffset_err, out float hg_bios_err);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short DAQ2208_Acquire_AD_Error(ushort wCardNumber, out float gain_err, out float bioffset_err,
+        public static extern short DAQ2208_Acquire_AD_Error(ushort wCardNumber, out float gain_err,
+            out float bioffset_err,
             out float unioffset_err, out float hg_bios_err);
 
         [DllImport("D2K-Dask.dll")]

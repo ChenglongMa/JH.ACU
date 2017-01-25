@@ -10,6 +10,9 @@ using NationalInstruments.Visa;
 
 namespace JH.ACU.BLL
 {
+    /// <summary>
+    /// 程控电源操作类
+    /// </summary>
     public class BllPwr :BllVisa//暂时先不调用IDalVisa
     {
         public BllPwr(InstrName instr)
@@ -119,13 +122,6 @@ namespace JH.ACU.BLL
 
 
 
-        /// <summary>
-        /// 暂停命令执行或查询，直到完成所有挂起操作
-        /// </summary>
-        public void Suspend()
-        {
-            WriteNoRead("*WAI");
-        }
 
         /// <summary>
         /// Clears over-voltage and over-current and
