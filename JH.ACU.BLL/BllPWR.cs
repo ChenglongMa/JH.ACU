@@ -136,6 +136,9 @@ namespace JH.ACU.BLL
 
         #endregion
 
-
+        public override bool Initialize()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -92,6 +92,7 @@ namespace JH.ACU.BLL
 
         #region 公有方法
 
+        public abstract bool Initialize();
         /// <summary>
         /// Set all control settings of instrument supply to their default values but does
         /// not purge stored setting. 

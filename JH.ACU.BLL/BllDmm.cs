@@ -258,7 +258,7 @@ namespace JH.ACU.BLL
         /// 初始化数字万用表
         /// </summary>
         /// <returns></returns>
-        public bool Initialize()
+        public override bool Initialize()
         {
             try
             {
