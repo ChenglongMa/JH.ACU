@@ -1,4 +1,2 @@
 ﻿<InstrConfig>
-  <Instr Name="ACU" Type="Serial" PortNumber="1" BaudRate="9600" DataBits="8" StopBits="One" />
-  <Instr Name="Chamber" Type="Serial" PortNumber="1" BaudRate="9600" DataBits="8" StopBits="One" />
 </InstrConfig>

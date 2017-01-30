@@ -65,14 +65,14 @@ namespace JH.ACU.Lib
             switch (instr.Type)
             {
                 case InstrType.Gpib:
-                    return string.Format("GPIB0::{0}::INSTR", instr.PortNumber);
+                    return string.Format("GPIB0::{0}::INSTR", instr.Gpib.Port);
                 case InstrType.Serial:
-                    return string.Format("ASRL{0}::INSTR", instr.PortNumber);
+                    return string.Format("ASRL{0}::INSTR", instr.Serial.Port);
                 case InstrType.Tcp:
-                    throw new NotImplementedException();
+                    return string.Format("TCPIP0::{0}::{1}::SOCKET", instr.TcpIp.IpAddress, instr.TcpIp.Port);
                     break;
                 default:
-                    throw new ArgumentNullException("Type", "端口类型设置无效");
+                    throw new ArgumentNullException("instr", "端口类型设置无效");
             }
         }
     }

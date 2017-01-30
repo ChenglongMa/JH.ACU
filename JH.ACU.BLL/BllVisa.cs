@@ -62,14 +62,14 @@ namespace JH.ACU.BLL
                 case InstrType.Serial:
                     MbSession = new SerialSession(VisaHelper.GetPortNumber(Config))
                     {
-                        BaudRate = Config.BaudRate,
-                        Parity = Config.Parity,
-                        DataBits = Config.DataBits,
-                        StopBits = Config.StopBits,
+                        BaudRate = Config.Serial.BaudRate,
+                        Parity = Config.Serial.Parity,
+                        DataBits = Config.Serial.DataBits,
+                        StopBits = Config.Serial.StopBits,
                     };
                     break;
                 case InstrType.Tcp:
-                    throw new NotImplementedException();
+                    MbSession = new TcpipSocket(VisaHelper.GetPortNumber(Config)) { TimeoutMilliseconds = Config.TcpIp.Timeout };
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -91,7 +91,10 @@ namespace JH.ACU.BLL
         #endregion
 
         #region 公有方法
-
+        /// <summary>
+        /// 仪器初始化
+        /// </summary>
+        /// <returns></returns>
         public abstract bool Initialize();
         /// <summary>
         /// Set all control settings of instrument supply to their default values but does

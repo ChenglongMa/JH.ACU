@@ -18,7 +18,8 @@ namespace JH.ACU.UI
             Application.SetCompatibleTextRenderingDefault(false);
             //log4net.Config.XmlConfigurator.Configure();
             //Application.Run(new MainForm());
-            Application.Run(new InstrConfigForm());
+            Application.Run(new TestForm());
+            //Application.Run(new InstrConfigForm());
         }
     }
 }

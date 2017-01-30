@@ -18,13 +18,13 @@ namespace JH.ACU.BLL
     /// <summary>
     /// ACU S模式通讯类
     /// </summary>
-    public class BllAcu
+    public class BllAcu : IDisposable
     {
         #region 构造函数
 
         public BllAcu()
         {
-            _serial = new SerialSession(VisaHelper.GetPortNumber(Config)) {BaudRate = Config.BaudRate};
+            _serial = new SerialSession(VisaHelper.GetPortNumber(Config)) {BaudRate = Config.Serial.BaudRate};
         }
 
         #endregion
@@ -80,19 +80,19 @@ namespace JH.ACU.BLL
         /// </summary>
         /// <param name="data">data为CFC+(Address)+data</param>
         /// <returns>CFC+(Address)+data+CheckSum</returns>
-        private static byte[] AddChecksum(byte[] data)
+        private static byte[] AddChecksum(IList<byte> data)
         {
-            byte[] addCheckSum = new byte[data.Length + 2];
-            byte checkSum = (byte)(data.Length + 1);
+            var addCheckSum = new byte[data.Count + 2];
+            var checkSum = (byte)(data.Count + 1);
             addCheckSum[0] = checkSum;
             
-            for (int i = 1; i <= data.Length; i++)
+            for (var i = 1; i <= data.Count; i++)
             {
                 addCheckSum[i] = data[i - 1];
                 checkSum ^= data[i - 1];//异或求CheckSum
             }
 
-            addCheckSum[data.Length + 1] = checkSum;
+            addCheckSum[data.Count + 1] = checkSum;
             return addCheckSum;
         }
         public string ByteArrayToAscii(byte[] dataBytes)
@@ -173,7 +173,6 @@ namespace JH.ACU.BLL
             _serial.BreakState=LineState.Unasserted;
             _serial.Clear();
             _realTimeFlag = false;
-            Console.WriteLine("已停止");
         }
         public void ReadRtFault()
         {
@@ -189,7 +188,6 @@ namespace JH.ACU.BLL
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
                 Stop();
             }
         }
@@ -198,11 +196,10 @@ namespace JH.ACU.BLL
         {
             if(_serial.AvailableNumber<=0)return;
             var data = _serial.ReadByteArray(1);
-            foreach (var b in data)
-            {
-                Console.Write(b.ToString("X2")+"\t");
-            }
-            Console.WriteLine("完毕");
+        }
+        public void Dispose()
+        {
+            Stop();
         }
 
         #endregion
