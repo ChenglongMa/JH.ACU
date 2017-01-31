@@ -83,11 +83,6 @@
     <Content Include="Lib\D2K-Dask64.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lib\D2K-Dask.lib" />
-    <None Include="Lib\D2K-Dask64.lib" />
-    <None Include="Lib\d2kdask_bc.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\JH.ACU.Model\JH.ACU.Model.csproj">
       <Project>{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}</Project>
       <Name>JH.ACU.Model</Name>

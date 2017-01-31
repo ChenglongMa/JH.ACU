@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using JH.ACU.Model;
 using JH.ACU.Lib;
+using JH.ACU.Model;
 
-namespace JH.ACU.BLL
+namespace JH.ACU.BLL.Config
 {
     /// <summary>
     /// 仪器配置类

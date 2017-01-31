@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Mime;
 using System.Net.Sockets;
-using System.Text;
+using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model;
 
-namespace JH.ACU.BLL
+namespace JH.ACU.BLL.Abstract
 {
     /// <summary>
     /// Modbus TCP协议
@@ -150,6 +148,7 @@ namespace JH.ACU.BLL
 
     public enum FunctionCode : byte
     {
+        //TODO:未完成
         /// <summary>
         /// Read Multiple Registers
         /// </summary>

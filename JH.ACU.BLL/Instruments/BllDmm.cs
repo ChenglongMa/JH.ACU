@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Ivi.Visa;
-using JH.ACU.DAL;
+using JH.ACU.BLL.Abstract;
 using JH.ACU.Model;
 using NationalInstruments.Visa;
 
-namespace JH.ACU.BLL
+namespace JH.ACU.BLL.Instruments
 {
     /// <summary>
     /// 数字万用表操作类 仅适用于34401型号

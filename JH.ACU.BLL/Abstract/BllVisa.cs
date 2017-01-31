@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using Ivi.Visa;
+using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model;
 using NationalInstruments.Visa;
 
-namespace JH.ACU.BLL
+namespace JH.ACU.BLL.Abstract
 {
     /// <summary>
     /// 抽象类：用于各仪器通用方法及属性等

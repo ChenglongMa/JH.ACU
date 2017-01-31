@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using JH.ACU.DAL;
-using Ivi.Visa;
+using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model;
-using NationalInstruments.Restricted;
 using NationalInstruments.VisaNS;
 using LineState = NationalInstruments.VisaNS.LineState;
 
 
-namespace JH.ACU.BLL
+namespace JH.ACU.BLL.Instruments
 {
     /// <summary>
     /// ACU S模式通讯类

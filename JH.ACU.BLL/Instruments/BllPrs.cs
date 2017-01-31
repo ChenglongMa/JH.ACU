@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using JH.ACU.BLL.Abstract;
 using JH.ACU.Model;
 
-namespace JH.ACU.BLL
+namespace JH.ACU.BLL.Instruments
 {
     /// <summary>
     /// 电阻箱操作类

@@ -69,21 +69,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BllAcu.cs" />
-    <Compile Include="BllChamber.cs">
+    <Compile Include="Instruments\BllAcu.cs" />
+    <Compile Include="Instruments\BllChamber.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BllDaq.cs" />
-    <Compile Include="BllConfig.cs" />
-    <Compile Include="BllDmm.cs">
+    <Compile Include="Instruments\BllDaq.cs" />
+    <Compile Include="Config\BllConfig.cs" />
+    <Compile Include="Instruments\BllDmm.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BllModbusTcp.cs">
+    <Compile Include="Abstract\BllModbusTcp.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BllPrs.cs" />
-    <Compile Include="BllPwr.cs" />
-    <Compile Include="BllVisa.cs" />
+    <Compile Include="Instruments\BllPrs.cs" />
+    <Compile Include="Instruments\BllPwr.cs" />
+    <Compile Include="Abstract\BllVisa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

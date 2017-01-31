@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Infragistics.Win.UltraWinEditors;
 using Ivi.Visa;
 using JH.ACU.BLL;
+using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model;
 

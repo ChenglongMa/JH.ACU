@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using Ivi.Visa;
-using JH.ACU.DAL;
+using JH.ACU.BLL.Abstract;
 using JH.ACU.Model;
-using NationalInstruments.Visa;
 
-namespace JH.ACU.BLL
+namespace JH.ACU.BLL.Instruments
 {
     /// <summary>
     /// 程控电源操作类

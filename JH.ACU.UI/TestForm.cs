@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Ivi.Visa;
 using JH.ACU.BLL;
+using JH.ACU.BLL.Config;
 using JH.ACU.Model;
 
 namespace JH.ACU.UI

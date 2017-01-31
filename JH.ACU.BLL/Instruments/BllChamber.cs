@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
+using JH.ACU.BLL.Abstract;
 using JH.ACU.Model;
 
-namespace JH.ACU.BLL
+namespace JH.ACU.BLL.Instruments
 {
     /// <summary>
     /// 温箱业务类
@@ -31,6 +28,15 @@ namespace JH.ACU.BLL
 
         #region 公有方法
 
+        public void SetTemp(float temp)
+        {
+            throw new NotImplementedException();
+        }
+
+        public float GetTemp()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
     }
