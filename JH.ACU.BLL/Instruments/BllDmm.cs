@@ -149,9 +149,9 @@ namespace JH.ACU.BLL.Instruments
                     serial.ReadTermination = SerialTerminationMethod.TerminationCharacter;
                     serial.WriteTermination = SerialTerminationMethod.TerminationCharacter;
                     serial.TerminationCharacter = 0x0A;
-                    serial.BaudRate = Config.BaudRate;
-                    serial.Parity = Config.Parity;
-                    serial.DataBits = Config.DataBits;
+                    serial.BaudRate = Config.Serial.BaudRate;
+                    serial.Parity = Config.Serial.Parity;
+                    serial.DataBits = Config.Serial.DataBits;
                     serial.StopBits = SerialStopBitsMode.Two;
                     serial.IOProtocol = IOProtocol.Ieee4882;
                     serial.Flush(IOBuffers.ReadWrite, true);

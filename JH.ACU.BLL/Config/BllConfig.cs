@@ -40,10 +40,6 @@ namespace JH.ACU.BLL.Config
             XmlHelper.XmlSerializeToFile(InstrConfig, SettingFileName, Encoding.UTF8);
         }
 
-        public static void Fun(InstrConfig instrConfig)
-        {
-            XmlHelper.XmlSerializeToFile(instrConfig, SettingFileName, Encoding.UTF8);
-        }
         /// <summary>
         /// 获取配置
         /// </summary>
@@ -52,7 +48,7 @@ namespace JH.ACU.BLL.Config
         public static Instr GetInstr(InstrName name)
         {
             var instr = InstrConfig.Find(i => i.Name == name);
-            return instr ?? new Instr();
+            return instr ?? new Instr { Name = name };
         }
     }
 }

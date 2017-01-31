@@ -35,12 +35,12 @@ namespace JH.ACU.Lib
                             filter = "ASRL?*INSTR";
                             break;
                         case InstrType.Tcp:
-                            filter = "TCPIP?*";
+                            filter = "TCPIP?*SOCKET";
                             break;
                         default:
                             throw new ArgumentOutOfRangeException("instrType", instrType, null);
                     }
-                    IEnumerable<string> resources = rm.Find(filter);
+                    var resources = rm.Find(filter);
                     foreach (var s in resources)
                     {
                         var parseResult = rm.Parse(s);
@@ -53,7 +53,7 @@ namespace JH.ACU.Lib
             {
                 Debug.WriteLine(ex);
             }
-            return list.Count == 0 ? /*new List<string>{"1","2","3","4","5","6"}*/null : list;
+            return list.Count == 0 ? null : list;
         }
         /// <summary>
         /// 将端口号转换为相应的filter
