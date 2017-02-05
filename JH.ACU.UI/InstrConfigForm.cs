@@ -21,13 +21,13 @@ namespace JH.ACU.UI
 {
     public partial class InstrConfigForm : Form
     {
-        
+        private readonly List<Instr> _instrs;
         private Instr _instr;
 
-        public InstrConfigForm()
+        public InstrConfigForm(InstrName name)
         {
             InitializeComponent();
-
+            _instrs = BllConfig.GetInstrConfigs();
             #region 绑定数据 注意顺序
 
 
@@ -62,6 +62,7 @@ namespace JH.ACU.UI
 
             #endregion
 
+            cmbInstrName.SelectedValue = name;
         }
 
         private void SetTabVisible(InstrType type)
@@ -95,14 +96,22 @@ namespace JH.ACU.UI
             if (cmbInstrName.SelectedValue == null) return;
 
             var name = (InstrName) cmbInstrName.SelectedValue;
-            _instr = BllConfig.GetInstr(name);
+            _instr = BllConfig.GetInstr(name,_instrs);
             cmbInstrType.SelectedItem = _instr.Type;
             switch (_instr.Type)
             {
                 case InstrType.Gpib:
+                    if (_instr.Gpib == null)
+                    {
+                        break;
+                    }
                     cmbGpibAddress.Text = _instr.Gpib.Port.ToString();
                     break;
                 case InstrType.Serial:
+                    if (_instr.Serial == null)
+                    {
+                        break;
+                    }
                     cmbSerialPort.Text = _instr.Serial.Port.ToString();
                     cmbBaudRate.Text = _instr.Serial.BaudRate.ToString();
                     cmbParity.SelectedItem = _instr.Serial.Parity;
@@ -111,6 +120,10 @@ namespace JH.ACU.UI
 
                     break;
                 case InstrType.Tcp:
+                    if (_instr.TcpIp == null)
+                    {
+                        break;
+                    }
                     tTcpIp.Text = _instr.TcpIp.IpAddress;
                     nTcpPort.Value = _instr.TcpIp.Port;
                     nTcpTimeout.Value = _instr.TcpIp.Timeout;
@@ -128,7 +141,6 @@ namespace JH.ACU.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //bug：当前需要每项设置都点一次保存
             try
             {
                 _instr.Type = (InstrType) cmbInstrType.SelectedItem;
@@ -187,7 +199,7 @@ namespace JH.ACU.UI
                         throw new ArgumentOutOfRangeException();
                 }
 
-                BllConfig.Save(_instr);
+                BllConfig.Save(_instr,_instrs);
                 MessageBoxHelper.ShowInformationOK("保存成功!");
             }
             catch (Exception ex)

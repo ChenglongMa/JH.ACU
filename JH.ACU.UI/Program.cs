@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using JH.ACU.Model;
 
 namespace JH.ACU.UI
 {
@@ -19,7 +20,7 @@ namespace JH.ACU.UI
             //log4net.Config.XmlConfigurator.Configure();
             //Application.Run(new MainForm());
             //Application.Run(new TestForm());
-            Application.Run(new InstrConfigForm());
+            Application.Run(new InstrConfigForm(InstrName.Chamber));
         }
     }
 }

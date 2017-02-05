@@ -1,2 +1,20 @@
 ﻿<InstrConfig>
+  <Instr Name="ACU" Type="Serial">
+    <Serial COM="7" BaudRate="9600" DataBits="8" StopBits="One" />
+  </Instr>
+  <Instr Name="PWR" Type="Serial">
+    <Serial COM="8" BaudRate="9600" DataBits="8" StopBits="One" />
+  </Instr>
+  <Instr Name="PRS0" Type="Gpib">
+    <Gpib Address="3" />
+  </Instr>
+  <Instr Name="PRS1" Type="Gpib">
+    <Gpib Address="6" />
+  </Instr>
+  <Instr Name="DMM" Type="Gpib">
+    <Gpib Address="22" />
+  </Instr>
+  <Instr Name="Chamber" Type="Tcp">
+    <TcpIp IPAddress="192.168.1.101" Port="502" Timeout="2000" />
+  </Instr>
 </InstrConfig>

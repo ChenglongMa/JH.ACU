@@ -46,10 +46,6 @@
             this.cmbStopBits = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.panSerial = new System.Windows.Forms.Panel();
-            this.panGpib = new System.Windows.Forms.Panel();
-            this.cmbGpibAddress = new System.Windows.Forms.ComboBox();
-            this.lblGpibAddress = new System.Windows.Forms.Label();
             this.panTcp = new System.Windows.Forms.Panel();
             this.lTcpTimeout = new System.Windows.Forms.Label();
             this.tTcpIp = new System.Windows.Forms.TextBox();
@@ -57,6 +53,10 @@
             this.nTcpTimeout = new System.Windows.Forms.NumericUpDown();
             this.nTcpPort = new System.Windows.Forms.NumericUpDown();
             this.lTcpPort = new System.Windows.Forms.Label();
+            this.panGpib = new System.Windows.Forms.Panel();
+            this.cmbGpibAddress = new System.Windows.Forms.ComboBox();
+            this.lblGpibAddress = new System.Windows.Forms.Label();
+            this.panSerial = new System.Windows.Forms.Panel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -67,11 +67,11 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.panSerial.SuspendLayout();
-            this.panGpib.SuspendLayout();
             this.panTcp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTcpTimeout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nTcpPort)).BeginInit();
+            this.panGpib.SuspendLayout();
+            this.panSerial.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -145,6 +145,7 @@
             // 
             this.cmbInstrName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbInstrName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbInstrName.Enabled = false;
             this.cmbInstrName.FormattingEnabled = true;
             this.cmbInstrName.Location = new System.Drawing.Point(146, 49);
             this.cmbInstrName.Margin = new System.Windows.Forms.Padding(4);
@@ -291,61 +292,6 @@
             this.splitContainer2.SplitterDistance = 200;
             this.splitContainer2.TabIndex = 0;
             // 
-            // panSerial
-            // 
-            this.panSerial.AutoSize = true;
-            this.panSerial.BackColor = System.Drawing.SystemColors.Control;
-            this.panSerial.Controls.Add(this.cmbSerialPort);
-            this.panSerial.Controls.Add(this.lblPortNum);
-            this.panSerial.Controls.Add(this.cmbParity);
-            this.panSerial.Controls.Add(this.lblBaudRate);
-            this.panSerial.Controls.Add(this.cmbStopBits);
-            this.panSerial.Controls.Add(this.lblParity);
-            this.panSerial.Controls.Add(this.lblStopBits);
-            this.panSerial.Controls.Add(this.cmbDataBits);
-            this.panSerial.Controls.Add(this.cmbBaudRate);
-            this.panSerial.Controls.Add(this.lblDataBits);
-            this.panSerial.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panSerial.Location = new System.Drawing.Point(0, 0);
-            this.panSerial.Name = "panSerial";
-            this.panSerial.Size = new System.Drawing.Size(364, 200);
-            this.panSerial.TabIndex = 0;
-            this.panSerial.Visible = false;
-            this.panSerial.VisibleChanged += new System.EventHandler(this.panSerial_VisibleChanged);
-            // 
-            // panGpib
-            // 
-            this.panGpib.Controls.Add(this.cmbGpibAddress);
-            this.panGpib.Controls.Add(this.lblGpibAddress);
-            this.panGpib.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panGpib.Location = new System.Drawing.Point(0, 0);
-            this.panGpib.Name = "panGpib";
-            this.panGpib.Size = new System.Drawing.Size(364, 200);
-            this.panGpib.TabIndex = 11;
-            this.panGpib.Visible = false;
-            this.panGpib.VisibleChanged += new System.EventHandler(this.panGpib_VisibleChanged);
-            // 
-            // cmbGpibAddress
-            // 
-            this.cmbGpibAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmbGpibAddress.FormattingEnabled = true;
-            this.cmbGpibAddress.Location = new System.Drawing.Point(146, 5);
-            this.cmbGpibAddress.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbGpibAddress.Name = "cmbGpibAddress";
-            this.cmbGpibAddress.Size = new System.Drawing.Size(160, 23);
-            this.cmbGpibAddress.TabIndex = 8;
-            this.cmbGpibAddress.Leave += new System.EventHandler(this.cmbGpibAddress_Leave);
-            // 
-            // lblGpibAddress
-            // 
-            this.lblGpibAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblGpibAddress.AutoSize = true;
-            this.lblGpibAddress.Location = new System.Drawing.Point(62, 8);
-            this.lblGpibAddress.Name = "lblGpibAddress";
-            this.lblGpibAddress.Size = new System.Drawing.Size(69, 15);
-            this.lblGpibAddress.TabIndex = 0;
-            this.lblGpibAddress.Text = "GPIB地址";
-            // 
             // panTcp
             // 
             this.panTcp.AutoSize = true;
@@ -440,6 +386,61 @@
             this.lTcpPort.TabIndex = 1;
             this.lTcpPort.Text = "端口号";
             // 
+            // panGpib
+            // 
+            this.panGpib.Controls.Add(this.cmbGpibAddress);
+            this.panGpib.Controls.Add(this.lblGpibAddress);
+            this.panGpib.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panGpib.Location = new System.Drawing.Point(0, 0);
+            this.panGpib.Name = "panGpib";
+            this.panGpib.Size = new System.Drawing.Size(364, 200);
+            this.panGpib.TabIndex = 11;
+            this.panGpib.Visible = false;
+            this.panGpib.VisibleChanged += new System.EventHandler(this.panGpib_VisibleChanged);
+            // 
+            // cmbGpibAddress
+            // 
+            this.cmbGpibAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbGpibAddress.FormattingEnabled = true;
+            this.cmbGpibAddress.Location = new System.Drawing.Point(146, 5);
+            this.cmbGpibAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbGpibAddress.Name = "cmbGpibAddress";
+            this.cmbGpibAddress.Size = new System.Drawing.Size(160, 23);
+            this.cmbGpibAddress.TabIndex = 8;
+            this.cmbGpibAddress.Leave += new System.EventHandler(this.cmbGpibAddress_Leave);
+            // 
+            // lblGpibAddress
+            // 
+            this.lblGpibAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblGpibAddress.AutoSize = true;
+            this.lblGpibAddress.Location = new System.Drawing.Point(62, 8);
+            this.lblGpibAddress.Name = "lblGpibAddress";
+            this.lblGpibAddress.Size = new System.Drawing.Size(69, 15);
+            this.lblGpibAddress.TabIndex = 0;
+            this.lblGpibAddress.Text = "GPIB地址";
+            // 
+            // panSerial
+            // 
+            this.panSerial.AutoSize = true;
+            this.panSerial.BackColor = System.Drawing.SystemColors.Control;
+            this.panSerial.Controls.Add(this.cmbSerialPort);
+            this.panSerial.Controls.Add(this.lblPortNum);
+            this.panSerial.Controls.Add(this.cmbParity);
+            this.panSerial.Controls.Add(this.lblBaudRate);
+            this.panSerial.Controls.Add(this.cmbStopBits);
+            this.panSerial.Controls.Add(this.lblParity);
+            this.panSerial.Controls.Add(this.lblStopBits);
+            this.panSerial.Controls.Add(this.cmbDataBits);
+            this.panSerial.Controls.Add(this.cmbBaudRate);
+            this.panSerial.Controls.Add(this.lblDataBits);
+            this.panSerial.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panSerial.Location = new System.Drawing.Point(0, 0);
+            this.panSerial.Name = "panSerial";
+            this.panSerial.Size = new System.Drawing.Size(364, 200);
+            this.panSerial.TabIndex = 0;
+            this.panSerial.Visible = false;
+            this.panSerial.VisibleChanged += new System.EventHandler(this.panSerial_VisibleChanged);
+            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
@@ -470,14 +471,14 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.panSerial.ResumeLayout(false);
-            this.panSerial.PerformLayout();
-            this.panGpib.ResumeLayout(false);
-            this.panGpib.PerformLayout();
             this.panTcp.ResumeLayout(false);
             this.panTcp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTcpTimeout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nTcpPort)).EndInit();
+            this.panGpib.ResumeLayout(false);
+            this.panGpib.PerformLayout();
+            this.panSerial.ResumeLayout(false);
+            this.panSerial.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 

@@ -73,8 +73,8 @@
     <Compile Include="Instruments\BllChamber.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Instruments\BllDaq.cs" />
     <Compile Include="Config\BllConfig.cs" />
+    <Compile Include="Instruments\BllDaq.cs" />
     <Compile Include="Instruments\BllDmm.cs">
       <SubType>Code</SubType>
     </Compile>

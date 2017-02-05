@@ -173,8 +173,13 @@ namespace JH.ACU.DAL
         //DIO Port Direction
 
         #region DIO Port Direction
-
+        /// <summary>
+        /// D2K_DI_ReadPort”√
+        /// </summary>
         public const ushort INPUT_PORT = 1;
+        /// <summary>
+        /// D2K_DO_WritePort”√
+        /// </summary>
         public const ushort OUTPUT_PORT = 2;
 
         #endregion
@@ -519,10 +524,19 @@ namespace JH.ACU.DAL
 	------------------------------------------------------------------*/
 
         #region
-
+        /// <summary>
+        /// ◊¢≤·∞Âø®
+        /// </summary>
+        /// <param name="CardType">∞Âø®¿‡–Õ</param>
+        /// <param name="card_num"></param>
+        /// <returns>∞Âø®∫≈</returns>
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_Register_Card(ushort CardType, ushort card_num);
-
+        /// <summary>
+        ///  Õ∑≈∞Âø®
+        /// </summary>
+        /// <param name="CardNumber"></param>
+        /// <returns></returns>
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_Release_Card(ushort CardNumber);
 

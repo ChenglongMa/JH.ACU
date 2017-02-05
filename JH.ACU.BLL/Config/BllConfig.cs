@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using JH.ACU.Lib;
 using JH.ACU.Model;
@@ -14,9 +15,9 @@ namespace JH.ACU.BLL.Config
         private static readonly string SettingFileName = Environment.CurrentDirectory +
                                                          "\\InstrumentConfig\\InstrConfig.xml";
 
-        private static readonly List<Instr> InstrConfig = GetInstrConfigs();
+        //private static readonly List<Instr> InstrConfig = GetInstrConfigs();
 
-        private static List<Instr> GetInstrConfigs()
+        public static List<Instr> GetInstrConfigs()
         {
             return XmlHelper.XmlDeserializeFromFile<InstrConfig>(SettingFileName, Encoding.UTF8);
         }
@@ -25,29 +26,35 @@ namespace JH.ACU.BLL.Config
         /// 保存配置
         /// </summary>
         /// <param name="instr"></param>
-        public static void Save(Instr instr)
+        /// <param name="instrs"></param>
+        public static void Save(Instr instr,List<Instr> instrs=null)
         {
-            var i = InstrConfig.Find(ins => ins.Name == instr.Name);
+            var list = instrs ?? GetInstrConfigs();
+            var i = list.Find(ins => ins.Name == instr.Name);
             if (i == null)
             {
-                InstrConfig.Add(instr);
+                list.Add(instr);
             }
             else
             {
-                InstrConfig.Remove(i);
-                InstrConfig.Add(instr);
+                list.Remove(i);
+                list.Add(instr);
             }
-            XmlHelper.XmlSerializeToFile(InstrConfig, SettingFileName, Encoding.UTF8);
+            var resList=new InstrConfig();
+            resList.AddRange(list.OrderBy(o => o.Name));
+            XmlHelper.XmlSerializeToFile(resList, SettingFileName, Encoding.UTF8);
         }
 
         /// <summary>
         /// 获取配置
         /// </summary>
         /// <param name="name"></param>
+        /// <param name="instrs"></param>
         /// <returns></returns>
-        public static Instr GetInstr(InstrName name)
+        public static Instr GetInstr(InstrName name,List<Instr> instrs=null )
         {
-            var instr = InstrConfig.Find(i => i.Name == name);
+            var list = instrs ?? GetInstrConfigs();
+            var instr = list.Find(i => i.Name == name);
             return instr ?? new Instr { Name = name };
         }
     }
