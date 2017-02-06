@@ -11,7 +11,7 @@ namespace JH.ACU.BLL.Instruments
     {
         #region 构造函数
 
-        public BllChamber(InstrName name) : base(name)
+        public BllChamber(InstrName name = InstrName.Chamber) : base(name)
         {
         }
 
@@ -37,6 +37,7 @@ namespace JH.ACU.BLL.Instruments
         {
             throw new NotImplementedException();
         }
+
         #endregion
 
     }

@@ -9,7 +9,7 @@ namespace JH.ACU.BLL.Instruments
     /// </summary>
     public class BllPwr :BllVisa//暂时先不调用IDalVisa
     {
-        public BllPwr(InstrName instr)
+        public BllPwr(InstrName instr=InstrName.PWR)
             : base(instr)
         {
         }

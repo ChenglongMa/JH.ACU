@@ -13,11 +13,12 @@ namespace JH.ACU.BLL.Config
     /// </summary>
     public static class BllConfig
     {
-        private static readonly string SettingFileName = Environment.CurrentDirectory +
-                                                         "\\Config\\InstrConfig.xml";
+        private static readonly string SettingFileName = Environment.CurrentDirectory + "\\Config\\InstrConfig.xml";
 
-        //private static readonly List<Instr> InstrConfig = GetInstrConfigs();
-
+        /// <summary>
+        /// 获取所有配置
+        /// </summary>
+        /// <returns></returns>
         public static List<Instr> GetInstrConfigs()
         {
             return XmlHelper.XmlDeserializeFromFile<InstrConfig>(SettingFileName, Encoding.UTF8);

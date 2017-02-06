@@ -13,7 +13,7 @@ namespace JH.ACU.BLL.Instruments
     {
         #region 构造函数
 
-        public BllDmm(InstrName instr) : base(instr)
+        public BllDmm(InstrName instr=InstrName.DMM) : base(instr)
         {
             /* 基本编程顺序：
                * 1、将万用表设定在一已知的状态（通常在复位状态）
