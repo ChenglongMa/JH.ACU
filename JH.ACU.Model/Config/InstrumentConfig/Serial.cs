@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 using Ivi.Visa;
 
-namespace JH.ACU.Model
+namespace JH.ACU.Model.Config.InstrumentConfig
 {
     public class Serial
     {

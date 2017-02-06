@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using JH.ACU.Lib;
 using JH.ACU.Model;
+using JH.ACU.Model.Config.InstrumentConfig;
 
 namespace JH.ACU.BLL.Config
 {
@@ -13,7 +14,7 @@ namespace JH.ACU.BLL.Config
     public static class BllConfig
     {
         private static readonly string SettingFileName = Environment.CurrentDirectory +
-                                                         "\\InstrumentConfig\\InstrConfig.xml";
+                                                         "\\Config\\InstrConfig.xml";
 
         //private static readonly List<Instr> InstrConfig = GetInstrConfigs();
 

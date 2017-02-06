@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model;
+using JH.ACU.Model.Config.InstrumentConfig;
 
 namespace JH.ACU.BLL.Abstract
 {

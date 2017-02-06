@@ -67,7 +67,10 @@ namespace JH.ACU.BLL.Instruments
 
         public void Dispose()
         {
-            D2KDask.D2K_Release_Card((ushort) _mDev);
+            if (_mDev>0)
+            {
+                D2KDask.D2K_Release_Card((ushort) _mDev);
+            }
         }
         #endregion
 

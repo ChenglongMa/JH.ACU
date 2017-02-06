@@ -6,6 +6,7 @@ using System.Threading;
 using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model;
+using JH.ACU.Model.Config.InstrumentConfig;
 using NationalInstruments.VisaNS;
 using LineState = NationalInstruments.VisaNS.LineState;
 

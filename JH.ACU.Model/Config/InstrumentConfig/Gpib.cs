@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace JH.ACU.Model
+namespace JH.ACU.Model.Config.InstrumentConfig
 {
     public class Gpib 
     {

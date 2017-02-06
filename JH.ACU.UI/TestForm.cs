@@ -10,6 +10,7 @@ using Ivi.Visa;
 using JH.ACU.BLL;
 using JH.ACU.BLL.Config;
 using JH.ACU.Model;
+using JH.ACU.Model.Config.InstrumentConfig;
 
 namespace JH.ACU.UI
 {

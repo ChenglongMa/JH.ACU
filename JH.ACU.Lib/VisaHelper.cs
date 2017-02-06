@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Ivi.Visa;
 using JH.ACU.Model;
+using JH.ACU.Model.Config.InstrumentConfig;
 using NationalInstruments.Visa;
 
 namespace JH.ACU.Lib

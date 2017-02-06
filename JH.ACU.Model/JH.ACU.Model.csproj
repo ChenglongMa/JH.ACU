@@ -65,11 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConstParameter.cs" />
-    <Compile Include="Gpib.cs" />
-    <Compile Include="InstrConfig.cs" />
+    <Compile Include="Config\InstrumentConfig\Gpib.cs" />
+    <Compile Include="Config\InstrumentConfig\InstrConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serial.cs" />
-    <Compile Include="TcpIp.cs" />
+    <Compile Include="Config\InstrumentConfig\Serial.cs" />
+    <Compile Include="Config\InstrumentConfig\TcpIp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
