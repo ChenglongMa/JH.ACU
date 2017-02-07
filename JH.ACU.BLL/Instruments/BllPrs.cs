@@ -92,34 +92,34 @@ namespace JH.ACU.BLL.Instruments
 
         #region 公有方法
 
-        public override bool Initialize()
+        public override void Initialize()
         {
             Reset();
-            if (!SelfTest()) return false;
+            if (!SelfTest()) throw new Exception("电阻箱自检失败");
             if (string.IsNullOrEmpty(Idn))
             {
-                return false;
+                throw new NullReferenceException("电阻箱型号读取异常");
             }
             var models = Idn.Split(',');
-            if (models.Length<2)
+            if (models.Length < 2)
             {
-                return false;
+                throw new NullReferenceException("电阻箱型号读取异常");
             }
             var model = models[1].Split('-');
-            if (model.Length<7)
+            if (model.Length < 7)
             {
-                return false;
+                throw new NullReferenceException("电阻箱型号读取异常");
             }
             Type = model[0];
             Version = model[1];
             Tolerance = GetTolerance(model[2]);
             DecadesNum = Convert.ToInt32(model[3]);
             MinDec = GetLsd(model[4]);
-            MaxDec = MinDec*Math.Pow(10,DecadesNum )- MinDec;
+            MaxDec = MinDec*Math.Pow(10, DecadesNum) - MinDec;
             SlotLsd = Convert.ToSingle(model[5]);
             Circuit = Convert.ToInt32(model[6]);
-            return true;
         }
+
         /// <summary>
         /// 设置输出电压
         /// </summary>

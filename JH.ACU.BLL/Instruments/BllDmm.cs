@@ -255,7 +255,7 @@ namespace JH.ACU.BLL.Instruments
         /// 初始化数字万用表
         /// </summary>
         /// <returns></returns>
-        public override bool Initialize()
+        public override void Initialize()
         {
             try
             {
@@ -264,13 +264,14 @@ namespace JH.ACU.BLL.Instruments
                 //Display = false;//TODO:后面修改
                 SampleCount = 2500;
                 var id = Idn;
-                if (!id.Contains("34401") && !id.Contains("34410") && !id.Contains("4411")) return false;
+                if (!id.Contains("34401") && !id.Contains("34410") && !id.Contains("4411"))
+                {
+                    throw new NullReferenceException("数字万用表型号读取异常");
+                }
                 _dmm.TriggerSource = TriggerSource.Immediate;
                 _dmm.MathStorage = MathStorage.Off;
                 Reset();
                 DefaultSetup();
-
-                return true;
             }
             catch (Exception ex)
             {

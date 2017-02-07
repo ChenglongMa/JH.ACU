@@ -130,9 +130,13 @@ namespace JH.ACU.BLL.Instruments
 
         #endregion
 
-        public override bool Initialize()
+        public override void Initialize()
         {
-            throw new NotImplementedException();
+            Reset();
+            if (!SelfTest())
+            {
+                throw new Exception("程控电源自检失败");
+            }
         }
     }
 }

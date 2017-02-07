@@ -94,7 +94,7 @@ namespace JH.ACU.BLL.Abstract
         /// 仪器初始化
         /// </summary>
         /// <returns></returns>
-        public abstract bool Initialize();
+        public abstract void Initialize();
         /// <summary>
         /// Set all control settings of instrument supply to their default values but does
         /// not purge stored setting. 
