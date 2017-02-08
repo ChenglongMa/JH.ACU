@@ -21,6 +21,9 @@ namespace JH.ACU.BLL.Instruments
         #region 属性、字段
 
         private short _mDev;
+
+        public byte[,] Relays=new byte[8,8];
+
         #endregion
 
         #region 私有方法
