@@ -21,17 +21,25 @@ namespace JH.ACU.BLL.Instruments
         #region 属性、字段
 
         private short _mDev;
-
+        /// <summary>
+        /// PB5不复位常量
+        /// </summary>
+        private const byte NoReset = 0x20;// QUES:看电路图是高电平复位，但原代码中是低电平复位，待测试
         public byte[,] Relays=new byte[8,8];
 
         #endregion
 
         #region 私有方法
 
+
         #endregion
 
         #region 公有方法
 
+        public bool SetSbRelayGroupStatus(byte cardNum, byte group, byte status)
+        {
+            
+        }
         /// <summary>
         /// 采集卡初始化
         /// </summary>
