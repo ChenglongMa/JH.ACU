@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JH.ACU.Doc</RootNamespace>
+    <AssemblyName>JH.ACU.Doc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="原程序\测试流程DEMO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="原程序\Adgpib_bc.h" />
+    <Content Include="原程序\Com.cpp" />
+    <Content Include="原程序\Com.h" />
+    <Content Include="原程序\ComChamber.cpp" />
+    <Content Include="原程序\ComChamber.h" />
+    <Content Include="原程序\ComKline.cpp" />
+    <Content Include="原程序\ComKline.h" />
+    <Content Include="原程序\D2kDask.h" />
+    <Content Include="原程序\DaqAnalog.cpp" />
+    <Content Include="原程序\DaqAnalog.h" />
+    <Content Include="原程序\DaqDigit.cpp" />
+    <Content Include="原程序\DaqDigit.h" />
+    <Content Include="原程序\DaqDio.cpp" />
+    <Content Include="原程序\DaqDio.h" />
+    <Content Include="原程序\DAQHeader.h" />
+    <Content Include="原程序\ECU_10A_Performance.cpp" />
+    <Content Include="原程序\FormInitSetU.cpp" />
+    <Content Include="原程序\FormInitSetU.h" />
+    <Content Include="原程序\FormMainU.cpp" />
+    <Content Include="原程序\FormMainU.h" />
+    <Content Include="原程序\FormManualU.cpp" />
+    <Content Include="原程序\FormManualU.h" />
+    <Content Include="原程序\Global.cpp" />
+    <Content Include="原程序\Global.h" />
+    <Content Include="原程序\GpibDevice.cpp" />
+    <Content Include="原程序\GpibDevice.h" />
+    <Content Include="原程序\GpibInterface.cpp" />
+    <Content Include="原程序\GpibInterface.h" />
+    <Content Include="原程序\GpibPcDMM.cpp" />
+    <Content Include="原程序\GpibPcDMM.h" />
+    <Content Include="原程序\GpibPcPower.cpp" />
+    <Content Include="原程序\GpibPcPower.h" />
+    <Content Include="原程序\GpibPcRes.cpp" />
+    <Content Include="原程序\GpibPcRes.h" />
+    <Content Include="原程序\gpib_user.h" />
+    <Content Include="原程序\ThreadMain.cpp" />
+    <Content Include="原程序\ThreadMain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ACU\NewADTool通讯规范\K\Smode\4D\" />
+    <Folder Include="Chamber\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ACU\JD0.630.006 JH-ACU-8A性能规范_V1.1_20130623.pdf" />
+    <None Include="ACU\JH-ACU-4质量鉴定规范_V1.6.pdf" />
+    <None Include="ACU\NewADTool通讯规范\Description for Memory map_Bosch Plat V0.3 2011.4.28.ppt" />
+    <None Include="ACU\NewADTool通讯规范\Description for Memory map_JH-ACU-8A.ppt" />
+    <None Include="ACU\NewADTool通讯规范\K\Cmode\4A.lnk" />
+    <None Include="ACU\NewADTool通讯规范\K\Cmode\4D\JD0.630.003_JH-ACU-4Loop_诊断通讯规范 S2.0_V_1.5_20081112.pdf" />
+    <None Include="ACU\NewADTool通讯规范\K\Cmode\4D\JD0.630.003_JH-ACU-4_诊断通讯规范 S2.0_V1.7_20130529.pdf" />
+    <None Include="ACU\NewADTool通讯规范\K\Cmode\4D\JD0.630.003_JH-ACU-4_诊断通讯规范 S2.0_V_1.6_20120531.pdf" />
+    <None Include="ACU\NewADTool通讯规范\K\Cmode\4D\JH-ACU-4_Diag Comm Spec_KWP2000__S2.0_V1.1_20141009.pdf" />
+    <None Include="ACU\NewADTool通讯规范\K\Cmode\8A\JH-ACU-8A Diagnostic Communication spec%28KWP2000%29 v1.0.pdf" />
+    <None Include="ACU\NewADTool通讯规范\K\Smode\4A\JHA4A_S Mode Comm Spec V0[1][1].1%28eng%29_060920.pdf" />
+    <None Include="ACU\NewADTool通讯规范\K\Smode\8A\JH_ACU-8A_S Mode Comm spec v0.4%28eng%29_140618.pdf" />
+    <None Include="ACU\NewADTool通讯规范\K\Smode\JHA10A_S Mode Comm spec v0.1%28eng%29_070718.doc" />
+    <None Include="ACU\NewADTool通讯规范\MemoryMap\%3b%3bJHA4A_MemMap_V0_061010.pdf" />
+    <None Include="ACU\NewADTool通讯规范\MemoryMap\%3b%3bJH_ACU_8A_MemMap_v21_130607.pdf" />
+    <None Include="ACU\NewADTool通讯规范\MemoryMap\JH4A 1.0_Memory Map.xls" />
+    <None Include="ACU\NewADTool通讯规范\MemoryMap\JH_ACU_4D_MemMap_v25_140618.pdf" />
+    <None Include="ACU\NewADTool通讯规范\MemoryMap\JH_ACU_8A_MemMap_v25_141030_.pdf" />
+    <None Include="DMM\34401-90422.pdf" />
+    <None Include="PCB\16A_Function Test-MAIN.pdf" />
+    <None Include="PCB\16A_Function Test-SLAVE.pdf" />
+    <None Include="PCB\2206管脚对应变量.xlsx" />
+    <None Include="PCB\D2K-DASK Function Reference.pdf" />
+    <None Include="PCB\硬件设计说明.doc" />
+    <None Include="PRS\PRS-200_IEEE.2_im.pdf" />
+    <None Include="PWR\PSH系列使用手册-cn.pdf" />
+    <None Include="PWR\PST系列编程手册.pdf" />
+    <None Include="原文档\硬件设计说明.doc" />
+    <None Include="原文档\软件操作说明.doc" />
+    <None Include="原文档\软件设计说明.doc" />
+    <None Include="原文档\软硬件重要更改.doc" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

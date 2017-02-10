@@ -37,90 +37,93 @@ namespace JH.ACU.DAL
 
         #region Error Number
 
-        public const short NoError = 0;
-        public const short ErrorUnknownCardType = -1;
-        public const short ErrorInvalidCardNumber = -2;
-        public const short ErrorTooManyCardRegistered = -3;
-        public const short ErrorCardNotRegistered = -4;
-        public const short ErrorFuncNotSupport = -5;
-        public const short ErrorInvalidIoChannel = -6;
-        public const short ErrorInvalidAdRange = -7;
-        public const short ErrorContIoNotAllowed = -8;
-        public const short ErrorDiffRangeNotSupport = -9;
-        public const short ErrorLastChannelNotZero = -10;
-        public const short ErrorChannelNotDescending = -11;
-        public const short ErrorChannelNotAscending = -12;
-        public const short ErrorOpenDriverFailed = -13;
-        public const short ErrorOpenEventFailed = -14;
-        public const short ErrorTransferCountTooLarge = -15;
-        public const short ErrorNotDoubleBufferMode = -16;
-        public const short ErrorInvalidSampleRate = -17;
-        public const short ErrorInvalidCounterMode = -18;
-        public const short ErrorInvalidCounter = -19;
-        public const short ErrorInvalidCounterState = -20;
-        public const short ErrorInvalidBinBcdParam = -21;
-        public const short ErrorBadCardType = -22;
-        public const short ErrorInvalidDaRefVoltage = -23;
-        public const short ErrorAdTimeOut = -24;
-        public const short ErrorNoAsyncAI = -25;
-        public const short ErrorNoAsyncAO = -26;
-        public const short ErrorNoAsyncDI = -27;
-        public const short ErrorNoAsyncDO = -28;
-        public const short ErrorNotInputPort = -29;
-        public const short ErrorNotOutputPort = -30;
-        public const short ErrorInvalidDioPort = -31;
-        public const short ErrorInvalidDioLine = -32;
-        public const short ErrorContIoActive = -33;
-        public const short ErrorDblBufModeNotAllowed = -34;
-        public const short ErrorConfigFailed = -35;
-        public const short ErrorInvalidPortDirection = -36;
-        public const short ErrorBeginThreadError = -37;
-        public const short ErrorInvalidPortWidth = -38;
-        public const short ErrorInvalidCtrSource = -39;
-        public const short ErrorOpenFile = -40;
-        public const short ErrorAllocateMemory = -41;
-        public const short ErrorDaVoltageOutOfRange = -42;
-        public const short ErrorInvalidSyncMode = -43;
-        public const short ErrorInvalidBufferID = -44;
-        public const short ErrorInvalidCNTInterval = -45;
-        public const short ErrorReTrigModeNotAllowed = -46;
-        public const short ErrorResetBufferNotAllowed = -47;
-        public const short ErrorAnaTriggerLevel = -48;
-        public const short ErrorDAQEvent = -49;
-        public const short ErrorInvalidCounterValue = -50;
-        public const short ErrorOffsetCalibration = -51;
-        public const short ErrorGainCalibration = -52;
-        public const short ErrorCountOutofSDRAMSize = -53;
-        public const short ErrorNotStartTriggerModule = -54;
-        public const short ErrorInvalidRouteLine = -55;
-        public const short ErrorInvalidSignalCode = -56;
-        public const short ErrorInvalidSignalDirection = -57;
-        public const short ErrorTRGOSCalibration = -58;
-        public const short ErrorNoSDRAM = -59;
-        public const short ErrorIntegrationGain = -60;
-        public const short ErrorAcquisitionTiming = -61;
-        public const short ErrorIntegrationTiming = -62;
-        public const short ErrorInvalidTimeBase = -70;
-        public const short ErrorUndefinedParameter = -71;
-        //Error number for calibration API
-        public const short ErrorCalAddress = -110;
-        public const short ErrorInvalidCalBank = -111;
-        //Error number for driver API 
-        public const short ErrorConfigIoctl = -201;
-        public const short ErrorAsyncSetIoctl = -202;
-        public const short ErrorDBSetIoctl = -203;
-        public const short ErrorDBHalfReadyIoctl = -204;
-        public const short ErrorContOPIoctl = -205;
-        public const short ErrorContStatusIoctl = -206;
-        public const short ErrorPIOIoctl = -207;
-        public const short ErrorDIntSetIoctl = -208;
-        public const short ErrorWaitEvtIoctl = -209;
-        public const short ErrorOpenEvtIoctl = -210;
-        public const short ErrorCOSIntSetIoctl = -211;
-        public const short ErrorMemMapIoctl = -212;
-        public const short ErrorMemUMapSetIoctl = -213;
-        public const short ErrorCTRIoctl = -214;
-        public const short ErrorGetResIoctl = -215;
+        public enum Error : short
+        {
+            NoError = 0,
+            ErrorUnknownCardType = -1,
+            ErrorInvalidCardNumber = -2,
+            ErrorTooManyCardRegistered = -3,
+            ErrorCardNotRegistered = -4,
+            ErrorFuncNotSupport = -5,
+            ErrorInvalidIoChannel = -6,
+            ErrorInvalidAdRange = -7,
+            ErrorContIoNotAllowed = -8,
+            ErrorDiffRangeNotSupport = -9,
+            ErrorLastChannelNotZero = -10,
+            ErrorChannelNotDescending = -11,
+            ErrorChannelNotAscending = -12,
+            ErrorOpenDriverFailed = -13,
+            ErrorOpenEventFailed = -14,
+            ErrorTransferCountTooLarge = -15,
+            ErrorNotDoubleBufferMode = -16,
+            ErrorInvalidSampleRate = -17,
+            ErrorInvalidCounterMode = -18,
+            ErrorInvalidCounter = -19,
+            ErrorInvalidCounterState = -20,
+            ErrorInvalidBinBcdParam = -21,
+            ErrorBadCardType = -22,
+            ErrorInvalidDaRefVoltage = -23,
+            ErrorAdTimeOut = -24,
+            ErrorNoAsyncAI = -25,
+            ErrorNoAsyncAO = -26,
+            ErrorNoAsyncDI = -27,
+            ErrorNoAsyncDO = -28,
+            ErrorNotInputPort = -29,
+            ErrorNotOutputPort = -30,
+            ErrorInvalidDioPort = -31,
+            ErrorInvalidDioLine = -32,
+            ErrorContIoActive = -33,
+            ErrorDblBufModeNotAllowed = -34,
+            ErrorConfigFailed = -35,
+            ErrorInvalidPortDirection = -36,
+            ErrorBeginThreadError = -37,
+            ErrorInvalidPortWidth = -38,
+            ErrorInvalidCtrSource = -39,
+            ErrorOpenFile = -40,
+            ErrorAllocateMemory = -41,
+            ErrorDaVoltageOutOfRange = -42,
+            ErrorInvalidSyncMode = -43,
+            ErrorInvalidBufferID = -44,
+            ErrorInvalidCNTInterval = -45,
+            ErrorReTrigModeNotAllowed = -46,
+            ErrorResetBufferNotAllowed = -47,
+            ErrorAnaTriggerLevel = -48,
+            ErrorDAQEvent = -49,
+            ErrorInvalidCounterValue = -50,
+            ErrorOffsetCalibration = -51,
+            ErrorGainCalibration = -52,
+            ErrorCountOutofSDRAMSize = -53,
+            ErrorNotStartTriggerModule = -54,
+            ErrorInvalidRouteLine = -55,
+            ErrorInvalidSignalCode = -56,
+            ErrorInvalidSignalDirection = -57,
+            ErrorTRGOSCalibration = -58,
+            ErrorNoSDRAM = -59,
+            ErrorIntegrationGain = -60,
+            ErrorAcquisitionTiming = -61,
+            ErrorIntegrationTiming = -62,
+            ErrorInvalidTimeBase = -70,
+            ErrorUndefinedParameter = -71,
+            //Error number for calibration API
+            ErrorCalAddress = -110,
+            ErrorInvalidCalBank = -111,
+            //Error number for driver API 
+            ErrorConfigIoctl = -201,
+            ErrorAsyncSetIoctl = -202,
+            ErrorDBSetIoctl = -203,
+            ErrorDBHalfReadyIoctl = -204,
+            ErrorContOPIoctl = -205,
+            ErrorContStatusIoctl = -206,
+            ErrorPIOIoctl = -207,
+            ErrorDIntSetIoctl = -208,
+            ErrorWaitEvtIoctl = -209,
+            ErrorOpenEvtIoctl = -210,
+            ErrorCOSIntSetIoctl = -211,
+            ErrorMemMapIoctl = -212,
+            ErrorMemUMapSetIoctl = -213,
+            ErrorCTRIoctl = -214,
+            ErrorGetResIoctl = -215,
+        }
 
         #endregion
 
@@ -519,11 +522,11 @@ namespace JH.ACU.DAL
 
 
 
-        /*------------------------------------------------------------------
+   /*------------------------------------------------------------------
 	** PCIS-DASK Function prototype
 	------------------------------------------------------------------*/
 
-        #region
+        #region 板卡初始化
         /// <summary>
         /// 注册板卡
         /// </summary>
@@ -555,7 +558,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region
+        #region AI配置及读写
 
         /*---------------------------------------------------------------------------*/
 
@@ -765,7 +768,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region
+        #region AO配置及读写
 
         /*---------------------------------------------------------------------------*/
 
@@ -871,7 +874,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region
+        #region AO Group操作
 
         /*---------------------------------------------------------------------------*/
 
@@ -921,7 +924,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region
+        #region DI读取
 
         /*---------------------------------------------------------------------------*/
 
@@ -933,7 +936,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region
+        #region DO读写
 
         /*---------------------------------------------------------------------------*/
 
@@ -941,7 +944,7 @@ namespace JH.ACU.DAL
         public static extern short D2K_DO_WriteLine(ushort CardNumber, ushort Port, ushort Line, ushort Value);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_DO_WritePort(ushort CardNumber, ushort Port, uint Value);
+        public static extern short D2K_DO_WritePort(ushort CardNumber, ushort Port, byte Value);//QUES:Value原类型为uint，是否可以改为byte
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_DO_ReadLine(ushort CardNumber, ushort Port, ushort Line, out ushort Value);
@@ -951,7 +954,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region
+        #region DIO配置
 
         /*---------------------------------------------------------------------------*/
 
@@ -966,7 +969,7 @@ namespace JH.ACU.DAL
 
         #endregion
 
-        #region
+        #region 其他板卡操作
 
         /*---------------------------------------------------------------------------*/
 
@@ -1119,6 +1122,16 @@ namespace JH.ACU.DAL
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_DO_GetEvent(ushort wCardNumber, out long hEvent);
+
+        #endregion
+
+        #region 公共方法
+
+        public static void ThrowException(Error errorCode)
+        {
+            if (errorCode == Error.NoError) return;
+            throw new Exception(errorCode.ToString());
+        }
 
         #endregion
 
