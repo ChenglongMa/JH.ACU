@@ -49,13 +49,13 @@ namespace JH.ACU.BLL.Instruments
         /// Data 0~7 用于选择一组中某几个继电器
         /// </summary>
         /// <param name="mask"></param>
-        private void WriteToPA(byte mask)
+        private void EnableRelays(byte mask)
         {
             DoWritePort(D2KDask.Channel_P1A, mask);
         }
 
         /// <summary>
-        /// PB0~3为板卡使能,PB5为Reset位,其余位保留
+        /// PB0~3=A4~6+En_138 为板卡使能,PB5为Reset位,其余位保留
         /// </summary>
         /// <param name="mask"></param>
         private void WriteToPB(byte mask)
@@ -84,10 +84,10 @@ namespace JH.ACU.BLL.Instruments
         }
 
         /// <summary>
-        /// PC0~3=A0~3,用于选择某组继电器
+        /// PC0~3=A0~3,继电器组使能
         /// </summary>
-        /// <param name="mask">单字节 0x00~0x0F</param>
-        private void WriteToPCl(byte mask)
+        /// <param name="mask">取值范围0x00~0x0F,当赋值0x0F时所有继电器均不使能</param>
+        private void EnableGroup(byte mask)
         {
             DoWritePort(D2KDask.Channel_P1CL, mask);
         }
@@ -104,22 +104,7 @@ namespace JH.ACU.BLL.Instruments
             WriteToPB((byte)(NoReset | 0x08 | cardNum));
             WriteToPB((byte)(NoReset | cardNum));
         }
-        /// <summary>
-        /// 继电器组使能
-        /// </summary>
-        /// <param name="mask">取值范围0x00~0x0F,当赋值0x0F时所有继电器均不使能</param>
-        private void EnableGroup(byte mask)
-        {
-            WriteToPCl(mask);
-        }
-        /// <summary>
-        /// 继电器使能
-        /// </summary>
-        /// <param name="relay"></param>
-        private void EnableRelay(byte relay)
-        {
-            WriteToPA(relay);
-        }
+
         #endregion
 
         #region 公有方法
@@ -128,7 +113,13 @@ namespace JH.ACU.BLL.Instruments
         //{
 
         //}
-
+        public void EnableRelays(byte cardNum, byte group,params byte[] relays)
+        {
+            if (relays.Length<=0)
+            {
+                
+            }
+        }
 
 
         /// <summary>
