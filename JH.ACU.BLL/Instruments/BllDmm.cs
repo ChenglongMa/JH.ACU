@@ -3,6 +3,7 @@ using Ivi.Visa;
 using JH.ACU.BLL.Abstract;
 using JH.ACU.Model;
 using NationalInstruments.Visa;
+using System.Collections.Generic;
 
 namespace JH.ACU.BLL.Instruments
 {
@@ -13,7 +14,7 @@ namespace JH.ACU.BLL.Instruments
     {
         #region 构造函数
 
-        public BllDmm(InstrName instr=InstrName.DMM) : base(instr)
+        public BllDmm(InstrName instr = InstrName.DMM) : base(instr)
         {
             /* 基本编程顺序：
                * 1、将万用表设定在一已知的状态（通常在复位状态）
@@ -33,8 +34,8 @@ namespace JH.ACU.BLL.Instruments
 
         private const string DcVolt = ":CONF:VOLT:DC ";
         private const string AcVolt = ":CONF:VOLT:AC ";
-        private const string TwoWireRes= ":CONF:RES ";
-        private const string FourWireRes= ":CONF:FRES ";
+        private const string TwoWireRes = ":CONF:RES ";
+        private const string FourWireRes = ":CONF:FRES ";
         private const string DcCurr = ":CONF:CURR:DC ";
         private const string AcCurr = ":CONF:CURR:AC ";
         private const string Frequency = ":CONF:FREQ ";
@@ -55,11 +56,13 @@ namespace JH.ACU.BLL.Instruments
         }
 
         private readonly Dmm _dmm;
+
         private class Dmm
         {
             public TriggerSource TriggerSource { get; set; }
             public MathStorage MathStorage { get; set; }
         }
+
         private enum ControlMode
         {
             Local,
@@ -67,7 +70,7 @@ namespace JH.ACU.BLL.Instruments
             RemoteWithLock
         }
 
-        private enum TriggerSource 
+        private enum TriggerSource
         {
             Immediate,
             Bus,
@@ -82,18 +85,23 @@ namespace JH.ACU.BLL.Instruments
             OutputBuffer,
         }
 
-        private enum AutoZero
+        public enum AutoZero
         {
             On,
             Off,
             Once,
         }
 
+        /// <summary>
+        /// 获取或设置采样点数
+        /// </summary>
+        [Obsolete("测试失败", true)]
         public int SampleCount
         {
             get { return Convert.ToInt32(WriteAndRead("SAMP:COUN?")); }
             set { WriteAndRead(string.Format("SAMP:COUN {0}", value)); }
         }
+
         #endregion
 
         #region 私有函数
@@ -163,8 +171,9 @@ namespace JH.ACU.BLL.Instruments
                     throw new ArgumentOutOfRangeException();
             }
         }
+
         //QUES:need public?
-        private void SetTrigger(TriggerSource trigger, bool isAuto=true, decimal delay=0)
+        private void SetTrigger(TriggerSource trigger, bool isAuto = true, double delay = 0)
         {
             var command = isAuto ? ":TRIG:DEL:AUTO ON;" : ":TRIG:DEL " + delay;
             switch (trigger)
@@ -190,32 +199,32 @@ namespace JH.ACU.BLL.Instruments
             _dmm.TriggerSource = trigger;
             WriteNoRead(command);
         }
-
-        private void SetMultiPoint(int triggerCount=1,int sampleCount=1)
+        [Obsolete("测试失败",true)]
+        private void SetMultiPoint(int triggerCount = 1, int sampleCount = 1)
         {
-            if (triggerCount<1||sampleCount<1)
+            if (triggerCount <=1 || sampleCount <= 1)
             {
                 return;
             }
-            var command = ":TRIG:COUN ;" + triggerCount;
-            command += ":SAMP:COUN ;" + sampleCount;
+            var command = string.Format(":TRIG:COUN {0};", triggerCount);
+            command += string.Format(":SAMP:COUN {0};", sampleCount);
             WriteNoRead(command);
         }
 
-        private string DmmRead(Dmm dmm)
+        private double DmmRead(Dmm dmm)
         {
-            throw new NotImplementedException("返回值需要转化");
+            //throw new NotImplementedException("返回值需要转化");
             string command;
-            if (dmm.TriggerSource==TriggerSource.Bus||dmm.MathStorage==MathStorage.InternalBuffer)
+            if (dmm.TriggerSource == TriggerSource.Bus || dmm.MathStorage == MathStorage.InternalBuffer)
             {
                 command = "INIT;";
                 WriteNoRead(command);
-                return WriteAndRead(":FETC?");
+                return Convert.ToDouble(WriteAndRead(":FETC?"));
             }
             else
             {
                 command = "READ?";
-                return WriteAndRead(command);
+                return Convert.ToDouble(WriteAndRead(command));
             }
 
         }
@@ -224,10 +233,10 @@ namespace JH.ACU.BLL.Instruments
         //{
         //    throw new NotImplementedException("返回值需要转化");
         //    return WriteAndRead(":FETC?");
-            
+
         //}
-        //QUES:need public?
-        private void SetAutoZero(AutoZero autoZero)
+
+        public void SetAutoZero(AutoZero autoZero)
         {
             string command;
             switch (autoZero)
@@ -261,8 +270,12 @@ namespace JH.ACU.BLL.Instruments
             {
                 MbSession.TimeoutMilliseconds = 10000;
                 DmmClear();
-                //Display = false;//TODO:后面修改
-                SampleCount = 2500;
+                Display = false; 
+#if DEBUG
+                Display = true;
+#endif
+
+                //SampleCount = 2500;//设置失败
                 var id = Idn;
                 if (!id.Contains("34401") && !id.Contains("34410") && !id.Contains("4411"))
                 {
@@ -284,11 +297,11 @@ namespace JH.ACU.BLL.Instruments
         /// Read single point
         /// </summary>
         /// <returns></returns>
-        public string Read()
+        public double Read()
         {
-            throw new NotImplementedException("返回值需要转化");
+            //throw new NotImplementedException("返回值需要转化");
             SetTrigger(TriggerSource.Immediate);
-            SetMultiPoint(1, 1);
+            //SetMultiPoint(1, 1);
             return DmmRead(_dmm);
         }
 
@@ -297,11 +310,11 @@ namespace JH.ACU.BLL.Instruments
         /// </summary>
         /// <param name="sampleCount"></param>
         /// <returns></returns>
-        public string Read(int sampleCount)
+        public double Read(int sampleCount)
         {
-            throw new NotImplementedException("返回值需要转化");
+            //throw new NotImplementedException("返回值需要转化");
             SetTrigger(TriggerSource.Immediate);
-            SetMultiPoint(sampleCount: sampleCount);
+            //SetMultiPoint(sampleCount: sampleCount);
             return DmmRead(_dmm);
         }
 
@@ -310,12 +323,18 @@ namespace JH.ACU.BLL.Instruments
         /// </summary>
         /// <param name="resetAfterRead"></param>
         /// <returns></returns>
-        public string Read(bool resetAfterRead)
+        public double[] Read(bool resetAfterRead)
         {
-            throw new NotImplementedException("返回值需要转化");
+            //throw new NotImplementedException("返回值需要转化");
             var command = ":CALC:AVER:MIN?;:CALC:AVER:MAX?;:CALC:AVER:AVER?;:CALC:AVER:COUN?;";
             command += resetAfterRead ? ":CALC:STAT ON;" : "";
-            return WriteAndRead(command);
+            var data = WriteAndRead(command).Split(';');
+            var res=new List<double>();
+            foreach (var d in data)
+            {
+                res.Add(Convert.ToDouble(d));
+            }
+            return res.ToArray();
         }
 
         /// <summary>
@@ -324,7 +343,7 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="function">功能代码</param>
         /// <param name="range">量程</param>
         /// <param name="resolution">分辨率</param>
-        public void SetFunction(string function, decimal range = 0, decimal resolution = 0)
+        public void SetFunction(string function, double range = 0, double resolution = 0)
         {
             if (range == 0 && resolution == 0)
             {
@@ -361,49 +380,53 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="range"></param>
         /// <param name="resolution"></param>
         /// <returns></returns>
-        public string GetCurrent(decimal range = 0, decimal resolution = 0)
+        public double GetCurrent(double range = 0, double resolution = 0)
         {
             SetFunction(DcCurr, range, resolution);
             return Read();
         }
+
         /// <summary>
         /// 获取实时电压(single point)
         /// </summary>
         /// <param name="range"></param>
         /// <param name="resolution"></param>
         /// <returns></returns>
-        public string GetVoltage(decimal range = 0, decimal resolution = 0)
+        public double GetVoltage(double range = 0, double resolution = 0)
         {
             SetFunction(DcVolt, range, resolution);
             return Read();
         }
+
         /// <summary>
         /// 获取四线电阻值(single point)
         /// </summary>
         /// <param name="range"></param>
         /// <param name="resolution"></param>
         /// <returns></returns>
-        public string GetFourWireRes(decimal range = 0, decimal resolution = 0)
+        public double GetFourWireRes(double range = 0, double resolution = 0)
         {
             SetFunction(FourWireRes, range, resolution);
             return Read();
         }
+
         /// <summary>
         /// 获取两线电阻值(single point)
         /// </summary>
         /// <param name="range"></param>
         /// <param name="resolution"></param>
         /// <returns></returns>
-        public string GetRes(decimal range = 0, decimal resolution = 0)
+        public double GetRes(double range = 0, double resolution = 0)
         {
             SetFunction(TwoWireRes, range, resolution);
             return Read();
         }
+
         /// <summary>
         /// 获取频率(single point)
         /// </summary>
         /// <returns></returns>
-        public string GetFrequency()
+        public double GetFrequency()
         {
             SetFunction(Frequency);
             return Read();

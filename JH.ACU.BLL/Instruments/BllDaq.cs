@@ -23,12 +23,12 @@ namespace JH.ACU.BLL.Instruments
 
         #region 属性、字段
 
-        private short _mDev;
+        private short _mDev = -1;
 
         /// <summary>
         /// PB5不复位常量
         /// </summary>
-        private const byte NoReset = 0x20; // QUES:看电路图是高电平复位，但原代码中是低电平复位，待测试
+        private const byte NoReset = 0x20; 
 
         public byte[,] Relays = new byte[8, 8];
 
@@ -115,6 +115,7 @@ namespace JH.ACU.BLL.Instruments
         //}
         public void EnableRelays(byte cardNum, byte group,params byte[] relays)
         {
+            EnableGroup(0x0f);
             if (relays.Length<=0)
             {
                 

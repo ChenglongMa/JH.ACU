@@ -75,11 +75,16 @@ namespace JH.ACU.BLL.Abstract
             }
         }
 
-        protected string WriteAndRead(string command, int delay = 50)
+        protected string WriteAndRead(string command, int delay = 0)//TODO:待测试delay时间
         {
             RawIo.Write(command + "\n");
             Thread.Sleep(delay);
-            return RawIo.ReadString();
+            var res = RawIo.ReadString().Replace("\n", "");
+            if (command != "SYSTem:ERRor?")
+            {
+                ThrowException();
+            }
+            return res;
         }
 
         protected void WriteNoRead(string command)
@@ -87,6 +92,18 @@ namespace JH.ACU.BLL.Abstract
             RawIo.Write(command + "\n");
         }
 
+        protected void ThrowException()
+        {
+            var errorGroup = Error.Split(',');
+            var code = Convert.ToInt32(errorGroup[0]);
+            var message = errorGroup[1];
+            if (code == 0) return;
+            throw new Exception(message);
+        }
+        //private string RemoveEscapeCharacter(string oldStr)
+        //{
+        //    return oldStr.Replace("\n", "");
+        //}
         #endregion
 
         #region 公有方法
@@ -139,7 +156,7 @@ namespace JH.ACU.BLL.Abstract
             var t = Environment.TickCount;
             do
             {
-                if (string.IsNullOrEmpty(Error))
+                if (string.IsNullOrEmpty(Error))//BUG:Error不为空
                 {
                     Thread.Sleep(100);
                 }

@@ -28,35 +28,35 @@ namespace JH.ACU.BLL.Instruments
         /// <summary>
         /// 获取或设置输出电流
         /// </summary>
-        public decimal OutputCurrent
+        public double OutputCurrent
         {
-            get { return Convert.ToDecimal(WriteAndRead(Chanel + "CURRent?")); }
-            set { WriteAndRead(Chanel + "CURRent " + value); }
+            get { return Convert.ToDouble(WriteAndRead(Chanel + "CURRent?")); }
+            set { WriteNoRead(Chanel + "CURRent " + value); }
         }
 
         /// <summary>
         /// 获取或设置输出电压
         /// </summary>
-        public decimal OutputVoltage
+        public double OutputVoltage
         {
-            get { return Convert.ToDecimal(WriteAndRead(Chanel + "VOLTage?")); }
-            set { WriteAndRead(Chanel + "VOLTage " + value); }
+            get { return Convert.ToDouble(WriteAndRead(Chanel + "VOLTage?")); }
+            set { WriteNoRead(Chanel + "VOLTage " + value); }
         }
 
         /// <summary>
         /// 获取实际输出电流
         /// </summary>
-        public decimal ActualCurrent
+        public double ActualCurrent
         {
-            get { return Convert.ToDecimal(WriteAndRead(Chanel + "MEASure:CURRent?")); }
+            get { return Convert.ToDouble(WriteAndRead(Chanel + "MEASure:CURRent?")); }
         }
 
         /// <summary>
         /// 获取实际输出电压
         /// </summary>
-        public decimal ActualVoltage
+        public double ActualVoltage
         {
-            get { return Convert.ToDecimal(WriteAndRead(Chanel + "MEASure:VOLTage?")); }
+            get { return Convert.ToDouble(WriteAndRead(Chanel + "MEASure:VOLTage?")); }
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace JH.ACU.BLL.Instruments
         /// <summary>
         /// 获取或设置过电压保护数值
         /// </summary>
-        public decimal Ovp
+        public double Ovp
         {
-            get { return Convert.ToDecimal(WriteAndRead(Chanel + "PROTection:VOLTage?")); }
-            set { WriteAndRead(Chanel + "PROTection:VOLTage " + value); }
+            get { return Convert.ToDouble(WriteAndRead(Chanel + "PROTection:VOLTage?")); }
+            set { WriteNoRead(Chanel + "PROTection:VOLTage " + value); }
 
         }
 

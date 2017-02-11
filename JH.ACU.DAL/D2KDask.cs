@@ -944,7 +944,7 @@ namespace JH.ACU.DAL
         public static extern short D2K_DO_WriteLine(ushort CardNumber, ushort Port, ushort Line, ushort Value);
 
         [DllImport("D2K-Dask.dll")]
-        public static extern short D2K_DO_WritePort(ushort CardNumber, ushort Port, byte Value);//QUES:Value原类型为uint，是否可以改为byte
+        public static extern short D2K_DO_WritePort(ushort CardNumber, ushort Port, byte Value);
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_DO_ReadLine(ushort CardNumber, ushort Port, ushort Line, out ushort Value);
