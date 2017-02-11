@@ -24,13 +24,18 @@ namespace JH.ACU.BLL.Instruments
         #region 属性、字段
 
         private short _mDev = -1;
+        private int _currBoard = -1;
 
         /// <summary>
         /// PB5不复位常量
         /// </summary>
-        private const byte NoReset = 0x20; 
+        private const byte NoReset = 0x20;
 
-        public byte[,] Relays = new byte[8, 8];
+        /// <summary>
+        /// 继电器组状态值
+        /// 共8个子板，每个子板有14组继电器
+        /// </summary>
+        private byte[,] _relaysGroupMask = new byte[8, 14];
 
         #endregion
 
@@ -49,13 +54,13 @@ namespace JH.ACU.BLL.Instruments
         /// Data 0~7 用于选择一组中某几个继电器
         /// </summary>
         /// <param name="mask"></param>
-        private void EnableRelays(byte mask)
+        private void SelectRelays(byte mask)
         {
             DoWritePort(D2KDask.Channel_P1A, mask);
         }
 
         /// <summary>
-        /// PB0~3=A4~6+En_138 为板卡使能,PB5为Reset位,其余位保留
+        /// PB0~3=A4~6 + En_138 为板卡使能,PB5为Reset位,其余位保留
         /// </summary>
         /// <param name="mask"></param>
         private void WriteToPB(byte mask)
@@ -84,12 +89,12 @@ namespace JH.ACU.BLL.Instruments
         }
 
         /// <summary>
-        /// PC0~3=A0~3,继电器组使能
+        /// PC0~3=A0~3,继电器组使能 74HC273
         /// </summary>
-        /// <param name="mask">取值范围0x00~0x0F,当赋值0x0F时所有继电器均不使能</param>
-        private void EnableGroup(byte mask)
+        /// <param name="groupNum">取值范围0x00~0x0F,当赋值0x0F时所有继电器均不使能，即相当于关闭该组</param>
+        private void SelectRelayGroup(byte groupNum)
         {
-            DoWritePort(D2KDask.Channel_P1CL, mask);
+            DoWritePort(D2KDask.Channel_P1CL, groupNum);
         }
 
         #endregion
@@ -97,30 +102,32 @@ namespace JH.ACU.BLL.Instruments
         /// <summary>
         /// 板卡使能
         /// </summary>
-        /// <param name="cardNum">取值范围0~7</param>
-        private void EnableCard(byte cardNum)
+        /// <param name="boardNum">取值范围0~7</param>
+        private void Enable(byte boardNum)
         {
-            WriteToPB((byte)(NoReset | cardNum));
-            WriteToPB((byte)(NoReset | 0x08 | cardNum));
-            WriteToPB((byte)(NoReset | cardNum));
+            WriteToPB((byte) (NoReset | boardNum));
+            WriteToPB((byte) (NoReset | 0x08 | boardNum));
+            WriteToPB((byte) (NoReset | boardNum));
+            _currBoard = boardNum;
         }
 
+        private void SetRelaysGroup(byte boardNum, byte groupNum, byte mask)
+        {
+
+            SelectRelays(mask);
+            SelectRelayGroup(groupNum);
+            Enable(boardNum);
+            _relaysGroupMask[boardNum, groupNum] = mask;
+        }
         #endregion
 
         #region 公有方法
 
-        //public bool SetSbRelayGroupStatus(byte cardNum, byte group, byte status)
+        //public bool SetSbRelayGroupStatus(byte boardNum, byte groupNum, byte status)
         //{
 
         //}
-        public void EnableRelays(byte cardNum, byte group,params byte[] relays)
-        {
-            EnableGroup(0x0f);
-            if (relays.Length<=0)
-            {
-                
-            }
-        }
+
 
 
         /// <summary>
@@ -132,7 +139,7 @@ namespace JH.ACU.BLL.Instruments
 
             if (_mDev >= 0) Dispose();
             _mDev = D2KDask.D2K_Register_Card(D2KDask.DAQ_2206, 0);
-            if (_mDev < 0) throw new Exception("板卡注册失败");
+            D2KDask.ThrowException((D2KDask.Error) _mDev);
 
             #endregion
 
@@ -141,15 +148,17 @@ namespace JH.ACU.BLL.Instruments
             #region 数字量输出
 
             var ret = D2KDask.D2K_DIO_PortConfig((ushort) _mDev, D2KDask.Channel_P1A, D2KDask.OUTPUT_PORT);
-            if (ret < 0) throw new Exception("P1A DIO配置失败");
+            D2KDask.ThrowException((D2KDask.Error) ret, new Exception("P1A DIO配置失败"));
             ret = D2KDask.D2K_DIO_PortConfig((ushort) _mDev, D2KDask.Channel_P1B, D2KDask.OUTPUT_PORT);
-            if (ret < 0) throw new Exception("P1B DIO配置失败");
+            D2KDask.ThrowException((D2KDask.Error) ret, new Exception("P1B DIO配置失败"));
             ret = D2KDask.D2K_DIO_PortConfig((ushort) _mDev, D2KDask.Channel_P1C, D2KDask.OUTPUT_PORT);
-            if (ret < 0) throw new Exception("P1C DIO配置失败");
+            D2KDask.ThrowException((D2KDask.Error) ret, new Exception("P1C DIO配置失败"));
 
             #endregion
 
             #region 模拟量输入
+
+            //TODO：待完善
 
             #endregion
 
@@ -158,12 +167,26 @@ namespace JH.ACU.BLL.Instruments
 
 
         }
+        /// <summary>
+        /// 复位
+        /// 即关闭所有板卡
+        /// </summary>
+        public void Reset()
+        {
+            SelectRelays(0);
+            SelectRelayGroup(0x0f);
+            WriteToPB(NoReset & 0);
+            _relaysGroupMask = new byte[8, 14];
+            _currBoard = -1;
+        }
 
         public void Dispose()
         {
             if (_mDev > 0)
             {
+                Reset();
                 D2KDask.D2K_Release_Card((ushort) _mDev);
+                _mDev = -1;
             }
         }
 

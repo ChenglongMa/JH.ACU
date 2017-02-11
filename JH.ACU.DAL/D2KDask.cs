@@ -1127,10 +1127,10 @@ namespace JH.ACU.DAL
 
         #region 公共方法
 
-        public static void ThrowException(Error errorCode)
+        public static void ThrowException(Error errorCode, Exception innerException = null)
         {
-            if (errorCode == Error.NoError) return;
-            throw new Exception(errorCode.ToString());
+            if (errorCode >= Error.NoError) return;
+            throw new Exception(errorCode.ToString(), innerException);
         }
 
         #endregion

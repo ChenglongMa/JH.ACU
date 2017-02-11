@@ -4,6 +4,7 @@ using JH.ACU.BLL.Abstract;
 using JH.ACU.Model;
 using NationalInstruments.Visa;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JH.ACU.BLL.Instruments
 {
@@ -213,7 +214,6 @@ namespace JH.ACU.BLL.Instruments
 
         private double DmmRead(Dmm dmm)
         {
-            //throw new NotImplementedException("返回值需要转化");
             string command;
             if (dmm.TriggerSource == TriggerSource.Bus || dmm.MathStorage == MathStorage.InternalBuffer)
             {
@@ -228,13 +228,6 @@ namespace JH.ACU.BLL.Instruments
             }
 
         }
-
-        //private string Fetch()
-        //{
-        //    throw new NotImplementedException("返回值需要转化");
-        //    return WriteAndRead(":FETC?");
-
-        //}
 
         public void SetAutoZero(AutoZero autoZero)
         {
@@ -299,7 +292,6 @@ namespace JH.ACU.BLL.Instruments
         /// <returns></returns>
         public double Read()
         {
-            //throw new NotImplementedException("返回值需要转化");
             SetTrigger(TriggerSource.Immediate);
             //SetMultiPoint(1, 1);
             return DmmRead(_dmm);
@@ -312,7 +304,6 @@ namespace JH.ACU.BLL.Instruments
         /// <returns></returns>
         public double Read(int sampleCount)
         {
-            //throw new NotImplementedException("返回值需要转化");
             SetTrigger(TriggerSource.Immediate);
             //SetMultiPoint(sampleCount: sampleCount);
             return DmmRead(_dmm);
@@ -325,16 +316,10 @@ namespace JH.ACU.BLL.Instruments
         /// <returns></returns>
         public double[] Read(bool resetAfterRead)
         {
-            //throw new NotImplementedException("返回值需要转化");
             var command = ":CALC:AVER:MIN?;:CALC:AVER:MAX?;:CALC:AVER:AVER?;:CALC:AVER:COUN?;";
             command += resetAfterRead ? ":CALC:STAT ON;" : "";
             var data = WriteAndRead(command).Split(';');
-            var res=new List<double>();
-            foreach (var d in data)
-            {
-                res.Add(Convert.ToDouble(d));
-            }
-            return res.ToArray();
+            return data.Select(Convert.ToDouble).ToArray();
         }
 
         /// <summary>
@@ -345,7 +330,7 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="resolution">分辨率</param>
         public void SetFunction(string function, double range = 0, double resolution = 0)
         {
-            if (range == 0 && resolution == 0)
+            if (range.Equals(0) && resolution.Equals(0))
             {
                 WriteNoRead(function + "DEF");
                 return;
