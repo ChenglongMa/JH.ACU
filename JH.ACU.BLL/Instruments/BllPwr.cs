@@ -17,7 +17,7 @@ namespace JH.ACU.BLL.Instruments
 
 
         private const string Chanel = ":CHANnel1:"; //通道号:PSS & PSH can only be 1.
-        private const string Output = ":OUTPut:"; //QUES:有没有冒号不确定
+        private const string Output = ":OUTPut:"; 
 
         #endregion
 

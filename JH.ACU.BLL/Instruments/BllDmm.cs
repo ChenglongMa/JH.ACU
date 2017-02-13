@@ -14,7 +14,6 @@ namespace JH.ACU.BLL.Instruments
     public class BllDmm : BllVisa
     {
         #region 构造函数
-
         public BllDmm(InstrName instr = InstrName.DMM) : base(instr)
         {
             /* 基本编程顺序：
@@ -100,7 +99,7 @@ namespace JH.ACU.BLL.Instruments
         public int SampleCount
         {
             get { return Convert.ToInt32(WriteAndRead("SAMP:COUN?")); }
-            set { WriteAndRead(string.Format("SAMP:COUN {0}", value)); }
+            set { WriteNoRead(string.Format("SAMP:COUN {0}", value)); }
         }
 
         #endregion

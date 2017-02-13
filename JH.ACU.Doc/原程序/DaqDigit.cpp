@@ -128,7 +128,7 @@ bool __fastcall TDaqDigit::ResetRelay()
 
 	m_ulMbRelayStatus = 0x00;
     // 保持子板选择使能有效
-    iRetCode = D2K_DO_WritePort(m_iHandleCard, Channel_P1B, 0x08);
+    iRetCode = D2K_DO_WritePort(m_iHandleCard, Channel_P1B, 0x08);//QUES:作用未知
 	if (iRetCode != NoError) return false;
 
 	return true;
