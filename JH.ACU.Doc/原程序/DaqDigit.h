@@ -38,7 +38,7 @@ public:
 
     bool __fastcall ResetRelay();
     bool __fastcall EnableRelayBase(int iCardNum, bool bEnable);
-    bool __fastcall EnableRelayGroup(int iItem, int iType);	// iItem：测试步骤 iType：类型0-查找1-万用表测值
+    bool __fastcall EnableRelayGroup(int iItem, int iType);	// iItem：测试步骤 iType：类型0-查找1-万用表测值//TODO:未完成
 
     // 第一种操作方式
     // 其中iCardNum从0开始,表示第几块子板,iRelay表示继电器的标号,都是3位数,例如200,201

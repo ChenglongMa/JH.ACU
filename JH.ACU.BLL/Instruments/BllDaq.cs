@@ -33,11 +33,26 @@ namespace JH.ACU.BLL.Instruments
 
         private const int BoardNum = 8, GroupNum = 13;
 
+        private byte _mainRelayMask = 0;
+
         /// <summary>
         /// 继电器组状态值
         /// 共8个子板，每个子板有14组继电器
         /// </summary>
         private byte[,] _relaysGroupMask = new byte[BoardNum, GroupNum];
+
+        private bool IsOpened
+        {
+            get
+            {
+                if (_currBoard == -1) return false;
+                var pwr = _relaysGroupMask[_currBoard, 6] / 0x10 % 0x04 == 0x03;
+                var kLine = _relaysGroupMask[_currBoard, 7] % 0x10 >> 3 == 0x01;
+                var cout1 = _relaysGroupMask[_currBoard, 7] >> 7 == 0x01;
+                var cout2 = _relaysGroupMask[_currBoard, 12] % 0x02 == 0x01;
+                return pwr && kLine && cout1 && cout2;
+            }
+        }
 
         #endregion
 
@@ -45,7 +60,7 @@ namespace JH.ACU.BLL.Instruments
 
         #region Basic Method
 
-        private void DoWritePort(ushort channel, byte mask, int delay = 10)
+        private void DoWritePort(ushort channel, byte mask, int delay = 100)//TODO:注意延时问题
         {
             var res = D2KDask.D2K_DO_WritePort((ushort) _mDev, channel, mask);
             Thread.Sleep(delay);
@@ -78,16 +93,20 @@ namespace JH.ACU.BLL.Instruments
         private void WriteToPC(byte mask)
         {
             DoWritePort(D2KDask.Channel_P1C, mask);
+            var hMask = (byte) (mask/0x10);
+            var lMask = (byte) (mask%0x10);
+            _mainRelayMask = hMask;
         }
 
         /// <summary>
-        /// PC4~6=AREL300~302,PC7保留
+        /// PC4~6=AREL300~302 , PC7保留
         /// </summary>
         /// <param name="mask">单字节 0x00~0x0F</param>
-        private void WriteToPCh(byte mask)
+        private void SelectMainRelay(byte mask)
         {
             var hMask = (byte) (mask << 4);
             DoWritePort(D2KDask.Channel_P1CH, hMask);
+            _mainRelayMask = mask;
         }
 
         /// <summary>
@@ -129,28 +148,41 @@ namespace JH.ACU.BLL.Instruments
             _currGroup = groupIndex;
             _relaysGroupMask[boardIndex, groupIndex] = mask;
         }
+
         /// <summary>
         /// 获取继电器所在组及更改后的状态
         /// </summary>
         /// <param name="boardIndex"></param>
-        /// <param name="relayIndex"></param>
+        /// <param name="relayIndex">只能输入从板上的继电器索引</param>
         /// <param name="enable"></param>
         /// <param name="groupIndex"></param>
         /// <param name="mask"></param>
         private void GetRelaysMask(byte boardIndex, int relayIndex, bool enable, out byte groupIndex, out byte mask)
         {
-            //TODO:relay取值有范围
             if (boardIndex > BoardNum - 1) throw new ArgumentException("输入板卡索引无效", "boardIndex");
-            groupIndex = (byte)((relayIndex - 200) / 10);
-            if (groupIndex > GroupNum - 1) throw new ArgumentException("输入继电器组索引无效", "groupIndex");
+            if (relayIndex < 200 || relayIndex > 340 || (relayIndex > 287 && relayIndex < 310))
+            {
+                throw new ArgumentException("输入继电器索引无效", "relayIndex");
+            }
+            if (relayIndex > 199 && relayIndex < 288)
+            {
+                groupIndex = (byte) ((relayIndex - 200)/10);
+            }
+            else
+            {
+                groupIndex = (byte) ((relayIndex - 200)/10 - 2);
 
-            var iBit = (relayIndex - 200) % 10;
+            }
+            if (groupIndex > GroupNum - 1) throw new ArgumentException("输入继电器索引无效", "relayIndex");
+
+            var iBit = relayIndex%10;
+            if (iBit > 7) throw new ArgumentException("输入继电器索引无效", "relayIndex");
             byte ulPaStatus = 0x01;
-            ulPaStatus = (byte)(ulPaStatus << iBit);
+            ulPaStatus = (byte) (ulPaStatus << iBit);
             if (!enable)
             {
-                ulPaStatus = (byte)~ulPaStatus;
-                mask = (byte)(_relaysGroupMask[boardIndex, groupIndex] & ulPaStatus);
+                ulPaStatus = (byte) ~ulPaStatus;
+                mask = (byte) (_relaysGroupMask[boardIndex, groupIndex] & ulPaStatus);
                 return;
             }
             mask = (byte) (_relaysGroupMask[boardIndex, groupIndex] | ulPaStatus);
@@ -192,6 +224,7 @@ namespace JH.ACU.BLL.Instruments
             #endregion
 
         }
+
         #endregion
 
         #region 公有方法
@@ -200,20 +233,47 @@ namespace JH.ACU.BLL.Instruments
         /// 设置某个板卡某个继电器是否使能
         /// </summary>
         /// <param name="boardIndex"></param>
-        /// <param name="relay"></param>
+        /// <param name="relayIndex">只能输入从板上的继电器索引</param>
         /// <param name="enable"></param>
-        public void SetRelayStatus(byte boardIndex, int relay, bool enable)
+        public void SetSubRelayStatus(byte boardIndex, int relayIndex, bool enable)
         {
             byte groupIndex, mask;
-            GetRelaysMask(boardIndex, relay, enable, out groupIndex, out mask);
-            if (boardIndex != _currBoard)
+            GetRelaysMask(boardIndex, relayIndex, enable, out groupIndex, out mask);
+            if (boardIndex != _currBoard  )
             {
                 if (_currBoard != -1)
                 {
-                    ResetBoard((byte) _currBoard); //将原板复位至初始状态
+                    Close((byte) _currBoard); //将原板复位至初始状态
+                }
+                if(!IsOpened)
+                {
+                    Open(boardIndex);
                 }
             }
             SetRelaysGroup(boardIndex, groupIndex, mask); //将现板设置为新状态
+        }
+
+        //public void Set
+        /// <summary>
+        /// 设置主板某个继电器是否使能
+        /// </summary>
+        /// <param name="relayIndex">取值范围300~302</param>
+        /// <param name="enable"></param>
+        public void SetMainRelayStatus(int relayIndex, bool enable)
+        {
+            if (relayIndex < 300 || relayIndex > 302) throw new ArgumentException("输入继电器索引无效", "relayIndex");
+            var iBit = relayIndex%10;
+            byte mask;
+            if (enable)
+            {
+                mask = (byte) (_mainRelayMask | iBit);
+            }
+            else
+            {
+                iBit = ~iBit;
+                mask = (byte) (_mainRelayMask & iBit);
+            }
+            SelectMainRelay(mask);
         }
 
         /// <summary>
@@ -240,6 +300,7 @@ namespace JH.ACU.BLL.Instruments
             ret = D2KDask.D2K_DIO_PortConfig((ushort) _mDev, D2KDask.Channel_P1C, D2KDask.OUTPUT_PORT);
             D2KDask.ThrowException((D2KDask.Error) ret, new Exception("P1C DIO配置失败"));
 
+            ResetAll();
             #endregion
 
             #region 模拟量输入
@@ -258,18 +319,33 @@ namespace JH.ACU.BLL.Instruments
         /// 将指定板卡设置为初始状态,即仅保持ACU上电,其余继电器断开
         /// </summary>
         /// <param name="boardIndex"></param>
-        public void ResetBoard(byte boardIndex)
+        public void Close(byte boardIndex)
         {
             for (byte i = 0; i < GroupNum; i++)
             {
                 var mask = (byte) (i == 6 ? 0x30 & _relaysGroupMask[boardIndex, i] : 0x00);
-                //QUES:原程序中将Kline及DAQ1,2保持原有状态,作用未知,如此串口控制哪个ACU?
-                //mask = (byte) (i == 7 ? 0x88 & _relaysGroupMask[boardIndex, i] : mask);
                 if (_relaysGroupMask[boardIndex, i] != mask)
                 {
                     SetRelaysGroup(boardIndex, i, mask);
                 }
             }
+        }
+
+        /// <summary>
+        /// 准备开始测试环境,注意时序
+        /// </summary>
+        /// <param name="boardIndex"></param>
+        public void Open(byte boardIndex)
+        {
+            byte mask6 = (byte) (0x30 | _relaysGroupMask[boardIndex, 6]);
+            byte mask7 = (byte) (0x88 | _relaysGroupMask[boardIndex, 7]);
+            byte mask12 = (byte) (0x01 | _relaysGroupMask[boardIndex, 12]);
+            SetRelaysGroup(boardIndex, 6, mask6);
+            //Thread.Sleep(100);
+            SetRelaysGroup(boardIndex, 7, mask7);
+            //Thread.Sleep(100);
+            SetRelaysGroup(boardIndex, 12, mask12);
+            //Thread.Sleep(100);
         }
 
         /// <summary>
@@ -283,6 +359,7 @@ namespace JH.ACU.BLL.Instruments
             WriteToPB(NoReset & 0);
             _relaysGroupMask = new byte[8, 14];
             _currBoard = -1;
+            _currGroup = -1;
 
             #region 原程序内代码段
 
