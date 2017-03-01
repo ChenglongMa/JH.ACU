@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace JH.ACU.Lib
@@ -38,38 +39,47 @@ namespace JH.ACU.Lib
 
             return true;
         }
-        public static void WriteLogInfo(Exception ex, string strMessType, string p_2, string p_3, string p_4)
+        public static void WriteErrorLog(Exception ex,string description=null)
         {
             var path = _rootPath;
-            var strFile = "\\" + DateTime.Now.ToString("yyyyMMdd") + ".log";
+            var strFile = "\\ErrorLog" + DateTime.Now.ToString("yyyyMMdd") + ".log";
             if (!CreateLog_Directory(path, strFile)) return;
             using (var sw = new StreamWriter(path + strFile, true, Encoding.Default))
             {
                 sw.WriteLine("*****************************************【"
-                             + strMessType + DateTime.Now
+                             + DateTime.Now
                              + "】*****************************************");
+                var functionName = MethodBase.GetCurrentMethod().Name;
                 if (ex != null)
                 {
-                    sw.WriteLine("【错误代码类】" + p_2);
-                    sw.WriteLine("【错误方法】" + p_3);
-                    sw.WriteLine("【执行的代码】" + p_4);
+                    sw.WriteLine("【FunctionName】" + functionName);
                     sw.WriteLine("【ErrorType】" + ex.GetType());
                     sw.WriteLine("【TargetSite】" + ex.TargetSite);
                     sw.WriteLine("【Message】" + ex.Message);
                     sw.WriteLine("【Source】" + ex.Source);
                     sw.WriteLine("【StackTrace】" + ex.StackTrace);
-                    
                 }
                 else
                 {
-                    sw.WriteLine("【错误代码类】" + p_2);
-                    sw.WriteLine("【错误方法】" + p_3);
-                    sw.WriteLine("【执行的代码】" + p_4);
                     sw.WriteLine("Exception is NULL");
                 }
                 sw.WriteLine();
-                sw.Close();
-                sw.Dispose();
+            }
+        }       
+        public static void WriteWarningLog(string message)
+        {
+            var path = _rootPath;
+            var strFile = "\\WarningLog" + DateTime.Now.ToString("yyyyMMdd") + ".log";
+            if (!CreateLog_Directory(path, strFile)) return;
+            using (var sw = new StreamWriter(path + strFile, true, Encoding.Default))
+            {
+                sw.WriteLine("*****************************************【"
+                             + DateTime.Now
+                             + "】*****************************************");
+                var functionName = MethodBase.GetCurrentMethod().Name;
+                sw.WriteLine("【FunctionName】" + functionName);
+                sw.WriteLine("【WraningMessage】" + message);
+                sw.WriteLine();
             }
         }
 
