@@ -33,44 +33,24 @@ namespace JH.ACU.UI
             }
             catch (Exception ex)
             {
-                var str = GetExceptionMsg(ex, string.Empty);
-                MessageBoxHelper.ShowError(str);
-                throw new NotImplementedException("记录日志");
+                MessageBoxHelper.ShowError(ex.Message);
+                LogHelper.WriteErrorLog("Main",ex);
             }
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            throw new NotImplementedException();
+            var ex = (Exception)e.ExceptionObject;
+            MessageBoxHelper.ShowError(ex.Message);
+            LogHelper.WriteErrorLog("non-UI Exception", ex, string.Format("Runtime terminating: {0}", e.IsTerminating));
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            throw new NotImplementedException();
-        }
-        /// <summary>  
-        /// 生成自定义异常消息  
-        /// </summary>  
-        /// <param name="ex">异常对象</param>  
-        /// <param name="backStr">备用异常消息：当ex为null时有效</param>  
-        /// <returns>异常字符串文本</returns>  
-        private static string GetExceptionMsg(Exception ex, string backStr)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine("****************************异常文本****************************");
-            sb.AppendLine("【出现时间】：" + DateTime.Now);
-            if (ex != null)
-            {
-                sb.AppendLine("【异常类型】：" + ex.GetType().Name);
-                sb.AppendLine("【异常信息】：" + ex.Message);
-                sb.AppendLine("【堆栈调用】：" + ex.StackTrace);
-            }
-            else
-            {
-                sb.AppendLine("【未处理异常】：" + backStr);
-            }
-            sb.AppendLine("***************************************************************");
-            return sb.ToString();
+            var ex = e.Exception;
+            MessageBoxHelper.ShowError(ex.Message);
+            LogHelper.WriteErrorLog("UI Exception", ex);
+
         }
     }
 }

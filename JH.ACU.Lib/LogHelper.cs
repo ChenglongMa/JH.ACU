@@ -12,7 +12,8 @@ namespace JH.ACU.Lib
     /// </summary>
     public static class LogHelper
     {
-        private static string _rootPath = AppDomain.CurrentDomain.BaseDirectory + "Log";
+        private static readonly string RootPath = AppDomain.CurrentDomain.BaseDirectory + "Log";
+
         /// <summary>
         /// 创建日志文件夹
         /// </summary>
@@ -39,10 +40,11 @@ namespace JH.ACU.Lib
 
             return true;
         }
-        public static void WriteErrorLog(Exception ex,string description=null)
+
+        public static void WriteErrorLog(string fileName, Exception ex, string description = null)
         {
-            var path = _rootPath;
-            var strFile = "\\ErrorLog" + DateTime.Now.ToString("yyyyMMdd") + ".log";
+            var path = RootPath;
+            var strFile = "\\ErrorLog_" + fileName + DateTime.Now.ToString("yyyyMMdd") + ".log";
             if (!CreateLog_Directory(path, strFile)) return;
             using (var sw = new StreamWriter(path + strFile, true, Encoding.Default))
             {
@@ -58,6 +60,7 @@ namespace JH.ACU.Lib
                     sw.WriteLine("【Message】" + ex.Message);
                     sw.WriteLine("【Source】" + ex.Source);
                     sw.WriteLine("【StackTrace】" + ex.StackTrace);
+                    sw.WriteLine("【Extras】" + description);
                 }
                 else
                 {
@@ -65,11 +68,12 @@ namespace JH.ACU.Lib
                 }
                 sw.WriteLine();
             }
-        }       
-        public static void WriteWarningLog(string message)
+        }
+
+        public static void WriteWarningLog(string fileName, string message)
         {
-            var path = _rootPath;
-            var strFile = "\\WarningLog" + DateTime.Now.ToString("yyyyMMdd") + ".log";
+            var path = RootPath;
+            var strFile = "\\WarningLog_" + fileName + DateTime.Now.ToString("yyyyMMdd") + ".log";
             if (!CreateLog_Directory(path, strFile)) return;
             using (var sw = new StreamWriter(path + strFile, true, Encoding.Default))
             {

@@ -1,0 +1,191 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.BLL", "JH.ACU.BLL\JH.ACU.BLL.csproj", "{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.DAL", "JH.ACU.DAL\JH.ACU.DAL.csproj", "{58D9FC54-3A4B-4587-BD97-CCB037947732}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.Model", "JH.ACU.Model\JH.ACU.Model.csproj", "{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.Lib", "JH.ACU.Lib\JH.ACU.Lib.csproj", "{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.UI", "JH.ACU.UI\JH.ACU.UI.csproj", "{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assembly", "Assembly", "{CE67C9B0-1099-46CB-967E-316461C24A16}"
+	ProjectSection(SolutionItems) = preProject
+		Assembly\Infragistics4.Documents.Core.v12.1.dll = Assembly\Infragistics4.Documents.Core.v12.1.dll
+		Assembly\Infragistics4.Documents.Excel.v12.1.dll = Assembly\Infragistics4.Documents.Excel.v12.1.dll
+		Assembly\Infragistics4.Documents.IO.v12.1.dll = Assembly\Infragistics4.Documents.IO.v12.1.dll
+		Assembly\Infragistics4.Documents.Reports.v12.1.dll = Assembly\Infragistics4.Documents.Reports.v12.1.dll
+		Assembly\Infragistics4.Documents.Word.v12.1.dll = Assembly\Infragistics4.Documents.Word.v12.1.dll
+		Assembly\Infragistics4.Math.v12.1.dll = Assembly\Infragistics4.Math.v12.1.dll
+		Assembly\Infragistics4.Shared.v12.1.dll = Assembly\Infragistics4.Shared.v12.1.dll
+		Assembly\Infragistics4.Win.AppStylistSupport.v12.1.dll = Assembly\Infragistics4.Win.AppStylistSupport.v12.1.dll
+		Assembly\Infragistics4.Win.Misc.v12.1.dll = Assembly\Infragistics4.Win.Misc.v12.1.dll
+		Assembly\Infragistics4.Win.SupportDialogs.v12.1.dll = Assembly\Infragistics4.Win.SupportDialogs.v12.1.dll
+		Assembly\Infragistics4.Win.UltraChart.v12.1.Design.dll = Assembly\Infragistics4.Win.UltraChart.v12.1.Design.dll
+		Assembly\Infragistics4.Win.UltraGauge.v12.1.Design.dll = Assembly\Infragistics4.Win.UltraGauge.v12.1.Design.dll
+		Assembly\Infragistics4.Win.UltraWinCalcManager.v12.1.dll = Assembly\Infragistics4.Win.UltraWinCalcManager.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinCalcManager.v12.1.FormulaBuilder.dll = Assembly\Infragistics4.Win.UltraWinCalcManager.v12.1.FormulaBuilder.dll
+		Assembly\Infragistics4.Win.UltraWinChart.v12.1.dll = Assembly\Infragistics4.Win.UltraWinChart.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinDataSource.v12.1.dll = Assembly\Infragistics4.Win.UltraWinDataSource.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinDock.v12.1.dll = Assembly\Infragistics4.Win.UltraWinDock.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinEditors.v12.1.dll = Assembly\Infragistics4.Win.UltraWinEditors.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinExplorerBar.v12.1.dll = Assembly\Infragistics4.Win.UltraWinExplorerBar.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinFormattedText.WordWriter.v12.1.dll = Assembly\Infragistics4.Win.UltraWinFormattedText.WordWriter.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinGanttView.v12.1.dll = Assembly\Infragistics4.Win.UltraWinGanttView.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinGauge.v12.1.dll = Assembly\Infragistics4.Win.UltraWinGauge.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinGrid.DocumentExport.v12.1.dll = Assembly\Infragistics4.Win.UltraWinGrid.DocumentExport.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinGrid.ExcelExport.v12.1.dll = Assembly\Infragistics4.Win.UltraWinGrid.ExcelExport.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinGrid.v12.1.dll = Assembly\Infragistics4.Win.UltraWinGrid.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinGrid.WordWriter.v12.1.dll = Assembly\Infragistics4.Win.UltraWinGrid.WordWriter.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinInkProvider.Ink17.v12.1.dll = Assembly\Infragistics4.Win.UltraWinInkProvider.Ink17.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinListBar.v12.1.dll = Assembly\Infragistics4.Win.UltraWinListBar.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinListView.v12.1.dll = Assembly\Infragistics4.Win.UltraWinListView.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinMaskedEdit.v12.1.dll = Assembly\Infragistics4.Win.UltraWinMaskedEdit.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinPrintPreviewDialog.v12.1.dll = Assembly\Infragistics4.Win.UltraWinPrintPreviewDialog.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinSchedule.v12.1.dll = Assembly\Infragistics4.Win.UltraWinSchedule.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinSpellChecker.v12.1.dll = Assembly\Infragistics4.Win.UltraWinSpellChecker.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinStatusBar.v12.1.dll = Assembly\Infragistics4.Win.UltraWinStatusBar.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinTabbedMdi.v12.1.dll = Assembly\Infragistics4.Win.UltraWinTabbedMdi.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinTabControl.v12.1.dll = Assembly\Infragistics4.Win.UltraWinTabControl.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinToolbars.v12.1.dll = Assembly\Infragistics4.Win.UltraWinToolbars.v12.1.dll
+		Assembly\Infragistics4.Win.UltraWinTree.v12.1.dll = Assembly\Infragistics4.Win.UltraWinTree.v12.1.dll
+		Assembly\Infragistics4.Win.v12.1.Design.dll = Assembly\Infragistics4.Win.v12.1.Design.dll
+		Assembly\Infragistics4.Win.v12.1.dll = Assembly\Infragistics4.Win.v12.1.dll
+		Assembly\log4net.dll = Assembly\log4net.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.Doc", "JH.ACU.Doc\JH.ACU.Doc.csproj", "{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.UnitTest", "JH.ACU.UnitTest\JH.ACU.UnitTest.csproj", "{383D1F64-04BB-4010-A4E5-3EC62063964D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5} = {33A0541A-67C4-4275-9B53-5C6DBAA12AE5}
+		{58D9FC54-3A4B-4587-BD97-CCB037947732} = {58D9FC54-3A4B-4587-BD97-CCB037947732}
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99} = {33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E} = {B8DF45FC-D31E-425D-AB51-D11C7C3A551E}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+		Remote|Any CPU = Remote|Any CPU
+		Remote|Mixed Platforms = Remote|Mixed Platforms
+		Remote|x86 = Remote|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Release|x86.ActiveCfg = Release|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Remote|Any CPU.ActiveCfg = Remote|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Remote|Any CPU.Build.0 = Remote|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Remote|Mixed Platforms.ActiveCfg = Remote|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Remote|Mixed Platforms.Build.0 = Remote|Any CPU
+		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}.Remote|x86.ActiveCfg = Remote|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Release|x86.ActiveCfg = Release|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Remote|Any CPU.ActiveCfg = Remote|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Remote|Any CPU.Build.0 = Remote|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Remote|Mixed Platforms.ActiveCfg = Remote|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Remote|Mixed Platforms.Build.0 = Remote|Any CPU
+		{58D9FC54-3A4B-4587-BD97-CCB037947732}.Remote|x86.ActiveCfg = Remote|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Release|x86.ActiveCfg = Release|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Remote|Any CPU.ActiveCfg = Remote|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Remote|Any CPU.Build.0 = Remote|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Remote|Mixed Platforms.ActiveCfg = Remote|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Remote|Mixed Platforms.Build.0 = Remote|Any CPU
+		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}.Remote|x86.ActiveCfg = Remote|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Release|x86.ActiveCfg = Release|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Remote|Any CPU.ActiveCfg = Remote|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Remote|Any CPU.Build.0 = Remote|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Remote|Mixed Platforms.ActiveCfg = Remote|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Remote|Mixed Platforms.Build.0 = Remote|Any CPU
+		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}.Remote|x86.ActiveCfg = Remote|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Release|x86.ActiveCfg = Release|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Remote|Any CPU.ActiveCfg = Remote|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Remote|Any CPU.Build.0 = Remote|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Remote|Mixed Platforms.ActiveCfg = Remote|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Remote|Mixed Platforms.Build.0 = Remote|Any CPU
+		{D6F7BDE4-091E-4DEF-931F-9A8479A95C62}.Remote|x86.ActiveCfg = Remote|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Release|x86.ActiveCfg = Release|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Remote|Any CPU.ActiveCfg = Release|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Remote|Any CPU.Build.0 = Release|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Remote|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Remote|Mixed Platforms.Build.0 = Release|Any CPU
+		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Remote|x86.ActiveCfg = Release|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Release|x86.ActiveCfg = Release|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Remote|Any CPU.ActiveCfg = Release|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Remote|Any CPU.Build.0 = Release|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Remote|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Remote|Mixed Platforms.Build.0 = Release|Any CPU
+		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Remote|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

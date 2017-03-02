@@ -59,168 +59,35 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Infragistics4.Documents.Core.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Documents.Core.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Documents.Excel.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Documents.Excel.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Documents.IO.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Documents.IO.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Documents.Reports.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Documents.Reports.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Documents.Word.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Documents.Word.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Math.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Math.v12.1.dll</HintPath>
-    </Reference>
     <Reference Include="Infragistics4.Shared.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\Infragistics4.Shared.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.AppStylistSupport.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.AppStylistSupport.v12.1.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics4.Win.Misc.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\Infragistics4.Win.Misc.v12.1.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics4.Win.SupportDialogs.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.SupportDialogs.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraChart.v12.1.Design, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraChart.v12.1.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraGauge.v12.1.Design, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraGauge.v12.1.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinCalcManager.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinCalcManager.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinCalcManager.v12.1.FormulaBuilder, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinCalcManager.v12.1.FormulaBuilder.dll</HintPath>
-    </Reference>
     <Reference Include="Infragistics4.Win.UltraWinChart.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\Infragistics4.Win.UltraWinChart.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinDataSource.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinDataSource.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinDock.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinDock.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinEditors.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinEditors.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinExplorerBar.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinExplorerBar.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinFormattedText.WordWriter.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinFormattedText.WordWriter.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinGanttView.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinGanttView.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinGauge.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinGauge.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinGrid.DocumentExport.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinGrid.DocumentExport.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinGrid.ExcelExport.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinGrid.ExcelExport.v12.1.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics4.Win.UltraWinGrid.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\Infragistics4.Win.UltraWinGrid.v12.1.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinGrid.WordWriter.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinGrid.WordWriter.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinInkProvider.Ink17.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinInkProvider.Ink17.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinListBar.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinListBar.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinListView.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinListView.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinMaskedEdit.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinMaskedEdit.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinPrintPreviewDialog.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinPrintPreviewDialog.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinSchedule.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinSchedule.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinSpellChecker.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinSpellChecker.v12.1.dll</HintPath>
-    </Reference>
     <Reference Include="Infragistics4.Win.UltraWinStatusBar.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\Infragistics4.Win.UltraWinStatusBar.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinTabbedMdi.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinTabbedMdi.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinTabControl.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinTabControl.v12.1.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics4.Win.UltraWinToolbars.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\Infragistics4.Win.UltraWinToolbars.v12.1.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics4.Win.UltraWinTree.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.UltraWinTree.v12.1.dll</HintPath>
-    </Reference>
     <Reference Include="Infragistics4.Win.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\Infragistics4.Win.v12.1.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics4.Win.v12.1.Design, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assembly\Infragistics4.Win.v12.1.Design.dll</HintPath>
-    </Reference>
     <Reference Include="Ivi.Visa, Version=5.6.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
