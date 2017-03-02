@@ -34,7 +34,6 @@ namespace JH.ACU.UI
         private void button2_Click(object sender, EventArgs e)
         {
             ultraChart1.Series.DataBind();
-
         }
 
         private void button3_Click(object sender, EventArgs e)

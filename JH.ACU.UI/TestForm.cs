@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Ivi.Visa;
 using JH.ACU.BLL;
 using JH.ACU.BLL.Config;
+using JH.ACU.BLL.Instruments;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.InstrumentConfig;
 
@@ -21,16 +22,21 @@ namespace JH.ACU.UI
             InitializeComponent();
         }
 
-        private Instr instr;
-        private void button1_Click(object sender, EventArgs e)
+        private readonly BllDaq _daq = new BllDaq();
+        private void btnInitialize_Click(object sender, EventArgs e)
         {
-            instr = BllConfig.GetInstr(InstrName.ACU);
+            _daq.Initialize();
+        }
+
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            _daq.Open((byte) numBoard.Value);
+        }
+
+        private void btnEnable_Click(object sender, EventArgs e)
+        {
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

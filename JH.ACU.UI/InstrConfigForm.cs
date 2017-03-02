@@ -201,7 +201,7 @@ namespace JH.ACU.UI
                 }
 
                 BllConfig.Save(_instr,_instrs);
-                MessageBoxHelper.ShowInformationOK("保存成功!");
+                MessageBoxHelper.ShowInformationOk("保存成功!");
             }
             catch (Exception ex)
             {

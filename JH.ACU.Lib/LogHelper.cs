@@ -18,7 +18,7 @@ namespace JH.ACU.Lib
         /// 创建日志文件夹
         /// </summary>
         /// <returns></returns>
-        private static bool CreateLog_Directory(string path, string strfile)
+        private static void CreateLog_Directory(string path, string strfile)
         {
             try
             {
@@ -33,34 +33,35 @@ namespace JH.ACU.Lib
                     File.Create(path + strfile).Dispose();
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                return false;
+                MessageBoxHelper.ShowError(ex.Message);
             }
 
-            return true;
         }
 
         public static void WriteErrorLog(string fileName, Exception ex, string description = null)
         {
             var path = RootPath;
             var strFile = "\\ErrorLog_" + fileName + DateTime.Now.ToString("yyyyMMdd") + ".log";
-            if (!CreateLog_Directory(path, strFile)) return;
+            CreateLog_Directory(path, strFile);
             using (var sw = new StreamWriter(path + strFile, true, Encoding.Default))
             {
                 sw.WriteLine("*****************************************【"
                              + DateTime.Now
                              + "】*****************************************");
-                var functionName = MethodBase.GetCurrentMethod().Name;
                 if (ex != null)
                 {
-                    sw.WriteLine("【FunctionName】" + functionName);
+                    //sw.WriteLine("【FunctionName】" + functionName);
                     sw.WriteLine("【ErrorType】" + ex.GetType());
                     sw.WriteLine("【TargetSite】" + ex.TargetSite);
                     sw.WriteLine("【Message】" + ex.Message);
                     sw.WriteLine("【Source】" + ex.Source);
                     sw.WriteLine("【StackTrace】" + ex.StackTrace);
-                    sw.WriteLine("【Extras】" + description);
+                    if (!string.IsNullOrEmpty(description))
+                    {
+                        sw.WriteLine("【Extras】" + description);
+                    }
                 }
                 else
                 {
@@ -74,14 +75,13 @@ namespace JH.ACU.Lib
         {
             var path = RootPath;
             var strFile = "\\WarningLog_" + fileName + DateTime.Now.ToString("yyyyMMdd") + ".log";
-            if (!CreateLog_Directory(path, strFile)) return;
+            CreateLog_Directory(path, strFile);
             using (var sw = new StreamWriter(path + strFile, true, Encoding.Default))
             {
                 sw.WriteLine("*****************************************【"
                              + DateTime.Now
                              + "】*****************************************");
-                var functionName = MethodBase.GetCurrentMethod().Name;
-                sw.WriteLine("【FunctionName】" + functionName);
+                //sw.WriteLine("【FunctionName】" + functionName);
                 sw.WriteLine("【WraningMessage】" + message);
                 sw.WriteLine();
             }

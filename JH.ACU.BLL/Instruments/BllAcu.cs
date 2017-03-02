@@ -186,6 +186,7 @@ namespace JH.ACU.BLL.Instruments
             }
             catch (Exception ex)
             {
+                LogHelper.WriteErrorLog("BllAcu", ex);
                 Stop();
             }
         }

@@ -11,6 +11,7 @@ namespace JH.ACU.Lib
     /// </summary>
     public static class MessageBoxHelper
     {
+        private const string Caption = "System Notice";
         /// <summary>
         /// 显示
         /// </summary>
@@ -23,13 +24,13 @@ namespace JH.ACU.Lib
                 MessageBoxIcon.Question) == DialogResult.Yes;
         }
         /// <summary>
-        /// 显示
+        /// 显示问题
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
         public static bool ShowQuestion(string message)
         {
-            return MessageBox.Show(message, "A-Bench Notice",
+            return MessageBox.Show(message, Caption,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
         }
 
@@ -40,7 +41,7 @@ namespace JH.ACU.Lib
         /// <returns></returns>
         public static bool ShowInformation(string message)
         {
-            return MessageBox.Show(message, "A-Bench Notice",
+            return MessageBox.Show(message, Caption,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes;
         }
         /// <summary>
@@ -48,32 +49,32 @@ namespace JH.ACU.Lib
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        public static void ShowInformationOK(string message)
+        public static void ShowInformationOk(string message)
         {
-            MessageBox.Show(message, "A-Bench Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(message, Caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public static bool ShowWarning(string message)
         {
-            return MessageBox.Show(message, "A-Bench Notice",
+            return MessageBox.Show(message, Caption,
                 MessageBoxButtons.OK, MessageBoxIcon.Warning) == DialogResult.OK;
         }
 
         public static bool ShowStop(string message)
         {
-            return MessageBox.Show(message, "A-Bench Notice",
+            return MessageBox.Show(message, Caption,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes;
         }
 
         public static bool ShowError(string message)
         {
-            return MessageBox.Show(message, "A-Bench Notice",
+            return MessageBox.Show(message, Caption,
                 MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK;
         }
 
         public static bool ShowHand(string message)
         {
-            return MessageBox.Show(message, "A-Bench Notice",
+            return MessageBox.Show(message, Caption,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Hand) == DialogResult.Yes;
         }
 

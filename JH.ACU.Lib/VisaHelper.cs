@@ -71,7 +71,6 @@ namespace JH.ACU.Lib
                     return string.Format("ASRL{0}::INSTR", instr.Serial.Port);
                 case InstrType.Tcp:
                     return string.Format("TCPIP0::{0}::{1}::SOCKET", instr.TcpIp.IpAddress, instr.TcpIp.Port);
-                    break;
                 default:
                     throw new ArgumentNullException("instr", "端口类型设置无效");
             }
