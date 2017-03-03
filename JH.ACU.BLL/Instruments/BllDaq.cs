@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -67,6 +68,45 @@ namespace JH.ACU.BLL.Instruments
             D2KDask.ThrowException((D2KDask.Error) res);
         }
 
+        private double AiReadChannel(ushort channel)
+        {
+            double value;
+            var res = D2KDask.D2K_AI_VReadChannel((ushort) _mDev, channel, out value);
+            D2KDask.ThrowException((D2KDask.Error) res);
+            return value;
+        }
+        /// <summary>
+        /// in D2KDASK DEMO
+        /// </summary>
+        /// <returns></returns>
+        private double[] AiReadSingleBuffer(ushort channel)
+        {
+            ushort bufId;
+            byte stopped;
+            uint accessCnt;
+            uint startPos;
+            var dataBuffer = Marshal.AllocHGlobal(sizeof(short) * 1000);
+            double[] voltageArray;
+
+            var ret = D2KDask.D2K_AI_Config((ushort)_mDev, D2KDask.DAQ2K_AI_ADCONVSRC_Int, D2KDask.DAQ2K_AI_TRGSRC_SOFT, 0, 0, 1, true);
+            D2KDask.ThrowException((D2KDask.Error) ret);
+            ret = D2KDask.D2K_AI_ContBufferSetup((ushort)_mDev, dataBuffer, 1000, out bufId);
+            D2KDask.ThrowException((D2KDask.Error)ret);
+            ret = D2KDask.D2K_AI_ContReadChannel((ushort)_mDev, channel, bufId, 1000, 400, 400, D2KDask.ASYNCH_OP);
+            D2KDask.ThrowException((D2KDask.Error)ret);//                       100,40000,40000
+            do
+            {
+                ret = D2KDask.D2K_AI_AsyncCheck((ushort)_mDev, out stopped, out accessCnt);
+                D2KDask.ThrowException((D2KDask.Error)ret);
+            } while (stopped == 0);
+
+            ret = D2KDask.D2K_AI_AsyncClear((ushort)_mDev, out startPos, out accessCnt);
+            D2KDask.ThrowException((D2KDask.Error)ret);
+
+            ret = D2KDask.D2K_AI_ContVScale((ushort)_mDev, D2KDask.AD_B_10_V, dataBuffer,out voltageArray, 1000);
+            D2KDask.ThrowException((D2KDask.Error)ret);
+            return voltageArray;
+        }
         /// <summary>
         /// Data 0~7 用于选择一组中某几个继电器
         /// </summary>
@@ -229,6 +269,30 @@ namespace JH.ACU.BLL.Instruments
 
         #region 公有方法
 
+        #region AI
+
+        public double GetVoltFromChannelBySingle(ushort channel)
+        {
+            var res = AiReadChannel(channel);
+            switch (channel)
+            {
+                case 1:		// 5V 没有分压
+                    break;
+                case 2:		// 12V 分压
+                    res = res * 2.0;
+                    break;
+                case 3:		// POW_ECU 分压
+                    res = res * 3.12;
+                    break;
+                case 4:		// AD_T Sensor 分压
+                    break;
+            }
+            return res;
+        }
+        #endregion
+
+        #region DO
+
         /// <summary>
         /// 设置某个板卡某个继电器是否使能
         /// </summary>
@@ -239,13 +303,13 @@ namespace JH.ACU.BLL.Instruments
         {
             byte groupIndex, mask;
             GetRelaysMask(boardIndex, relayIndex, enable, out groupIndex, out mask);
-            if (boardIndex != _currBoard  )
+            if (boardIndex != _currBoard)
             {
                 if (_currBoard != -1)
                 {
                     Close((byte) _currBoard); //将原板复位至初始状态
                 }
-                if(!IsOpened)
+                if (!IsOpened)
                 {
                     Open(boardIndex);
                 }
@@ -301,11 +365,15 @@ namespace JH.ACU.BLL.Instruments
             D2KDask.ThrowException((D2KDask.Error) ret, new Exception("P1C DIO配置失败"));
 
             ResetAll();
+
             #endregion
 
             #region 模拟量输入
 
             //TODO：待完善
+            ret =D2KDask.D2K_AI_CH_Config((ushort)_mDev, -1, D2KDask.AD_B_10_V);
+            D2KDask.ThrowException((D2KDask.Error) ret, new Exception("AI配置失败"));
+
 
             #endregion
 
@@ -371,6 +439,9 @@ namespace JH.ACU.BLL.Instruments
             #endregion
 
         }
+
+        #endregion
+
 
         public void Dispose()
         {

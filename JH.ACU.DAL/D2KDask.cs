@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 namespace JH.ACU.DAL
 {
     public delegate void CallbackDelegate();
+
     /// <summary>
     /// DAQ SDK
     /// </summary>
@@ -137,14 +138,24 @@ namespace JH.ACU.DAL
         #endregion
 
 
-        //AD Range
+        //AD/AI Range
 
-        #region AD Range
+        #region AD/AI Range
 
-        public const ushort AD_B_10_V = 1;
+        #region Valid values for DAQ-2206
+
+        public const ushort AD_B_10_V = 1; //default
         public const ushort AD_B_5_V = 2;
         public const ushort AD_B_2_5_V = 3;
         public const ushort AD_B_1_25_V = 4;
+        public const ushort AD_U_10_V = 15;
+        public const ushort AD_U_5_V = 16;
+        public const ushort AD_U_2_5_V = 17;
+        public const ushort AD_U_1_25_V = 18;
+
+        #endregion
+
+
         public const ushort AD_B_0_625_V = 5;
         public const ushort AD_B_0_3125_V = 6;
         public const ushort AD_B_0_5_V = 7;
@@ -155,10 +166,9 @@ namespace JH.ACU.DAL
         public const ushort AD_B_0_01_V = 12;
         public const ushort AD_B_0_001_V = 13;
         public const ushort AD_U_20_V = 14;
-        public const ushort AD_U_10_V = 15;
-        public const ushort AD_U_5_V = 16;
-        public const ushort AD_U_2_5_V = 17;
-        public const ushort AD_U_1_25_V = 18;
+
+
+
         public const ushort AD_U_1_V = 19;
         public const ushort AD_U_0_1_V = 20;
         public const ushort AD_U_0_01_V = 21;
@@ -176,10 +186,12 @@ namespace JH.ACU.DAL
         //DIO Port Direction
 
         #region DIO Port Direction
+
         /// <summary>
         /// D2K_DI_ReadPortÓÃ
         /// </summary>
         public const ushort INPUT_PORT = 1;
+
         /// <summary>
         /// D2K_DO_WritePortÓÃ
         /// </summary>
@@ -345,9 +357,15 @@ namespace JH.ACU.DAL
         public const uint DAQ2K_AI_TRGSRC_SMB = 0xb0000;
 
         //AI Reference ground
-        public const ushort AI_RSE = 0x0000;
+
+        #region AI Reference ground
+
+        public const ushort AI_RSE = 0x0000; //default
         public const ushort AI_DIFF = 0x0100;
         public const ushort AI_NRSE = 0x0200;
+
+        #endregion
+
 
         #endregion
 
@@ -522,11 +540,12 @@ namespace JH.ACU.DAL
 
 
 
-   /*------------------------------------------------------------------
+        /*------------------------------------------------------------------
 	** PCIS-DASK Function prototype
 	------------------------------------------------------------------*/
 
         #region °å¿¨³õÊ¼»¯
+
         /// <summary>
         /// ×¢²á°å¿¨
         /// </summary>
@@ -535,6 +554,7 @@ namespace JH.ACU.DAL
         /// <returns>°å¿¨ºÅ</returns>
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_Register_Card(ushort CardType, ushort card_num);
+
         /// <summary>
         /// ÊÍ·Å°å¿¨
         /// </summary>
@@ -605,6 +625,23 @@ namespace JH.ACU.DAL
         public static extern short D2K_AI_MiddleTrig_ConfigEx(ushort wCardNumber, ushort ClkSrc, uint TrigSrcCtrl,
             uint MiddleScans, ushort MCtrEn, uint MCnt, bool AutoResetBuf);
 
+        /// <summary>
+        /// Informs the D2K-DASK library of the selected AI range for the
+        /// specified channel of the card with CardNumber ID. After calling
+        /// the D2K_Register_Card function, all analog input channels are
+        /// configured as AD_B_10_V (for DAQ-2010, DAQ-2005, DAQ-
+        /// 2006, DAQ-2016, DAQ-2020/2022, DAQ-2501, and DAQ-2502) or
+        /// AD_B_10_V with AI_RSE (for DAQ-2204, DAQ-2205, DAQ-2206,
+        /// DAQ-2213, DAQ-2214, and DAQ-2208) by default. If you want to
+        /// use the device with the default settings, there is no need to call
+        /// this function again to configure the channel(s). You must call this
+        /// function to program the device based on your settings before call-
+        /// ing function to perform analog input operation.
+        /// </summary>
+        /// <param name="wCardNumber"></param>
+        /// <param name="wChannel"></param>
+        /// <param name="wAdRange_RefGnd">AI Range |AI Reference ground</param>
+        /// <returns></returns>
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_CH_Config(ushort wCardNumber, short wChannel, ushort wAdRange_RefGnd);
 
@@ -644,6 +681,18 @@ namespace JH.ACU.DAL
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_VoltScale(ushort CardNumber, ushort AdRange, short reading, out double voltage);
 
+        /// <summary>
+        /// Performs continuous A/D conversions on the specified analog
+        /// input channel at a rate closest to the specified rate.
+        /// </summary>
+        /// <param name="CardNumber"></param>
+        /// <param name="Channel">0~63</param>
+        /// <param name="BufId"></param>
+        /// <param name="ReadScans"></param>
+        /// <param name="ScanIntrv"></param>
+        /// <param name="SampIntrv"></param>
+        /// <param name="SyncMode">SYNCH_OP or ASYNCH_OP</param>
+        /// <returns></returns>
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_ContReadChannel(ushort CardNumber, ushort Channel,
             ushort BufId, uint ReadScans, uint ScanIntrv, uint SampIntrv, ushort SyncMode);
@@ -679,17 +728,32 @@ namespace JH.ACU.DAL
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_ContStatus(ushort CardNumber, out ushort Status);
 
+        /// <summary>
+        /// Converts the values of an array of acquired binary data from a
+        /// continuous A/D conversion call to actual input voltages. The
+        /// acquired binary data in the reading array may include the channel
+        /// information (refer to D2K_AI_ContReadChannel or
+        /// D2K_AI_ContScanChannels for the detailed data format). How-
+        /// ever, the calculated voltage values in the voltage array returned
+        /// does not include the channel message.
+        /// </summary>
+        /// <param name="wCardNumber"></param>
+        /// <param name="adRange"></param>
+        /// <param name="readingArray"></param>
+        /// <param name="voltageArray"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_ContVScale(ushort wCardNumber, ushort adRange, short[] readingArray,
-            double[] voltageArray, int count);
+            out double[] voltageArray, int count);
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_ContVScale(ushort wCardNumber, ushort adRange, IntPtr readingArray,
-            double[] voltageArray, int count);
+            out double[] voltageArray, int count);//QUES:Ôö¼Óout¹Ø¼ü×Ö
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_ContVScale(ushort wCardNumber, ushort adRange, IntPtr readingArray,
-            IntPtr voltageArray, int count);
+            out IntPtr voltageArray, int count);
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_AsyncCheck(ushort CardNumber, out byte Stopped, out uint AccessCnt);
@@ -711,6 +775,18 @@ namespace JH.ACU.DAL
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_AsyncDblBufferToFile(ushort CardNumber);
 
+        /// <summary>
+        /// Sets up the buffer for continuous analog input. The function has to
+        /// be called repeatedly to setup all the data buffers (two buffers max-
+        /// imum). For double buffer mode and infinite re-trigger mode of con-
+        /// tinuous AI, calling D2K_AI_ContBufferSetup twice sets up the ring
+        /// buffer to store the data.
+        /// </summary>
+        /// <param name="wCardNumber"></param>
+        /// <param name="pwBuffer">Starting address of the memory to contain the input data.</param>
+        /// <param name="dwReadCount">Buffer size (in samples); value must be even.</param>
+        /// <param name="BufferId">Returns the index of the currently set up buffer.</param>
+        /// <returns></returns>
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_ContBufferSetup(ushort wCardNumber, short[] pwBuffer, uint dwReadCount,
             out ushort BufferId);
