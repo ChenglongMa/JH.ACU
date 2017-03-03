@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label5.Text" xml:space="preserve">
+    <value>测试用例2：（需连接ACU）（读写方法需要修改）
+1、单击初始化；
+
+2、打开ACU连接子板（请在上方【卡号（0-7）】中输入并单击【打开子板】）；
+
+3、打开ADTool，查看ACU是否可以正常通讯；断言：应正常通讯
+
+4、不关闭子板，打开非ACU连接子板，查看ACU是否可以正常通讯；断言：应正常通讯
+
+5、关闭子板，打开非ACU连接子棉，查看ACU是否可以正常通讯；断言：应无法通讯</value>
+  </data>
 </root>

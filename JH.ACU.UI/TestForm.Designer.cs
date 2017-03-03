@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestForm));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.numBoard = new System.Windows.Forms.NumericUpDown();
             this.btnInitialize = new System.Windows.Forms.Button();
@@ -44,6 +45,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btn12 = new System.Windows.Forms.Button();
+            this.btn13 = new System.Windows.Forms.Button();
+            this.btn14 = new System.Windows.Forms.Button();
+            this.btn15 = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numBoard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSubRelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMainRelay)).BeginInit();
@@ -51,7 +57,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(478, 79);
+            this.textBox1.Location = new System.Drawing.Point(35, 12);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 21);
             this.textBox1.TabIndex = 2;
@@ -111,6 +117,7 @@
             this.btnClose.TabIndex = 7;
             this.btnClose.Text = "关闭子板";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label1
             // 
@@ -181,6 +188,7 @@
             this.btnDisable.TabIndex = 12;
             this.btnDisable.Text = "取消使能";
             this.btnDisable.UseVisualStyleBackColor = true;
+            this.btnDisable.Click += new System.EventHandler(this.btnDisable_Click);
             // 
             // button1
             // 
@@ -190,6 +198,7 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "主继电器闭合";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -199,30 +208,86 @@
             this.button2.TabIndex = 13;
             this.button2.Text = "主继电器断开";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label4
             // 
             this.label4.Location = new System.Drawing.Point(33, 212);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(545, 100);
+            this.label4.Size = new System.Drawing.Size(545, 257);
             this.label4.TabIndex = 8;
-            this.label4.Text = "测试用例1：\r\n1、单击初始化；\r\n2、循环打开-1~10子板；（只有0~7有效）\r\n3、循环打开子板0上的-100、200、208、264、265、273、27" +
-    "7、341继电器；（继电器边界测试）\r\n4、同时打开200、215、256；（测试不同组继电器及同时打开多个继电器）";
+            this.label4.Text = "测试用例1：\r\n1、单击初始化；\r\n\r\n2、循环打开-1~10子板；（只有0~7有效）\r\n\r\n3、循环打开子板0上的-100、200、208、264、265、27" +
+    "3、277、341继电器；（继电器边界测试）\r\n\r\n4、同时打开200、215、256；（测试不同组继电器及同时打开多个继电器及测试delay时间是否合适）\r\n" +
+    "\r\n5、同时打开两个子板，如果可以正常开启则进行【测试用例2】；";
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(33, 331);
+            this.label5.Location = new System.Drawing.Point(33, 469);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(545, 100);
+            this.label5.Size = new System.Drawing.Size(545, 228);
             this.label5.TabIndex = 8;
-            this.label5.Text = "测试用例2：（需连接ACU）\r\n1、单击初始化；\r\n2、打开ACU连接子板；（只有0~7有效）\r\n3、循环打开子板0上的-100、200、208、264、265、" +
-    "273、277、341继电器；（继电器边界测试）\r\n4、同时打开200、215、256；（测试不同组继电器及同时打开多个继电器）";
+            this.label5.Text = resources.GetString("label5.Text");
+            // 
+            // btn12
+            // 
+            this.btn12.Location = new System.Drawing.Point(255, 241);
+            this.btn12.Name = "btn12";
+            this.btn12.Size = new System.Drawing.Size(75, 23);
+            this.btn12.TabIndex = 14;
+            this.btn12.Text = "测试1.2";
+            this.btn12.UseVisualStyleBackColor = true;
+            this.btn12.Click += new System.EventHandler(this.btn12_Click);
+            // 
+            // btn13
+            // 
+            this.btn13.Location = new System.Drawing.Point(548, 267);
+            this.btn13.Name = "btn13";
+            this.btn13.Size = new System.Drawing.Size(75, 23);
+            this.btn13.TabIndex = 15;
+            this.btn13.Text = "测试1.3";
+            this.btn13.UseVisualStyleBackColor = true;
+            this.btn13.Click += new System.EventHandler(this.btn13_Click);
+            // 
+            // btn14
+            // 
+            this.btn14.Location = new System.Drawing.Point(564, 290);
+            this.btn14.Name = "btn14";
+            this.btn14.Size = new System.Drawing.Size(75, 23);
+            this.btn14.TabIndex = 16;
+            this.btn14.Text = "测试1.4";
+            this.btn14.UseVisualStyleBackColor = true;
+            this.btn14.Click += new System.EventHandler(this.btn14_Click);
+            // 
+            // btn15
+            // 
+            this.btn15.Location = new System.Drawing.Point(380, 315);
+            this.btn15.Name = "btn15";
+            this.btn15.Size = new System.Drawing.Size(75, 23);
+            this.btn15.TabIndex = 17;
+            this.btn15.Text = "测试1.5";
+            this.btn15.UseVisualStyleBackColor = true;
+            this.btn15.Click += new System.EventHandler(this.btn15_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(453, 69);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 18;
+            this.btnReset.Text = "复位";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 495);
+            this.ClientSize = new System.Drawing.Size(807, 706);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.btn15);
+            this.Controls.Add(this.btn14);
+            this.Controls.Add(this.btn13);
+            this.Controls.Add(this.btn12);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnDisable);
@@ -268,5 +333,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn12;
+        private System.Windows.Forms.Button btn13;
+        private System.Windows.Forms.Button btn14;
+        private System.Windows.Forms.Button btn15;
+        private System.Windows.Forms.Button btnReset;
     }
 }
