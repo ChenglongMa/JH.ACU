@@ -77,7 +77,7 @@ namespace JH.ACU.BLL.Abstract
             sendData.AddRange(new byte[] { 0, 0 });//3~4:Protocol Identifier,0 = MODBUS protocol
             sendData.AddRange(ValueHelper.GetBytes((ushort)6));//5~6:后续的Byte数量（针对读请求，后续为6个byte）
             sendData.Add(0);//7:Unit Identifier:This field is used for intra-system routing purpose.
-            sendData.Add((byte)FunctionCode.Read);//8.Function Code : 3 (Read Multiple Register)
+            sendData.Add((byte)FunctionCode.ReadReg);//8.Function Code : 3 (Read Multiple Register)
             sendData.AddRange(ValueHelper.GetBytes(address));//9~10.起始地址
             sendData.AddRange(ValueHelper.GetBytes(count));//11~12.需要读取的寄存器数量
             Write(sendData.ToArray()); //发送读请求
@@ -118,7 +118,7 @@ namespace JH.ACU.BLL.Abstract
             values.AddRange(ValueHelper.GetBytes((byte)(data.Length + 7)));//5~6:后续的Byte数量
 
             values.Add(0);//7:Unit Identifier:This field is used for intra-system routing purpose.
-            values.Add((byte)FunctionCode.Write);//8.Function Code : 16 (Write Multiple Register)
+            values.Add((byte)FunctionCode.WriteReg);//8.Function Code : 16 (Write Multiple Register)
 
             values.AddRange(ValueHelper.GetBytes(address));//9~10.起始地址
             values.AddRange(ValueHelper.GetBytes((ushort)(data.Length / 2)));//11~12.寄存器数量
@@ -147,18 +147,30 @@ namespace JH.ACU.BLL.Abstract
 
     }
 
+    /// <summary>
+    /// 功能码
+    /// </summary>
     public enum FunctionCode : byte
     {
-        //TODO:未完成
         /// <summary>
-        /// Read Multiple Registers
+        /// Read Coil Status
         /// </summary>
-        Read = 0x03,
+        ReadCoils = 0x01,
+
+        /// <summary>
+        /// Read Holding Registers
+        /// </summary>
+        ReadReg = 0x03,
+
+        /// <summary>
+        /// Write Multiple Coils
+        /// </summary>
+        WriteCoils = 0x0F,
 
         /// <summary>
         /// Write Multiple Registers
         /// </summary>
-        Write = 0x10
+        WriteReg = 0x10
     }
 
 }

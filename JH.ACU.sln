@@ -13,6 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.UI", "JH.ACU.UI\JH.A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assembly", "Assembly", "{CE67C9B0-1099-46CB-967E-316461C24A16}"
 	ProjectSection(SolutionItems) = preProject
+		Assembly\GPIB-32.DLL = Assembly\GPIB-32.DLL
 		Assembly\Infragistics4.Documents.Core.v12.1.dll = Assembly\Infragistics4.Documents.Core.v12.1.dll
 		Assembly\Infragistics4.Documents.Excel.v12.1.dll = Assembly\Infragistics4.Documents.Excel.v12.1.dll
 		Assembly\Infragistics4.Documents.IO.v12.1.dll = Assembly\Infragistics4.Documents.IO.v12.1.dll
@@ -54,6 +55,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assembly", "Assembly", "{CE
 		Assembly\Infragistics4.Win.v12.1.Design.dll = Assembly\Infragistics4.Win.v12.1.Design.dll
 		Assembly\Infragistics4.Win.v12.1.dll = Assembly\Infragistics4.Win.v12.1.dll
 		Assembly\log4net.dll = Assembly\log4net.dll
+		Assembly\NationalInstruments.Analysis.Enterprise.dll = Assembly\NationalInstruments.Analysis.Enterprise.dll
+		Assembly\NationalInstruments.Analysis.Professional.dll = Assembly\NationalInstruments.Analysis.Professional.dll
+		Assembly\NationalInstruments.Analysis.Standard.dll = Assembly\NationalInstruments.Analysis.Standard.dll
+		Assembly\NationalInstruments.Common.dll = Assembly\NationalInstruments.Common.dll
+		Assembly\NationalInstruments.Controls.Booleans.dll = Assembly\NationalInstruments.Controls.Booleans.dll
+		Assembly\NationalInstruments.Controls.dll = Assembly\NationalInstruments.Controls.dll
+		Assembly\NationalInstruments.Controls.Graphs.dll = Assembly\NationalInstruments.Controls.Graphs.dll
+		Assembly\NationalInstruments.Controls.Numerics.dll = Assembly\NationalInstruments.Controls.Numerics.dll
+		Assembly\NationalInstruments.MStudioCLM.dll = Assembly\NationalInstruments.MStudioCLM.dll
+		Assembly\NationalInstruments.Net.dll = Assembly\NationalInstruments.Net.dll
+		Assembly\NationalInstruments.NetworkVariable.dll = Assembly\NationalInstruments.NetworkVariable.dll
+		Assembly\NationalInstruments.NI4882.dll = Assembly\NationalInstruments.NI4882.dll
+		Assembly\NationalInstruments.NiLmClientDLL.dll = Assembly\NationalInstruments.NiLmClientDLL.dll
+		Assembly\NationalInstruments.Tdms.dll = Assembly\NationalInstruments.Tdms.dll
+		Assembly\NationalInstruments.UI.Design.dll = Assembly\NationalInstruments.UI.Design.dll
+		Assembly\NationalInstruments.UI.dll = Assembly\NationalInstruments.UI.dll
+		Assembly\NationalInstruments.UI.Styles3D.dll = Assembly\NationalInstruments.UI.Styles3D.dll
+		Assembly\NationalInstruments.UI.WebForms.dll = Assembly\NationalInstruments.UI.WebForms.dll
+		Assembly\NationalInstruments.UI.WindowsForms.dll = Assembly\NationalInstruments.UI.WindowsForms.dll
+		Assembly\NationalInstruments.VisaNS.dll = Assembly\NationalInstruments.VisaNS.dll
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.Doc", "JH.ACU.Doc\JH.ACU.Doc.csproj", "{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}"
