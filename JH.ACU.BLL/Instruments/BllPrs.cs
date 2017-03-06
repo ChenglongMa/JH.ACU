@@ -123,12 +123,12 @@ namespace JH.ACU.BLL.Instruments
         /// <summary>
         /// 设置输出电压
         /// </summary>
-        /// <param name="resValue"></param>
+        /// <param name="resValue">单位：欧姆</param>
         public void SetResistance(float resValue)
         {
             var value = Convert.ToInt32(resValue*(1/MinDec))*(1*Math.Pow(10, SlotLsd));
             string valStr = null;
-            switch (Type)
+            switch (Version)
             {
                 default:
                 case "200":
