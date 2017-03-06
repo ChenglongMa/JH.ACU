@@ -84,7 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ACU\NewADTool通讯规范\K\Smode\4D\" />
-    <Folder Include="Chamber\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ACU\JD0.630.006 JH-ACU-8A性能规范_V1.1_20130623.pdf" />
@@ -105,6 +104,9 @@
     <None Include="ACU\NewADTool通讯规范\MemoryMap\JH4A 1.0_Memory Map.xls" />
     <None Include="ACU\NewADTool通讯规范\MemoryMap\JH_ACU_4D_MemMap_v25_140618.pdf" />
     <None Include="ACU\NewADTool通讯规范\MemoryMap\JH_ACU_8A_MemMap_v25_141030_.pdf" />
+    <None Include="Chamber\Modbus_Application_Protocol_V1_1b3.pdf" />
+    <None Include="Chamber\Modbus协议中文版【完整版】.pdf" />
+    <None Include="Chamber\Modicon_Modbus协议.pdf" />
     <None Include="DMM\34401-90422.pdf" />
     <None Include="PCB\16A_Function Test-MAIN.pdf" />
     <None Include="PCB\16A_Function Test-SLAVE.pdf" />
