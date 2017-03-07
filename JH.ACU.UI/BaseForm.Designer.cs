@@ -1,6 +1,6 @@
 ﻿namespace JH.ACU.UI
 {
-    partial class AbstractForm
+    partial class BaseForm
     {
         /// <summary>
         /// Required designer variable.

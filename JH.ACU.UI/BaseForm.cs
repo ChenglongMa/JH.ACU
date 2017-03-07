@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace JH.ACU.UI
 {
-    public partial class AbstractForm : Form
+    public partial class BaseForm : Form
     {
-        public AbstractForm()
+        public BaseForm()
         {
             InitializeComponent();
         }
