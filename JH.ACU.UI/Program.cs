@@ -30,7 +30,7 @@ namespace JH.ACU.UI
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 //Application.Run(new MainForm());//TODO:修改启动窗体
-                Application.Run(new TestForm());
+                Application.Run(new InstrumentControlForm());
             }
             catch (Exception ex)
             {

@@ -42,7 +42,16 @@
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             Infragistics.UltraChart.Resources.Appearance.PaintElement paintElement1 = new Infragistics.UltraChart.Resources.Appearance.PaintElement();
+            Infragistics.UltraChart.Resources.Appearance.ColumnLineChartAppearance columnLineChartAppearance1 = new Infragistics.UltraChart.Resources.Appearance.ColumnLineChartAppearance();
+            Infragistics.UltraChart.Resources.Appearance.DoughnutChartAppearance doughnutChartAppearance1 = new Infragistics.UltraChart.Resources.Appearance.DoughnutChartAppearance();
             Infragistics.UltraChart.Resources.Appearance.GradientEffect gradientEffect1 = new Infragistics.UltraChart.Resources.Appearance.GradientEffect();
+            Infragistics.UltraChart.Resources.Appearance.GanttChartAppearance ganttChartAppearance1 = new Infragistics.UltraChart.Resources.Appearance.GanttChartAppearance();
+            Infragistics.UltraChart.Resources.Appearance.PaintElement paintElement2 = new Infragistics.UltraChart.Resources.Appearance.PaintElement();
+            Infragistics.UltraChart.Resources.Appearance.PaintElement paintElement3 = new Infragistics.UltraChart.Resources.Appearance.PaintElement();
+            Infragistics.UltraChart.Resources.Appearance.RadarChartAppearance radarChartAppearance1 = new Infragistics.UltraChart.Resources.Appearance.RadarChartAppearance();
+            Infragistics.UltraChart.Resources.Appearance.SplineAreaChart3DAppearance splineAreaChart3DAppearance1 = new Infragistics.UltraChart.Resources.Appearance.SplineAreaChart3DAppearance();
+            Infragistics.UltraChart.Resources.Appearance.SplineChart3DAppearance splineChart3DAppearance1 = new Infragistics.UltraChart.Resources.Appearance.SplineChart3DAppearance();
+            Infragistics.UltraChart.Resources.Appearance.TreeMapChartAppearance treeMapChartAppearance1 = new Infragistics.UltraChart.Resources.Appearance.TreeMapChartAppearance();
             Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel1 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
             Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel2 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
             Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("menuBar");
@@ -69,7 +78,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
             this.MainForm_Fill_Panel.ClientArea.SuspendLayout();
-            this.MainForm_Fill_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraChart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraStatusBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
@@ -131,16 +139,17 @@
             this.ultraGrid1.DisplayLayout.Override.TemplateAddRowAppearance = appearance12;
             this.ultraGrid1.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.ultraGrid1.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.ultraGrid1.Location = new System.Drawing.Point(443, 137);
+            this.ultraGrid1.Location = new System.Drawing.Point(591, 171);
+            this.ultraGrid1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ultraGrid1.Name = "ultraGrid1";
-            this.ultraGrid1.Size = new System.Drawing.Size(378, 285);
+            this.ultraGrid1.Size = new System.Drawing.Size(504, 356);
             this.ultraGrid1.TabIndex = 0;
             this.ultraGrid1.Text = "ultraGrid1";
             // 
             // MainForm_Fill_Panel
             // 
             // 
-            // MainForm_Fill_Panel.ClientArea
+            // 
             // 
             this.MainForm_Fill_Panel.ClientArea.Controls.Add(this.button3);
             this.MainForm_Fill_Panel.ClientArea.Controls.Add(this.button2);
@@ -148,20 +157,21 @@
             this.MainForm_Fill_Panel.ClientArea.Controls.Add(this.ultraChart1);
             this.MainForm_Fill_Panel.ClientArea.Controls.Add(this.ultraStatusBar1);
             this.MainForm_Fill_Panel.ClientArea.Controls.Add(this.ultraGrid1);
+            this.MainForm_Fill_Panel.Controls.Add(this.MainForm_Fill_Panel.ClientArea);
             this.MainForm_Fill_Panel.Cursor = System.Windows.Forms.Cursors.Default;
             this.MainForm_Fill_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainForm_Fill_Panel.Location = new System.Drawing.Point(0, 64);
-            this.MainForm_Fill_Panel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MainForm_Fill_Panel.Location = new System.Drawing.Point(0, 67);
+            this.MainForm_Fill_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MainForm_Fill_Panel.Name = "MainForm_Fill_Panel";
-            this.MainForm_Fill_Panel.Size = new System.Drawing.Size(887, 550);
+            this.MainForm_Fill_Panel.Size = new System.Drawing.Size(1183, 701);
             this.MainForm_Fill_Panel.TabIndex = 0;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(358, 126);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Location = new System.Drawing.Point(477, 158);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(56, 18);
+            this.button3.Size = new System.Drawing.Size(75, 22);
             this.button3.TabIndex = 5;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
@@ -169,10 +179,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(358, 42);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(477, 52);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(56, 18);
+            this.button2.Size = new System.Drawing.Size(75, 22);
             this.button2.TabIndex = 4;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
@@ -180,19 +190,14 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(358, 80);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(477, 100);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 18);
+            this.button1.Size = new System.Drawing.Size(75, 22);
             this.button1.TabIndex = 3;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-//			'UltraChart' properties's serialization: Since 'ChartType' changes the way axes look,
-//			'ChartType' must be persisted ahead of any Axes change made in design time.
-//		
-            this.ultraChart1.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
             // 
             // ultraChart1
             // 
@@ -278,7 +283,7 @@
             this.ultraChart1.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ultraChart1.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ultraChart1.Axis.Y.MinorGridLines.Visible = false;
-            this.ultraChart1.Axis.Y.TickmarkInterval = 20D;
+            this.ultraChart1.Axis.Y.TickmarkInterval = 50D;
             this.ultraChart1.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ultraChart1.Axis.Y.Visible = true;
             this.ultraChart1.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -305,7 +310,7 @@
             this.ultraChart1.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ultraChart1.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ultraChart1.Axis.Y2.MinorGridLines.Visible = false;
-            this.ultraChart1.Axis.Y2.TickmarkInterval = 20D;
+            this.ultraChart1.Axis.Y2.TickmarkInterval = 50D;
             this.ultraChart1.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ultraChart1.Axis.Y2.Visible = false;
             this.ultraChart1.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -359,23 +364,41 @@
             this.ultraChart1.Axis.Z2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ultraChart1.Axis.Z2.Visible = false;
             this.ultraChart1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ultraChart1.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.LineChart;
             this.ultraChart1.ColorModel.AlphaLevel = ((byte)(150));
             this.ultraChart1.ColorModel.ColorBegin = System.Drawing.Color.Pink;
             this.ultraChart1.ColorModel.ColorEnd = System.Drawing.Color.DarkRed;
             this.ultraChart1.ColorModel.ModelStyle = Infragistics.UltraChart.Shared.Styles.ColorModels.CustomLinear;
+            columnLineChartAppearance1.Column.SeriesSpacing = 0;
+            this.ultraChart1.ColumnLineChart = columnLineChartAppearance1;
+            this.ultraChart1.DoughnutChart3D = doughnutChartAppearance1;
             this.ultraChart1.Effects.Effects.Add(gradientEffect1);
-            this.ultraChart1.Location = new System.Drawing.Point(19, 28);
-            this.ultraChart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            paintElement2.Fill = System.Drawing.Color.Yellow;
+            ganttChartAppearance1.CompletePercentagesPE = paintElement2;
+            paintElement3.Fill = System.Drawing.Color.White;
+            ganttChartAppearance1.EmptyPercentagesPE = paintElement3;
+            ganttChartAppearance1.LinkLineStyle.EndStyle = Infragistics.UltraChart.Shared.Styles.LineCapStyle.ArrowAnchor;
+            ganttChartAppearance1.OwnersLabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.ultraChart1.GanttChart = ganttChartAppearance1;
+            this.ultraChart1.Location = new System.Drawing.Point(25, 35);
+            this.ultraChart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ultraChart1.Name = "ultraChart1";
-            this.ultraChart1.Size = new System.Drawing.Size(300, 240);
+            radarChartAppearance1.SplineTension = 0F;
+            this.ultraChart1.RadarChart = radarChartAppearance1;
+            this.ultraChart1.SplineAreaChart3D = splineAreaChart3DAppearance1;
+            this.ultraChart1.SplineChart3D = splineChart3DAppearance1;
             this.ultraChart1.TabIndex = 2;
             this.ultraChart1.Tooltips.HighlightFillColor = System.Drawing.Color.DimGray;
             this.ultraChart1.Tooltips.HighlightOutlineColor = System.Drawing.Color.DarkGray;
+            treeMapChartAppearance1.IndexOrder = null;
+            treeMapChartAppearance1.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            treeMapChartAppearance1.LabelStyle.VerticalAlign = System.Drawing.StringAlignment.Near;
+            this.ultraChart1.TreeMapChart = treeMapChartAppearance1;
             // 
             // ultraStatusBar1
             // 
-            this.ultraStatusBar1.Location = new System.Drawing.Point(0, 532);
-            this.ultraStatusBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ultraStatusBar1.Location = new System.Drawing.Point(0, 679);
+            this.ultraStatusBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ultraStatusBar1.Name = "ultraStatusBar1";
             ultraStatusPanel2.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
             ultraStatusPanel2.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Automatic;
@@ -383,7 +406,7 @@
             this.ultraStatusBar1.Panels.AddRange(new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel[] {
             ultraStatusPanel1,
             ultraStatusPanel2});
-            this.ultraStatusBar1.Size = new System.Drawing.Size(887, 18);
+            this.ultraStatusBar1.Size = new System.Drawing.Size(1183, 22);
             this.ultraStatusBar1.TabIndex = 1;
             this.ultraStatusBar1.Text = "ultraStatusBar1";
             // 
@@ -393,10 +416,10 @@
             this._MainForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.SystemColors.Control;
             this._MainForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._MainForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 64);
-            this._MainForm_Toolbars_Dock_Area_Left.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 67);
+            this._MainForm_Toolbars_Dock_Area_Left.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this._MainForm_Toolbars_Dock_Area_Left.Name = "_MainForm_Toolbars_Dock_Area_Left";
-            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 550);
+            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 701);
             this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // ultraToolbarsManager1
@@ -404,6 +427,7 @@
             this.ultraToolbarsManager1.DesignerFlags = 1;
             this.ultraToolbarsManager1.DockWithinContainer = this;
             this.ultraToolbarsManager1.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
+            this.ultraToolbarsManager1.SettingsKey = "";
             ultraToolbar1.DockedColumn = 0;
             ultraToolbar1.DockedRow = 0;
             ultraToolbar1.IsMainMenuBar = true;
@@ -436,10 +460,10 @@
             this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.SystemColors.Control;
             this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(887, 64);
-            this._MainForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1183, 67);
+            this._MainForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
-            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 550);
+            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 701);
             this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _MainForm_Toolbars_Dock_Area_Top
@@ -449,9 +473,9 @@
             this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
             this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
-            this._MainForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._MainForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
-            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(887, 64);
+            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1183, 67);
             this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _MainForm_Toolbars_Dock_Area_Bottom
@@ -460,10 +484,10 @@
             this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.SystemColors.Control;
             this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
             this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 614);
-            this._MainForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 768);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
-            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(887, 0);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1183, 0);
             this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // backgroundWorker1
@@ -475,19 +499,19 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(887, 614);
+            this.ClientSize = new System.Drawing.Size(1183, 768);
             this.Controls.Add(this.MainForm_Fill_Panel);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Left);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Right);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Top);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Text = "MainForm";
             ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
             this.MainForm_Fill_Panel.ClientArea.ResumeLayout(false);
-            this.MainForm_Fill_Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ultraChart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraStatusBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).EndInit();

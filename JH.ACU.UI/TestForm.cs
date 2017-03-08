@@ -25,6 +25,7 @@ namespace JH.ACU.UI
         }
 
         private readonly BllDaq _daq = new BllDaq();
+        private BllPrs _prs;
         private decimal BoardIndex { get { return numBoard.Value; } set { numBoard.Value = value; } }
         private decimal MainRelayIndex { get { return numMainRelay.Value; } set { numMainRelay.Value = value; } }
         private decimal SubRelayIndex { get { return numSubRelay.Value; } set { numSubRelay.Value = value; } }
@@ -112,6 +113,19 @@ namespace JH.ACU.UI
         {
             _daq.SetSubRelayStatus((byte)BoardIndex, (int)SubRelayIndex, false);
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            _prs = new BllPrs(InstrName.PRS0);
+            _prs.Initialize();
+            
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var value = float.Parse(textBox1.Text);
+            _prs.SetResistance(value);
         }
 
     }

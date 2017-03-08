@@ -44,6 +44,10 @@
     <Compile Include="原程序\测试流程DEMO.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Chamber\TCPClientDEMO\ModbusTCP Sample.exe" />
+    <Content Include="Chamber\TCPClientDEMO\ModDef.bas" />
+    <Content Include="Chamber\TCPClientDEMO\modMBTCP.bas" />
+    <Content Include="Chamber\TCPClientDEMO\说明.txt" />
     <Content Include="原程序\Adgpib_bc.h" />
     <Content Include="原程序\Com.cpp" />
     <Content Include="原程序\Com.h" />
@@ -107,6 +111,11 @@
     <None Include="Chamber\Modbus_Application_Protocol_V1_1b3.pdf" />
     <None Include="Chamber\Modbus协议中文版【完整版】.pdf" />
     <None Include="Chamber\Modicon_Modbus协议.pdf" />
+    <None Include="Chamber\TCPClientDEMO\frmMain.frm" />
+    <None Include="Chamber\TCPClientDEMO\MSSCCPRJ.SCC" />
+    <None Include="Chamber\TCPClientDEMO\TCPClient.vbp" />
+    <None Include="Chamber\TCPClientDEMO\TCPClient.vbw" />
+    <None Include="Chamber\TCPClientDEMO\UMC1200v2.0ModbusTCP协议地址表.xls" />
     <None Include="DMM\34401-90422.pdf" />
     <None Include="PCB\16A_Function Test-MAIN.pdf" />
     <None Include="PCB\16A_Function Test-SLAVE.pdf" />
