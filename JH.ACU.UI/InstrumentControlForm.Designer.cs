@@ -81,7 +81,43 @@
             this.label12 = new System.Windows.Forms.Label();
             this.leds34 = new NationalInstruments.UI.WindowsForms.LedArray();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanel16 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.switch4 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.switch3 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.switch2 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.switch1 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.switch5 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.switch6 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
+            this.button4 = new System.Windows.Forms.Button();
+            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.button5 = new System.Windows.Forms.Button();
+            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.button3 = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.switch8 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.switch7 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.switch9 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.flowLayoutPanel19 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel17 = new System.Windows.Forms.FlowLayoutPanel();
             this.label29 = new System.Windows.Forms.Label();
@@ -93,57 +129,20 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.ledArray2 = new NationalInstruments.UI.WindowsForms.LedArray();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.led2 = new NationalInstruments.UI.WindowsForms.Led();
-            this.led1 = new NationalInstruments.UI.WindowsForms.Led();
-            this.led3 = new NationalInstruments.UI.WindowsForms.Led();
-            this.flowMainRelay = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel16 = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.button2 = new System.Windows.Forms.Button();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.button6 = new System.Windows.Forms.Button();
-            this.switch1 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.switch2 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.switch3 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.switch4 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.switch5 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.switch6 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.switch7 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            this.button7 = new System.Windows.Forms.Button();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
-            this.button10 = new System.Windows.Forms.Button();
-            this.switch8 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.switch9 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.button11 = new System.Windows.Forms.Button();
-            this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel19 = new System.Windows.Forms.FlowLayoutPanel();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flowMainRelay = new System.Windows.Forms.FlowLayoutPanel();
+            this.led3 = new NationalInstruments.UI.WindowsForms.Led();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.led1 = new NationalInstruments.UI.WindowsForms.Led();
+            this.led2 = new NationalInstruments.UI.WindowsForms.Led();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.leds20.ItemTemplate)).BeginInit();
             this.flowSum.SuspendLayout();
@@ -177,55 +176,52 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.flowLayoutPanel16.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.switch4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch5)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.switch6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.switch8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch9)).BeginInit();
+            this.flowLayoutPanel19.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ledArray2.ItemTemplate)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.led2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.led1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.led3)).BeginInit();
-            this.flowMainRelay.SuspendLayout();
-            this.flowLayoutPanel16.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch8)).BeginInit();
-            this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.switch9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
-            this.flowLayoutPanel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.flowMainRelay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.led3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led2)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 617);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 612);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1044, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1047, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -271,7 +267,7 @@
             this.flowSum.Controls.Add(this.flowLayoutPanel12);
             this.flowSum.Controls.Add(this.flowLayoutPanel14);
             this.flowSum.Controls.Add(this.flowLayoutPanel13);
-            this.flowSum.Location = new System.Drawing.Point(6, 78);
+            this.flowSum.Location = new System.Drawing.Point(6, 101);
             this.flowSum.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.flowSum.Name = "flowSum";
             this.flowSum.Size = new System.Drawing.Size(520, 319);
@@ -944,10 +940,110 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel19);
-            this.splitContainer1.Size = new System.Drawing.Size(1044, 617);
-            this.splitContainer1.SplitterDistance = 449;
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
+            this.splitContainer1.Size = new System.Drawing.Size(1047, 612);
+            this.splitContainer1.SplitterDistance = 450;
             this.splitContainer1.TabIndex = 6;
+            // 
+            // flowLayoutPanel16
+            // 
+            this.flowLayoutPanel16.Controls.Add(this.groupBox4);
+            this.flowLayoutPanel16.Controls.Add(this.groupBox5);
+            this.flowLayoutPanel16.Controls.Add(this.groupBox6);
+            this.flowLayoutPanel16.Controls.Add(this.groupBox7);
+            this.flowLayoutPanel16.Controls.Add(this.groupBox8);
+            this.flowLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel16.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel16.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel16.Name = "flowLayoutPanel16";
+            this.flowLayoutPanel16.Size = new System.Drawing.Size(450, 612);
+            this.flowLayoutPanel16.TabIndex = 0;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.switch4);
+            this.groupBox4.Controls.Add(this.switch3);
+            this.groupBox4.Controls.Add(this.switch2);
+            this.groupBox4.Controls.Add(this.switch1);
+            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.numericUpDown4);
+            this.groupBox4.Controls.Add(this.numericUpDown1);
+            this.groupBox4.Location = new System.Drawing.Point(3, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(442, 92);
+            this.groupBox4.TabIndex = 0;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Power";
+            // 
+            // switch4
+            // 
+            this.switch4.Caption = "Output";
+            this.switch4.Location = new System.Drawing.Point(213, 20);
+            this.switch4.Name = "switch4";
+            this.switch4.OffColor = System.Drawing.Color.DarkGreen;
+            this.switch4.OnColor = System.Drawing.Color.Lime;
+            this.switch4.Size = new System.Drawing.Size(63, 70);
+            this.switch4.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.switch4.TabIndex = 7;
+            // 
+            // switch3
+            // 
+            this.switch3.Caption = "OCP";
+            this.switch3.Location = new System.Drawing.Point(144, 20);
+            this.switch3.Name = "switch3";
+            this.switch3.OffColor = System.Drawing.Color.DarkGreen;
+            this.switch3.OnColor = System.Drawing.Color.Lime;
+            this.switch3.Size = new System.Drawing.Size(63, 70);
+            this.switch3.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.switch3.TabIndex = 7;
+            // 
+            // switch2
+            // 
+            this.switch2.Caption = "OVP";
+            this.switch2.Location = new System.Drawing.Point(75, 20);
+            this.switch2.Name = "switch2";
+            this.switch2.OffColor = System.Drawing.Color.DarkGreen;
+            this.switch2.OnColor = System.Drawing.Color.Lime;
+            this.switch2.Size = new System.Drawing.Size(63, 70);
+            this.switch2.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.switch2.TabIndex = 7;
+            // 
+            // switch1
+            // 
+            this.switch1.Caption = "Open";
+            this.switch1.Location = new System.Drawing.Point(6, 20);
+            this.switch1.Name = "switch1";
+            this.switch1.OffColor = System.Drawing.Color.DarkGreen;
+            this.switch1.OnColor = System.Drawing.Color.Lime;
+            this.switch1.Size = new System.Drawing.Size(63, 70);
+            this.switch1.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.switch1.TabIndex = 7;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(282, 56);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "SetCurr";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(282, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "SetVolt";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Location = new System.Drawing.Point(363, 56);
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(66, 21);
+            this.numericUpDown4.TabIndex = 6;
             // 
             // numericUpDown1
             // 
@@ -956,6 +1052,269 @@
             this.numericUpDown1.Size = new System.Drawing.Size(66, 21);
             this.numericUpDown1.TabIndex = 6;
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.button6);
+            this.groupBox5.Controls.Add(this.numericUpDown5);
+            this.groupBox5.Controls.Add(this.switch5);
+            this.groupBox5.Location = new System.Drawing.Point(3, 101);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(442, 92);
+            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Resistance";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(75, 20);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "SetRes";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown5
+            // 
+            this.numericUpDown5.Location = new System.Drawing.Point(156, 23);
+            this.numericUpDown5.Name = "numericUpDown5";
+            this.numericUpDown5.Size = new System.Drawing.Size(66, 21);
+            this.numericUpDown5.TabIndex = 6;
+            // 
+            // switch5
+            // 
+            this.switch5.Caption = "Open";
+            this.switch5.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
+            this.switch5.Location = new System.Drawing.Point(9, 20);
+            this.switch5.Name = "switch5";
+            this.switch5.OffColor = System.Drawing.Color.DarkGreen;
+            this.switch5.OnColor = System.Drawing.Color.Lime;
+            this.switch5.Size = new System.Drawing.Size(63, 70);
+            this.switch5.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.switch5.TabIndex = 7;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.switch6);
+            this.groupBox6.Controls.Add(this.button8);
+            this.groupBox6.Controls.Add(this.button7);
+            this.groupBox6.Controls.Add(this.numericUpDown9);
+            this.groupBox6.Controls.Add(this.numericUpDown10);
+            this.groupBox6.Controls.Add(this.button4);
+            this.groupBox6.Controls.Add(this.numericUpDown8);
+            this.groupBox6.Controls.Add(this.numericUpDown6);
+            this.groupBox6.Controls.Add(this.button5);
+            this.groupBox6.Controls.Add(this.numericUpDown7);
+            this.groupBox6.Controls.Add(this.button3);
+            this.groupBox6.Location = new System.Drawing.Point(3, 199);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(442, 124);
+            this.groupBox6.TabIndex = 2;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Multimeter";
+            // 
+            // switch6
+            // 
+            this.switch6.Caption = "Open";
+            this.switch6.Location = new System.Drawing.Point(9, 20);
+            this.switch6.Name = "switch6";
+            this.switch6.OffColor = System.Drawing.Color.DarkGreen;
+            this.switch6.OnColor = System.Drawing.Color.Lime;
+            this.switch6.Size = new System.Drawing.Size(63, 70);
+            this.switch6.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.switch6.TabIndex = 7;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(282, 92);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "GetFreq";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(282, 55);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "GetFRes";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown9
+            // 
+            this.numericUpDown9.Location = new System.Drawing.Point(363, 20);
+            this.numericUpDown9.Name = "numericUpDown9";
+            this.numericUpDown9.Size = new System.Drawing.Size(66, 21);
+            this.numericUpDown9.TabIndex = 6;
+            // 
+            // numericUpDown10
+            // 
+            this.numericUpDown10.Location = new System.Drawing.Point(363, 92);
+            this.numericUpDown10.Name = "numericUpDown10";
+            this.numericUpDown10.Size = new System.Drawing.Size(66, 21);
+            this.numericUpDown10.TabIndex = 6;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(75, 55);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "GetCurr";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown8
+            // 
+            this.numericUpDown8.Location = new System.Drawing.Point(363, 55);
+            this.numericUpDown8.Name = "numericUpDown8";
+            this.numericUpDown8.Size = new System.Drawing.Size(66, 21);
+            this.numericUpDown8.TabIndex = 6;
+            // 
+            // numericUpDown6
+            // 
+            this.numericUpDown6.Location = new System.Drawing.Point(156, 20);
+            this.numericUpDown6.Name = "numericUpDown6";
+            this.numericUpDown6.Size = new System.Drawing.Size(66, 21);
+            this.numericUpDown6.TabIndex = 6;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(282, 20);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "GetRes";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown7
+            // 
+            this.numericUpDown7.Location = new System.Drawing.Point(156, 55);
+            this.numericUpDown7.Name = "numericUpDown7";
+            this.numericUpDown7.Size = new System.Drawing.Size(66, 21);
+            this.numericUpDown7.TabIndex = 6;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(75, 20);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "GetVolt";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.switch8);
+            this.groupBox7.Controls.Add(this.switch7);
+            this.groupBox7.Controls.Add(this.button10);
+            this.groupBox7.Controls.Add(this.button9);
+            this.groupBox7.Controls.Add(this.numericUpDown11);
+            this.groupBox7.Controls.Add(this.numericUpDown12);
+            this.groupBox7.Location = new System.Drawing.Point(3, 329);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(442, 92);
+            this.groupBox7.TabIndex = 3;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Chamber";
+            // 
+            // switch8
+            // 
+            this.switch8.Caption = "Run";
+            this.switch8.Location = new System.Drawing.Point(75, 20);
+            this.switch8.Name = "switch8";
+            this.switch8.OffColor = System.Drawing.Color.DarkGreen;
+            this.switch8.OnColor = System.Drawing.Color.Lime;
+            this.switch8.Size = new System.Drawing.Size(63, 70);
+            this.switch8.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.switch8.TabIndex = 7;
+            // 
+            // switch7
+            // 
+            this.switch7.Caption = "Open";
+            this.switch7.Location = new System.Drawing.Point(6, 20);
+            this.switch7.Name = "switch7";
+            this.switch7.OffColor = System.Drawing.Color.DarkGreen;
+            this.switch7.OnColor = System.Drawing.Color.Lime;
+            this.switch7.Size = new System.Drawing.Size(63, 70);
+            this.switch7.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.switch7.TabIndex = 7;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(282, 55);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 0;
+            this.button10.Text = "SetTemp";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(282, 20);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "GetTemp";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown11
+            // 
+            this.numericUpDown11.Location = new System.Drawing.Point(363, 55);
+            this.numericUpDown11.Name = "numericUpDown11";
+            this.numericUpDown11.Size = new System.Drawing.Size(66, 21);
+            this.numericUpDown11.TabIndex = 6;
+            // 
+            // numericUpDown12
+            // 
+            this.numericUpDown12.Location = new System.Drawing.Point(363, 20);
+            this.numericUpDown12.Name = "numericUpDown12";
+            this.numericUpDown12.Size = new System.Drawing.Size(66, 21);
+            this.numericUpDown12.TabIndex = 6;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Location = new System.Drawing.Point(3, 427);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(442, 115);
+            this.groupBox8.TabIndex = 4;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "DAQ Card";
+            // 
+            // switch9
+            // 
+            this.switch9.Caption = "Open";
+            this.switch9.Location = new System.Drawing.Point(20, 17);
+            this.switch9.Name = "switch9";
+            this.switch9.OffColor = System.Drawing.Color.DarkGreen;
+            this.switch9.OnColor = System.Drawing.Color.Lime;
+            this.switch9.Size = new System.Drawing.Size(63, 70);
+            this.switch9.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.switch9.TabIndex = 7;
+            // 
+            // flowLayoutPanel19
+            // 
+            this.flowLayoutPanel19.Controls.Add(this.groupBox1);
+            this.flowLayoutPanel19.Controls.Add(this.groupBox2);
+            this.flowLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel19.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel19.Location = new System.Drawing.Point(3, 17);
+            this.flowLayoutPanel19.Name = "flowLayoutPanel19";
+            this.flowLayoutPanel19.Size = new System.Drawing.Size(587, 592);
+            this.flowLayoutPanel19.TabIndex = 8;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox2.Controls.Add(this.switch9);
+            this.groupBox2.Controls.Add(this.flowLayoutPanel1);
+            this.groupBox2.Location = new System.Drawing.Point(3, 439);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(525, 103);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Sub Board Group";
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
@@ -963,7 +1322,7 @@
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel17);
             this.flowLayoutPanel1.Controls.Add(this.ledArray2);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(18, 13);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(97, 14);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(425, 87);
             this.flowLayoutPanel1.TabIndex = 5;
@@ -1093,526 +1452,157 @@
             this.ledArray2.Size = new System.Drawing.Size(419, 65);
             this.ledArray2.TabIndex = 4;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.flowMainRelay);
-            this.groupBox1.Controls.Add(this.flowSum);
-            this.groupBox1.Controls.Add(this.button12);
-            this.groupBox1.Controls.Add(this.button11);
-            this.groupBox1.Controls.Add(this.numericUpDown2);
-            this.groupBox1.Location = new System.Drawing.Point(3, 112);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(543, 403);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Relay Group";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupBox2.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox2.Controls.Add(this.numericUpDown3);
-            this.groupBox2.Controls.Add(this.button15);
-            this.groupBox2.Controls.Add(this.button14);
-            this.groupBox2.Location = new System.Drawing.Point(4, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(542, 103);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Sub Board Group";
-            // 
-            // led2
-            // 
-            this.led2.Caption = "300";
-            this.led2.CaptionBackColor = System.Drawing.SystemColors.Control;
-            this.led2.CaptionFont = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.led2.CaptionPosition = NationalInstruments.UI.CaptionPosition.Left;
-            this.led2.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
-            this.led2.Location = new System.Drawing.Point(0, 3);
-            this.led2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.led2.Name = "led2";
-            this.led2.Size = new System.Drawing.Size(70, 40);
-            this.led2.TabIndex = 6;
-            // 
-            // led1
-            // 
-            this.led1.Caption = "301";
-            this.led1.CaptionBackColor = System.Drawing.SystemColors.Control;
-            this.led1.CaptionFont = new System.Drawing.Font("宋体", 12F);
-            this.led1.CaptionPosition = NationalInstruments.UI.CaptionPosition.Left;
-            this.led1.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
-            this.led1.Location = new System.Drawing.Point(76, 3);
-            this.led1.Name = "led1";
-            this.led1.Size = new System.Drawing.Size(70, 40);
-            this.led1.TabIndex = 6;
-            // 
-            // led3
-            // 
-            this.led3.Caption = "302";
-            this.led3.CaptionBackColor = System.Drawing.SystemColors.Control;
-            this.led3.CaptionFont = new System.Drawing.Font("宋体", 12F);
-            this.led3.CaptionPosition = NationalInstruments.UI.CaptionPosition.Left;
-            this.led3.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
-            this.led3.Location = new System.Drawing.Point(152, 3);
-            this.led3.Name = "led3";
-            this.led3.Size = new System.Drawing.Size(70, 40);
-            this.led3.TabIndex = 6;
-            // 
-            // flowMainRelay
-            // 
-            this.flowMainRelay.AutoSize = true;
-            this.flowMainRelay.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowMainRelay.Controls.Add(this.led2);
-            this.flowMainRelay.Controls.Add(this.led1);
-            this.flowMainRelay.Controls.Add(this.led3);
-            this.flowMainRelay.Location = new System.Drawing.Point(6, 25);
-            this.flowMainRelay.Name = "flowMainRelay";
-            this.flowMainRelay.Size = new System.Drawing.Size(225, 46);
-            this.flowMainRelay.TabIndex = 6;
-            // 
-            // flowLayoutPanel16
-            // 
-            this.flowLayoutPanel16.Controls.Add(this.groupBox4);
-            this.flowLayoutPanel16.Controls.Add(this.groupBox5);
-            this.flowLayoutPanel16.Controls.Add(this.groupBox6);
-            this.flowLayoutPanel16.Controls.Add(this.groupBox7);
-            this.flowLayoutPanel16.Controls.Add(this.groupBox8);
-            this.flowLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel16.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel16.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel16.Name = "flowLayoutPanel16";
-            this.flowLayoutPanel16.Size = new System.Drawing.Size(449, 617);
-            this.flowLayoutPanel16.TabIndex = 0;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.switch4);
-            this.groupBox4.Controls.Add(this.switch3);
-            this.groupBox4.Controls.Add(this.switch2);
-            this.groupBox4.Controls.Add(this.switch1);
-            this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.numericUpDown4);
-            this.groupBox4.Controls.Add(this.numericUpDown1);
-            this.groupBox4.Location = new System.Drawing.Point(3, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(442, 92);
-            this.groupBox4.TabIndex = 0;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Power";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.button6);
-            this.groupBox5.Controls.Add(this.numericUpDown5);
-            this.groupBox5.Controls.Add(this.switch5);
-            this.groupBox5.Location = new System.Drawing.Point(3, 101);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(442, 92);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Resistance";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.switch6);
-            this.groupBox6.Controls.Add(this.button8);
-            this.groupBox6.Controls.Add(this.button7);
-            this.groupBox6.Controls.Add(this.numericUpDown9);
-            this.groupBox6.Controls.Add(this.numericUpDown10);
-            this.groupBox6.Controls.Add(this.button4);
-            this.groupBox6.Controls.Add(this.numericUpDown8);
-            this.groupBox6.Controls.Add(this.numericUpDown6);
-            this.groupBox6.Controls.Add(this.button5);
-            this.groupBox6.Controls.Add(this.numericUpDown7);
-            this.groupBox6.Controls.Add(this.button3);
-            this.groupBox6.Location = new System.Drawing.Point(3, 199);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(442, 124);
-            this.groupBox6.TabIndex = 2;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Multimeter";
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.switch8);
-            this.groupBox7.Controls.Add(this.switch7);
-            this.groupBox7.Controls.Add(this.button10);
-            this.groupBox7.Controls.Add(this.button9);
-            this.groupBox7.Controls.Add(this.numericUpDown11);
-            this.groupBox7.Controls.Add(this.numericUpDown12);
-            this.groupBox7.Location = new System.Drawing.Point(3, 329);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(442, 92);
-            this.groupBox7.TabIndex = 3;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Chamber";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(282, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "SetVolt";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown4
-            // 
-            this.numericUpDown4.Location = new System.Drawing.Point(363, 56);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown4.TabIndex = 6;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(282, 56);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "SetCurr";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown5
-            // 
-            this.numericUpDown5.Location = new System.Drawing.Point(156, 23);
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown5.TabIndex = 6;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(75, 20);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "SetRes";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // switch1
-            // 
-            this.switch1.Caption = "Open";
-            this.switch1.Location = new System.Drawing.Point(6, 20);
-            this.switch1.Name = "switch1";
-            this.switch1.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch1.OnColor = System.Drawing.Color.Lime;
-            this.switch1.Size = new System.Drawing.Size(63, 70);
-            this.switch1.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch1.TabIndex = 7;
-            // 
-            // switch2
-            // 
-            this.switch2.Caption = "OVP";
-            this.switch2.Location = new System.Drawing.Point(75, 20);
-            this.switch2.Name = "switch2";
-            this.switch2.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch2.OnColor = System.Drawing.Color.Lime;
-            this.switch2.Size = new System.Drawing.Size(63, 70);
-            this.switch2.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch2.TabIndex = 7;
-            // 
-            // switch3
-            // 
-            this.switch3.Caption = "OCP";
-            this.switch3.Location = new System.Drawing.Point(144, 20);
-            this.switch3.Name = "switch3";
-            this.switch3.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch3.OnColor = System.Drawing.Color.Lime;
-            this.switch3.Size = new System.Drawing.Size(63, 70);
-            this.switch3.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch3.TabIndex = 7;
-            // 
-            // switch4
-            // 
-            this.switch4.Caption = "Output";
-            this.switch4.Location = new System.Drawing.Point(213, 20);
-            this.switch4.Name = "switch4";
-            this.switch4.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch4.OnColor = System.Drawing.Color.Lime;
-            this.switch4.Size = new System.Drawing.Size(63, 70);
-            this.switch4.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch4.TabIndex = 7;
-            // 
-            // switch5
-            // 
-            this.switch5.Caption = "Open";
-            this.switch5.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
-            this.switch5.Location = new System.Drawing.Point(9, 20);
-            this.switch5.Name = "switch5";
-            this.switch5.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch5.OnColor = System.Drawing.Color.Lime;
-            this.switch5.Size = new System.Drawing.Size(63, 70);
-            this.switch5.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch5.TabIndex = 7;
-            // 
-            // switch6
-            // 
-            this.switch6.Caption = "Open";
-            this.switch6.Location = new System.Drawing.Point(9, 20);
-            this.switch6.Name = "switch6";
-            this.switch6.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch6.OnColor = System.Drawing.Color.Lime;
-            this.switch6.Size = new System.Drawing.Size(63, 70);
-            this.switch6.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch6.TabIndex = 7;
-            // 
-            // switch7
-            // 
-            this.switch7.Caption = "Open";
-            this.switch7.Location = new System.Drawing.Point(6, 20);
-            this.switch7.Name = "switch7";
-            this.switch7.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch7.OnColor = System.Drawing.Color.Lime;
-            this.switch7.Size = new System.Drawing.Size(63, 70);
-            this.switch7.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch7.TabIndex = 7;
-            // 
-            // numericUpDown6
-            // 
-            this.numericUpDown6.Location = new System.Drawing.Point(156, 20);
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown6.TabIndex = 6;
-            // 
-            // numericUpDown7
-            // 
-            this.numericUpDown7.Location = new System.Drawing.Point(156, 55);
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown7.TabIndex = 6;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(75, 20);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "GetVolt";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(75, 55);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "GetCurr";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(282, 20);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "GetRes";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown8
-            // 
-            this.numericUpDown8.Location = new System.Drawing.Point(363, 55);
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown8.TabIndex = 6;
-            // 
-            // numericUpDown9
-            // 
-            this.numericUpDown9.Location = new System.Drawing.Point(363, 20);
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown9.TabIndex = 6;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(282, 55);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "GetFRes";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown10
-            // 
-            this.numericUpDown10.Location = new System.Drawing.Point(363, 92);
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown10.TabIndex = 6;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(282, 92);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "GetFreq";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(282, 20);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "GetTemp";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown11
-            // 
-            this.numericUpDown11.Location = new System.Drawing.Point(363, 55);
-            this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown11.TabIndex = 6;
-            // 
-            // numericUpDown12
-            // 
-            this.numericUpDown12.Location = new System.Drawing.Point(363, 20);
-            this.numericUpDown12.Name = "numericUpDown12";
-            this.numericUpDown12.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown12.TabIndex = 6;
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(282, 55);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "SetTemp";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // switch8
-            // 
-            this.switch8.Caption = "Run";
-            this.switch8.Location = new System.Drawing.Point(75, 20);
-            this.switch8.Name = "switch8";
-            this.switch8.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch8.OnColor = System.Drawing.Color.Lime;
-            this.switch8.Size = new System.Drawing.Size(63, 70);
-            this.switch8.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch8.TabIndex = 7;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.switch9);
-            this.groupBox8.Controls.Add(this.button13);
-            this.groupBox8.Controls.Add(this.numericUpDown15);
-            this.groupBox8.Controls.Add(this.numericUpDown13);
-            this.groupBox8.Controls.Add(this.numericUpDown14);
-            this.groupBox8.Location = new System.Drawing.Point(3, 427);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(442, 170);
-            this.groupBox8.TabIndex = 4;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "DAQ Card";
-            // 
-            // switch9
-            // 
-            this.switch9.Caption = "Open";
-            this.switch9.Location = new System.Drawing.Point(9, 20);
-            this.switch9.Name = "switch9";
-            this.switch9.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch9.OnColor = System.Drawing.Color.Lime;
-            this.switch9.Size = new System.Drawing.Size(63, 70);
-            this.switch9.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch9.TabIndex = 7;
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(373, 35);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 0;
-            this.button11.Text = "Enable";
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown13
-            // 
-            this.numericUpDown13.Location = new System.Drawing.Point(363, 55);
-            this.numericUpDown13.Name = "numericUpDown13";
-            this.numericUpDown13.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown13.TabIndex = 6;
-            // 
-            // numericUpDown14
-            // 
-            this.numericUpDown14.Location = new System.Drawing.Point(363, 92);
-            this.numericUpDown14.Name = "numericUpDown14";
-            this.numericUpDown14.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown14.TabIndex = 6;
-            // 
-            // numericUpDown15
-            // 
-            this.numericUpDown15.Location = new System.Drawing.Point(363, 20);
-            this.numericUpDown15.Name = "numericUpDown15";
-            this.numericUpDown15.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown15.TabIndex = 6;
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(454, 35);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 0;
-            this.button12.Text = "Disable";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(282, 92);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 0;
-            this.button13.Text = "GetFreq";
-            this.button13.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanel19
-            // 
-            this.flowLayoutPanel19.Controls.Add(this.groupBox2);
-            this.flowLayoutPanel19.Controls.Add(this.groupBox1);
-            this.flowLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel19.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel19.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel19.Name = "flowLayoutPanel19";
-            this.flowLayoutPanel19.Size = new System.Drawing.Size(591, 617);
-            this.flowLayoutPanel19.TabIndex = 8;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(296, 37);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown2.TabIndex = 6;
-            // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(447, 18);
+            this.numericUpDown3.Location = new System.Drawing.Point(187, 54);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(75, 21);
             this.numericUpDown3.TabIndex = 6;
             // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(447, 42);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 0;
-            this.button14.Text = "Open";
-            this.button14.UseVisualStyleBackColor = true;
-            // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(447, 71);
+            this.button15.Location = new System.Drawing.Point(268, 54);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(75, 23);
             this.button15.TabIndex = 0;
             this.button15.Text = "Close";
             this.button15.UseVisualStyleBackColor = true;
             // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(268, 25);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.TabIndex = 0;
+            this.button14.Text = "Open";
+            this.button14.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.flowMainRelay);
+            this.groupBox1.Controls.Add(this.numericUpDown3);
+            this.groupBox1.Controls.Add(this.button15);
+            this.groupBox1.Controls.Add(this.flowSum);
+            this.groupBox1.Controls.Add(this.button14);
+            this.groupBox1.Controls.Add(this.button12);
+            this.groupBox1.Controls.Add(this.button11);
+            this.groupBox1.Controls.Add(this.numericUpDown2);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(532, 430);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Relay Group";
+            // 
+            // flowMainRelay
+            // 
+            this.flowMainRelay.AutoSize = true;
+            this.flowMainRelay.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowMainRelay.Controls.Add(this.led3);
+            this.flowMainRelay.Controls.Add(this.led1);
+            this.flowMainRelay.Controls.Add(this.led2);
+            this.flowMainRelay.Location = new System.Drawing.Point(30, 20);
+            this.flowMainRelay.Name = "flowMainRelay";
+            this.flowMainRelay.Size = new System.Drawing.Size(138, 70);
+            this.flowMainRelay.TabIndex = 6;
+            // 
+            // led3
+            // 
+            this.led3.Caption = "300";
+            this.led3.CaptionBackColor = System.Drawing.SystemColors.Control;
+            this.led3.CaptionFont = new System.Drawing.Font("宋体", 12F);
+            this.led3.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
+            this.led3.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
+            this.led3.Location = new System.Drawing.Point(3, 3);
+            this.led3.Name = "led3";
+            this.led3.Size = new System.Drawing.Size(40, 64);
+            this.led3.TabIndex = 6;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(426, 52);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 0;
+            this.button12.Text = "Disable";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(426, 25);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 0;
+            this.button11.Text = "Enable";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(349, 55);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(75, 21);
+            this.numericUpDown2.TabIndex = 6;
+            // 
+            // led1
+            // 
+            this.led1.Caption = "301";
+            this.led1.CaptionBackColor = System.Drawing.SystemColors.Control;
+            this.led1.CaptionFont = new System.Drawing.Font("宋体", 12F);
+            this.led1.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
+            this.led1.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
+            this.led1.Location = new System.Drawing.Point(49, 3);
+            this.led1.Name = "led1";
+            this.led1.Size = new System.Drawing.Size(40, 64);
+            this.led1.TabIndex = 6;
+            // 
+            // led2
+            // 
+            this.led2.Caption = "302";
+            this.led2.CaptionBackColor = System.Drawing.SystemColors.Control;
+            this.led2.CaptionFont = new System.Drawing.Font("宋体", 12F);
+            this.led2.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
+            this.led2.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
+            this.led2.Location = new System.Drawing.Point(95, 3);
+            this.led2.Name = "led2";
+            this.led2.Size = new System.Drawing.Size(40, 64);
+            this.led2.TabIndex = 6;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.flowLayoutPanel19);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(593, 612);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "DAQ Card";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(347, 40);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(35, 12);
+            this.label23.TabIndex = 7;
+            this.label23.Text = "Relay";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(185, 36);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(35, 12);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "Board";
+            // 
             // InstrumentControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 639);
+            this.ClientSize = new System.Drawing.Size(1047, 634);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "InstrumentControlForm";
@@ -1666,50 +1656,47 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.flowLayoutPanel16.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.switch4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch5)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.switch6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.switch8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.switch9)).EndInit();
+            this.flowLayoutPanel19.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel17.ResumeLayout(false);
             this.flowLayoutPanel17.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ledArray2.ItemTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.led2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.led1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.led3)).EndInit();
             this.flowMainRelay.ResumeLayout(false);
-            this.flowLayoutPanel16.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch8)).EndInit();
-            this.groupBox8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.switch9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
-            this.flowLayoutPanel19.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.led3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led2)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1785,8 +1772,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.FlowLayoutPanel flowMainRelay;
-        private NationalInstruments.UI.WindowsForms.Led led2;
-        private NationalInstruments.UI.WindowsForms.Led led1;
         private NationalInstruments.UI.WindowsForms.Led led3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel16;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -1822,16 +1807,17 @@
         private System.Windows.Forms.NumericUpDown numericUpDown12;
         private System.Windows.Forms.GroupBox groupBox8;
         private NationalInstruments.UI.WindowsForms.Switch switch9;
-        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.NumericUpDown numericUpDown15;
-        private System.Windows.Forms.NumericUpDown numericUpDown13;
-        private System.Windows.Forms.NumericUpDown numericUpDown14;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel19;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private NationalInstruments.UI.WindowsForms.Led led1;
+        private NationalInstruments.UI.WindowsForms.Led led2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
     }
 }

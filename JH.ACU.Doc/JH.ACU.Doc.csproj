@@ -116,6 +116,7 @@
     <None Include="Chamber\TCPClientDEMO\TCPClient.vbp" />
     <None Include="Chamber\TCPClientDEMO\TCPClient.vbw" />
     <None Include="Chamber\TCPClientDEMO\UMC1200v2.0ModbusTCP协议地址表.xls" />
+    <None Include="Chamber\TH405高低温交变湿热试验箱技术方案 20150507最终.pdf" />
     <None Include="DMM\34401-90422.pdf" />
     <None Include="PCB\16A_Function Test-MAIN.pdf" />
     <None Include="PCB\16A_Function Test-SLAVE.pdf" />
