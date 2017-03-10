@@ -14,7 +14,7 @@ namespace JH.ACU.BLL.Instruments
     public class BllDmm : BllVisa
     {
         #region 构造函数
-        public BllDmm(InstrName instr = InstrName.DMM) : base(instr)
+        public BllDmm(InstrName instr = InstrName.Dmm) : base(instr)
         {
             /* 基本编程顺序：
                * 1、将万用表设定在一已知的状态（通常在复位状态）
@@ -51,8 +51,8 @@ namespace JH.ACU.BLL.Instruments
         /// </summary>
         private bool Display
         {
-            get { return WriteAndRead("DISPlay?") == "1"; }
-            set { WriteNoRead(value ? "DISPlay ON" : "DISPlay OFF"); }
+            get { return Read("DISPlay?") == "1"; }
+            set { Write(value ? "DISPlay ON" : "DISPlay OFF"); }
         }
 
         private readonly Dmm _dmm;
@@ -98,8 +98,8 @@ namespace JH.ACU.BLL.Instruments
         [Obsolete("测试失败", true)]
         public int SampleCount
         {
-            get { return Convert.ToInt32(WriteAndRead("SAMP:COUN?")); }
-            set { WriteNoRead(string.Format("SAMP:COUN {0}", value)); }
+            get { return Convert.ToInt32(Read("SAMP:COUN?")); }
+            set { Write(string.Format("SAMP:COUN {0}", value)); }
         }
 
         #endregion
@@ -109,7 +109,7 @@ namespace JH.ACU.BLL.Instruments
 
         private void DefaultSetup()
         {
-            WriteNoRead("*ESE 60;*SRE 56;*CLS;:STAT:QUES:ENAB 32767");
+            Write("*ESE 60;*SRE 56;*CLS;:STAT:QUES:ENAB 32767");
         }
 
         private void SetControlMode(ControlMode mode, int timeout = 30000)
@@ -118,14 +118,14 @@ namespace JH.ACU.BLL.Instruments
             switch (mode)
             {
                 case ControlMode.Local:
-                    WriteNoRead("SYST:LOC");
+                    Write("SYST:LOC");
                     return; //退出该方法
                 case ControlMode.Remote:
-                    WriteNoRead("SYST:REM");
+                    Write("SYST:REM");
 
                     break;
                 case ControlMode.RemoteWithLock:
-                    WriteNoRead("SYST:RWL");
+                    Write("SYST:RWL");
 
                     break;
                 default:
@@ -197,7 +197,7 @@ namespace JH.ACU.BLL.Instruments
                     throw new ArgumentOutOfRangeException("trigger", trigger, null);
             }
             _dmm.TriggerSource = trigger;
-            WriteNoRead(command);
+            Write(command);
         }
         [Obsolete("测试失败",true)]
         private void SetMultiPoint(int triggerCount = 1, int sampleCount = 1)
@@ -208,7 +208,7 @@ namespace JH.ACU.BLL.Instruments
             }
             var command = string.Format(":TRIG:COUN {0};", triggerCount);
             command += string.Format(":SAMP:COUN {0};", sampleCount);
-            WriteNoRead(command);
+            Write(command);
         }
 
         private double DmmRead(Dmm dmm)
@@ -217,13 +217,13 @@ namespace JH.ACU.BLL.Instruments
             if (dmm.TriggerSource == TriggerSource.Bus || dmm.MathStorage == MathStorage.InternalBuffer)
             {
                 command = "INIT;";
-                WriteNoRead(command);
-                return Convert.ToDouble(WriteAndRead(":FETC?"));
+                Write(command);
+                return Convert.ToDouble(Read(":FETC?"));
             }
             else
             {
                 command = "READ?";
-                return Convert.ToDouble(WriteAndRead(command));
+                return Convert.ToDouble(Read(command));
             }
 
         }
@@ -245,7 +245,7 @@ namespace JH.ACU.BLL.Instruments
                 default:
                     throw new ArgumentOutOfRangeException("autoZero", autoZero, null);
             }
-            WriteNoRead(command);
+            Write(command);
         }
 
         #endregion
@@ -317,7 +317,7 @@ namespace JH.ACU.BLL.Instruments
         {
             var command = ":CALC:AVER:MIN?;:CALC:AVER:MAX?;:CALC:AVER:AVER?;:CALC:AVER:COUN?;";
             command += resetAfterRead ? ":CALC:STAT ON;" : "";
-            var data = WriteAndRead(command).Split(';');
+            var data = Read(command).Split(';');
             return data.Select(Convert.ToDouble).ToArray();
         }
 
@@ -331,7 +331,7 @@ namespace JH.ACU.BLL.Instruments
         {
             if (range.Equals(0) && resolution.Equals(0))
             {
-                WriteNoRead(function + "DEF");
+                Write(function + "DEF");
                 return;
             }
             switch (function)
@@ -343,7 +343,7 @@ namespace JH.ACU.BLL.Instruments
                 case DcCurr:
                 case AcCurr:
                 case Capacitance:
-                    WriteNoRead(function + range + "," + resolution);
+                    Write(function + range + "," + resolution);
                     break;
                 case Frequency:
                 case Period:
@@ -351,7 +351,7 @@ namespace JH.ACU.BLL.Instruments
                 case DiodeChecking:
                 case DcVoltRatio:
                 case Temperature:
-                    WriteNoRead(function + "DEF");
+                    Write(function + "DEF");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(function, "功能代码不正确");

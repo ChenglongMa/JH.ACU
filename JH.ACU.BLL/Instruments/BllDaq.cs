@@ -54,6 +54,13 @@ namespace JH.ACU.BLL.Instruments
                 return pwr && kLine && cout1 && cout2;
             }
         }
+        /// <summary>
+        /// 获取继电器组状态值
+        /// </summary>
+        public byte[,] RelaysGroupMask
+        {
+            get { return _relaysGroupMask; }
+        }
 
         #endregion
 
@@ -307,11 +314,11 @@ namespace JH.ACU.BLL.Instruments
             {
                 if (_currBoard != -1)
                 {
-                    Close((byte) _currBoard); //将原板复位至初始状态
+                    CloseBoard((byte) _currBoard); //将原板复位至初始状态
                 }
                 if (!IsOpened)
                 {
-                    Open(boardIndex);
+                    OpenBoard(boardIndex);
                 }
             }
             SetRelaysGroup(boardIndex, groupIndex, mask); //将现板设置为新状态
@@ -387,7 +394,7 @@ namespace JH.ACU.BLL.Instruments
         /// 将指定板卡设置为初始状态,即仅保持ACU上电,其余继电器断开
         /// </summary>
         /// <param name="boardIndex"></param>
-        public void Close(byte boardIndex)
+        public void CloseBoard(byte boardIndex)
         {
             for (byte i = 0; i < GroupNum; i++)
             {
@@ -403,7 +410,7 @@ namespace JH.ACU.BLL.Instruments
         /// 准备开始测试环境,注意时序
         /// </summary>
         /// <param name="boardIndex"></param>
-        public void Open(byte boardIndex)
+        public void OpenBoard(byte boardIndex)
         {
             byte mask6 = (byte) (0x30 | _relaysGroupMask[boardIndex, 6]);
             byte mask7 = (byte) (0x88 | _relaysGroupMask[boardIndex, 7]);

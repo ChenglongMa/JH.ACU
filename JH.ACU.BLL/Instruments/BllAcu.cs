@@ -14,7 +14,7 @@ using LineState = NationalInstruments.VisaNS.LineState;
 namespace JH.ACU.BLL.Instruments
 {
     /// <summary>
-    /// ACU S模式通讯类
+    /// Acu S模式通讯类
     /// </summary>
     public class BllAcu : IDisposable
     {
@@ -33,7 +33,7 @@ namespace JH.ACU.BLL.Instruments
         private bool _realTimeFlag;
         private static Instr Config
         {
-            get { return BllConfig.GetInstr(InstrName.ACU); }
+            get { return BllConfig.GetInstr(InstrName.Acu); }
         }
 
         public enum MemoryWrite

@@ -1,5 +1,6 @@
 ﻿using System;
 using JH.ACU.BLL.Abstract;
+using JH.ACU.Lib;
 using JH.ACU.Model;
 
 namespace JH.ACU.BLL.Instruments
@@ -7,7 +8,7 @@ namespace JH.ACU.BLL.Instruments
     /// <summary>
     /// 电阻箱操作类
     /// </summary>
-    public class BllPrs:BllVisa
+    public class BllPrs : BllVisa
     {
         #region 构造函数
 
@@ -19,14 +20,42 @@ namespace JH.ACU.BLL.Instruments
 
         #region 属性 字段
 
+        /// <summary>
+        /// 类型
+        /// </summary>
         private string Type { get; set; }
+
+        /// <summary>
+        /// 版本号
+        /// </summary>
         private string Version { get; set; }
+
+        /// <summary>
+        /// 容差值
+        /// </summary>
         private float Tolerance { get; set; }
+
+        /// <summary>
+        /// 以十为组的组的数量
+        /// </summary>
         private int DecadesNum { get; set; }
+
+        /// <summary>
+        /// 最小分辨率
+        /// </summary>
         private double MinDec { get; set; }
+
+        /// <summary>
+        /// 最大分辨率
+        /// </summary>
         private double MaxDec { get; set; }
+
         private float SlotLsd { get; set; }
-        private int Circuit{ get; set; }
+
+        /// <summary>
+        /// 回路配置（开路、短路）
+        /// </summary>
+        private int Circuit { get; set; }
 
         #endregion
 
@@ -88,6 +117,7 @@ namespace JH.ACU.BLL.Instruments
                     throw new ArgumentException("分辨率无效", "lsd");
             }
         }
+
         #endregion
 
         #region 公有方法
@@ -96,7 +126,7 @@ namespace JH.ACU.BLL.Instruments
         {
             Reset();
             if (!SelfTest()) throw new Exception("电阻箱自检失败");
-            if (string.IsNullOrEmpty(Idn))
+            if (Idn.IsNullOrEmpty())
             {
                 throw new NullReferenceException("电阻箱型号读取异常");
             }
@@ -124,10 +154,10 @@ namespace JH.ACU.BLL.Instruments
         /// 设置输出电压
         /// </summary>
         /// <param name="resValue">单位：欧姆</param>
-        public void SetResistance(float resValue)
+        public void SetResistance(double resValue)
         {
             var value = Convert.ToInt32(resValue*(1/MinDec))*(1*Math.Pow(10, SlotLsd));
-            string valStr = null;
+            string valStr;
             switch (Version)
             {
                 default:
@@ -140,8 +170,9 @@ namespace JH.ACU.BLL.Instruments
                     break;
             }
             var command = "SOURce:DATA " + valStr;
-            WriteNoRead(command);
+            Write(command);
         }
+
         #endregion
 
     }

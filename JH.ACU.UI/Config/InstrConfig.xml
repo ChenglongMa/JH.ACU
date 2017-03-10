@@ -1,17 +1,17 @@
 ﻿<InstrConfig>
-  <Instr Name="ACU" Type="Serial">
+  <Instr Name="Acu" Type="Serial">
     <Serial COM="7" BaudRate="9600" DataBits="8" StopBits="One" />
   </Instr>
-  <Instr Name="PWR" Type="Serial">
+  <Instr Name="Pwr" Type="Serial">
     <Serial COM="8" BaudRate="9600" DataBits="8" StopBits="One" />
   </Instr>
-  <Instr Name="PRS0" Type="Gpib">
+  <Instr Name="Prs0" Type="Gpib">
     <Gpib Address="3" />
   </Instr>
-  <Instr Name="PRS1" Type="Gpib">
+  <Instr Name="Prs1" Type="Gpib">
     <Gpib Address="6" />
   </Instr>
-  <Instr Name="DMM" Type="Gpib">
+  <Instr Name="Dmm" Type="Gpib">
     <Gpib Address="22" />
   </Instr>
   <Instr Name="Chamber" Type="Tcp">

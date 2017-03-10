@@ -12,7 +12,7 @@ namespace JH.ACU.BLL.Abstract
     /// <summary>
     /// 抽象类：用于各仪器通用方法及属性等
     /// </summary>
-    public abstract class BllVisa
+    public abstract class BllVisa : IDisposable
     {
         protected BllVisa(InstrName instr)
         {
@@ -35,7 +35,7 @@ namespace JH.ACU.BLL.Abstract
         /// </summary>
         public string Idn
         {
-            get { return WriteAndRead("*IDN?"); }
+            get { return Read("*IDN?"); }
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace JH.ACU.BLL.Abstract
         /// </summary>
         public string Error
         {
-            get { return WriteAndRead("SYSTem:ERRor?"); }
+            get { return Read("SYSTem:ERRor?"); }
         }
 
         #endregion
@@ -68,14 +68,17 @@ namespace JH.ACU.BLL.Abstract
                     };
                     break;
                 case InstrType.Tcp:
-                    MbSession = new TcpipSocket(VisaHelper.GetPortNumber(Config)) { TimeoutMilliseconds = Config.TcpIp.Timeout };
+                    MbSession = new TcpipSocket(VisaHelper.GetPortNumber(Config))
+                    {
+                        TimeoutMilliseconds = Config.TcpIp.Timeout
+                    };
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        protected string WriteAndRead(string command, int delay = 0)//TODO:待测试delay时间
+        protected string Read(string command, int delay = 0) //TODO:待测试delay时间
         {
             RawIo.Write(command + "\n");
             Thread.Sleep(delay);
@@ -87,7 +90,7 @@ namespace JH.ACU.BLL.Abstract
             return res;
         }
 
-        protected void WriteNoRead(string command)
+        protected void Write(string command)
         {
             RawIo.Write(command + "\n");
         }
@@ -100,25 +103,24 @@ namespace JH.ACU.BLL.Abstract
             if (code == 0) return;
             throw new Exception(message);
         }
-        //private string RemoveEscapeCharacter(string oldStr)
-        //{
-        //    return oldStr.Replace("\n", "");
-        //}
+
         #endregion
 
         #region 公有方法
+
         /// <summary>
         /// 仪器初始化
         /// </summary>
         /// <returns></returns>
         public abstract void Initialize();
+
         /// <summary>
         /// Set all control settings of instrument supply to their default values but does
         /// not purge stored setting. 
         /// </summary>
         public void Reset()
         {
-            WriteNoRead("*RST");
+            Write("*RST");
         }
 
         /// <summary>
@@ -126,7 +128,7 @@ namespace JH.ACU.BLL.Abstract
         /// </summary>
         public void Clear()
         {
-            WriteNoRead("*CLS");
+            Write("*CLS");
         }
 
         /// <summary>
@@ -135,7 +137,7 @@ namespace JH.ACU.BLL.Abstract
         /// <returns></returns>
         public bool SelfTest()
         {
-            var res = WriteAndRead("*TST?");
+            var res = Read("*TST?");
             return res == "0";
         }
 
@@ -144,7 +146,7 @@ namespace JH.ACU.BLL.Abstract
         /// </summary>
         public void Wait()
         {
-            WriteNoRead("*WAI");
+            Write("*WAI");
         }
 
         /// <summary>
@@ -156,17 +158,30 @@ namespace JH.ACU.BLL.Abstract
             var t = Environment.TickCount;
             do
             {
-                if (string.IsNullOrEmpty(Error))//BUG:Error不为空
+                try
                 {
                     Thread.Sleep(100);
+                    ThrowException();
                 }
-                else
+                catch (Exception)
                 {
                     return;
                 }
-            } while (WriteAndRead("*OPC?") == "0" && Environment.TickCount - t < timeout);
+            } while (Read("*OPC?") == "0" && Environment.TickCount - t < timeout);
+        }
+
+        /// <summary>
+        /// 释放资源
+        /// </summary>
+        public void Dispose()
+        {
+            if (!MbSession.IsDisposed)
+            {
+                MbSession.Dispose();
+            }
         }
 
         #endregion
+
     }
 }

@@ -36,7 +36,7 @@ namespace JH.ACU.UI
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            _daq.Open((byte)BoardIndex);
+            _daq.OpenBoard((byte)BoardIndex);
         }
 
         private void btnEnable_Click(object sender, EventArgs e)
@@ -51,9 +51,9 @@ namespace JH.ACU.UI
             {
                 try
                 {
-                    _daq.Open((byte) i);
+                    _daq.OpenBoard((byte) i);
                     Thread.Sleep(1000);
-                    _daq.Close((byte) i);
+                    _daq.CloseBoard((byte) i);
                 }
                 catch (Exception ex)
                 {
@@ -87,14 +87,14 @@ namespace JH.ACU.UI
 
         private void btn15_Click(object sender, EventArgs e)
         {
-            _daq.Open(0);
-            _daq.Open(6);
+            _daq.OpenBoard(0);
+            _daq.OpenBoard(6);
             MessageBoxHelper.ShowInformationOk("执行完毕，请测试0号板和6号板是否正常使能");
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            _daq.Close((byte) BoardIndex);
+            _daq.CloseBoard((byte) BoardIndex);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -117,14 +117,14 @@ namespace JH.ACU.UI
 
         private void button3_Click(object sender, EventArgs e)
         {
-            _prs = new BllPrs(InstrName.PRS0);
+            _prs = new BllPrs(InstrName.Prs0);
             _prs.Initialize();
             
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var value = float.Parse(textBox1.Text);
+            var value = double.Parse(textBox1.Text);
             _prs.SetResistance(value);
         }
 

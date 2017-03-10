@@ -9,7 +9,7 @@ namespace JH.ACU.BLL.Instruments
     /// </summary>
     public class BllPwr :BllVisa//暂时先不调用IDalVisa
     {
-        public BllPwr(InstrName instr=InstrName.PWR)
+        public BllPwr(InstrName instr=InstrName.Pwr)
             : base(instr)
         {
         }
@@ -30,8 +30,8 @@ namespace JH.ACU.BLL.Instruments
         /// </summary>
         public double OutputCurrent
         {
-            get { return Convert.ToDouble(WriteAndRead(Chanel + "CURRent?")); }
-            set { WriteNoRead(Chanel + "CURRent " + value); }
+            get { return Convert.ToDouble(Read(Chanel + "CURRent?")); }
+            set { Write(Chanel + "CURRent " + value); }
         }
 
         /// <summary>
@@ -39,8 +39,8 @@ namespace JH.ACU.BLL.Instruments
         /// </summary>
         public double OutputVoltage
         {
-            get { return Convert.ToDouble(WriteAndRead(Chanel + "VOLTage?")); }
-            set { WriteNoRead(Chanel + "VOLTage " + value); }
+            get { return Convert.ToDouble(Read(Chanel + "VOLTage?")); }
+            set { Write(Chanel + "VOLTage " + value); }
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace JH.ACU.BLL.Instruments
         /// </summary>
         public double ActualCurrent
         {
-            get { return Convert.ToDouble(WriteAndRead(Chanel + "MEASure:CURRent?")); }
+            get { return Convert.ToDouble(Read(Chanel + "MEASure:CURRent?")); }
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace JH.ACU.BLL.Instruments
         /// </summary>
         public double ActualVoltage
         {
-            get { return Convert.ToDouble(WriteAndRead(Chanel + "MEASure:VOLTage?")); }
+            get { return Convert.ToDouble(Read(Chanel + "MEASure:VOLTage?")); }
         }
 
         /// <summary>
@@ -66,13 +66,13 @@ namespace JH.ACU.BLL.Instruments
         {
             get
             {
-                var res = WriteAndRead(Chanel + "PROTection:CURRent?");
+                var res = Read(Chanel + "PROTection:CURRent?");
                 return res == "1";
             }
             set
             {
                 var v = value ? "1" : "0";
-                WriteNoRead(Chanel + "PROTection:CURRent " + v);
+                Write(Chanel + "PROTection:CURRent " + v);
             }
         }
 
@@ -81,8 +81,8 @@ namespace JH.ACU.BLL.Instruments
         /// </summary>
         public double Ovp
         {
-            get { return Convert.ToDouble(WriteAndRead(Chanel + "PROTection:VOLTage?")); }
-            set { WriteNoRead(Chanel + "PROTection:VOLTage " + value); }
+            get { return Convert.ToDouble(Read(Chanel + "PROTection:VOLTage?")); }
+            set { Write(Chanel + "PROTection:VOLTage " + value); }
 
         }
 
@@ -93,13 +93,13 @@ namespace JH.ACU.BLL.Instruments
         {
             get
             {
-                var res = WriteAndRead(Output + "STATe?");
+                var res = Read(Output + "STATe?");
                 return res == "1";
             }
             set
             {
                 var v = value ? "1" : "0";
-                WriteNoRead(Output + "STATe " + v);
+                Write(Output + "STATe " + v);
             }
         }
 
@@ -114,29 +114,25 @@ namespace JH.ACU.BLL.Instruments
 
         #region 公有方法
 
-
-
-
         /// <summary>
         /// Clears over-voltage and over-current and
         /// over temperature protection error message.
         /// </summary>
         public void ClearProduction()
         {
-            WriteNoRead(Output + "PROTection:CLEar");
+            Write(Output + "PROTection:CLEar");
         }
-
-
-
-        #endregion
 
         public override void Initialize()
         {
+
             Reset();
             if (!SelfTest())
             {
                 throw new Exception("程控电源自检失败");
             }
         }
+        #endregion
+
     }
 }

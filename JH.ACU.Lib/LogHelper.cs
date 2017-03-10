@@ -58,7 +58,7 @@ namespace JH.ACU.Lib
                     sw.WriteLine("【Message】" + ex.Message);
                     sw.WriteLine("【Source】" + ex.Source);
                     sw.WriteLine("【StackTrace】" + ex.StackTrace);
-                    if (!string.IsNullOrEmpty(description))
+                    if (!description.IsNullOrEmpty())
                     {
                         sw.WriteLine("【Extras】" + description);
                     }

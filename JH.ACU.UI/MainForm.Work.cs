@@ -26,8 +26,8 @@ namespace JH.ACU.UI
                 _chamber = new BllChamber();
                 _daq = new BllDaq();
                 _dmm = new BllDmm();
-                _prs0 = new BllPrs(InstrName.PRS0);
-                _prs1 = new BllPrs(InstrName.PRS1);
+                _prs0 = new BllPrs(InstrName.Prs0);
+                _prs1 = new BllPrs(InstrName.Prs1);
                 _pwr = new BllPwr();
                 return true;
             }
@@ -46,7 +46,7 @@ namespace JH.ACU.UI
                 _dmm.Initialize();
                 _prs0.Initialize();
                 _prs1.Initialize();
-                //ACU 不需要初始化
+                //Acu 不需要初始化
                 //温箱不需要初始化
                 //
                 return true;

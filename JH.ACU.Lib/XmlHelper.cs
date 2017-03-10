@@ -66,7 +66,7 @@ namespace JH.ACU.Lib
         /// <param name="encoding">编码方式</param>
         public static void XmlSerializeToFile(object o, string path, Encoding encoding)
         {
-            if (string.IsNullOrEmpty(path))
+            if (path.IsNullOrEmpty())
                 throw new ArgumentNullException("path");
 
             using (FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write))
@@ -84,7 +84,7 @@ namespace JH.ACU.Lib
         /// <returns>反序列化得到的对象</returns>
         public static T XmlDeserialize<T>(string s, Encoding encoding)
         {
-            if (string.IsNullOrEmpty(s))
+            if (s.IsNullOrEmpty())
                 throw new ArgumentNullException("s");
             if (encoding == null)
                 throw new ArgumentNullException("encoding");
@@ -108,13 +108,13 @@ namespace JH.ACU.Lib
         /// <returns>反序列化得到的对象</returns>
         public static T XmlDeserializeFromFile<T>(string path, Encoding encoding)
         {
-            if (string.IsNullOrEmpty(path))
+            if (path.IsNullOrEmpty())
                 throw new ArgumentNullException("path");
             if (encoding == null)
                 throw new ArgumentNullException("encoding");
             if (!File.Exists(path)) return Activator.CreateInstance<T>();
             string xml = File.ReadAllText(path, encoding);
-            return string.IsNullOrEmpty(xml.Trim()) ? Activator.CreateInstance<T>() : XmlDeserialize<T>(xml, encoding);
+            return xml.Trim().IsNullOrEmpty() ? Activator.CreateInstance<T>() : XmlDeserialize<T>(xml, encoding);
         }
     }
 

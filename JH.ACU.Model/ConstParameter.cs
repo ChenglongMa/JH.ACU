@@ -17,6 +17,7 @@ namespace JH.ACU.Model
         {
             get { return new[] {300, 600, 1200, 9600, 10400}; }
         }
+
         /// <summary>
         /// 获取数据位集合
         /// </summary>
@@ -35,11 +36,11 @@ namespace JH.ACU.Model
                 return new Dictionary<string, InstrName>
                 {
                     //{"----请选择----", (InstrName)0},
-                    {"ACU", InstrName.ACU},
-                    {"数字万用表", InstrName.DMM},
-                    {"电阻箱#1", InstrName.PRS0},
-                    {"电阻箱#2", InstrName.PRS1},
-                    {"程控电源", InstrName.PWR},
+                    {"ACU", InstrName.Acu},
+                    {"数字万用表", InstrName.Dmm},
+                    {"电阻箱#1", InstrName.Prs0},
+                    {"电阻箱#2", InstrName.Prs1},
+                    {"程控电源", InstrName.Pwr},
                     {"温箱", InstrName.Chamber},
                 };
             }
@@ -52,32 +53,37 @@ namespace JH.ACU.Model
     public enum InstrName
     {
         //None,
-        ACU,
+        Acu,
 
         /// <summary>
         /// 程控电源
         /// </summary>
-        PWR,
+        Pwr,
 
         /// <summary>
         /// 程控电阻箱0
         /// </summary>
-        PRS0,
+        Prs0,
 
         /// <summary>
         /// 程控电阻箱1
         /// </summary>
-        PRS1,
+        Prs1,
 
         /// <summary>
         /// 数字万用表
         /// </summary>
-        DMM,
+        Dmm,
 
         /// <summary>
         /// 温箱
         /// </summary>
         Chamber,
+
+        /// <summary>
+        /// 数据采集卡
+        /// </summary>
+        Daq,
     }
 
     /// <summary>
