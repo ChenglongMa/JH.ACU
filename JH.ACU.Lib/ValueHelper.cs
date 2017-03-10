@@ -24,6 +24,10 @@ namespace JH.ACU.Lib
         {
             return Reverse(BitConverter.GetBytes(value));
         }
+        public static byte[] GetBytes(short value)
+        {
+            return Reverse(BitConverter.GetBytes(value));
+        }
 
         public static byte[] GetBytes(int value)
         {

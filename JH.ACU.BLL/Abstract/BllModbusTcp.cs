@@ -42,7 +42,7 @@ namespace JH.ACU.BLL.Abstract
         /// <summary>
         /// 默认路由地址
         /// </summary>
-        protected byte IdentifierAddress { get; set; }
+        protected abstract byte IdentifierAddress { get; set; }
 
         #region Transaction Identifier
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using JH.ACU.BLL.Abstract;
 using JH.ACU.Lib;
 using JH.ACU.Model;
@@ -14,21 +15,25 @@ namespace JH.ACU.BLL.Instruments
 
         public BllChamber(InstrName name = InstrName.Chamber) : base(name)
         {
-            IdentifierAddress = 0;//温箱默认地址为0
+            IdentifierAddress = 0; //温箱默认地址为0
         }
+
+        protected sealed override byte IdentifierAddress { get; set; }
 
         #endregion
 
         #region 属性、字段
-        private enum RunEnum:ushort
+
+        private enum RunEnum : ushort
         {
-            Stop=0,
-            Run=1,
-            Stay=2,
+            Stop = 0,
+            Run = 1,
+            Stay = 2,
+
             /// <summary>
             /// 跳步,只用于程序控制中
             /// </summary>
-            Skip=4,
+            Skip = 4,
         }
 
         #endregion
@@ -38,8 +43,9 @@ namespace JH.ACU.BLL.Instruments
         private void RunInConst(RunEnum isRun)
         {
             var value = ValueHelper.GetBytes((ushort) isRun);
-            SendMultiRegisters(47,value);
+            SendMultiRegisters(47, value);
         }
+
         #endregion
 
         #region 公有方法
@@ -51,9 +57,8 @@ namespace JH.ACU.BLL.Instruments
         public void SetTemp(double temp)
         {
             var value = (short) (temp*10);
-            var highByte = (byte) ((value >> 8) & 0xFF);
-            var lowByte = (byte) (value & 0xFF);
-            SendMultiRegisters(43, highByte, lowByte);
+            var data = ValueHelper.GetBytes(value);
+            SendMultiRegisters(43, data);
         }
 
         /// <summary>
@@ -62,8 +67,8 @@ namespace JH.ACU.BLL.Instruments
         /// <returns></returns>
         public double GetTemp()
         {
-            var data = ReceiveRegister(0, 1);
-            var res = (short) ((data[0] & 0xFF) << 8) | (data[1] & 0xFF);
+            var data = ReceiveRegister(0, 1).Take(2).ToArray();
+            var res = ValueHelper.GetShort(data);
             return Convert.ToDouble(res)/10;
         }
 
@@ -74,6 +79,7 @@ namespace JH.ACU.BLL.Instruments
         {
             RunInConst(RunEnum.Run);
         }
+
         /// <summary>
         /// 定值运行停止
         /// </summary>
@@ -81,6 +87,7 @@ namespace JH.ACU.BLL.Instruments
         {
             RunInConst(RunEnum.Stop);
         }
+
         /// <summary>
         /// 定值运行保持
         /// </summary>
@@ -88,6 +95,7 @@ namespace JH.ACU.BLL.Instruments
         {
             RunInConst(RunEnum.Stay);
         }
+
         #endregion
 
     }

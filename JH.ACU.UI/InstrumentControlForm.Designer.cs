@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.leds20 = new NationalInstruments.UI.WindowsForms.LedArray();
-            this.flowSum = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowSubRelays = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel15 = new System.Windows.Forms.FlowLayoutPanel();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -83,42 +83,53 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel16 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.switch4 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.switch3 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.switch2 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.switch1 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.swPwrOutput = new NationalInstruments.UI.WindowsForms.Switch();
+            this.swPwrOcp = new NationalInstruments.UI.WindowsForms.Switch();
+            this.swPwrOvp = new NationalInstruments.UI.WindowsForms.Switch();
+            this.swPwrOpen = new NationalInstruments.UI.WindowsForms.Switch();
+            this.btnSetCurr = new System.Windows.Forms.Button();
+            this.btnSetVolt = new System.Windows.Forms.Button();
+            this.numSetCurr = new System.Windows.Forms.NumericUpDown();
+            this.numSetVolt = new System.Windows.Forms.NumericUpDown();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.switch5 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.btnSetRes = new System.Windows.Forms.Button();
+            this.numSetRes = new System.Windows.Forms.NumericUpDown();
+            this.swResOpen = new NationalInstruments.UI.WindowsForms.Switch();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.switch6 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.button4 = new System.Windows.Forms.Button();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.button5 = new System.Windows.Forms.Button();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            this.button3 = new System.Windows.Forms.Button();
+            this.swDmmOpen = new NationalInstruments.UI.WindowsForms.Switch();
+            this.btnGetFreq = new System.Windows.Forms.Button();
+            this.btnGetFRes = new System.Windows.Forms.Button();
+            this.numGetRes = new System.Windows.Forms.NumericUpDown();
+            this.numGetFreq = new System.Windows.Forms.NumericUpDown();
+            this.btnGetCurr = new System.Windows.Forms.Button();
+            this.numGetFRes = new System.Windows.Forms.NumericUpDown();
+            this.numGetVolt = new System.Windows.Forms.NumericUpDown();
+            this.btnGetRes = new System.Windows.Forms.Button();
+            this.numGetCurr = new System.Windows.Forms.NumericUpDown();
+            this.btnGetVolt = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.switch8 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.switch7 = new NationalInstruments.UI.WindowsForms.Switch();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.switch9 = new NationalInstruments.UI.WindowsForms.Switch();
+            this.swChamRun = new NationalInstruments.UI.WindowsForms.Switch();
+            this.btnSetTemp = new System.Windows.Forms.Button();
+            this.btnGetTemp = new System.Windows.Forms.Button();
+            this.numSetTemp = new System.Windows.Forms.NumericUpDown();
+            this.numGetTemp = new System.Windows.Forms.NumericUpDown();
             this.flowLayoutPanel19 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.flowMainRelays = new System.Windows.Forms.FlowLayoutPanel();
+            this.led3 = new NationalInstruments.UI.WindowsForms.Led();
+            this.led1 = new NationalInstruments.UI.WindowsForms.Led();
+            this.led2 = new NationalInstruments.UI.WindowsForms.Led();
+            this.numBoardIndex = new System.Windows.Forms.NumericUpDown();
+            this.btnBoardClose = new System.Windows.Forms.Button();
+            this.btnBoardOpen = new System.Windows.Forms.Button();
+            this.btnRelayDisable = new System.Windows.Forms.Button();
+            this.btnRelayEnable = new System.Windows.Forms.Button();
+            this.numRelayIndex = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.swDaqOpen = new NationalInstruments.UI.WindowsForms.Switch();
+            this.flowBoard = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel17 = new System.Windows.Forms.FlowLayoutPanel();
             this.label29 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -129,23 +140,19 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.ledArray2 = new NationalInstruments.UI.WindowsForms.LedArray();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.flowMainRelay = new System.Windows.Forms.FlowLayoutPanel();
-            this.led3 = new NationalInstruments.UI.WindowsForms.Led();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.led1 = new NationalInstruments.UI.WindowsForms.Led();
-            this.led2 = new NationalInstruments.UI.WindowsForms.Led();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.cmbInstrName = new System.Windows.Forms.ComboBox();
+            this.cmbResIndex = new System.Windows.Forms.ComboBox();
+            this.txtCommand = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtResult = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.btnWrite = new System.Windows.Forms.Button();
+            this.btnRead = new System.Windows.Forms.Button();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.leds20.ItemTemplate)).BeginInit();
-            this.flowSum.SuspendLayout();
+            this.flowSubRelays.SuspendLayout();
             this.flowLayoutPanel15.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -178,58 +185,58 @@
             this.splitContainer1.SuspendLayout();
             this.flowLayoutPanel16.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.switch4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swPwrOutput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swPwrOcp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swPwrOvp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swPwrOpen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetCurr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetVolt)).BeginInit();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetRes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swResOpen)).BeginInit();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.switch6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swDmmOpen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetRes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetFreq)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetFRes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetVolt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetCurr)).BeginInit();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.switch8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swChamRun)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetTemp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetTemp)).BeginInit();
             this.flowLayoutPanel19.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel17.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ledArray2.ItemTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.flowMainRelay.SuspendLayout();
+            this.flowMainRelays.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.led3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.led1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.led2)).BeginInit();
-            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numBoardIndex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRelayIndex)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swDaqOpen)).BeginInit();
+            this.flowBoard.SuspendLayout();
+            this.flowLayoutPanel17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ledArray2.ItemTemplate)).BeginInit();
+            this.groupBox8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 612);
+            this.toolStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 552);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1047, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(987, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // toolStatus
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(44, 17);
-            this.toolStripStatusLabel1.Text = "Ready";
+            this.toolStatus.Name = "toolStatus";
+            this.toolStatus.Size = new System.Drawing.Size(44, 17);
+            this.toolStatus.Text = "Ready";
             // 
             // leds20
             // 
@@ -249,29 +256,29 @@
             this.leds20.Size = new System.Drawing.Size(38, 297);
             this.leds20.TabIndex = 2;
             // 
-            // flowSum
+            // flowSubRelays
             // 
-            this.flowSum.AutoSize = true;
-            this.flowSum.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowSum.Controls.Add(this.flowLayoutPanel15);
-            this.flowSum.Controls.Add(this.flowLayoutPanel2);
-            this.flowSum.Controls.Add(this.flowLayoutPanel3);
-            this.flowSum.Controls.Add(this.flowLayoutPanel4);
-            this.flowSum.Controls.Add(this.flowLayoutPanel5);
-            this.flowSum.Controls.Add(this.flowLayoutPanel6);
-            this.flowSum.Controls.Add(this.flowLayoutPanel7);
-            this.flowSum.Controls.Add(this.flowLayoutPanel8);
-            this.flowSum.Controls.Add(this.flowLayoutPanel9);
-            this.flowSum.Controls.Add(this.flowLayoutPanel10);
-            this.flowSum.Controls.Add(this.flowLayoutPanel11);
-            this.flowSum.Controls.Add(this.flowLayoutPanel12);
-            this.flowSum.Controls.Add(this.flowLayoutPanel14);
-            this.flowSum.Controls.Add(this.flowLayoutPanel13);
-            this.flowSum.Location = new System.Drawing.Point(6, 101);
-            this.flowSum.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.flowSum.Name = "flowSum";
-            this.flowSum.Size = new System.Drawing.Size(520, 319);
-            this.flowSum.TabIndex = 3;
+            this.flowSubRelays.AutoSize = true;
+            this.flowSubRelays.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel15);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel2);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel3);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel4);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel5);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel6);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel7);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel8);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel9);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel10);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel11);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel12);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel14);
+            this.flowSubRelays.Controls.Add(this.flowLayoutPanel13);
+            this.flowSubRelays.Location = new System.Drawing.Point(6, 101);
+            this.flowSubRelays.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.flowSubRelays.Name = "flowSubRelays";
+            this.flowSubRelays.Size = new System.Drawing.Size(520, 319);
+            this.flowSubRelays.TabIndex = 3;
             // 
             // flowLayoutPanel15
             // 
@@ -940,35 +947,35 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
-            this.splitContainer1.Size = new System.Drawing.Size(1047, 612);
-            this.splitContainer1.SplitterDistance = 450;
+            this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel19);
+            this.splitContainer1.Size = new System.Drawing.Size(987, 552);
+            this.splitContainer1.SplitterDistance = 449;
             this.splitContainer1.TabIndex = 6;
             // 
             // flowLayoutPanel16
             // 
             this.flowLayoutPanel16.Controls.Add(this.groupBox4);
             this.flowLayoutPanel16.Controls.Add(this.groupBox5);
-            this.flowLayoutPanel16.Controls.Add(this.groupBox6);
             this.flowLayoutPanel16.Controls.Add(this.groupBox7);
+            this.flowLayoutPanel16.Controls.Add(this.groupBox6);
             this.flowLayoutPanel16.Controls.Add(this.groupBox8);
+            this.flowLayoutPanel16.Controls.Add(this.groupBox9);
             this.flowLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel16.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel16.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel16.Name = "flowLayoutPanel16";
-            this.flowLayoutPanel16.Size = new System.Drawing.Size(450, 612);
+            this.flowLayoutPanel16.Size = new System.Drawing.Size(449, 552);
             this.flowLayoutPanel16.TabIndex = 0;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.switch4);
-            this.groupBox4.Controls.Add(this.switch3);
-            this.groupBox4.Controls.Add(this.switch2);
-            this.groupBox4.Controls.Add(this.switch1);
-            this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.numericUpDown4);
-            this.groupBox4.Controls.Add(this.numericUpDown1);
+            this.groupBox4.Controls.Add(this.swPwrOutput);
+            this.groupBox4.Controls.Add(this.swPwrOcp);
+            this.groupBox4.Controls.Add(this.swPwrOvp);
+            this.groupBox4.Controls.Add(this.swPwrOpen);
+            this.groupBox4.Controls.Add(this.btnSetCurr);
+            this.groupBox4.Controls.Add(this.btnSetVolt);
+            this.groupBox4.Controls.Add(this.numSetCurr);
+            this.groupBox4.Controls.Add(this.numSetVolt);
             this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(442, 92);
@@ -976,356 +983,476 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Power";
             // 
-            // switch4
+            // swPwrOutput
             // 
-            this.switch4.Caption = "Output";
-            this.switch4.Location = new System.Drawing.Point(213, 20);
-            this.switch4.Name = "switch4";
-            this.switch4.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch4.OnColor = System.Drawing.Color.Lime;
-            this.switch4.Size = new System.Drawing.Size(63, 70);
-            this.switch4.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch4.TabIndex = 7;
+            this.swPwrOutput.Caption = "Output";
+            this.swPwrOutput.Location = new System.Drawing.Point(213, 20);
+            this.swPwrOutput.Name = "swPwrOutput";
+            this.swPwrOutput.OffColor = System.Drawing.Color.DarkGreen;
+            this.swPwrOutput.OnColor = System.Drawing.Color.Lime;
+            this.swPwrOutput.Size = new System.Drawing.Size(63, 70);
+            this.swPwrOutput.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swPwrOutput.TabIndex = 7;
             // 
-            // switch3
+            // swPwrOcp
             // 
-            this.switch3.Caption = "OCP";
-            this.switch3.Location = new System.Drawing.Point(144, 20);
-            this.switch3.Name = "switch3";
-            this.switch3.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch3.OnColor = System.Drawing.Color.Lime;
-            this.switch3.Size = new System.Drawing.Size(63, 70);
-            this.switch3.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch3.TabIndex = 7;
+            this.swPwrOcp.Caption = "OCP";
+            this.swPwrOcp.Location = new System.Drawing.Point(144, 20);
+            this.swPwrOcp.Name = "swPwrOcp";
+            this.swPwrOcp.OffColor = System.Drawing.Color.DarkGreen;
+            this.swPwrOcp.OnColor = System.Drawing.Color.Lime;
+            this.swPwrOcp.Size = new System.Drawing.Size(63, 70);
+            this.swPwrOcp.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swPwrOcp.TabIndex = 7;
             // 
-            // switch2
+            // swPwrOvp
             // 
-            this.switch2.Caption = "OVP";
-            this.switch2.Location = new System.Drawing.Point(75, 20);
-            this.switch2.Name = "switch2";
-            this.switch2.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch2.OnColor = System.Drawing.Color.Lime;
-            this.switch2.Size = new System.Drawing.Size(63, 70);
-            this.switch2.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch2.TabIndex = 7;
+            this.swPwrOvp.Caption = "OVP";
+            this.swPwrOvp.Location = new System.Drawing.Point(75, 20);
+            this.swPwrOvp.Name = "swPwrOvp";
+            this.swPwrOvp.OffColor = System.Drawing.Color.DarkGreen;
+            this.swPwrOvp.OnColor = System.Drawing.Color.Lime;
+            this.swPwrOvp.Size = new System.Drawing.Size(63, 70);
+            this.swPwrOvp.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swPwrOvp.TabIndex = 7;
             // 
-            // switch1
+            // swPwrOpen
             // 
-            this.switch1.Caption = "Open";
-            this.switch1.Location = new System.Drawing.Point(6, 20);
-            this.switch1.Name = "switch1";
-            this.switch1.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch1.OnColor = System.Drawing.Color.Lime;
-            this.switch1.Size = new System.Drawing.Size(63, 70);
-            this.switch1.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch1.TabIndex = 7;
+            this.swPwrOpen.Caption = "Open";
+            this.swPwrOpen.Location = new System.Drawing.Point(6, 20);
+            this.swPwrOpen.Name = "swPwrOpen";
+            this.swPwrOpen.OffColor = System.Drawing.Color.DarkGreen;
+            this.swPwrOpen.OnColor = System.Drawing.Color.Lime;
+            this.swPwrOpen.Size = new System.Drawing.Size(63, 70);
+            this.swPwrOpen.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swPwrOpen.TabIndex = 7;
             // 
-            // button2
+            // btnSetCurr
             // 
-            this.button2.Location = new System.Drawing.Point(282, 56);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "SetCurr";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSetCurr.Location = new System.Drawing.Point(282, 56);
+            this.btnSetCurr.Name = "btnSetCurr";
+            this.btnSetCurr.Size = new System.Drawing.Size(75, 23);
+            this.btnSetCurr.TabIndex = 0;
+            this.btnSetCurr.Text = "SetCurr";
+            this.btnSetCurr.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnSetVolt
             // 
-            this.button1.Location = new System.Drawing.Point(282, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "SetVolt";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSetVolt.Location = new System.Drawing.Point(282, 21);
+            this.btnSetVolt.Name = "btnSetVolt";
+            this.btnSetVolt.Size = new System.Drawing.Size(75, 23);
+            this.btnSetVolt.TabIndex = 0;
+            this.btnSetVolt.Text = "SetVolt";
+            this.btnSetVolt.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown4
+            // numSetCurr
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(363, 56);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown4.TabIndex = 6;
+            this.numSetCurr.Location = new System.Drawing.Point(363, 56);
+            this.numSetCurr.Name = "numSetCurr";
+            this.numSetCurr.Size = new System.Drawing.Size(66, 21);
+            this.numSetCurr.TabIndex = 6;
             // 
-            // numericUpDown1
+            // numSetVolt
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(363, 21);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown1.TabIndex = 6;
+            this.numSetVolt.Location = new System.Drawing.Point(363, 21);
+            this.numSetVolt.Name = "numSetVolt";
+            this.numSetVolt.Size = new System.Drawing.Size(66, 21);
+            this.numSetVolt.TabIndex = 6;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.button6);
-            this.groupBox5.Controls.Add(this.numericUpDown5);
-            this.groupBox5.Controls.Add(this.switch5);
+            this.groupBox5.Controls.Add(this.cmbResIndex);
+            this.groupBox5.Controls.Add(this.btnSetRes);
+            this.groupBox5.Controls.Add(this.numSetRes);
+            this.groupBox5.Controls.Add(this.swResOpen);
             this.groupBox5.Location = new System.Drawing.Point(3, 101);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(442, 92);
+            this.groupBox5.Size = new System.Drawing.Size(178, 102);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Resistance";
             // 
-            // button6
+            // btnSetRes
             // 
-            this.button6.Location = new System.Drawing.Point(75, 20);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "SetRes";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnSetRes.Location = new System.Drawing.Point(90, 73);
+            this.btnSetRes.Name = "btnSetRes";
+            this.btnSetRes.Size = new System.Drawing.Size(75, 23);
+            this.btnSetRes.TabIndex = 0;
+            this.btnSetRes.Text = "SetRes";
+            this.btnSetRes.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown5
+            // numSetRes
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(156, 23);
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown5.TabIndex = 6;
+            this.numSetRes.Location = new System.Drawing.Point(90, 46);
+            this.numSetRes.Name = "numSetRes";
+            this.numSetRes.Size = new System.Drawing.Size(75, 21);
+            this.numSetRes.TabIndex = 6;
             // 
-            // switch5
+            // swResOpen
             // 
-            this.switch5.Caption = "Open";
-            this.switch5.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
-            this.switch5.Location = new System.Drawing.Point(9, 20);
-            this.switch5.Name = "switch5";
-            this.switch5.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch5.OnColor = System.Drawing.Color.Lime;
-            this.switch5.Size = new System.Drawing.Size(63, 70);
-            this.switch5.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch5.TabIndex = 7;
+            this.swResOpen.Caption = "Open";
+            this.swResOpen.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
+            this.swResOpen.Location = new System.Drawing.Point(6, 16);
+            this.swResOpen.Name = "swResOpen";
+            this.swResOpen.OffColor = System.Drawing.Color.DarkGreen;
+            this.swResOpen.OnColor = System.Drawing.Color.Lime;
+            this.swResOpen.Size = new System.Drawing.Size(63, 70);
+            this.swResOpen.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swResOpen.TabIndex = 7;
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.switch6);
-            this.groupBox6.Controls.Add(this.button8);
-            this.groupBox6.Controls.Add(this.button7);
-            this.groupBox6.Controls.Add(this.numericUpDown9);
-            this.groupBox6.Controls.Add(this.numericUpDown10);
-            this.groupBox6.Controls.Add(this.button4);
-            this.groupBox6.Controls.Add(this.numericUpDown8);
-            this.groupBox6.Controls.Add(this.numericUpDown6);
-            this.groupBox6.Controls.Add(this.button5);
-            this.groupBox6.Controls.Add(this.numericUpDown7);
-            this.groupBox6.Controls.Add(this.button3);
-            this.groupBox6.Location = new System.Drawing.Point(3, 199);
+            this.groupBox6.Controls.Add(this.swDmmOpen);
+            this.groupBox6.Controls.Add(this.btnGetFreq);
+            this.groupBox6.Controls.Add(this.btnGetFRes);
+            this.groupBox6.Controls.Add(this.numGetRes);
+            this.groupBox6.Controls.Add(this.numGetFreq);
+            this.groupBox6.Controls.Add(this.btnGetCurr);
+            this.groupBox6.Controls.Add(this.numGetFRes);
+            this.groupBox6.Controls.Add(this.numGetVolt);
+            this.groupBox6.Controls.Add(this.btnGetRes);
+            this.groupBox6.Controls.Add(this.numGetCurr);
+            this.groupBox6.Controls.Add(this.btnGetVolt);
+            this.groupBox6.Location = new System.Drawing.Point(3, 209);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(442, 124);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Multimeter";
             // 
-            // switch6
+            // swDmmOpen
             // 
-            this.switch6.Caption = "Open";
-            this.switch6.Location = new System.Drawing.Point(9, 20);
-            this.switch6.Name = "switch6";
-            this.switch6.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch6.OnColor = System.Drawing.Color.Lime;
-            this.switch6.Size = new System.Drawing.Size(63, 70);
-            this.switch6.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch6.TabIndex = 7;
+            this.swDmmOpen.Caption = "Open";
+            this.swDmmOpen.Location = new System.Drawing.Point(6, 35);
+            this.swDmmOpen.Name = "swDmmOpen";
+            this.swDmmOpen.OffColor = System.Drawing.Color.DarkGreen;
+            this.swDmmOpen.OnColor = System.Drawing.Color.Lime;
+            this.swDmmOpen.Size = new System.Drawing.Size(63, 70);
+            this.swDmmOpen.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swDmmOpen.TabIndex = 7;
             // 
-            // button8
+            // btnGetFreq
             // 
-            this.button8.Location = new System.Drawing.Point(282, 92);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "GetFreq";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnGetFreq.Location = new System.Drawing.Point(282, 51);
+            this.btnGetFreq.Name = "btnGetFreq";
+            this.btnGetFreq.Size = new System.Drawing.Size(75, 23);
+            this.btnGetFreq.TabIndex = 0;
+            this.btnGetFreq.Text = "GetFreq";
+            this.btnGetFreq.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // btnGetFRes
             // 
-            this.button7.Location = new System.Drawing.Point(282, 55);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "GetFRes";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnGetFRes.Location = new System.Drawing.Point(282, 20);
+            this.btnGetFRes.Name = "btnGetFRes";
+            this.btnGetFRes.Size = new System.Drawing.Size(75, 23);
+            this.btnGetFRes.TabIndex = 0;
+            this.btnGetFRes.Text = "GetFRes";
+            this.btnGetFRes.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown9
+            // numGetRes
             // 
-            this.numericUpDown9.Location = new System.Drawing.Point(363, 20);
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown9.TabIndex = 6;
+            this.numGetRes.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.numGetRes.Location = new System.Drawing.Point(171, 88);
+            this.numGetRes.Name = "numGetRes";
+            this.numGetRes.ReadOnly = true;
+            this.numGetRes.Size = new System.Drawing.Size(66, 21);
+            this.numGetRes.TabIndex = 6;
             // 
-            // numericUpDown10
+            // numGetFreq
             // 
-            this.numericUpDown10.Location = new System.Drawing.Point(363, 92);
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown10.TabIndex = 6;
+            this.numGetFreq.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.numGetFreq.Location = new System.Drawing.Point(363, 51);
+            this.numGetFreq.Name = "numGetFreq";
+            this.numGetFreq.ReadOnly = true;
+            this.numGetFreq.Size = new System.Drawing.Size(66, 21);
+            this.numGetFreq.TabIndex = 6;
             // 
-            // button4
+            // btnGetCurr
             // 
-            this.button4.Location = new System.Drawing.Point(75, 55);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "GetCurr";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnGetCurr.Location = new System.Drawing.Point(90, 54);
+            this.btnGetCurr.Name = "btnGetCurr";
+            this.btnGetCurr.Size = new System.Drawing.Size(75, 23);
+            this.btnGetCurr.TabIndex = 0;
+            this.btnGetCurr.Text = "GetCurr";
+            this.btnGetCurr.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown8
+            // numGetFRes
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(363, 55);
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown8.TabIndex = 6;
+            this.numGetFRes.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.numGetFRes.Location = new System.Drawing.Point(363, 20);
+            this.numGetFRes.Name = "numGetFRes";
+            this.numGetFRes.ReadOnly = true;
+            this.numGetFRes.Size = new System.Drawing.Size(66, 21);
+            this.numGetFRes.TabIndex = 6;
             // 
-            // numericUpDown6
+            // numGetVolt
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(156, 20);
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown6.TabIndex = 6;
+            this.numGetVolt.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.numGetVolt.Location = new System.Drawing.Point(171, 20);
+            this.numGetVolt.Name = "numGetVolt";
+            this.numGetVolt.ReadOnly = true;
+            this.numGetVolt.Size = new System.Drawing.Size(66, 21);
+            this.numGetVolt.TabIndex = 6;
             // 
-            // button5
+            // btnGetRes
             // 
-            this.button5.Location = new System.Drawing.Point(282, 20);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "GetRes";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnGetRes.Location = new System.Drawing.Point(90, 88);
+            this.btnGetRes.Name = "btnGetRes";
+            this.btnGetRes.Size = new System.Drawing.Size(75, 23);
+            this.btnGetRes.TabIndex = 0;
+            this.btnGetRes.Text = "GetRes";
+            this.btnGetRes.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown7
+            // numGetCurr
             // 
-            this.numericUpDown7.Location = new System.Drawing.Point(156, 55);
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown7.TabIndex = 6;
+            this.numGetCurr.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.numGetCurr.Location = new System.Drawing.Point(171, 54);
+            this.numGetCurr.Name = "numGetCurr";
+            this.numGetCurr.ReadOnly = true;
+            this.numGetCurr.Size = new System.Drawing.Size(66, 21);
+            this.numGetCurr.TabIndex = 6;
             // 
-            // button3
+            // btnGetVolt
             // 
-            this.button3.Location = new System.Drawing.Point(75, 20);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "GetVolt";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnGetVolt.Location = new System.Drawing.Point(90, 20);
+            this.btnGetVolt.Name = "btnGetVolt";
+            this.btnGetVolt.Size = new System.Drawing.Size(75, 23);
+            this.btnGetVolt.TabIndex = 0;
+            this.btnGetVolt.Text = "GetVolt";
+            this.btnGetVolt.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.switch8);
-            this.groupBox7.Controls.Add(this.switch7);
-            this.groupBox7.Controls.Add(this.button10);
-            this.groupBox7.Controls.Add(this.button9);
-            this.groupBox7.Controls.Add(this.numericUpDown11);
-            this.groupBox7.Controls.Add(this.numericUpDown12);
-            this.groupBox7.Location = new System.Drawing.Point(3, 329);
+            this.groupBox7.Controls.Add(this.swChamRun);
+            this.groupBox7.Controls.Add(this.btnSetTemp);
+            this.groupBox7.Controls.Add(this.btnGetTemp);
+            this.groupBox7.Controls.Add(this.numSetTemp);
+            this.groupBox7.Controls.Add(this.numGetTemp);
+            this.groupBox7.Location = new System.Drawing.Point(187, 101);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(442, 92);
+            this.groupBox7.Size = new System.Drawing.Size(258, 102);
             this.groupBox7.TabIndex = 3;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Chamber";
             // 
-            // switch8
+            // swChamRun
             // 
-            this.switch8.Caption = "Run";
-            this.switch8.Location = new System.Drawing.Point(75, 20);
-            this.switch8.Name = "switch8";
-            this.switch8.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch8.OnColor = System.Drawing.Color.Lime;
-            this.switch8.Size = new System.Drawing.Size(63, 70);
-            this.switch8.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch8.TabIndex = 7;
+            this.swChamRun.Caption = "Run";
+            this.swChamRun.Location = new System.Drawing.Point(9, 16);
+            this.swChamRun.Name = "swChamRun";
+            this.swChamRun.OffColor = System.Drawing.Color.DarkGreen;
+            this.swChamRun.OnColor = System.Drawing.Color.Lime;
+            this.swChamRun.Size = new System.Drawing.Size(63, 70);
+            this.swChamRun.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swChamRun.TabIndex = 7;
             // 
-            // switch7
+            // btnSetTemp
             // 
-            this.switch7.Caption = "Open";
-            this.switch7.Location = new System.Drawing.Point(6, 20);
-            this.switch7.Name = "switch7";
-            this.switch7.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch7.OnColor = System.Drawing.Color.Lime;
-            this.switch7.Size = new System.Drawing.Size(63, 70);
-            this.switch7.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch7.TabIndex = 7;
+            this.btnSetTemp.Location = new System.Drawing.Point(98, 55);
+            this.btnSetTemp.Name = "btnSetTemp";
+            this.btnSetTemp.Size = new System.Drawing.Size(75, 23);
+            this.btnSetTemp.TabIndex = 0;
+            this.btnSetTemp.Text = "SetTemp";
+            this.btnSetTemp.UseVisualStyleBackColor = true;
             // 
-            // button10
+            // btnGetTemp
             // 
-            this.button10.Location = new System.Drawing.Point(282, 55);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "SetTemp";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnGetTemp.Location = new System.Drawing.Point(98, 20);
+            this.btnGetTemp.Name = "btnGetTemp";
+            this.btnGetTemp.Size = new System.Drawing.Size(75, 23);
+            this.btnGetTemp.TabIndex = 0;
+            this.btnGetTemp.Text = "GetTemp";
+            this.btnGetTemp.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // numSetTemp
             // 
-            this.button9.Location = new System.Drawing.Point(282, 20);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "GetTemp";
-            this.button9.UseVisualStyleBackColor = true;
+            this.numSetTemp.Location = new System.Drawing.Point(179, 55);
+            this.numSetTemp.Name = "numSetTemp";
+            this.numSetTemp.Size = new System.Drawing.Size(66, 21);
+            this.numSetTemp.TabIndex = 6;
             // 
-            // numericUpDown11
+            // numGetTemp
             // 
-            this.numericUpDown11.Location = new System.Drawing.Point(363, 55);
-            this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown11.TabIndex = 6;
-            // 
-            // numericUpDown12
-            // 
-            this.numericUpDown12.Location = new System.Drawing.Point(363, 20);
-            this.numericUpDown12.Name = "numericUpDown12";
-            this.numericUpDown12.Size = new System.Drawing.Size(66, 21);
-            this.numericUpDown12.TabIndex = 6;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Location = new System.Drawing.Point(3, 427);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(442, 115);
-            this.groupBox8.TabIndex = 4;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "DAQ Card";
-            // 
-            // switch9
-            // 
-            this.switch9.Caption = "Open";
-            this.switch9.Location = new System.Drawing.Point(20, 17);
-            this.switch9.Name = "switch9";
-            this.switch9.OffColor = System.Drawing.Color.DarkGreen;
-            this.switch9.OnColor = System.Drawing.Color.Lime;
-            this.switch9.Size = new System.Drawing.Size(63, 70);
-            this.switch9.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.switch9.TabIndex = 7;
+            this.numGetTemp.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.numGetTemp.Location = new System.Drawing.Point(179, 20);
+            this.numGetTemp.Name = "numGetTemp";
+            this.numGetTemp.ReadOnly = true;
+            this.numGetTemp.Size = new System.Drawing.Size(66, 21);
+            this.numGetTemp.TabIndex = 6;
             // 
             // flowLayoutPanel19
             // 
-            this.flowLayoutPanel19.Controls.Add(this.groupBox1);
+            this.flowLayoutPanel19.AutoSize = true;
+            this.flowLayoutPanel19.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel19.Controls.Add(this.groupBox2);
+            this.flowLayoutPanel19.Controls.Add(this.groupBox1);
             this.flowLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel19.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel19.Location = new System.Drawing.Point(3, 17);
+            this.flowLayoutPanel19.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel19.Name = "flowLayoutPanel19";
-            this.flowLayoutPanel19.Size = new System.Drawing.Size(587, 592);
+            this.flowLayoutPanel19.Size = new System.Drawing.Size(534, 552);
             this.flowLayoutPanel19.TabIndex = 8;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.flowMainRelays);
+            this.groupBox1.Controls.Add(this.flowSubRelays);
+            this.groupBox1.Location = new System.Drawing.Point(3, 112);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(532, 430);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Relay Group";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(160, 10);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(35, 12);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "Board";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(352, 13);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(35, 12);
+            this.label23.TabIndex = 7;
+            this.label23.Text = "Relay";
+            // 
+            // flowMainRelays
+            // 
+            this.flowMainRelays.AutoSize = true;
+            this.flowMainRelays.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowMainRelays.Controls.Add(this.led3);
+            this.flowMainRelays.Controls.Add(this.led1);
+            this.flowMainRelays.Controls.Add(this.led2);
+            this.flowMainRelays.Location = new System.Drawing.Point(28, 20);
+            this.flowMainRelays.Name = "flowMainRelays";
+            this.flowMainRelays.Size = new System.Drawing.Size(138, 70);
+            this.flowMainRelays.TabIndex = 6;
+            // 
+            // led3
+            // 
+            this.led3.Caption = "300";
+            this.led3.CaptionBackColor = System.Drawing.SystemColors.Control;
+            this.led3.CaptionFont = new System.Drawing.Font("宋体", 12F);
+            this.led3.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
+            this.led3.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
+            this.led3.Location = new System.Drawing.Point(3, 3);
+            this.led3.Name = "led3";
+            this.led3.Size = new System.Drawing.Size(40, 64);
+            this.led3.TabIndex = 6;
+            // 
+            // led1
+            // 
+            this.led1.Caption = "301";
+            this.led1.CaptionBackColor = System.Drawing.SystemColors.Control;
+            this.led1.CaptionFont = new System.Drawing.Font("宋体", 12F);
+            this.led1.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
+            this.led1.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
+            this.led1.Location = new System.Drawing.Point(49, 3);
+            this.led1.Name = "led1";
+            this.led1.Size = new System.Drawing.Size(40, 64);
+            this.led1.TabIndex = 6;
+            // 
+            // led2
+            // 
+            this.led2.Caption = "302";
+            this.led2.CaptionBackColor = System.Drawing.SystemColors.Control;
+            this.led2.CaptionFont = new System.Drawing.Font("宋体", 12F);
+            this.led2.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
+            this.led2.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
+            this.led2.Location = new System.Drawing.Point(95, 3);
+            this.led2.Name = "led2";
+            this.led2.Size = new System.Drawing.Size(40, 64);
+            this.led2.TabIndex = 6;
+            // 
+            // numBoardIndex
+            // 
+            this.numBoardIndex.Location = new System.Drawing.Point(162, 28);
+            this.numBoardIndex.Name = "numBoardIndex";
+            this.numBoardIndex.Size = new System.Drawing.Size(75, 21);
+            this.numBoardIndex.TabIndex = 6;
+            // 
+            // btnBoardClose
+            // 
+            this.btnBoardClose.Location = new System.Drawing.Point(162, 85);
+            this.btnBoardClose.Name = "btnBoardClose";
+            this.btnBoardClose.Size = new System.Drawing.Size(75, 23);
+            this.btnBoardClose.TabIndex = 0;
+            this.btnBoardClose.Text = "Close";
+            this.btnBoardClose.UseVisualStyleBackColor = true;
+            // 
+            // btnBoardOpen
+            // 
+            this.btnBoardOpen.Location = new System.Drawing.Point(162, 56);
+            this.btnBoardOpen.Name = "btnBoardOpen";
+            this.btnBoardOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnBoardOpen.TabIndex = 0;
+            this.btnBoardOpen.Text = "Open";
+            this.btnBoardOpen.UseVisualStyleBackColor = true;
+            // 
+            // btnRelayDisable
+            // 
+            this.btnRelayDisable.Location = new System.Drawing.Point(354, 82);
+            this.btnRelayDisable.Name = "btnRelayDisable";
+            this.btnRelayDisable.Size = new System.Drawing.Size(75, 23);
+            this.btnRelayDisable.TabIndex = 0;
+            this.btnRelayDisable.Text = "Disable";
+            this.btnRelayDisable.UseVisualStyleBackColor = true;
+            // 
+            // btnRelayEnable
+            // 
+            this.btnRelayEnable.Location = new System.Drawing.Point(354, 55);
+            this.btnRelayEnable.Name = "btnRelayEnable";
+            this.btnRelayEnable.Size = new System.Drawing.Size(75, 23);
+            this.btnRelayEnable.TabIndex = 0;
+            this.btnRelayEnable.Text = "Enable";
+            this.btnRelayEnable.UseVisualStyleBackColor = true;
+            // 
+            // numRelayIndex
+            // 
+            this.numRelayIndex.Location = new System.Drawing.Point(354, 28);
+            this.numRelayIndex.Name = "numRelayIndex";
+            this.numRelayIndex.Size = new System.Drawing.Size(75, 21);
+            this.numRelayIndex.TabIndex = 6;
             // 
             // groupBox2
             // 
             this.groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupBox2.Controls.Add(this.switch9);
-            this.groupBox2.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox2.Location = new System.Drawing.Point(3, 439);
+            this.groupBox2.Controls.Add(this.flowBoard);
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(525, 103);
+            this.groupBox2.Size = new System.Drawing.Size(532, 103);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sub Board Group";
             // 
-            // flowLayoutPanel1
+            // swDaqOpen
             // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel17);
-            this.flowLayoutPanel1.Controls.Add(this.ledArray2);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(97, 14);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(425, 87);
-            this.flowLayoutPanel1.TabIndex = 5;
+            this.swDaqOpen.Caption = "Open";
+            this.swDaqOpen.Location = new System.Drawing.Point(6, 35);
+            this.swDaqOpen.Name = "swDaqOpen";
+            this.swDaqOpen.OffColor = System.Drawing.Color.DarkGreen;
+            this.swDaqOpen.OnColor = System.Drawing.Color.Lime;
+            this.swDaqOpen.Size = new System.Drawing.Size(63, 70);
+            this.swDaqOpen.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swDaqOpen.TabIndex = 7;
+            // 
+            // flowBoard
+            // 
+            this.flowBoard.AutoSize = true;
+            this.flowBoard.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowBoard.Controls.Add(this.flowLayoutPanel17);
+            this.flowBoard.Controls.Add(this.ledArray2);
+            this.flowBoard.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowBoard.Location = new System.Drawing.Point(31, 12);
+            this.flowBoard.Name = "flowBoard";
+            this.flowBoard.Size = new System.Drawing.Size(425, 87);
+            this.flowBoard.TabIndex = 5;
             // 
             // flowLayoutPanel17
             // 
@@ -1452,157 +1579,119 @@
             this.ledArray2.Size = new System.Drawing.Size(419, 65);
             this.ledArray2.TabIndex = 4;
             // 
-            // numericUpDown3
+            // groupBox8
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(187, 54);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(75, 21);
-            this.numericUpDown3.TabIndex = 6;
+            this.groupBox8.Controls.Add(this.label34);
+            this.groupBox8.Controls.Add(this.label25);
+            this.groupBox8.Controls.Add(this.txtResult);
+            this.groupBox8.Controls.Add(this.txtCommand);
+            this.groupBox8.Controls.Add(this.cmbInstrName);
+            this.groupBox8.Controls.Add(this.btnRead);
+            this.groupBox8.Controls.Add(this.btnWrite);
+            this.groupBox8.Location = new System.Drawing.Point(3, 339);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(442, 86);
+            this.groupBox8.TabIndex = 4;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Advanced";
             // 
-            // button15
+            // cmbInstrName
             // 
-            this.button15.Location = new System.Drawing.Point(268, 54);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 0;
-            this.button15.Text = "Close";
-            this.button15.UseVisualStyleBackColor = true;
+            this.cmbInstrName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbInstrName.FormattingEnabled = true;
+            this.cmbInstrName.Location = new System.Drawing.Point(6, 20);
+            this.cmbInstrName.Name = "cmbInstrName";
+            this.cmbInstrName.Size = new System.Drawing.Size(151, 20);
+            this.cmbInstrName.TabIndex = 0;
             // 
-            // button14
+            // cmbResIndex
             // 
-            this.button14.Location = new System.Drawing.Point(268, 25);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 0;
-            this.button14.Text = "Open";
-            this.button14.UseVisualStyleBackColor = true;
+            this.cmbResIndex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbResIndex.FormattingEnabled = true;
+            this.cmbResIndex.Items.AddRange(new object[] {
+            "#1",
+            "#2"});
+            this.cmbResIndex.Location = new System.Drawing.Point(90, 16);
+            this.cmbResIndex.Name = "cmbResIndex";
+            this.cmbResIndex.Size = new System.Drawing.Size(75, 20);
+            this.cmbResIndex.TabIndex = 0;
             // 
-            // groupBox1
+            // txtCommand
             // 
-            this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.label23);
-            this.groupBox1.Controls.Add(this.flowMainRelay);
-            this.groupBox1.Controls.Add(this.numericUpDown3);
-            this.groupBox1.Controls.Add(this.button15);
-            this.groupBox1.Controls.Add(this.flowSum);
-            this.groupBox1.Controls.Add(this.button14);
-            this.groupBox1.Controls.Add(this.button12);
-            this.groupBox1.Controls.Add(this.button11);
-            this.groupBox1.Controls.Add(this.numericUpDown2);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(532, 430);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Relay Group";
+            this.txtCommand.Location = new System.Drawing.Point(213, 20);
+            this.txtCommand.Name = "txtCommand";
+            this.txtCommand.Size = new System.Drawing.Size(216, 21);
+            this.txtCommand.TabIndex = 1;
             // 
-            // flowMainRelay
+            // label25
             // 
-            this.flowMainRelay.AutoSize = true;
-            this.flowMainRelay.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowMainRelay.Controls.Add(this.led3);
-            this.flowMainRelay.Controls.Add(this.led1);
-            this.flowMainRelay.Controls.Add(this.led2);
-            this.flowMainRelay.Location = new System.Drawing.Point(30, 20);
-            this.flowMainRelay.Name = "flowMainRelay";
-            this.flowMainRelay.Size = new System.Drawing.Size(138, 70);
-            this.flowMainRelay.TabIndex = 6;
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(160, 23);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(47, 12);
+            this.label25.TabIndex = 2;
+            this.label25.Text = "Command";
             // 
-            // led3
+            // txtResult
             // 
-            this.led3.Caption = "300";
-            this.led3.CaptionBackColor = System.Drawing.SystemColors.Control;
-            this.led3.CaptionFont = new System.Drawing.Font("宋体", 12F);
-            this.led3.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
-            this.led3.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
-            this.led3.Location = new System.Drawing.Point(3, 3);
-            this.led3.Name = "led3";
-            this.led3.Size = new System.Drawing.Size(40, 64);
-            this.led3.TabIndex = 6;
+            this.txtResult.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.txtResult.Location = new System.Drawing.Point(213, 48);
+            this.txtResult.Multiline = true;
+            this.txtResult.Name = "txtResult";
+            this.txtResult.ReadOnly = true;
+            this.txtResult.Size = new System.Drawing.Size(216, 29);
+            this.txtResult.TabIndex = 1;
             // 
-            // button12
+            // label34
             // 
-            this.button12.Location = new System.Drawing.Point(426, 52);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 0;
-            this.button12.Text = "Disable";
-            this.button12.UseVisualStyleBackColor = true;
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(166, 56);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(41, 12);
+            this.label34.TabIndex = 2;
+            this.label34.Text = "Result";
             // 
-            // button11
+            // btnWrite
             // 
-            this.button11.Location = new System.Drawing.Point(426, 25);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 0;
-            this.button11.Text = "Enable";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnWrite.Location = new System.Drawing.Point(6, 51);
+            this.btnWrite.Name = "btnWrite";
+            this.btnWrite.Size = new System.Drawing.Size(75, 23);
+            this.btnWrite.TabIndex = 0;
+            this.btnWrite.Text = "Write";
+            this.btnWrite.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown2
+            // btnRead
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(349, 55);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(75, 21);
-            this.numericUpDown2.TabIndex = 6;
+            this.btnRead.Location = new System.Drawing.Point(82, 51);
+            this.btnRead.Name = "btnRead";
+            this.btnRead.Size = new System.Drawing.Size(75, 23);
+            this.btnRead.TabIndex = 0;
+            this.btnRead.Text = "Read";
+            this.btnRead.UseVisualStyleBackColor = true;
             // 
-            // led1
+            // groupBox9
             // 
-            this.led1.Caption = "301";
-            this.led1.CaptionBackColor = System.Drawing.SystemColors.Control;
-            this.led1.CaptionFont = new System.Drawing.Font("宋体", 12F);
-            this.led1.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
-            this.led1.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
-            this.led1.Location = new System.Drawing.Point(49, 3);
-            this.led1.Name = "led1";
-            this.led1.Size = new System.Drawing.Size(40, 64);
-            this.led1.TabIndex = 6;
-            // 
-            // led2
-            // 
-            this.led2.Caption = "302";
-            this.led2.CaptionBackColor = System.Drawing.SystemColors.Control;
-            this.led2.CaptionFont = new System.Drawing.Font("宋体", 12F);
-            this.led2.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
-            this.led2.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
-            this.led2.Location = new System.Drawing.Point(95, 3);
-            this.led2.Name = "led2";
-            this.led2.Size = new System.Drawing.Size(40, 64);
-            this.led2.TabIndex = 6;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.flowLayoutPanel19);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(0, 0);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(593, 612);
-            this.groupBox3.TabIndex = 9;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "DAQ Card";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(347, 40);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(35, 12);
-            this.label23.TabIndex = 7;
-            this.label23.Text = "Relay";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(185, 36);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(35, 12);
-            this.label24.TabIndex = 7;
-            this.label24.Text = "Board";
+            this.groupBox9.Controls.Add(this.label23);
+            this.groupBox9.Controls.Add(this.label24);
+            this.groupBox9.Controls.Add(this.swDaqOpen);
+            this.groupBox9.Controls.Add(this.btnBoardClose);
+            this.groupBox9.Controls.Add(this.btnRelayDisable);
+            this.groupBox9.Controls.Add(this.btnRelayEnable);
+            this.groupBox9.Controls.Add(this.btnBoardOpen);
+            this.groupBox9.Controls.Add(this.numRelayIndex);
+            this.groupBox9.Controls.Add(this.numBoardIndex);
+            this.groupBox9.Location = new System.Drawing.Point(3, 431);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(442, 111);
+            this.groupBox9.TabIndex = 5;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "DAQ Card";
             // 
             // InstrumentControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 634);
+            this.ClientSize = new System.Drawing.Size(987, 574);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "InstrumentControlForm";
@@ -1610,8 +1699,8 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.leds20.ItemTemplate)).EndInit();
-            this.flowSum.ResumeLayout(false);
-            this.flowSum.PerformLayout();
+            this.flowSubRelays.ResumeLayout(false);
+            this.flowSubRelays.PerformLayout();
             this.flowLayoutPanel15.ResumeLayout(false);
             this.flowLayoutPanel15.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
@@ -1654,49 +1743,52 @@
             ((System.ComponentModel.ISupportInitialize)(this.leds34.ItemTemplate)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.flowLayoutPanel16.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.switch4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swPwrOutput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swPwrOcp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swPwrOvp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swPwrOpen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetCurr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetVolt)).EndInit();
             this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetRes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swResOpen)).EndInit();
             this.groupBox6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.switch6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swDmmOpen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetRes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetFreq)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetFRes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetVolt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetCurr)).EndInit();
             this.groupBox7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.switch8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.switch9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swChamRun)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetTemp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGetTemp)).EndInit();
             this.flowLayoutPanel19.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.flowMainRelays.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.led3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numBoardIndex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRelayIndex)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swDaqOpen)).EndInit();
+            this.flowBoard.ResumeLayout(false);
+            this.flowBoard.PerformLayout();
             this.flowLayoutPanel17.ResumeLayout(false);
             this.flowLayoutPanel17.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ledArray2.ItemTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.flowMainRelay.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.led3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.led1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.led2)).EndInit();
-            this.groupBox3.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1705,9 +1797,9 @@
         #endregion
 
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStatus;
         private NationalInstruments.UI.WindowsForms.LedArray leds20;
-        private System.Windows.Forms.FlowLayoutPanel flowSum;
+        private System.Windows.Forms.FlowLayoutPanel flowSubRelays;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
@@ -1757,8 +1849,8 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.NumericUpDown numSetVolt;
+        private System.Windows.Forms.FlowLayoutPanel flowBoard;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel17;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label26;
@@ -1771,53 +1863,60 @@
         private NationalInstruments.UI.WindowsForms.LedArray ledArray2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.FlowLayoutPanel flowMainRelay;
+        private System.Windows.Forms.FlowLayoutPanel flowMainRelays;
         private NationalInstruments.UI.WindowsForms.Led led3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel16;
         private System.Windows.Forms.GroupBox groupBox4;
-        private NationalInstruments.UI.WindowsForms.Switch switch1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private NationalInstruments.UI.WindowsForms.Switch swPwrOpen;
+        private System.Windows.Forms.Button btnSetCurr;
+        private System.Windows.Forms.Button btnSetVolt;
+        private System.Windows.Forms.NumericUpDown numSetCurr;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.Button btnSetRes;
+        private System.Windows.Forms.NumericUpDown numSetRes;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
-        private NationalInstruments.UI.WindowsForms.Switch switch4;
-        private NationalInstruments.UI.WindowsForms.Switch switch3;
-        private NationalInstruments.UI.WindowsForms.Switch switch2;
-        private NationalInstruments.UI.WindowsForms.Switch switch5;
-        private NationalInstruments.UI.WindowsForms.Switch switch6;
-        private NationalInstruments.UI.WindowsForms.Switch switch7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.NumericUpDown numericUpDown9;
-        private System.Windows.Forms.NumericUpDown numericUpDown10;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.NumericUpDown numericUpDown7;
-        private System.Windows.Forms.Button button3;
-        private NationalInstruments.UI.WindowsForms.Switch switch8;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.NumericUpDown numericUpDown11;
-        private System.Windows.Forms.NumericUpDown numericUpDown12;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private NationalInstruments.UI.WindowsForms.Switch switch9;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
+        private NationalInstruments.UI.WindowsForms.Switch swPwrOutput;
+        private NationalInstruments.UI.WindowsForms.Switch swPwrOcp;
+        private NationalInstruments.UI.WindowsForms.Switch swPwrOvp;
+        private NationalInstruments.UI.WindowsForms.Switch swResOpen;
+        private NationalInstruments.UI.WindowsForms.Switch swDmmOpen;
+        private System.Windows.Forms.Button btnGetFreq;
+        private System.Windows.Forms.Button btnGetFRes;
+        private System.Windows.Forms.NumericUpDown numGetRes;
+        private System.Windows.Forms.NumericUpDown numGetFreq;
+        private System.Windows.Forms.Button btnGetCurr;
+        private System.Windows.Forms.NumericUpDown numGetFRes;
+        private System.Windows.Forms.NumericUpDown numGetVolt;
+        private System.Windows.Forms.Button btnGetRes;
+        private System.Windows.Forms.NumericUpDown numGetCurr;
+        private System.Windows.Forms.Button btnGetVolt;
+        private NationalInstruments.UI.WindowsForms.Switch swChamRun;
+        private System.Windows.Forms.Button btnSetTemp;
+        private System.Windows.Forms.Button btnGetTemp;
+        private System.Windows.Forms.NumericUpDown numSetTemp;
+        private System.Windows.Forms.NumericUpDown numGetTemp;
+        private NationalInstruments.UI.WindowsForms.Switch swDaqOpen;
+        private System.Windows.Forms.Button btnRelayDisable;
+        private System.Windows.Forms.Button btnRelayEnable;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel19;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numBoardIndex;
+        private System.Windows.Forms.Button btnBoardClose;
+        private System.Windows.Forms.Button btnBoardOpen;
+        private System.Windows.Forms.NumericUpDown numRelayIndex;
         private NationalInstruments.UI.WindowsForms.Led led1;
         private NationalInstruments.UI.WindowsForms.Led led2;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox cmbResIndex;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox txtResult;
+        private System.Windows.Forms.TextBox txtCommand;
+        private System.Windows.Forms.ComboBox cmbInstrName;
+        private System.Windows.Forms.Button btnRead;
+        private System.Windows.Forms.Button btnWrite;
+        private System.Windows.Forms.GroupBox groupBox9;
     }
 }
