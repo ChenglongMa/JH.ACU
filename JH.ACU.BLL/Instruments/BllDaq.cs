@@ -47,13 +47,13 @@ namespace JH.ACU.BLL.Instruments
             get
             {
                 if (_currBoard == -1) return false;
-                var pwr = _relaysGroupMask[_currBoard, 6] / 0x10 % 0x04 == 0x03;
-                var kLine = _relaysGroupMask[_currBoard, 7] % 0x10 >> 3 == 0x01;
-                var cout1 = _relaysGroupMask[_currBoard, 7] >> 7 == 0x01;
-                var cout2 = _relaysGroupMask[_currBoard, 12] % 0x02 == 0x01;
-                return pwr && kLine && cout1 && cout2;
+                var pwr = (_relaysGroupMask[_currBoard, 6] & 0x30) == 0x30;//k264 k265同时使能
+                var kLineAcout1 = (_relaysGroupMask[_currBoard, 7] & 0x88) == 0x88;//k273 k277同时使能
+                var cout2 = (_relaysGroupMask[_currBoard, 12] & 0x01) == 0x01;//k340使能
+                return pwr && kLineAcout1 && cout2;
             }
         }
+
         /// <summary>
         /// 获取继电器组状态值
         /// </summary>

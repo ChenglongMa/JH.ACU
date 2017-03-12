@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using JH.ACU.BLL.Instruments;
 using JH.ACU.Lib;
@@ -27,7 +28,7 @@ namespace JH.ACU.UI
             cmbResIndex.ValueMember = "Value";
             var dic = new Dictionary<string, InstrName> {{"PRS#1", InstrName.Prs0}, {"PRS#2", InstrName.Prs1}};
             cmbResIndex.DataSource = new BindingSource {DataSource = dic};
-            SetControlStatus(InstrName.Daq, false);
+            SetControlStatus(InstrName.Daq, true); //todo
             SetControlStatus(InstrName.Prs0, false);
             SetControlStatus(InstrName.Dmm, false);
             SetControlStatus(InstrName.Pwr, false);
@@ -42,7 +43,12 @@ namespace JH.ACU.UI
         private BllChamber _chamber;
         private BllDmm _dmm;
         private BllDaq _daq;
-        private byte BoardIndex { get { return (byte) (numBoardIndex.Value - 1); } }
+
+        private byte BoardIndex
+        {
+            get { return (byte) (numBoardIndex.Value - 1); }
+        }
+
         #endregion
 
         private void SetControlStatus(InstrName name, bool enable)
@@ -414,6 +420,7 @@ namespace JH.ACU.UI
             try
             {
                 _daq.OpenBoard(BoardIndex);
+                RefreshLedStatus();
                 toolStatus.Text = @"Successful";
             }
             catch (Exception ex)
@@ -427,6 +434,7 @@ namespace JH.ACU.UI
             try
             {
                 _daq.CloseBoard(BoardIndex);
+                RefreshLedStatus();
                 toolStatus.Text = @"Successful";
             }
             catch (Exception ex)
@@ -439,15 +447,29 @@ namespace JH.ACU.UI
         {
             try
             {
-                var index = (byte) numRelayIndex.Value;
+                var index = (int) numRelayIndex.Value;
                 if (index == 300 || index == 301 || index == 302)
                 {
                     _daq.SetMainRelayStatus(index, true);
+                    switch (index)
+                    {
+                        case 300:
+                            led300.Value = true;
+                            break;
+                        case 301:
+                            led301.Value = true;
+                            break;
+                        case 302:
+                            led302.Value = true;
+                            break;
+                    }
                 }
                 else
                 {
                     _daq.SetSubRelayStatus(BoardIndex, index, true);
+                    RefreshLedStatus();
                 }
+
                 toolStatus.Text = @"Successful";
             }
             catch (Exception ex)
@@ -460,14 +482,27 @@ namespace JH.ACU.UI
         {
             try
             {
-                var index = (byte) numRelayIndex.Value;
+                var index = (int) numRelayIndex.Value;
                 if (index == 300 || index == 301 || index == 302)
                 {
                     _daq.SetMainRelayStatus(index, false);
+                    switch (index)
+                    {
+                        case 300:
+                            led300.Value = false;
+                            break;
+                        case 301:
+                            led301.Value = false;
+                            break;
+                        case 302:
+                            led302.Value = false;
+                            break;
+                    }
                 }
                 else
                 {
                     _daq.SetSubRelayStatus(BoardIndex, index, false);
+                    RefreshLedStatus();
                 }
                 toolStatus.Text = @"Successful";
             }
@@ -476,28 +511,92 @@ namespace JH.ACU.UI
                 toolStatus.Text = ex.Message;
             }
         }
-        private void SetLedStatus()
+
+        /// <summary>
+        /// 刷新子板指示灯状态，包括子板灯和子板继电器灯
+        /// </summary>
+        private void RefreshLedStatus()
         {
-            var lowBound0 = _daq.RelaysGroupMask.GetLowerBound(0);
-            var upperBound0 = _daq.RelaysGroupMask.GetUpperBound(0);
+            LightenBoard(BoardIndex);
             var lowBound1 = _daq.RelaysGroupMask.GetLowerBound(1);
-            var upperBound1 = _daq.RelaysGroupMask.GetLowerBound(1);
-            for (var i = lowBound0; i <= upperBound0; i++)
+            var upperBound1 = _daq.RelaysGroupMask.GetUpperBound(1);
+            for (var groupIndex = lowBound1; groupIndex <= upperBound1; groupIndex++)
             {
-                for (var j = lowBound1; j < upperBound1; j++)
+                LightenRelay(groupIndex);
+            }
+
+        }
+
+        /// <summary>
+        /// 点亮或熄灭子板指示灯
+        /// </summary>
+        /// <param name="boardIndex"></param>
+        private void LightenBoard(int boardIndex)
+        {
+            var pwr = (_daq.RelaysGroupMask[boardIndex, 6] & 0x30) == 0x30; //k264 k265同时使能
+            var kLineAcout1 = (_daq.RelaysGroupMask[boardIndex, 7] & 0x88) == 0x88; //k273 k277同时使能
+            var cout2 = (_daq.RelaysGroupMask[boardIndex, 12] & 0x01) == 0x01; //k340使能
+            ledBoard[boardIndex].Value = pwr && kLineAcout1 && cout2;
+        }
+
+        /// <summary>
+        /// 点亮或熄灭某组继电器指示灯
+        /// </summary>
+        /// <param name="groupIndex"></param>
+        private void LightenRelay(int groupIndex)
+        {
+            for (var i = 0; i < 8; i++)
+            {
+                var isTrue = _daq.RelaysGroupMask[BoardIndex, groupIndex].GetBit(i) == 1;
+                switch (groupIndex)
                 {
-                    if (_daq.RelaysGroupMask[i,j]!=0)
-                    {
-                        //i为板号,j为继电器组号
-                    }
+                    case 0:
+                        leds20[i].Value = isTrue;
+                        break;
+                    case 1:
+                        leds21[i].Value = isTrue;
+                        break;
+                    case 2:
+                        leds22[i].Value = isTrue;
+                        break;
+                    case 3:
+                        leds23[i].Value = isTrue;
+                        break;
+                    case 4:
+                        leds24[i].Value = isTrue;
+                        break;
+                    case 5:
+                        leds25[i].Value = isTrue;
+                        break;
+                    case 6:
+                        leds26[i].Value = isTrue;
+                        break;
+                    case 7:
+                        leds27[i].Value = isTrue;
+                        break;
+                    case 8:
+                        leds28[i].Value = isTrue;
+                        break;
+                    case 9:
+                        leds31[i].Value = isTrue;
+                        break;
+                    case 10:
+                        leds32[i].Value = isTrue;
+                        break;
+                    case 11:
+                        leds33[i].Value = isTrue;
+                        break;
+                    case 12:
+                        if (i > 0) break;
+                        leds34[i].Value = isTrue;
+                        break;
+
                 }
+
             }
 
         }
 
         #endregion
-
-
-
     }
 }

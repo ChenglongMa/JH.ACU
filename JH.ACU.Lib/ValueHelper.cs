@@ -97,6 +97,13 @@ namespace JH.ACU.Lib
         }
         #endregion
 
+        #region 值获取
 
+        public static int GetBit(this byte value, int index)
+        {
+            return index < 0 || index > 7 ? -1 : (value >> index) & 1;
+        }
+
+        #endregion
     }
 }
