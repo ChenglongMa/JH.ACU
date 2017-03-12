@@ -28,7 +28,7 @@ namespace JH.ACU.UI
             cmbResIndex.ValueMember = "Value";
             var dic = new Dictionary<string, InstrName> {{"PRS#1", InstrName.Prs0}, {"PRS#2", InstrName.Prs1}};
             cmbResIndex.DataSource = new BindingSource {DataSource = dic};
-            SetControlStatus(InstrName.Daq, true); //todo
+            SetControlStatus(InstrName.Daq, false);
             SetControlStatus(InstrName.Prs0, false);
             SetControlStatus(InstrName.Dmm, false);
             SetControlStatus(InstrName.Pwr, false);
