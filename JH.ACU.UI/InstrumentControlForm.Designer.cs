@@ -25,9 +25,9 @@
             {
                 _pwr.Dispose();
             }
-            if (_prs != null)
+            if (_prs0 != null)
             {
-                _prs.Dispose();
+                _prs0.Dispose();
             }
             if (_dmm != null)
             {
@@ -112,11 +112,15 @@
             this.numSetCurr = new System.Windows.Forms.NumericUpDown();
             this.numOvp = new System.Windows.Forms.NumericUpDown();
             this.numSetVolt = new System.Windows.Forms.NumericUpDown();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.cmbResIndex = new System.Windows.Forms.ComboBox();
-            this.btnSetRes = new System.Windows.Forms.Button();
-            this.numSetRes = new System.Windows.Forms.NumericUpDown();
-            this.swResOpen = new NationalInstruments.UI.WindowsForms.Switch();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.pagePrs0 = new System.Windows.Forms.TabPage();
+            this.swRes0Open = new NationalInstruments.UI.WindowsForms.Switch();
+            this.btnSetRes0 = new System.Windows.Forms.Button();
+            this.numSetRes0 = new System.Windows.Forms.NumericUpDown();
+            this.pagePrs1 = new System.Windows.Forms.TabPage();
+            this.swRes1Open = new NationalInstruments.UI.WindowsForms.Switch();
+            this.btnSetRes1 = new System.Windows.Forms.Button();
+            this.numSetRes1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.swChamRun = new NationalInstruments.UI.WindowsForms.Switch();
             this.btnSetTemp = new System.Windows.Forms.Button();
@@ -213,9 +217,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSetCurr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numOvp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSetVolt)).BeginInit();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSetRes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swResOpen)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.pagePrs0.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swRes0Open)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetRes0)).BeginInit();
+            this.pagePrs1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swRes1Open)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetRes1)).BeginInit();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.swChamRun)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSetTemp)).BeginInit();
@@ -979,7 +987,7 @@
             // flowLayoutPanel16
             // 
             this.flowLayoutPanel16.Controls.Add(this.groupBox4);
-            this.flowLayoutPanel16.Controls.Add(this.groupBox5);
+            this.flowLayoutPanel16.Controls.Add(this.tabControl1);
             this.flowLayoutPanel16.Controls.Add(this.groupBox7);
             this.flowLayoutPanel16.Controls.Add(this.groupBox6);
             this.flowLayoutPanel16.Controls.Add(this.groupBox8);
@@ -1113,68 +1121,125 @@
             this.numSetVolt.Size = new System.Drawing.Size(66, 21);
             this.numSetVolt.TabIndex = 6;
             // 
-            // groupBox5
+            // tabControl1
             // 
-            this.groupBox5.Controls.Add(this.cmbResIndex);
-            this.groupBox5.Controls.Add(this.btnSetRes);
-            this.groupBox5.Controls.Add(this.numSetRes);
-            this.groupBox5.Controls.Add(this.swResOpen);
-            this.groupBox5.Location = new System.Drawing.Point(3, 101);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(178, 102);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Resistance";
+            this.tabControl1.Controls.Add(this.pagePrs0);
+            this.tabControl1.Controls.Add(this.pagePrs1);
+            this.tabControl1.ItemSize = new System.Drawing.Size(60, 18);
+            this.tabControl1.Location = new System.Drawing.Point(0, 98);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(173, 105);
+            this.tabControl1.TabIndex = 0;
             // 
-            // cmbResIndex
+            // pagePrs0
             // 
-            this.cmbResIndex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbResIndex.FormattingEnabled = true;
-            this.cmbResIndex.Location = new System.Drawing.Point(90, 16);
-            this.cmbResIndex.Name = "cmbResIndex";
-            this.cmbResIndex.Size = new System.Drawing.Size(75, 20);
-            this.cmbResIndex.TabIndex = 0;
+            this.pagePrs0.BackColor = System.Drawing.SystemColors.Control;
+            this.pagePrs0.Controls.Add(this.swRes0Open);
+            this.pagePrs0.Controls.Add(this.btnSetRes0);
+            this.pagePrs0.Controls.Add(this.numSetRes0);
+            this.pagePrs0.Location = new System.Drawing.Point(4, 22);
+            this.pagePrs0.Name = "pagePrs0";
+            this.pagePrs0.Padding = new System.Windows.Forms.Padding(3);
+            this.pagePrs0.Size = new System.Drawing.Size(165, 79);
+            this.pagePrs0.TabIndex = 0;
+            this.pagePrs0.Text = "PRS #1";
             // 
-            // btnSetRes
+            // swRes0Open
             // 
-            this.btnSetRes.Location = new System.Drawing.Point(90, 73);
-            this.btnSetRes.Name = "btnSetRes";
-            this.btnSetRes.Size = new System.Drawing.Size(75, 23);
-            this.btnSetRes.TabIndex = 0;
-            this.btnSetRes.Text = "SetRes";
-            this.btnSetRes.UseVisualStyleBackColor = true;
-            this.btnSetRes.Click += new System.EventHandler(this.btnSetRes_Click);
+            this.swRes0Open.Caption = "Open";
+            this.swRes0Open.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
+            this.swRes0Open.Location = new System.Drawing.Point(3, 9);
+            this.swRes0Open.Name = "swRes0Open";
+            this.swRes0Open.OffColor = System.Drawing.Color.DarkGreen;
+            this.swRes0Open.OnColor = System.Drawing.Color.Lime;
+            this.swRes0Open.Size = new System.Drawing.Size(63, 70);
+            this.swRes0Open.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swRes0Open.TabIndex = 7;
+            this.swRes0Open.StateChanging += new NationalInstruments.UI.ActionCancelEventHandler(this.swResOpen_StateChanging);
             // 
-            // numSetRes
+            // btnSetRes0
             // 
-            this.numSetRes.DecimalPlaces = 2;
-            this.numSetRes.Increment = new decimal(new int[] {
+            this.btnSetRes0.Location = new System.Drawing.Point(72, 44);
+            this.btnSetRes0.Name = "btnSetRes0";
+            this.btnSetRes0.Size = new System.Drawing.Size(75, 23);
+            this.btnSetRes0.TabIndex = 0;
+            this.btnSetRes0.Text = "SetRes";
+            this.btnSetRes0.UseVisualStyleBackColor = true;
+            this.btnSetRes0.Click += new System.EventHandler(this.btnSetRes_Click);
+            // 
+            // numSetRes0
+            // 
+            this.numSetRes0.DecimalPlaces = 2;
+            this.numSetRes0.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numSetRes.Location = new System.Drawing.Point(90, 46);
-            this.numSetRes.Maximum = new decimal(new int[] {
+            this.numSetRes0.Location = new System.Drawing.Point(72, 12);
+            this.numSetRes0.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
-            this.numSetRes.Name = "numSetRes";
-            this.numSetRes.Size = new System.Drawing.Size(75, 21);
-            this.numSetRes.TabIndex = 6;
+            this.numSetRes0.Name = "numSetRes0";
+            this.numSetRes0.Size = new System.Drawing.Size(75, 21);
+            this.numSetRes0.TabIndex = 6;
             // 
-            // swResOpen
+            // pagePrs1
             // 
-            this.swResOpen.Caption = "Open";
-            this.swResOpen.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
-            this.swResOpen.Location = new System.Drawing.Point(6, 22);
-            this.swResOpen.Name = "swResOpen";
-            this.swResOpen.OffColor = System.Drawing.Color.DarkGreen;
-            this.swResOpen.OnColor = System.Drawing.Color.Lime;
-            this.swResOpen.Size = new System.Drawing.Size(63, 70);
-            this.swResOpen.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.swResOpen.TabIndex = 7;
-            this.swResOpen.StateChanging += new NationalInstruments.UI.ActionCancelEventHandler(this.swResOpen_StateChanging);
+            this.pagePrs1.BackColor = System.Drawing.SystemColors.Control;
+            this.pagePrs1.Controls.Add(this.swRes1Open);
+            this.pagePrs1.Controls.Add(this.btnSetRes1);
+            this.pagePrs1.Controls.Add(this.numSetRes1);
+            this.pagePrs1.Location = new System.Drawing.Point(4, 22);
+            this.pagePrs1.Name = "pagePrs1";
+            this.pagePrs1.Padding = new System.Windows.Forms.Padding(3);
+            this.pagePrs1.Size = new System.Drawing.Size(165, 79);
+            this.pagePrs1.TabIndex = 1;
+            this.pagePrs1.Text = "PRS #2";
+            // 
+            // swRes1Open
+            // 
+            this.swRes1Open.Caption = "Open";
+            this.swRes1Open.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
+            this.swRes1Open.Location = new System.Drawing.Point(3, 9);
+            this.swRes1Open.Name = "swRes1Open";
+            this.swRes1Open.OffColor = System.Drawing.Color.DarkGreen;
+            this.swRes1Open.OnColor = System.Drawing.Color.Lime;
+            this.swRes1Open.Size = new System.Drawing.Size(63, 70);
+            this.swRes1Open.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swRes1Open.TabIndex = 7;
+            this.swRes1Open.StateChanging += new NationalInstruments.UI.ActionCancelEventHandler(this.swRes1Open_StateChanging);
+            // 
+            // btnSetRes1
+            // 
+            this.btnSetRes1.Location = new System.Drawing.Point(72, 44);
+            this.btnSetRes1.Name = "btnSetRes1";
+            this.btnSetRes1.Size = new System.Drawing.Size(75, 23);
+            this.btnSetRes1.TabIndex = 0;
+            this.btnSetRes1.Text = "SetRes";
+            this.btnSetRes1.UseVisualStyleBackColor = true;
+            this.btnSetRes1.Click += new System.EventHandler(this.btnSetRes1_Click);
+            // 
+            // numSetRes1
+            // 
+            this.numSetRes1.DecimalPlaces = 2;
+            this.numSetRes1.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numSetRes1.Location = new System.Drawing.Point(72, 12);
+            this.numSetRes1.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numSetRes1.Name = "numSetRes1";
+            this.numSetRes1.Size = new System.Drawing.Size(75, 21);
+            this.numSetRes1.TabIndex = 6;
             // 
             // groupBox7
             // 
@@ -1183,7 +1248,7 @@
             this.groupBox7.Controls.Add(this.btnGetTemp);
             this.groupBox7.Controls.Add(this.numSetTemp);
             this.groupBox7.Controls.Add(this.numGetTemp);
-            this.groupBox7.Location = new System.Drawing.Point(187, 101);
+            this.groupBox7.Location = new System.Drawing.Point(176, 101);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(258, 102);
             this.groupBox7.TabIndex = 3;
@@ -1962,9 +2027,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSetCurr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numOvp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSetVolt)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numSetRes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swResOpen)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.pagePrs0.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.swRes0Open)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetRes0)).EndInit();
+            this.pagePrs1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.swRes1Open)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSetRes1)).EndInit();
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.swChamRun)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSetTemp)).EndInit();
@@ -2083,14 +2152,11 @@
         private System.Windows.Forms.Button btnSetCurr;
         private System.Windows.Forms.Button btnSetVolt;
         private System.Windows.Forms.NumericUpDown numSetCurr;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button btnSetRes;
-        private System.Windows.Forms.NumericUpDown numSetRes;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
         private NationalInstruments.UI.WindowsForms.Switch swPwrOutput;
         private NationalInstruments.UI.WindowsForms.Switch swPwrOcp;
-        private NationalInstruments.UI.WindowsForms.Switch swResOpen;
+        private NationalInstruments.UI.WindowsForms.Switch swRes0Open;
         private NationalInstruments.UI.WindowsForms.Switch swDmmOpen;
         private System.Windows.Forms.Button btnGetFreq;
         private System.Windows.Forms.Button btnGetFRes;
@@ -2119,7 +2185,6 @@
         private NationalInstruments.UI.WindowsForms.Led led302;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.ComboBox cmbResIndex;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label25;
@@ -2132,5 +2197,13 @@
         private System.Windows.Forms.NumericUpDown numOvp;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel18;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage pagePrs0;
+        private System.Windows.Forms.Button btnSetRes0;
+        private System.Windows.Forms.NumericUpDown numSetRes0;
+        private System.Windows.Forms.TabPage pagePrs1;
+        private NationalInstruments.UI.WindowsForms.Switch swRes1Open;
+        private System.Windows.Forms.Button btnSetRes1;
+        private System.Windows.Forms.NumericUpDown numSetRes1;
     }
 }

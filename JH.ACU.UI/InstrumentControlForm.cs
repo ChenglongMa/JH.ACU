@@ -25,12 +25,9 @@ namespace JH.ACU.UI
             cmbInstrName.DisplayMember = "Key";
             cmbInstrName.ValueMember = "Value";
             cmbInstrName.DataSource = BuildInstrNameSource();
-            cmbResIndex.DisplayMember = "Key";
-            cmbResIndex.ValueMember = "Value";
-            var dic = new Dictionary<string, InstrName> {{"PRS#1", InstrName.Prs0}, {"PRS#2", InstrName.Prs1}};
-            cmbResIndex.DataSource = new BindingSource {DataSource = dic};
             SetControlStatus(InstrName.Daq, false);
             SetControlStatus(InstrName.Prs0, false);
+            SetControlStatus(InstrName.Prs1, false);
             SetControlStatus(InstrName.Dmm, false);
             SetControlStatus(InstrName.Pwr, false);
         }
@@ -40,7 +37,8 @@ namespace JH.ACU.UI
         #region 属性、字段
 
         private BllPwr _pwr;
-        private BllPrs _prs;
+        private BllPrs _prs0;
+        private BllPrs _prs1;
         private BllChamber _chamber;
         private BllDmm _dmm;
         private BllDaq _daq;
@@ -54,7 +52,7 @@ namespace JH.ACU.UI
 
         private BindingSource BuildInstrNameSource()
         {
-            var dic = new Dictionary<string, BllVisa> {{"PWR", _pwr}, {"PRS#1", _prs}, {"PRS#2", _prs}, {"DMM", _dmm}};
+            var dic = new Dictionary<string, BllVisa> {{"PWR", _pwr}, {"PRS#1", _prs0}, {"PRS#2", _prs1}, {"DMM", _dmm}};
             return new BindingSource {DataSource = dic};
         }
         private void SetControlStatus(InstrName name, bool enable)
@@ -73,9 +71,12 @@ namespace JH.ACU.UI
                     btnSetVolt.Enabled = enable;
                     break;
                 case InstrName.Prs0:
+                    swRes0Open.Caption = isOpen;
+                    btnSetRes0.Enabled = enable;
+                    break;
                 case InstrName.Prs1:
-                    swResOpen.Caption = isOpen;
-                    btnSetRes.Enabled = enable;
+                    swRes1Open.Caption = isOpen;
+                    btnSetRes1.Enabled = enable;
                     break;
                 case InstrName.Dmm:
                     swDmmOpen.Caption = isOpen;
@@ -194,21 +195,23 @@ namespace JH.ACU.UI
         #endregion
 
         #region 电阻箱操作
-        //BUG:没有对两个电阻箱区分处理
+
+        #region PRS #1
+
         private void swResOpen_StateChanging(object sender, ActionCancelEventArgs e)
         {
             try
             {
-                if (!swResOpen.Value)
+                if (!swRes0Open.Value)
                 {
-                    _prs = new BllPrs((InstrName) cmbResIndex.SelectedValue);
-                    _prs.Initialize();
+                    _prs0 = new BllPrs(InstrName.Prs0);
+                    _prs0.Initialize();
                     SetControlStatus(InstrName.Prs0, true);
                 }
                 else
                 {
-                    _prs.Dispose();
-                    SetControlStatus(InstrName.Prs0, true);
+                    _prs0.Dispose();
+                    SetControlStatus(InstrName.Prs0, false);
                 }
             }
             catch (Exception ex)
@@ -222,7 +225,7 @@ namespace JH.ACU.UI
         {
             try
             {
-                _prs.SetResistance((double) numSetRes.Value);
+                _prs0.SetResistance((double) numSetRes0.Value);
                 toolStatus.Text = @"Successful";
             }
             catch (Exception ex)
@@ -230,6 +233,51 @@ namespace JH.ACU.UI
                 toolStatus.Text = ex.Message;
             }
         }
+
+        #endregion
+
+
+        #region PRS #2
+        private void swRes1Open_StateChanging(object sender, ActionCancelEventArgs e)
+        {
+            try
+            {
+                if (!swRes1Open.Value)
+                {
+                    _prs1 = new BllPrs(InstrName.Prs1);
+                    _prs1.Initialize();
+                    SetControlStatus(InstrName.Prs1, true);
+                }
+                else
+                {
+                    _prs1.Dispose();
+                    SetControlStatus(InstrName.Prs1, false);
+                }
+            }
+            catch (Exception ex)
+            {
+                toolStatus.Text = ex.Message;
+                e.Cancel = true;
+            }
+
+        }
+
+        private void btnSetRes1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _prs1.SetResistance((double)numSetRes1.Value);
+                toolStatus.Text = @"Successful";
+            }
+            catch (Exception ex)
+            {
+                toolStatus.Text = ex.Message;
+            }
+
+        }
+
+
+        #endregion
 
         #endregion
 
@@ -634,6 +682,7 @@ namespace JH.ACU.UI
         }
 
         #endregion
+
 
     }
 }
