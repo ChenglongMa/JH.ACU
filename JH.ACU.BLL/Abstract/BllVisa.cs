@@ -78,23 +78,6 @@ namespace JH.ACU.BLL.Abstract
             }
         }
 
-        protected string Read(string command, int delay = 0) //TODO:待测试delay时间
-        {
-            RawIo.Write(command + "\n");
-            Thread.Sleep(delay);
-            var res = RawIo.ReadString().Replace("\n", "");
-            if (command != "SYSTem:ERRor?")
-            {
-                ThrowException();
-            }
-            return res;
-        }
-
-        protected void Write(string command)
-        {
-            RawIo.Write(command + "\n");
-        }
-
         protected void ThrowException()
         {
             var errorGroup = Error.Split(',');
@@ -107,6 +90,27 @@ namespace JH.ACU.BLL.Abstract
         #endregion
 
         #region 公有方法
+
+        #region Basis Method
+
+        public string Read(string command, int delay = 0) //TODO:待测试delay时间
+        {
+            RawIo.Write(command + "\n");
+            Thread.Sleep(delay);
+            var res = RawIo.ReadString().Replace("\n", "");
+            if (command != "SYSTem:ERRor?")
+            {
+                ThrowException();
+            }
+            return res;
+        }
+
+        public void Write(string command)
+        {
+            RawIo.Write(command + "\n");
+        }
+
+        #endregion
 
         /// <summary>
         /// 仪器初始化

@@ -17,6 +17,26 @@
             {
                 components.Dispose();
             }
+            if (_daq != null)
+            {
+                _daq.Dispose();
+            }
+            if (_pwr != null)
+            {
+                _pwr.Dispose();
+            }
+            if (_prs != null)
+            {
+                _prs.Dispose();
+            }
+            if (_dmm != null)
+            {
+                _dmm.Dispose();
+            }
+            if (_chamber != null)
+            {
+                _chamber.Dispose();
+            }
             base.Dispose(disposing);
         }
 
@@ -86,9 +106,11 @@
             this.swPwrOutput = new NationalInstruments.UI.WindowsForms.Switch();
             this.swPwrOcp = new NationalInstruments.UI.WindowsForms.Switch();
             this.swPwrOpen = new NationalInstruments.UI.WindowsForms.Switch();
+            this.btnOvp = new System.Windows.Forms.Button();
             this.btnSetCurr = new System.Windows.Forms.Button();
             this.btnSetVolt = new System.Windows.Forms.Button();
             this.numSetCurr = new System.Windows.Forms.NumericUpDown();
+            this.numOvp = new System.Windows.Forms.NumericUpDown();
             this.numSetVolt = new System.Windows.Forms.NumericUpDown();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cmbResIndex = new System.Windows.Forms.ComboBox();
@@ -119,18 +141,19 @@
             this.txtResult = new System.Windows.Forms.TextBox();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.cmbInstrName = new System.Windows.Forms.ComboBox();
-            this.btnRead = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel18 = new System.Windows.Forms.FlowLayoutPanel();
             this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.swDaqOpen = new NationalInstruments.UI.WindowsForms.Switch();
-            this.btnBoardClose = new System.Windows.Forms.Button();
-            this.btnRelayDisable = new System.Windows.Forms.Button();
-            this.btnRelayEnable = new System.Windows.Forms.Button();
-            this.btnBoardOpen = new System.Windows.Forms.Button();
             this.numRelayIndex = new System.Windows.Forms.NumericUpDown();
+            this.btnRelayEnable = new System.Windows.Forms.Button();
+            this.btnRelayDisable = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label24 = new System.Windows.Forms.Label();
             this.numBoardIndex = new System.Windows.Forms.NumericUpDown();
+            this.btnBoardOpen = new System.Windows.Forms.Button();
+            this.btnBoardClose = new System.Windows.Forms.Button();
+            this.swDaqOpen = new NationalInstruments.UI.WindowsForms.Switch();
             this.flowLayoutPanel19 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.flowBoard = new System.Windows.Forms.FlowLayoutPanel();
@@ -149,10 +172,6 @@
             this.led300 = new NationalInstruments.UI.WindowsForms.Led();
             this.led301 = new NationalInstruments.UI.WindowsForms.Led();
             this.led302 = new NationalInstruments.UI.WindowsForms.Led();
-            this.btnOvp = new System.Windows.Forms.Button();
-            this.numOvp = new System.Windows.Forms.NumericUpDown();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel18 = new System.Windows.Forms.FlowLayoutPanel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.leds20.ItemTemplate)).BeginInit();
             this.flowSubRelays.SuspendLayout();
@@ -192,6 +211,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.swPwrOcp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swPwrOpen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSetCurr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numOvp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSetVolt)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSetRes)).BeginInit();
@@ -209,9 +229,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numGetCurr)).BeginInit();
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.swDaqOpen)).BeginInit();
+            this.flowLayoutPanel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRelayIndex)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numBoardIndex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swDaqOpen)).BeginInit();
             this.flowLayoutPanel19.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.flowBoard.SuspendLayout();
@@ -222,9 +244,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.led300)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.led301)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.led302)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numOvp)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel18.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -1025,6 +1044,16 @@
             this.swPwrOpen.TabIndex = 7;
             this.swPwrOpen.StateChanging += new NationalInstruments.UI.ActionCancelEventHandler(this.swPwrOpen_StateChanging);
             // 
+            // btnOvp
+            // 
+            this.btnOvp.Location = new System.Drawing.Point(201, 56);
+            this.btnOvp.Name = "btnOvp";
+            this.btnOvp.Size = new System.Drawing.Size(75, 23);
+            this.btnOvp.TabIndex = 0;
+            this.btnOvp.Text = "SetOvp";
+            this.btnOvp.UseVisualStyleBackColor = true;
+            this.btnOvp.Click += new System.EventHandler(this.btnOvp_Click);
+            // 
             // btnSetCurr
             // 
             this.btnSetCurr.Location = new System.Drawing.Point(282, 56);
@@ -1057,6 +1086,19 @@
             this.numSetCurr.Name = "numSetCurr";
             this.numSetCurr.Size = new System.Drawing.Size(66, 21);
             this.numSetCurr.TabIndex = 6;
+            // 
+            // numOvp
+            // 
+            this.numOvp.DecimalPlaces = 2;
+            this.numOvp.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numOvp.Location = new System.Drawing.Point(201, 21);
+            this.numOvp.Name = "numOvp";
+            this.numOvp.Size = new System.Drawing.Size(75, 21);
+            this.numOvp.TabIndex = 6;
             // 
             // numSetVolt
             // 
@@ -1417,7 +1459,6 @@
             this.groupBox8.Controls.Add(this.txtResult);
             this.groupBox8.Controls.Add(this.txtCommand);
             this.groupBox8.Controls.Add(this.cmbInstrName);
-            this.groupBox8.Controls.Add(this.btnRead);
             this.groupBox8.Controls.Add(this.btnWrite);
             this.groupBox8.Location = new System.Drawing.Point(3, 339);
             this.groupBox8.Name = "groupBox8";
@@ -1429,7 +1470,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(166, 56);
+            this.label34.Location = new System.Drawing.Point(119, 56);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(41, 12);
             this.label34.TabIndex = 2;
@@ -1438,7 +1479,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(160, 23);
+            this.label25.Location = new System.Drawing.Point(113, 23);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(47, 12);
             this.label25.TabIndex = 2;
@@ -1447,18 +1488,18 @@
             // txtResult
             // 
             this.txtResult.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.txtResult.Location = new System.Drawing.Point(213, 48);
+            this.txtResult.Location = new System.Drawing.Point(171, 48);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ReadOnly = true;
-            this.txtResult.Size = new System.Drawing.Size(216, 29);
+            this.txtResult.Size = new System.Drawing.Size(258, 29);
             this.txtResult.TabIndex = 1;
             // 
             // txtCommand
             // 
-            this.txtCommand.Location = new System.Drawing.Point(213, 20);
+            this.txtCommand.Location = new System.Drawing.Point(171, 20);
             this.txtCommand.Name = "txtCommand";
-            this.txtCommand.Size = new System.Drawing.Size(216, 21);
+            this.txtCommand.Size = new System.Drawing.Size(258, 21);
             this.txtCommand.TabIndex = 1;
             // 
             // cmbInstrName
@@ -1467,17 +1508,8 @@
             this.cmbInstrName.FormattingEnabled = true;
             this.cmbInstrName.Location = new System.Drawing.Point(6, 20);
             this.cmbInstrName.Name = "cmbInstrName";
-            this.cmbInstrName.Size = new System.Drawing.Size(151, 20);
+            this.cmbInstrName.Size = new System.Drawing.Size(75, 20);
             this.cmbInstrName.TabIndex = 0;
-            // 
-            // btnRead
-            // 
-            this.btnRead.Location = new System.Drawing.Point(82, 51);
-            this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(75, 23);
-            this.btnRead.TabIndex = 0;
-            this.btnRead.Text = "Read";
-            this.btnRead.UseVisualStyleBackColor = true;
             // 
             // btnWrite
             // 
@@ -1485,8 +1517,9 @@
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(75, 23);
             this.btnWrite.TabIndex = 0;
-            this.btnWrite.Text = "Write";
+            this.btnWrite.Text = "Query";
             this.btnWrite.UseVisualStyleBackColor = true;
+            this.btnWrite.Click += new System.EventHandler(this.btnQuery_Click);
             // 
             // groupBox9
             // 
@@ -1500,6 +1533,20 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "DAQ Card";
             // 
+            // flowLayoutPanel18
+            // 
+            this.flowLayoutPanel18.AutoSize = true;
+            this.flowLayoutPanel18.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel18.Controls.Add(this.label23);
+            this.flowLayoutPanel18.Controls.Add(this.numRelayIndex);
+            this.flowLayoutPanel18.Controls.Add(this.btnRelayEnable);
+            this.flowLayoutPanel18.Controls.Add(this.btnRelayDisable);
+            this.flowLayoutPanel18.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel18.Location = new System.Drawing.Point(193, 14);
+            this.flowLayoutPanel18.Name = "flowLayoutPanel18";
+            this.flowLayoutPanel18.Size = new System.Drawing.Size(81, 97);
+            this.flowLayoutPanel18.TabIndex = 9;
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -1508,67 +1555,6 @@
             this.label23.Size = new System.Drawing.Size(35, 12);
             this.label23.TabIndex = 7;
             this.label23.Text = "Relay";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(3, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(35, 12);
-            this.label24.TabIndex = 7;
-            this.label24.Text = "Board";
-            // 
-            // swDaqOpen
-            // 
-            this.swDaqOpen.Caption = "Open";
-            this.swDaqOpen.Location = new System.Drawing.Point(6, 35);
-            this.swDaqOpen.Name = "swDaqOpen";
-            this.swDaqOpen.OffColor = System.Drawing.Color.DarkGreen;
-            this.swDaqOpen.OnColor = System.Drawing.Color.Lime;
-            this.swDaqOpen.Size = new System.Drawing.Size(63, 70);
-            this.swDaqOpen.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
-            this.swDaqOpen.TabIndex = 7;
-            this.swDaqOpen.StateChanging += new NationalInstruments.UI.ActionCancelEventHandler(this.swDaqOpen_StateChanging);
-            // 
-            // btnBoardClose
-            // 
-            this.btnBoardClose.Location = new System.Drawing.Point(3, 71);
-            this.btnBoardClose.Name = "btnBoardClose";
-            this.btnBoardClose.Size = new System.Drawing.Size(75, 23);
-            this.btnBoardClose.TabIndex = 0;
-            this.btnBoardClose.Text = "Close";
-            this.btnBoardClose.UseVisualStyleBackColor = true;
-            this.btnBoardClose.Click += new System.EventHandler(this.btnBoardClose_Click);
-            // 
-            // btnRelayDisable
-            // 
-            this.btnRelayDisable.Location = new System.Drawing.Point(3, 71);
-            this.btnRelayDisable.Name = "btnRelayDisable";
-            this.btnRelayDisable.Size = new System.Drawing.Size(75, 23);
-            this.btnRelayDisable.TabIndex = 0;
-            this.btnRelayDisable.Text = "Disable";
-            this.btnRelayDisable.UseVisualStyleBackColor = true;
-            this.btnRelayDisable.Click += new System.EventHandler(this.btnRelayDisable_Click);
-            // 
-            // btnRelayEnable
-            // 
-            this.btnRelayEnable.Location = new System.Drawing.Point(3, 42);
-            this.btnRelayEnable.Name = "btnRelayEnable";
-            this.btnRelayEnable.Size = new System.Drawing.Size(75, 23);
-            this.btnRelayEnable.TabIndex = 0;
-            this.btnRelayEnable.Text = "Enable";
-            this.btnRelayEnable.UseVisualStyleBackColor = true;
-            this.btnRelayEnable.Click += new System.EventHandler(this.btnRelayEnable_Click);
-            // 
-            // btnBoardOpen
-            // 
-            this.btnBoardOpen.Location = new System.Drawing.Point(3, 42);
-            this.btnBoardOpen.Name = "btnBoardOpen";
-            this.btnBoardOpen.Size = new System.Drawing.Size(75, 23);
-            this.btnBoardOpen.TabIndex = 0;
-            this.btnBoardOpen.Text = "Open";
-            this.btnBoardOpen.UseVisualStyleBackColor = true;
-            this.btnBoardOpen.Click += new System.EventHandler(this.btnBoardOpen_Click);
             // 
             // numRelayIndex
             // 
@@ -1592,6 +1578,49 @@
             0,
             0});
             // 
+            // btnRelayEnable
+            // 
+            this.btnRelayEnable.Location = new System.Drawing.Point(3, 42);
+            this.btnRelayEnable.Name = "btnRelayEnable";
+            this.btnRelayEnable.Size = new System.Drawing.Size(75, 23);
+            this.btnRelayEnable.TabIndex = 0;
+            this.btnRelayEnable.Text = "Enable";
+            this.btnRelayEnable.UseVisualStyleBackColor = true;
+            this.btnRelayEnable.Click += new System.EventHandler(this.btnRelayEnable_Click);
+            // 
+            // btnRelayDisable
+            // 
+            this.btnRelayDisable.Location = new System.Drawing.Point(3, 71);
+            this.btnRelayDisable.Name = "btnRelayDisable";
+            this.btnRelayDisable.Size = new System.Drawing.Size(75, 23);
+            this.btnRelayDisable.TabIndex = 0;
+            this.btnRelayDisable.Text = "Disable";
+            this.btnRelayDisable.UseVisualStyleBackColor = true;
+            this.btnRelayDisable.Click += new System.EventHandler(this.btnRelayDisable_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.Controls.Add(this.label24);
+            this.flowLayoutPanel1.Controls.Add(this.numBoardIndex);
+            this.flowLayoutPanel1.Controls.Add(this.btnBoardOpen);
+            this.flowLayoutPanel1.Controls.Add(this.btnBoardClose);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(90, 14);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(81, 97);
+            this.flowLayoutPanel1.TabIndex = 8;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(3, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(35, 12);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "Board";
+            // 
             // numBoardIndex
             // 
             this.numBoardIndex.Location = new System.Drawing.Point(3, 15);
@@ -1613,6 +1642,38 @@
             0,
             0,
             0});
+            // 
+            // btnBoardOpen
+            // 
+            this.btnBoardOpen.Location = new System.Drawing.Point(3, 42);
+            this.btnBoardOpen.Name = "btnBoardOpen";
+            this.btnBoardOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnBoardOpen.TabIndex = 0;
+            this.btnBoardOpen.Text = "Open";
+            this.btnBoardOpen.UseVisualStyleBackColor = true;
+            this.btnBoardOpen.Click += new System.EventHandler(this.btnBoardOpen_Click);
+            // 
+            // btnBoardClose
+            // 
+            this.btnBoardClose.Location = new System.Drawing.Point(3, 71);
+            this.btnBoardClose.Name = "btnBoardClose";
+            this.btnBoardClose.Size = new System.Drawing.Size(75, 23);
+            this.btnBoardClose.TabIndex = 0;
+            this.btnBoardClose.Text = "Close";
+            this.btnBoardClose.UseVisualStyleBackColor = true;
+            this.btnBoardClose.Click += new System.EventHandler(this.btnBoardClose_Click);
+            // 
+            // swDaqOpen
+            // 
+            this.swDaqOpen.Caption = "Open";
+            this.swDaqOpen.Location = new System.Drawing.Point(6, 35);
+            this.swDaqOpen.Name = "swDaqOpen";
+            this.swDaqOpen.OffColor = System.Drawing.Color.DarkGreen;
+            this.swDaqOpen.OnColor = System.Drawing.Color.Lime;
+            this.swDaqOpen.Size = new System.Drawing.Size(63, 70);
+            this.swDaqOpen.SwitchStyle = NationalInstruments.UI.SwitchStyle.PushButton3D;
+            this.swDaqOpen.TabIndex = 7;
+            this.swDaqOpen.StateChanging += new NationalInstruments.UI.ActionCancelEventHandler(this.swDaqOpen_StateChanging);
             // 
             // flowLayoutPanel19
             // 
@@ -1834,57 +1895,6 @@
             this.led302.Size = new System.Drawing.Size(40, 64);
             this.led302.TabIndex = 6;
             // 
-            // btnOvp
-            // 
-            this.btnOvp.Location = new System.Drawing.Point(201, 56);
-            this.btnOvp.Name = "btnOvp";
-            this.btnOvp.Size = new System.Drawing.Size(75, 23);
-            this.btnOvp.TabIndex = 0;
-            this.btnOvp.Text = "SetOvp";
-            this.btnOvp.UseVisualStyleBackColor = true;
-            this.btnOvp.Click += new System.EventHandler(this.btnOvp_Click);
-            // 
-            // numOvp
-            // 
-            this.numOvp.DecimalPlaces = 2;
-            this.numOvp.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numOvp.Location = new System.Drawing.Point(201, 21);
-            this.numOvp.Name = "numOvp";
-            this.numOvp.Size = new System.Drawing.Size(75, 21);
-            this.numOvp.TabIndex = 6;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Controls.Add(this.label24);
-            this.flowLayoutPanel1.Controls.Add(this.numBoardIndex);
-            this.flowLayoutPanel1.Controls.Add(this.btnBoardOpen);
-            this.flowLayoutPanel1.Controls.Add(this.btnBoardClose);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(90, 14);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(81, 97);
-            this.flowLayoutPanel1.TabIndex = 8;
-            // 
-            // flowLayoutPanel18
-            // 
-            this.flowLayoutPanel18.AutoSize = true;
-            this.flowLayoutPanel18.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel18.Controls.Add(this.label23);
-            this.flowLayoutPanel18.Controls.Add(this.numRelayIndex);
-            this.flowLayoutPanel18.Controls.Add(this.btnRelayEnable);
-            this.flowLayoutPanel18.Controls.Add(this.btnRelayDisable);
-            this.flowLayoutPanel18.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel18.Location = new System.Drawing.Point(193, 14);
-            this.flowLayoutPanel18.Name = "flowLayoutPanel18";
-            this.flowLayoutPanel18.Size = new System.Drawing.Size(81, 97);
-            this.flowLayoutPanel18.TabIndex = 9;
-            // 
             // InstrumentControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1950,6 +1960,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.swPwrOcp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swPwrOpen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSetCurr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numOvp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSetVolt)).EndInit();
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numSetRes)).EndInit();
@@ -1969,9 +1980,13 @@
             this.groupBox8.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.swDaqOpen)).EndInit();
+            this.flowLayoutPanel18.ResumeLayout(false);
+            this.flowLayoutPanel18.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRelayIndex)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numBoardIndex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swDaqOpen)).EndInit();
             this.flowLayoutPanel19.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -1986,11 +2001,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.led300)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.led301)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.led302)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numOvp)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel18.ResumeLayout(false);
-            this.flowLayoutPanel18.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2116,7 +2126,6 @@
         private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.TextBox txtCommand;
         private System.Windows.Forms.ComboBox cmbInstrName;
-        private System.Windows.Forms.Button btnRead;
         private System.Windows.Forms.Button btnWrite;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Button btnOvp;

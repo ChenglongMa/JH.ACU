@@ -12,7 +12,7 @@ namespace JH.ACU.BLL.Abstract
     /// <summary>
     /// Modbus TCP协议
     /// </summary>
-    public abstract class BllModbusTcp
+    public abstract class BllModbusTcp:IDisposable
     {
         #region 构造函数
 
@@ -218,6 +218,16 @@ namespace JH.ACU.BLL.Abstract
             return Receive(FunctionCode.ReadReg, address, count);
         }
 
+
+        public void Dispose()
+        {
+            if (_socket.Connected)
+            {
+                _socket.Shutdown(SocketShutdown.Both);
+            }
+            _socket.Close();
+            _socket.Dispose();
+        }
         #endregion
 
     }

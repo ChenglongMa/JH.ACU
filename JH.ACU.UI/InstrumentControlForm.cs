@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using JH.ACU.BLL.Abstract;
 using JH.ACU.BLL.Instruments;
 using JH.ACU.Lib;
 using JH.ACU.Model;
@@ -23,7 +24,7 @@ namespace JH.ACU.UI
             InitializeComponent();
             cmbInstrName.DisplayMember = "Key";
             cmbInstrName.ValueMember = "Value";
-            cmbInstrName.DataSource = new BindingSource {DataSource = ConstParameter.InstrNameString};
+            cmbInstrName.DataSource = BuildInstrNameSource();
             cmbResIndex.DisplayMember = "Key";
             cmbResIndex.ValueMember = "Value";
             var dic = new Dictionary<string, InstrName> {{"PRS#1", InstrName.Prs0}, {"PRS#2", InstrName.Prs1}};
@@ -51,6 +52,11 @@ namespace JH.ACU.UI
 
         #endregion
 
+        private BindingSource BuildInstrNameSource()
+        {
+            var dic = new Dictionary<string, BllVisa> {{"PWR", _pwr}, {"PRS#1", _prs}, {"PRS#2", _prs}, {"DMM", _dmm}};
+            return new BindingSource {DataSource = dic};
+        }
         private void SetControlStatus(InstrName name, bool enable)
         {
             var isOpen = enable ? "Close" : "Open";
@@ -188,7 +194,7 @@ namespace JH.ACU.UI
         #endregion
 
         #region 电阻箱操作
-
+        //BUG:没有对两个电阻箱区分处理
         private void swResOpen_StateChanging(object sender, ActionCancelEventArgs e)
         {
             try
@@ -598,5 +604,36 @@ namespace JH.ACU.UI
         }
 
         #endregion
+
+        #region GPIB命令行操作
+
+        private void btnQuery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var command = txtCommand.Text.Trim();
+                if (command.IsNullOrEmpty())
+                {
+                    MessageBoxHelper.ShowInformationOk("命令行为空");
+                    return;
+                }
+                var bll = cmbInstrName.SelectedValue as BllVisa;
+                if (bll == null)
+                {
+                    MessageBoxHelper.ShowError("相关仪器未启动");
+                    return;
+                }
+                txtResult.Text = bll.Read(command);
+                toolStatus.Text = @"Successful";
+            }
+            catch (Exception ex)
+            {
+                txtResult.Text = ex.Message;
+            }
+
+        }
+
+        #endregion
+
     }
 }
