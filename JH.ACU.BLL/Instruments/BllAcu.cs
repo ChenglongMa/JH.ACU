@@ -22,7 +22,7 @@ namespace JH.ACU.BLL.Instruments
 
         public BllAcu()
         {
-            _serial = new SerialSession(VisaHelper.GetPortNumber(Config)) {BaudRate = Config.Serial.BaudRate};
+            _serial = new SerialSession(BllConfig.GetPortNumber(Config)) {BaudRate = Config.Serial.BaudRate};
         }
 
         #endregion

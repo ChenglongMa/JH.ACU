@@ -64,12 +64,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\TestConfig\AcuItems.cs" />
+    <Compile Include="Config\TestConfig\Temperature.cs" />
+    <Compile Include="Config\TestConfig\TestCondition.cs" />
+    <Compile Include="Config\TestConfig\Voltage.cs" />
     <Compile Include="ConstParameter.cs" />
     <Compile Include="Config\InstrumentConfig\Gpib.cs" />
     <Compile Include="Config\InstrumentConfig\InstrConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\InstrumentConfig\Serial.cs" />
     <Compile Include="Config\InstrumentConfig\TcpIp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JH.ACU.Lib\JH.ACU.Lib.csproj">
+      <Project>{B8DF45FC-D31E-425D-AB51-D11C7C3A551E}</Project>
+      <Name>JH.ACU.Lib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -26,10 +26,9 @@ namespace JH.ACU.Model.Config.InstrumentConfig
         /// 连接类型
         /// </summary>
         [XmlAttribute("Type")]
-        public InstrType Type { get
+        public InstrType Type
         {
-            return _type;
-        }
+            get { return _type; }
             set
             {
                 _type = value;

@@ -84,18 +84,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UltraGridHelper.cs" />
     <Compile Include="ValueHelper.cs" />
-    <Compile Include="VisaHelper.cs" />
     <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\D2K-Dask.dll" />
     <Content Include="Lib\D2K-Dask64.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JH.ACU.Model\JH.ACU.Model.csproj">
-      <Project>{33A0541A-67C4-4275-9B53-5C6DBAA12AE5}</Project>
-      <Name>JH.ACU.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

@@ -38,13 +38,13 @@ namespace JH.ACU.UI
             cmbDataBits.DataSource = ConstParameter.DataBits;
             cmbParity.DataSource = Enum.GetValues(typeof (SerialParity));
             cmbStopBits.DataSource = Enum.GetValues(typeof (SerialStopBitsMode));
-            cmbSerialPort.DataSource = VisaHelper.FindResources(InstrType.Serial);
+            cmbSerialPort.DataSource = BllConfig.FindResources(InstrType.Serial);
 
             #endregion
 
             #region Gpib
 
-            cmbGpibAddress.DataSource = VisaHelper.FindResources(InstrType.Gpib);
+            cmbGpibAddress.DataSource = BllConfig.FindResources(InstrType.Gpib);
 
             #endregion
 

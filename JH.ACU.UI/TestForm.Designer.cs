@@ -52,6 +52,8 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numBoard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSubRelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMainRelay)).BeginInit();
@@ -59,16 +61,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(846, 124);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Location = new System.Drawing.Point(634, 99);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(132, 25);
+            this.textBox1.Size = new System.Drawing.Size(100, 21);
             this.textBox1.TabIndex = 2;
             // 
             // numBoard
             // 
-            this.numBoard.Location = new System.Drawing.Point(47, 86);
-            this.numBoard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numBoard.Location = new System.Drawing.Point(35, 69);
             this.numBoard.Maximum = new decimal(new int[] {
             10,
             0,
@@ -80,15 +80,14 @@
             0,
             -2147483648});
             this.numBoard.Name = "numBoard";
-            this.numBoard.Size = new System.Drawing.Size(160, 25);
+            this.numBoard.Size = new System.Drawing.Size(120, 21);
             this.numBoard.TabIndex = 3;
             // 
             // btnInitialize
             // 
-            this.btnInitialize.Location = new System.Drawing.Point(47, 120);
-            this.btnInitialize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnInitialize.Location = new System.Drawing.Point(35, 96);
             this.btnInitialize.Name = "btnInitialize";
-            this.btnInitialize.Size = new System.Drawing.Size(100, 29);
+            this.btnInitialize.Size = new System.Drawing.Size(75, 23);
             this.btnInitialize.TabIndex = 4;
             this.btnInitialize.Text = "初始化";
             this.btnInitialize.UseVisualStyleBackColor = true;
@@ -96,10 +95,9 @@
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(47, 161);
-            this.btnOpen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOpen.Location = new System.Drawing.Point(35, 129);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(100, 29);
+            this.btnOpen.Size = new System.Drawing.Size(75, 23);
             this.btnOpen.TabIndex = 5;
             this.btnOpen.Text = "打开子板";
             this.btnOpen.UseVisualStyleBackColor = true;
@@ -107,10 +105,9 @@
             // 
             // btnEnable
             // 
-            this.btnEnable.Location = new System.Drawing.Point(419, 120);
-            this.btnEnable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEnable.Location = new System.Drawing.Point(314, 96);
             this.btnEnable.Name = "btnEnable";
-            this.btnEnable.Size = new System.Drawing.Size(100, 29);
+            this.btnEnable.Size = new System.Drawing.Size(75, 23);
             this.btnEnable.TabIndex = 6;
             this.btnEnable.Text = "使能";
             this.btnEnable.UseVisualStyleBackColor = true;
@@ -118,10 +115,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(49, 198);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Location = new System.Drawing.Point(37, 158);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(100, 29);
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 7;
             this.btnClose.Text = "关闭子板";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -130,17 +126,15 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 64);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(35, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 15);
+            this.label1.Size = new System.Drawing.Size(71, 12);
             this.label1.TabIndex = 8;
             this.label1.Text = "卡号（0-7）";
             // 
             // numSubRelay
             // 
-            this.numSubRelay.Location = new System.Drawing.Point(419, 86);
-            this.numSubRelay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numSubRelay.Location = new System.Drawing.Point(314, 69);
             this.numSubRelay.Maximum = new decimal(new int[] {
             350,
             0,
@@ -152,23 +146,21 @@
             0,
             -2147483648});
             this.numSubRelay.Name = "numSubRelay";
-            this.numSubRelay.Size = new System.Drawing.Size(160, 25);
+            this.numSubRelay.Size = new System.Drawing.Size(120, 21);
             this.numSubRelay.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(419, 64);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(314, 51);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 15);
+            this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 10;
             this.label2.Text = "子板继电器";
             // 
             // numMainRelay
             // 
-            this.numMainRelay.Location = new System.Drawing.Point(232, 86);
-            this.numMainRelay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numMainRelay.Location = new System.Drawing.Point(174, 69);
             this.numMainRelay.Maximum = new decimal(new int[] {
             400,
             0,
@@ -180,25 +172,23 @@
             0,
             -2147483648});
             this.numMainRelay.Name = "numMainRelay";
-            this.numMainRelay.Size = new System.Drawing.Size(160, 25);
+            this.numMainRelay.Size = new System.Drawing.Size(120, 21);
             this.numMainRelay.TabIndex = 11;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(229, 64);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(172, 51);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 15);
+            this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 10;
             this.label3.Text = "主板继电器";
             // 
             // btnDisable
             // 
-            this.btnDisable.Location = new System.Drawing.Point(419, 156);
-            this.btnDisable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDisable.Location = new System.Drawing.Point(314, 125);
             this.btnDisable.Name = "btnDisable";
-            this.btnDisable.Size = new System.Drawing.Size(100, 29);
+            this.btnDisable.Size = new System.Drawing.Size(75, 23);
             this.btnDisable.TabIndex = 12;
             this.btnDisable.Text = "取消使能";
             this.btnDisable.UseVisualStyleBackColor = true;
@@ -206,10 +196,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(232, 120);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(174, 96);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 42);
+            this.button1.Size = new System.Drawing.Size(87, 34);
             this.button1.TabIndex = 13;
             this.button1.Text = "主继电器闭合";
             this.button1.UseVisualStyleBackColor = true;
@@ -217,10 +206,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(232, 170);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(174, 136);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 42);
+            this.button2.Size = new System.Drawing.Size(87, 34);
             this.button2.TabIndex = 13;
             this.button2.Text = "主继电器断开";
             this.button2.UseVisualStyleBackColor = true;
@@ -228,10 +216,9 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(44, 265);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(33, 212);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(727, 321);
+            this.label4.Size = new System.Drawing.Size(545, 257);
             this.label4.TabIndex = 8;
             this.label4.Text = "测试用例1：\r\n1、单击初始化；\r\n\r\n2、循环打开-1~10子板；（只有0~7有效）\r\n\r\n3、循环打开子板0上的-100、200、208、264、265、27" +
     "3、277、341继电器；（继电器边界测试）\r\n\r\n4、同时打开200、215、256；（测试不同组继电器及同时打开多个继电器及测试delay时间是否合适）\r\n" +
@@ -239,19 +226,17 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(44, 586);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(33, 469);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(727, 285);
+            this.label5.Size = new System.Drawing.Size(545, 228);
             this.label5.TabIndex = 8;
             this.label5.Text = resources.GetString("label5.Text");
             // 
             // btn12
             // 
-            this.btn12.Location = new System.Drawing.Point(340, 301);
-            this.btn12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn12.Location = new System.Drawing.Point(255, 241);
             this.btn12.Name = "btn12";
-            this.btn12.Size = new System.Drawing.Size(100, 29);
+            this.btn12.Size = new System.Drawing.Size(75, 23);
             this.btn12.TabIndex = 14;
             this.btn12.Text = "测试1.2";
             this.btn12.UseVisualStyleBackColor = true;
@@ -259,10 +244,9 @@
             // 
             // btn13
             // 
-            this.btn13.Location = new System.Drawing.Point(731, 334);
-            this.btn13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn13.Location = new System.Drawing.Point(548, 267);
             this.btn13.Name = "btn13";
-            this.btn13.Size = new System.Drawing.Size(100, 29);
+            this.btn13.Size = new System.Drawing.Size(75, 23);
             this.btn13.TabIndex = 15;
             this.btn13.Text = "测试1.3";
             this.btn13.UseVisualStyleBackColor = true;
@@ -270,10 +254,9 @@
             // 
             // btn14
             // 
-            this.btn14.Location = new System.Drawing.Point(752, 362);
-            this.btn14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn14.Location = new System.Drawing.Point(564, 290);
             this.btn14.Name = "btn14";
-            this.btn14.Size = new System.Drawing.Size(100, 29);
+            this.btn14.Size = new System.Drawing.Size(75, 23);
             this.btn14.TabIndex = 16;
             this.btn14.Text = "测试1.4";
             this.btn14.UseVisualStyleBackColor = true;
@@ -281,10 +264,9 @@
             // 
             // btn15
             // 
-            this.btn15.Location = new System.Drawing.Point(507, 394);
-            this.btn15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn15.Location = new System.Drawing.Point(380, 315);
             this.btn15.Name = "btn15";
-            this.btn15.Size = new System.Drawing.Size(100, 29);
+            this.btn15.Size = new System.Drawing.Size(75, 23);
             this.btn15.TabIndex = 17;
             this.btn15.Text = "测试1.5";
             this.btn15.UseVisualStyleBackColor = true;
@@ -292,10 +274,9 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(604, 86);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReset.Location = new System.Drawing.Point(453, 69);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(100, 29);
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 18;
             this.btnReset.Text = "复位";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -303,9 +284,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(711, 64);
+            this.button3.Location = new System.Drawing.Point(533, 51);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(128, 44);
+            this.button3.Size = new System.Drawing.Size(96, 35);
             this.button3.TabIndex = 19;
             this.button3.Text = "初始化电阻箱";
             this.button3.UseVisualStyleBackColor = true;
@@ -313,19 +295,42 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(711, 114);
+            this.button4.Location = new System.Drawing.Point(533, 91);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(128, 44);
+            this.button4.Size = new System.Drawing.Size(96, 35);
             this.button4.TabIndex = 19;
             this.button4.Text = "设置电阻值";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(533, 146);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 20;
+            this.button5.Text = "保存配置";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(533, 176);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 21;
+            this.button6.Text = "获取配置";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // TestForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1076, 882);
+            this.ClientSize = new System.Drawing.Size(807, 706);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnReset);
@@ -349,7 +354,7 @@
             this.Controls.Add(this.btnInitialize);
             this.Controls.Add(this.numBoard);
             this.Controls.Add(this.textBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TestForm";
             this.Text = "DAQ Test";
             ((System.ComponentModel.ISupportInitialize)(this.numBoard)).EndInit();
@@ -385,5 +390,7 @@
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

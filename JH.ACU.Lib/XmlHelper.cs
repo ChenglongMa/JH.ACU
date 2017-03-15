@@ -25,7 +25,7 @@ namespace JH.ACU.Lib
                 NewLineChars = "\r\n",
                 Encoding = encoding,
                 IndentChars = "    ",
-                OmitXmlDeclaration = true// 不生成声明头
+                OmitXmlDeclaration = true // 不生成声明头
             };
             // 强制指定命名空间，覆盖默认的命名空间。
             XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
@@ -64,14 +64,14 @@ namespace JH.ACU.Lib
         /// <param name="o">要序列化的对象</param>
         /// <param name="path">保存文件路径</param>
         /// <param name="encoding">编码方式</param>
-        public static void XmlSerializeToFile(object o, string path, Encoding encoding)
+        public static void XmlSerializeToFile(object o, string path, Encoding encoding = null)
         {
             if (path.IsNullOrEmpty())
                 throw new ArgumentNullException("path");
-
-            using (FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write))
+            var encode = encoding ?? Encoding.UTF8;
+            using (var file = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
-                XmlSerializeInternal(file, o, encoding);
+                XmlSerializeInternal(file, o, encode);
             }
         }
 
@@ -89,12 +89,12 @@ namespace JH.ACU.Lib
             if (encoding == null)
                 throw new ArgumentNullException("encoding");
 
-            XmlSerializer mySerializer = new XmlSerializer(typeof(T));
+            XmlSerializer mySerializer = new XmlSerializer(typeof (T));
             using (MemoryStream ms = new MemoryStream(encoding.GetBytes(s)))
             {
                 using (StreamReader sr = new StreamReader(ms, encoding))
                 {
-                    return (T)mySerializer.Deserialize(sr);
+                    return (T) mySerializer.Deserialize(sr);
                 }
             }
         }

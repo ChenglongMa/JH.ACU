@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using Ivi.Visa;
 using JH.ACU.BLL.Config;
-using JH.ACU.Lib;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.InstrumentConfig;
 using NationalInstruments.Visa;
@@ -56,10 +57,10 @@ namespace JH.ACU.BLL.Abstract
             switch (Config.Type)
             {
                 case InstrType.Gpib:
-                    MbSession = new GpibSession(VisaHelper.GetPortNumber(Config));
+                    MbSession = new GpibSession(BllConfig.GetPortNumber(Config));
                     break;
                 case InstrType.Serial:
-                    MbSession = new SerialSession(VisaHelper.GetPortNumber(Config))
+                    MbSession = new SerialSession(BllConfig.GetPortNumber(Config))
                     {
                         BaudRate = Config.Serial.BaudRate,
                         Parity = Config.Serial.Parity,
@@ -68,7 +69,7 @@ namespace JH.ACU.BLL.Abstract
                     };
                     break;
                 case InstrType.Tcp:
-                    MbSession = new TcpipSocket(VisaHelper.GetPortNumber(Config))
+                    MbSession = new TcpipSocket(BllConfig.GetPortNumber(Config))
                     {
                         TimeoutMilliseconds = Config.TcpIp.Timeout
                     };
@@ -77,6 +78,7 @@ namespace JH.ACU.BLL.Abstract
                     throw new ArgumentOutOfRangeException();
             }
         }
+
 
         protected void ThrowException()
         {

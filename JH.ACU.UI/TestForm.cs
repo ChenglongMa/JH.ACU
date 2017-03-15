@@ -14,6 +14,7 @@ using JH.ACU.BLL.Instruments;
 using JH.ACU.Lib;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.InstrumentConfig;
+using JH.ACU.Model.Config.TestConfig;
 
 namespace JH.ACU.UI
 {
@@ -126,6 +127,34 @@ namespace JH.ACU.UI
         {
             var value = double.Parse(textBox1.Text);
             _prs.SetResistance(value);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var list=new List<int>();
+            for (int i = 0; i < 74; i++)
+            {
+                list.Add(i);
+            }
+            var testCondition = new TestCondition
+            {
+                Voltage = {HighVolt = 13.5, NorVolt = 12.0, LowVolt = 6.5},
+                Temperature = {Duration = 1000, Enable = true, HighTemp = 85.0, LowTemp = -40.0, NorTemp = 25.0},
+                AcuItems = new List<AcuItems>(new[] { new AcuItems { Id = "A", Items = new List<int> { 1, 5, 6, 73 } }, new AcuItems { Id = "B", Items = new List<int> { 1, 8,10 } }, new AcuItems { Id = "C", Items = list} })
+            };
+            var settingFileName = Environment.CurrentDirectory + "\\Config\\TestCondition.xml";
+
+            XmlHelper.XmlSerializeToFile(testCondition, settingFileName);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var settingFileName = Environment.CurrentDirectory + "\\Config\\TestCondition.xml";
+            var t = XmlHelper.XmlDeserializeFromFile<TestCondition>(settingFileName, Encoding.UTF8);
+            foreach (var acuItemse in t.AcuItems)
+            {
+                textBox1.Text += acuItemse.Items.Count+";";
+            }
         }
 
     }
