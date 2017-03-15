@@ -1202,7 +1202,7 @@ namespace JH.ACU.DAL
         #endregion
 
         #region 公共方法
-
+        //TODO：增加参数记录
         public static void ThrowException(Error errorCode, Exception innerException = null)
         {
             if (errorCode >= Error.NoError) return;

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using Ivi.Visa;
 using JH.ACU.BLL.Config;
+using JH.ACU.Lib;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.InstrumentConfig;
 using NationalInstruments.Visa;
@@ -75,18 +76,22 @@ namespace JH.ACU.BLL.Abstract
                     };
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("name", name, "创建实例异常");
             }
         }
 
 
-        protected void ThrowException()
+        protected void ThrowException(object command=null)
         {
             var errorGroup = Error.Split(',');
             var code = Convert.ToInt32(errorGroup[0]);
             var message = errorGroup[1];
             if (code == 0) return;
-            throw new Exception(message);
+            if (command == null)
+            {
+                throw new Exception(message);
+            }
+            throw new ArgumentOutOfRangeException("command", command, message);
         }
 
         #endregion
@@ -102,7 +107,7 @@ namespace JH.ACU.BLL.Abstract
             var res = RawIo.ReadString().Replace("\n", "");
             if (command != "SYSTem:ERRor?")
             {
-                ThrowException();
+                ThrowException(command);
             }
             return res;
         }
@@ -169,8 +174,11 @@ namespace JH.ACU.BLL.Abstract
                     Thread.Sleep(100);
                     ThrowException();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    #if DEBUG
+                    LogHelper.WriteErrorLog("BllVisa", ex);
+                    #endif
                     return;
                 }
             } while (Read("*OPC?") == "0" && Environment.TickCount - t < timeout);

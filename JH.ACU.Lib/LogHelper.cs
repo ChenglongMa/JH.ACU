@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -12,6 +13,7 @@ namespace JH.ACU.Lib
     /// </summary>
     public static class LogHelper
     {
+        //TODO:获取调用方法的参数的值
         private static readonly string RootPath = AppDomain.CurrentDomain.BaseDirectory + "Log";
 
         /// <summary>
@@ -35,6 +37,7 @@ namespace JH.ACU.Lib
             }
             catch(Exception ex)
             {
+                //QUES:待确认
                 MessageBoxHelper.ShowError(ex.Message);
             }
 

@@ -17,7 +17,7 @@ namespace JH.ACU.BLL.Config
     {
         private static readonly string SettingFileName = Environment.CurrentDirectory + "\\Config\\InstrConfig.xml";
 
-        #region 
+        #region Visa Resource Converter
         /// <summary>
         /// 根据仪器类型查找本机资源
         /// </summary>
@@ -76,7 +76,7 @@ namespace JH.ACU.BLL.Config
                 case InstrType.Tcp:
                     return string.Format("TCPIP0::{0}::{1}::SOCKET", instr.TcpIp.IpAddress, instr.TcpIp.Port);
                 default:
-                    throw new ArgumentNullException("instr", "端口类型设置无效");
+                    throw new ArgumentNullException("instr", string.Format("端口类型设置无效,错误值为：{0}", instr.Type));
             }
         }
 

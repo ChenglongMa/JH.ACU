@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using JH.ACU.BLL.Config;
@@ -28,7 +29,7 @@ namespace JH.ACU.BLL.Abstract
             }
             else
             {
-                throw new NullReferenceException("配置文件缺失");
+                throw new NullReferenceException(string.Format("配置文件缺失,仪器名：{0}", name));
             }
         }
 
@@ -164,11 +165,15 @@ namespace JH.ACU.BLL.Abstract
             var res = Read(12);
             if (res[7] == (byte) function + 0x80)
             {
-                throw new Exception(string.Format("命令发送失败,异常码为:0x{0}", res[8].ToString("X2")));
+                var dataStr = data.Aggregate("", (current, b) => current + "0x" + b.ToString("X2") + ",");
+                throw new Exception(string.Format("命令发送失败,异常码为:0x{0},起始地址:0x{1},数据为:{2}", res[8].ToString("X2"),
+                    address.ToString("X4"), dataStr));
             }
             if (res[7] != (byte) function)
             {
-                throw new Exception("命令发送失败");
+                var dataStr = data.Aggregate("", (current, b) => current + "0x" + b.ToString("X2") + ",");
+                throw new Exception(string.Format("命令发送失败,起始地址:0x{0},数据为:{1}",
+                    address.ToString("X4"), dataStr));
             }
         }
 
