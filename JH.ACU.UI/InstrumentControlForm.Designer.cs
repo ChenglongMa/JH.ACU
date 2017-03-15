@@ -1968,7 +1968,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "InstrumentControlForm";
-            this.Text = "仪器控制";
+            this.Text = "InstrumentControl";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.leds20.ItemTemplate)).EndInit();
