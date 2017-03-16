@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using JH.ACU.Model.Config.TestConfig;
 
 namespace JH.ACU.UI
 {
@@ -16,9 +17,94 @@ namespace JH.ACU.UI
             InitializeComponent();
         }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
+        #region 属性字段
 
+        private TestCondition _testCondition = new TestCondition();
+
+        #endregion
+
+        #region 界面变化
+
+        private void ckbChamberEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            grbTvSetting.Enabled = grbTvValue.Enabled = ckbChamberEnable.Checked;
+        }
+
+        private void ckbAcuAll_Click(object sender, EventArgs e)
+        {
+            var count = flowAcu.Controls.Count;
+            for (int i = 0; i < count - 1; i++)
+            {
+                ((CheckBox) flowAcu.Controls[i]).Checked = ckbAcuAll.Checked;
+            }
+
+        }
+
+        private void ckbTvs_Click(object sender, EventArgs e)
+        {
+            var isChecked = ((CheckBox) sender).Checked;
+            var count = flowTvSetting.Controls.Count;
+            for (int i = 0; i < count - 1; i++)
+            {
+                if (((CheckBox) flowTvSetting.Controls[i]).Checked != isChecked)
+                {
+                    ckbTvAll.CheckState = CheckState.Indeterminate;
+                    return;
+                }
+            }
+            ckbTvAll.CheckState = CheckState.Checked;
+            ckbTvAll.Checked = isChecked;
+        }
+
+        private void ckbTvAll_Click(object sender, EventArgs e)
+        {
+            var count = flowTvSetting.Controls.Count;
+            for (int i = 0; i < count - 1; i++)
+            {
+                ((CheckBox) flowTvSetting.Controls[i]).Checked = ckbTvAll.Checked;
+            }
+
+        }
+
+        private void ckbAcus_Click(object sender, EventArgs e)
+        {
+            var isChecked = ((CheckBox) sender).Checked;
+            var count = flowAcu.Controls.Count;
+            for (int i = 0; i < count - 1; i++)
+            {
+                if (((CheckBox) flowAcu.Controls[i]).Checked != isChecked)
+                {
+                    ckbAcuAll.CheckState = CheckState.Indeterminate;
+                    return;
+                }
+            }
+            ckbAcuAll.CheckState = CheckState.Checked;
+            ckbAcuAll.Checked = isChecked;
+
+        }
+
+        #endregion
+
+        private void btnDefault_Click(object sender, EventArgs e)
+        {
+            numDuration.Value = (decimal) Properties.Settings.Default.Duration;
+            numHighTemp.Value = (decimal) Properties.Settings.Default.HighTemp;
+            numLowTemp.Value = (decimal) Properties.Settings.Default.LowTemp;
+            numNorTemp.Value = (decimal) Properties.Settings.Default.NorTemp;
+            numHighVolt.Value = (decimal) Properties.Settings.Default.HighVolt;
+            numNorVolt.Value = (decimal) Properties.Settings.Default.NorVolt;
+            numLowVolt.Value = (decimal) Properties.Settings.Default.LowVolt;
+            ckbChamberEnable.Checked = Properties.Settings.Default.TempEnable;
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if(saveFileDialog1.ShowDialog()==DialogResult.OK)
+            {
+                lbxSource.Items.Add(saveFileDialog1.FileName);
+
+            }
         }
     }
 }

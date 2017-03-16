@@ -28,35 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grbTvValue = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numLowTemp = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.numNorTemp = new System.Windows.Forms.NumericUpDown();
+            this.numHighTemp = new System.Windows.Forms.NumericUpDown();
+            this.numLowVolt = new System.Windows.Forms.NumericUpDown();
+            this.numNorVolt = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.numHighVolt = new System.Windows.Forms.NumericUpDown();
+            this.numDuration = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.ckbSelectAll = new System.Windows.Forms.CheckBox();
+            this.btnDefault = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.grbTvSetting = new System.Windows.Forms.GroupBox();
+            this.flowTvSetting = new System.Windows.Forms.FlowLayoutPanel();
+            this.ckbLL = new System.Windows.Forms.CheckBox();
+            this.ckbLN = new System.Windows.Forms.CheckBox();
+            this.ckbLH = new System.Windows.Forms.CheckBox();
+            this.ckbNL = new System.Windows.Forms.CheckBox();
+            this.ckbNN = new System.Windows.Forms.CheckBox();
+            this.ckbNH = new System.Windows.Forms.CheckBox();
+            this.ckbHL = new System.Windows.Forms.CheckBox();
+            this.ckbHN = new System.Windows.Forms.CheckBox();
+            this.ckbHH = new System.Windows.Forms.CheckBox();
+            this.ckbTvAll = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,53 +65,84 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtId1 = new System.Windows.Forms.TextBox();
+            this.txtId2 = new System.Windows.Forms.TextBox();
+            this.txtId3 = new System.Windows.Forms.TextBox();
+            this.txtId5 = new System.Windows.Forms.TextBox();
+            this.txtId6 = new System.Windows.Forms.TextBox();
+            this.txtId7 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtId4 = new System.Windows.Forms.TextBox();
+            this.txtId8 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
-            this.checkBox19 = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
+            this.lbxTarget = new System.Windows.Forms.ListBox();
+            this.btnCancelAll = new System.Windows.Forms.Button();
+            this.btnCancelOne = new System.Windows.Forms.Button();
+            this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnSelectOne = new System.Windows.Forms.Button();
+            this.lbxSource = new System.Windows.Forms.ListBox();
+            this.flowAcu = new System.Windows.Forms.FlowLayoutPanel();
+            this.ckbAcu1 = new System.Windows.Forms.CheckBox();
+            this.ckbAcu2 = new System.Windows.Forms.CheckBox();
+            this.ckbAcu3 = new System.Windows.Forms.CheckBox();
+            this.ckbAcu4 = new System.Windows.Forms.CheckBox();
+            this.ckbAcu5 = new System.Windows.Forms.CheckBox();
+            this.ckbAcu6 = new System.Windows.Forms.CheckBox();
+            this.ckbAcu7 = new System.Windows.Forms.CheckBox();
+            this.ckbAcu8 = new System.Windows.Forms.CheckBox();
+            this.ckbAcuAll = new System.Windows.Forms.CheckBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.rdoAdvanced = new System.Windows.Forms.RadioButton();
+            this.rdoConventional = new System.Windows.Forms.RadioButton();
+            this.ckbChamberEnable = new System.Windows.Forms.CheckBox();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.grbTvValue.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLowTemp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNorTemp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHighTemp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numLowVolt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNorVolt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHighVolt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDuration)).BeginInit();
+            this.grbTvSetting.SuspendLayout();
+            this.flowTvSetting.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
+            this.flowAcu.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grbTvValue
             // 
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 16);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(217, 195);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Target Value Setting";
+            this.grbTvValue.Controls.Add(this.tableLayoutPanel1);
+            this.grbTvValue.Location = new System.Drawing.Point(3, 3);
+            this.grbTvValue.Name = "grbTvValue";
+            this.grbTvValue.Size = new System.Drawing.Size(217, 195);
+            this.grbTvValue.TabIndex = 0;
+            this.grbTvValue.TabStop = false;
+            this.grbTvValue.Text = "Target Value Setting";
             // 
             // tableLayoutPanel1
             // 
@@ -118,19 +150,20 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDown1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.numLowTemp, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDown2, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDown3, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDown4, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDown6, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.numNorTemp, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.numHighTemp, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.numLowVolt, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.numNorVolt, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label6, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label8, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDown8, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDown10, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.numHighVolt, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.numDuration, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label10, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.btnDefault, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.label15, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -156,12 +189,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "LowTemp";
             // 
-            // numericUpDown1
+            // numLowTemp
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(3, 15);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(86, 21);
-            this.numericUpDown1.TabIndex = 1;
+            this.numLowTemp.DecimalPlaces = 2;
+            this.numLowTemp.Location = new System.Drawing.Point(3, 15);
+            this.numLowTemp.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numLowTemp.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.numLowTemp.Name = "numLowTemp";
+            this.numLowTemp.Size = new System.Drawing.Size(86, 21);
+            this.numLowTemp.TabIndex = 1;
             // 
             // label2
             // 
@@ -183,43 +227,77 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "HighTemp";
             // 
-            // numericUpDown2
+            // numNorTemp
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(3, 54);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(86, 21);
-            this.numericUpDown2.TabIndex = 1;
+            this.numNorTemp.DecimalPlaces = 2;
+            this.numNorTemp.Location = new System.Drawing.Point(3, 54);
+            this.numNorTemp.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numNorTemp.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.numNorTemp.Name = "numNorTemp";
+            this.numNorTemp.Size = new System.Drawing.Size(86, 21);
+            this.numNorTemp.TabIndex = 1;
             // 
-            // numericUpDown3
+            // numHighTemp
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(3, 93);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(86, 21);
-            this.numericUpDown3.TabIndex = 1;
+            this.numHighTemp.DecimalPlaces = 2;
+            this.numHighTemp.Location = new System.Drawing.Point(3, 93);
+            this.numHighTemp.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numHighTemp.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.numHighTemp.Name = "numHighTemp";
+            this.numHighTemp.Size = new System.Drawing.Size(86, 21);
+            this.numHighTemp.TabIndex = 1;
             // 
-            // label4
+            // numLowVolt
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 12);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "ACU ID1";
+            this.numLowVolt.DecimalPlaces = 2;
+            this.numLowVolt.Location = new System.Drawing.Point(95, 15);
+            this.numLowVolt.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numLowVolt.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.numLowVolt.Name = "numLowVolt";
+            this.numLowVolt.Size = new System.Drawing.Size(86, 21);
+            this.numLowVolt.TabIndex = 1;
             // 
-            // numericUpDown4
+            // numNorVolt
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(95, 15);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(86, 21);
-            this.numericUpDown4.TabIndex = 1;
-            // 
-            // numericUpDown6
-            // 
-            this.numericUpDown6.Location = new System.Drawing.Point(95, 54);
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(86, 21);
-            this.numericUpDown6.TabIndex = 1;
+            this.numNorVolt.DecimalPlaces = 2;
+            this.numNorVolt.Location = new System.Drawing.Point(95, 54);
+            this.numNorVolt.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numNorVolt.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.numNorVolt.Name = "numNorVolt";
+            this.numNorVolt.Size = new System.Drawing.Size(86, 21);
+            this.numNorVolt.TabIndex = 1;
             // 
             // label6
             // 
@@ -241,12 +319,41 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "HighVolt";
             // 
-            // numericUpDown8
+            // numHighVolt
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(95, 93);
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(86, 21);
-            this.numericUpDown8.TabIndex = 1;
+            this.numHighVolt.DecimalPlaces = 2;
+            this.numHighVolt.Location = new System.Drawing.Point(95, 93);
+            this.numHighVolt.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numHighVolt.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.numHighVolt.Name = "numHighVolt";
+            this.numHighVolt.Size = new System.Drawing.Size(86, 21);
+            this.numHighVolt.TabIndex = 1;
+            // 
+            // numDuration
+            // 
+            this.numDuration.DecimalPlaces = 2;
+            this.numDuration.Location = new System.Drawing.Point(3, 132);
+            this.numDuration.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numDuration.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.numDuration.Name = "numDuration";
+            this.numDuration.Size = new System.Drawing.Size(86, 21);
+            this.numDuration.TabIndex = 1;
             // 
             // label10
             // 
@@ -254,160 +361,203 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(3, 117);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 12);
+            this.label10.Size = new System.Drawing.Size(83, 12);
             this.label10.TabIndex = 0;
-            this.label10.Text = "Duration";
+            this.label10.Text = "Duration(min)";
             // 
-            // numericUpDown10
+            // btnDefault
             // 
-            this.numericUpDown10.Location = new System.Drawing.Point(3, 132);
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(86, 21);
-            this.numericUpDown10.TabIndex = 1;
+            this.btnDefault.Location = new System.Drawing.Point(95, 132);
+            this.btnDefault.Name = "btnDefault";
+            this.btnDefault.Size = new System.Drawing.Size(75, 23);
+            this.btnDefault.TabIndex = 2;
+            this.btnDefault.Text = "Default";
+            this.btnDefault.UseVisualStyleBackColor = true;
+            this.btnDefault.Click += new System.EventHandler(this.btnDefault_Click);
             // 
-            // button1
+            // label15
             // 
-            this.button1.Location = new System.Drawing.Point(95, 132);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Default";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(95, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(47, 12);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "LowVolt";
             // 
-            // groupBox2
+            // label4
             // 
-            this.groupBox2.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 234);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(155, 281);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Temp/Volt Setting";
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 12);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "ACU ID1";
             // 
-            // flowLayoutPanel1
+            // grbTvSetting
             // 
-            this.flowLayoutPanel1.Controls.Add(this.checkBox1);
-            this.flowLayoutPanel1.Controls.Add(this.checkBox2);
-            this.flowLayoutPanel1.Controls.Add(this.checkBox3);
-            this.flowLayoutPanel1.Controls.Add(this.checkBox4);
-            this.flowLayoutPanel1.Controls.Add(this.checkBox5);
-            this.flowLayoutPanel1.Controls.Add(this.checkBox6);
-            this.flowLayoutPanel1.Controls.Add(this.checkBox7);
-            this.flowLayoutPanel1.Controls.Add(this.checkBox8);
-            this.flowLayoutPanel1.Controls.Add(this.checkBox9);
-            this.flowLayoutPanel1.Controls.Add(this.ckbSelectAll);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 17);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(149, 261);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.grbTvSetting.Controls.Add(this.flowTvSetting);
+            this.grbTvSetting.Location = new System.Drawing.Point(3, 204);
+            this.grbTvSetting.Name = "grbTvSetting";
+            this.grbTvSetting.Size = new System.Drawing.Size(214, 304);
+            this.grbTvSetting.TabIndex = 1;
+            this.grbTvSetting.TabStop = false;
+            this.grbTvSetting.Text = "Temp/Volt Setting";
             // 
-            // checkBox1
+            // flowTvSetting
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(3, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(114, 16);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "LowTemp LowVolt";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.flowTvSetting.Controls.Add(this.ckbLL);
+            this.flowTvSetting.Controls.Add(this.ckbLN);
+            this.flowTvSetting.Controls.Add(this.ckbLH);
+            this.flowTvSetting.Controls.Add(this.ckbNL);
+            this.flowTvSetting.Controls.Add(this.ckbNN);
+            this.flowTvSetting.Controls.Add(this.ckbNH);
+            this.flowTvSetting.Controls.Add(this.ckbHL);
+            this.flowTvSetting.Controls.Add(this.ckbHN);
+            this.flowTvSetting.Controls.Add(this.ckbHH);
+            this.flowTvSetting.Controls.Add(this.ckbTvAll);
+            this.flowTvSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowTvSetting.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowTvSetting.Location = new System.Drawing.Point(3, 17);
+            this.flowTvSetting.Name = "flowTvSetting";
+            this.flowTvSetting.Size = new System.Drawing.Size(208, 284);
+            this.flowTvSetting.TabIndex = 0;
             // 
-            // checkBox2
+            // ckbLL
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(3, 25);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(114, 16);
-            this.checkBox2.TabIndex = 0;
-            this.checkBox2.Text = "LowTemp NorVolt";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.ckbLL.AutoSize = true;
+            this.ckbLL.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckbLL.Location = new System.Drawing.Point(40, 8);
+            this.ckbLL.Margin = new System.Windows.Forms.Padding(40, 8, 3, 3);
+            this.ckbLL.Name = "ckbLL";
+            this.ckbLL.Size = new System.Drawing.Size(114, 16);
+            this.ckbLL.TabIndex = 0;
+            this.ckbLL.Text = "LowTemp LowVolt";
+            this.ckbLL.UseVisualStyleBackColor = true;
+            this.ckbLL.Click += new System.EventHandler(this.ckbTvs_Click);
             // 
-            // checkBox3
+            // ckbLN
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(3, 47);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(120, 16);
-            this.checkBox3.TabIndex = 0;
-            this.checkBox3.Text = "LowTemp HighVolt";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.ckbLN.AutoSize = true;
+            this.ckbLN.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckbLN.Location = new System.Drawing.Point(40, 35);
+            this.ckbLN.Margin = new System.Windows.Forms.Padding(40, 8, 3, 3);
+            this.ckbLN.Name = "ckbLN";
+            this.ckbLN.Size = new System.Drawing.Size(114, 16);
+            this.ckbLN.TabIndex = 0;
+            this.ckbLN.Text = "LowTemp NorVolt";
+            this.ckbLN.UseVisualStyleBackColor = true;
+            this.ckbLN.Click += new System.EventHandler(this.ckbTvs_Click);
             // 
-            // checkBox4
+            // ckbLH
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(3, 69);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(114, 16);
-            this.checkBox4.TabIndex = 0;
-            this.checkBox4.Text = "NorTemp LowVolt";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.ckbLH.AutoSize = true;
+            this.ckbLH.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckbLH.Location = new System.Drawing.Point(40, 62);
+            this.ckbLH.Margin = new System.Windows.Forms.Padding(40, 8, 3, 3);
+            this.ckbLH.Name = "ckbLH";
+            this.ckbLH.Size = new System.Drawing.Size(120, 16);
+            this.ckbLH.TabIndex = 0;
+            this.ckbLH.Text = "LowTemp HighVolt";
+            this.ckbLH.UseVisualStyleBackColor = true;
+            this.ckbLH.Click += new System.EventHandler(this.ckbTvs_Click);
             // 
-            // checkBox5
+            // ckbNL
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(3, 91);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(114, 16);
-            this.checkBox5.TabIndex = 0;
-            this.checkBox5.Text = "NorTemp NorVolt";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.ckbNL.AutoSize = true;
+            this.ckbNL.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckbNL.Location = new System.Drawing.Point(40, 89);
+            this.ckbNL.Margin = new System.Windows.Forms.Padding(40, 8, 3, 3);
+            this.ckbNL.Name = "ckbNL";
+            this.ckbNL.Size = new System.Drawing.Size(114, 16);
+            this.ckbNL.TabIndex = 0;
+            this.ckbNL.Text = "NorTemp LowVolt";
+            this.ckbNL.UseVisualStyleBackColor = true;
+            this.ckbNL.Click += new System.EventHandler(this.ckbTvs_Click);
             // 
-            // checkBox6
+            // ckbNN
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(3, 113);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(120, 16);
-            this.checkBox6.TabIndex = 0;
-            this.checkBox6.Text = "NorTemp HighVolt";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.ckbNN.AutoSize = true;
+            this.ckbNN.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckbNN.Location = new System.Drawing.Point(40, 116);
+            this.ckbNN.Margin = new System.Windows.Forms.Padding(40, 8, 3, 3);
+            this.ckbNN.Name = "ckbNN";
+            this.ckbNN.Size = new System.Drawing.Size(114, 16);
+            this.ckbNN.TabIndex = 0;
+            this.ckbNN.Text = "NorTemp NorVolt";
+            this.ckbNN.UseVisualStyleBackColor = true;
+            this.ckbNN.Click += new System.EventHandler(this.ckbTvs_Click);
             // 
-            // checkBox7
+            // ckbNH
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(3, 135);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(120, 16);
-            this.checkBox7.TabIndex = 0;
-            this.checkBox7.Text = "HighTemp LowVolt";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.ckbNH.AutoSize = true;
+            this.ckbNH.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckbNH.Location = new System.Drawing.Point(40, 143);
+            this.ckbNH.Margin = new System.Windows.Forms.Padding(40, 8, 3, 3);
+            this.ckbNH.Name = "ckbNH";
+            this.ckbNH.Size = new System.Drawing.Size(120, 16);
+            this.ckbNH.TabIndex = 0;
+            this.ckbNH.Text = "NorTemp HighVolt";
+            this.ckbNH.UseVisualStyleBackColor = true;
+            this.ckbNH.Click += new System.EventHandler(this.ckbTvs_Click);
             // 
-            // checkBox8
+            // ckbHL
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(3, 157);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(120, 16);
-            this.checkBox8.TabIndex = 0;
-            this.checkBox8.Text = "HighTemp NorVolt";
-            this.checkBox8.UseVisualStyleBackColor = true;
+            this.ckbHL.AutoSize = true;
+            this.ckbHL.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckbHL.Location = new System.Drawing.Point(40, 170);
+            this.ckbHL.Margin = new System.Windows.Forms.Padding(40, 8, 3, 3);
+            this.ckbHL.Name = "ckbHL";
+            this.ckbHL.Size = new System.Drawing.Size(120, 16);
+            this.ckbHL.TabIndex = 0;
+            this.ckbHL.Text = "HighTemp LowVolt";
+            this.ckbHL.UseVisualStyleBackColor = true;
+            this.ckbHL.Click += new System.EventHandler(this.ckbTvs_Click);
             // 
-            // checkBox9
+            // ckbHN
             // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(3, 179);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(126, 16);
-            this.checkBox9.TabIndex = 0;
-            this.checkBox9.Text = "HighTemp HighVolt";
-            this.checkBox9.UseVisualStyleBackColor = true;
+            this.ckbHN.AutoSize = true;
+            this.ckbHN.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckbHN.Location = new System.Drawing.Point(40, 197);
+            this.ckbHN.Margin = new System.Windows.Forms.Padding(40, 8, 3, 3);
+            this.ckbHN.Name = "ckbHN";
+            this.ckbHN.Size = new System.Drawing.Size(120, 16);
+            this.ckbHN.TabIndex = 0;
+            this.ckbHN.Text = "HighTemp NorVolt";
+            this.ckbHN.UseVisualStyleBackColor = true;
+            this.ckbHN.Click += new System.EventHandler(this.ckbTvs_Click);
             // 
-            // ckbSelectAll
+            // ckbHH
             // 
-            this.ckbSelectAll.AutoSize = true;
-            this.ckbSelectAll.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
-            this.ckbSelectAll.Location = new System.Drawing.Point(3, 201);
-            this.ckbSelectAll.Name = "ckbSelectAll";
-            this.ckbSelectAll.Size = new System.Drawing.Size(94, 16);
-            this.ckbSelectAll.TabIndex = 1;
-            this.ckbSelectAll.Text = "Select All";
-            this.ckbSelectAll.UseVisualStyleBackColor = true;
+            this.ckbHH.AutoSize = true;
+            this.ckbHH.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ckbHH.Location = new System.Drawing.Point(40, 224);
+            this.ckbHH.Margin = new System.Windows.Forms.Padding(40, 8, 3, 3);
+            this.ckbHH.Name = "ckbHH";
+            this.ckbHH.Size = new System.Drawing.Size(126, 16);
+            this.ckbHH.TabIndex = 0;
+            this.ckbHH.Text = "HighTemp HighVolt";
+            this.ckbHH.UseVisualStyleBackColor = true;
+            this.ckbHH.Click += new System.EventHandler(this.ckbTvs_Click);
+            // 
+            // ckbTvAll
+            // 
+            this.ckbTvAll.AutoSize = true;
+            this.ckbTvAll.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.ckbTvAll.Location = new System.Drawing.Point(40, 251);
+            this.ckbTvAll.Margin = new System.Windows.Forms.Padding(40, 8, 3, 3);
+            this.ckbTvAll.Name = "ckbTvAll";
+            this.ckbTvAll.Size = new System.Drawing.Size(94, 16);
+            this.ckbTvAll.TabIndex = 1;
+            this.ckbTvAll.Text = "Select All";
+            this.ckbTvAll.UseVisualStyleBackColor = true;
+            this.ckbTvAll.Click += new System.EventHandler(this.ckbTvAll_Click);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox3.Location = new System.Drawing.Point(245, 16);
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(341, 131);
             this.groupBox3.TabIndex = 2;
@@ -427,15 +577,15 @@
             this.tableLayoutPanel2.Controls.Add(this.label9, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.label11, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.label12, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox2, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.textBox3, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.textBox4, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox5, 3, 1);
-            this.tableLayoutPanel2.Controls.Add(this.textBox6, 3, 2);
+            this.tableLayoutPanel2.Controls.Add(this.txtId1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtId2, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtId3, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.txtId5, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtId6, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtId7, 3, 2);
             this.tableLayoutPanel2.Controls.Add(this.label13, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.textBox7, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.textBox8, 3, 3);
+            this.tableLayoutPanel2.Controls.Add(this.txtId4, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.txtId8, 3, 3);
             this.tableLayoutPanel2.Controls.Add(this.label14, 2, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 17);
@@ -450,9 +600,9 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 42);
+            this.label5.Location = new System.Drawing.Point(3, 34);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 12);
             this.label5.TabIndex = 0;
@@ -460,9 +610,9 @@
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 69);
+            this.label7.Location = new System.Drawing.Point(3, 61);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 12);
             this.label7.TabIndex = 0;
@@ -470,9 +620,9 @@
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(162, 15);
+            this.label9.Location = new System.Drawing.Point(162, 7);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(47, 12);
             this.label9.TabIndex = 0;
@@ -480,9 +630,9 @@
             // 
             // label11
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(162, 42);
+            this.label11.Location = new System.Drawing.Point(162, 34);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(47, 12);
             this.label11.TabIndex = 0;
@@ -490,282 +640,535 @@
             // 
             // label12
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(162, 69);
+            this.label12.Location = new System.Drawing.Point(162, 61);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(47, 12);
             this.label12.TabIndex = 0;
             this.label12.Text = "ACU ID7";
             // 
-            // textBox1
+            // txtId1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox1.Location = new System.Drawing.Point(56, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 1;
+            this.txtId1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtId1.Location = new System.Drawing.Point(56, 3);
+            this.txtId1.Name = "txtId1";
+            this.txtId1.Size = new System.Drawing.Size(100, 21);
+            this.txtId1.TabIndex = 1;
             // 
-            // textBox2
+            // txtId2
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox2.Location = new System.Drawing.Point(56, 30);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 21);
-            this.textBox2.TabIndex = 1;
+            this.txtId2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtId2.Location = new System.Drawing.Point(56, 30);
+            this.txtId2.Name = "txtId2";
+            this.txtId2.Size = new System.Drawing.Size(100, 21);
+            this.txtId2.TabIndex = 1;
             // 
-            // textBox3
+            // txtId3
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox3.Location = new System.Drawing.Point(56, 57);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 21);
-            this.textBox3.TabIndex = 1;
+            this.txtId3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtId3.Location = new System.Drawing.Point(56, 57);
+            this.txtId3.Name = "txtId3";
+            this.txtId3.Size = new System.Drawing.Size(100, 21);
+            this.txtId3.TabIndex = 1;
             // 
-            // textBox4
+            // txtId5
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox4.Location = new System.Drawing.Point(215, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 21);
-            this.textBox4.TabIndex = 1;
+            this.txtId5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtId5.Location = new System.Drawing.Point(215, 3);
+            this.txtId5.Name = "txtId5";
+            this.txtId5.Size = new System.Drawing.Size(100, 21);
+            this.txtId5.TabIndex = 1;
             // 
-            // textBox5
+            // txtId6
             // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox5.Location = new System.Drawing.Point(215, 30);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 21);
-            this.textBox5.TabIndex = 1;
+            this.txtId6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtId6.Location = new System.Drawing.Point(215, 30);
+            this.txtId6.Name = "txtId6";
+            this.txtId6.Size = new System.Drawing.Size(100, 21);
+            this.txtId6.TabIndex = 1;
             // 
-            // textBox6
+            // txtId7
             // 
-            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox6.Location = new System.Drawing.Point(215, 57);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 21);
-            this.textBox6.TabIndex = 1;
+            this.txtId7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtId7.Location = new System.Drawing.Point(215, 57);
+            this.txtId7.Name = "txtId7";
+            this.txtId7.Size = new System.Drawing.Size(100, 21);
+            this.txtId7.TabIndex = 1;
             // 
             // label13
             // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 99);
+            this.label13.Location = new System.Drawing.Point(3, 90);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(47, 12);
             this.label13.TabIndex = 0;
             this.label13.Text = "ACU ID4";
-            this.label13.Click += new System.EventHandler(this.label7_Click);
             // 
-            // textBox7
+            // txtId4
             // 
-            this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox7.Location = new System.Drawing.Point(56, 87);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 21);
-            this.textBox7.TabIndex = 1;
+            this.txtId4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtId4.Location = new System.Drawing.Point(56, 87);
+            this.txtId4.Name = "txtId4";
+            this.txtId4.Size = new System.Drawing.Size(100, 21);
+            this.txtId4.TabIndex = 1;
             // 
-            // textBox8
+            // txtId8
             // 
-            this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox8.Location = new System.Drawing.Point(215, 87);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 21);
-            this.textBox8.TabIndex = 1;
+            this.txtId8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtId8.Location = new System.Drawing.Point(215, 87);
+            this.txtId8.Name = "txtId8";
+            this.txtId8.Size = new System.Drawing.Size(100, 21);
+            this.txtId8.TabIndex = 1;
             // 
             // label14
             // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(162, 99);
+            this.label14.Location = new System.Drawing.Point(162, 90);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(47, 12);
             this.label14.TabIndex = 0;
             this.label14.Text = "ACU ID8";
-            this.label14.Click += new System.EventHandler(this.label7_Click);
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.flowLayoutPanel2);
-            this.groupBox4.Location = new System.Drawing.Point(245, 165);
+            this.groupBox4.Controls.Add(this.lbxTarget);
+            this.groupBox4.Controls.Add(this.btnCancelAll);
+            this.groupBox4.Controls.Add(this.btnCancelOne);
+            this.groupBox4.Controls.Add(this.btnSelectAll);
+            this.groupBox4.Controls.Add(this.btnSelectOne);
+            this.groupBox4.Controls.Add(this.lbxSource);
+            this.groupBox4.Controls.Add(this.flowAcu);
+            this.groupBox4.Location = new System.Drawing.Point(226, 146);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(681, 362);
+            this.groupBox4.Size = new System.Drawing.Size(499, 362);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "groupBox4";
+            this.groupBox4.Text = "Test Items";
             // 
-            // flowLayoutPanel2
+            // lbxTarget
             // 
-            this.flowLayoutPanel2.Controls.Add(this.checkBox10);
-            this.flowLayoutPanel2.Controls.Add(this.checkBox11);
-            this.flowLayoutPanel2.Controls.Add(this.checkBox12);
-            this.flowLayoutPanel2.Controls.Add(this.checkBox13);
-            this.flowLayoutPanel2.Controls.Add(this.checkBox14);
-            this.flowLayoutPanel2.Controls.Add(this.checkBox15);
-            this.flowLayoutPanel2.Controls.Add(this.checkBox16);
-            this.flowLayoutPanel2.Controls.Add(this.checkBox17);
-            this.flowLayoutPanel2.Controls.Add(this.checkBox19);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 10);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(648, 33);
-            this.flowLayoutPanel2.TabIndex = 1;
+            this.lbxTarget.FormattingEnabled = true;
+            this.lbxTarget.HorizontalScrollbar = true;
+            this.lbxTarget.ItemHeight = 12;
+            this.lbxTarget.Location = new System.Drawing.Point(271, 61);
+            this.lbxTarget.Name = "lbxTarget";
+            this.lbxTarget.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lbxTarget.Size = new System.Drawing.Size(215, 292);
+            this.lbxTarget.TabIndex = 5;
             // 
-            // checkBox10
+            // btnCancelAll
             // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(3, 3);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(54, 16);
-            this.checkBox10.TabIndex = 0;
-            this.checkBox10.Text = "ACU 1";
-            this.checkBox10.UseVisualStyleBackColor = true;
+            this.btnCancelAll.Location = new System.Drawing.Point(232, 243);
+            this.btnCancelAll.Name = "btnCancelAll";
+            this.btnCancelAll.Size = new System.Drawing.Size(31, 24);
+            this.btnCancelAll.TabIndex = 4;
+            this.btnCancelAll.Text = "<<";
+            this.btnCancelAll.UseVisualStyleBackColor = true;
             // 
-            // checkBox11
+            // btnCancelOne
             // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(63, 3);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(54, 16);
-            this.checkBox11.TabIndex = 0;
-            this.checkBox11.Text = "ACU 2";
-            this.checkBox11.UseVisualStyleBackColor = true;
+            this.btnCancelOne.Location = new System.Drawing.Point(232, 213);
+            this.btnCancelOne.Name = "btnCancelOne";
+            this.btnCancelOne.Size = new System.Drawing.Size(31, 24);
+            this.btnCancelOne.TabIndex = 3;
+            this.btnCancelOne.Text = "<";
+            this.btnCancelOne.UseVisualStyleBackColor = true;
             // 
-            // checkBox12
+            // btnSelectAll
             // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(123, 3);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(54, 16);
-            this.checkBox12.TabIndex = 0;
-            this.checkBox12.Text = "ACU 3";
-            this.checkBox12.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Location = new System.Drawing.Point(232, 147);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(31, 24);
+            this.btnSelectAll.TabIndex = 3;
+            this.btnSelectAll.Text = ">>";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
             // 
-            // checkBox13
+            // btnSelectOne
             // 
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(183, 3);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(54, 16);
-            this.checkBox13.TabIndex = 0;
-            this.checkBox13.Text = "ACU 4";
-            this.checkBox13.UseVisualStyleBackColor = true;
+            this.btnSelectOne.Location = new System.Drawing.Point(232, 117);
+            this.btnSelectOne.Name = "btnSelectOne";
+            this.btnSelectOne.Size = new System.Drawing.Size(31, 24);
+            this.btnSelectOne.TabIndex = 3;
+            this.btnSelectOne.Text = ">";
+            this.btnSelectOne.UseVisualStyleBackColor = true;
             // 
-            // checkBox14
+            // lbxSource
             // 
-            this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(243, 3);
-            this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(54, 16);
-            this.checkBox14.TabIndex = 0;
-            this.checkBox14.Text = "ACU 5";
-            this.checkBox14.UseVisualStyleBackColor = true;
+            this.lbxSource.FormattingEnabled = true;
+            this.lbxSource.HorizontalScrollbar = true;
+            this.lbxSource.ItemHeight = 12;
+            this.lbxSource.Location = new System.Drawing.Point(8, 61);
+            this.lbxSource.Name = "lbxSource";
+            this.lbxSource.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lbxSource.Size = new System.Drawing.Size(215, 292);
+            this.lbxSource.TabIndex = 2;
             // 
-            // checkBox15
+            // flowAcu
             // 
-            this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(303, 3);
-            this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(54, 16);
-            this.checkBox15.TabIndex = 0;
-            this.checkBox15.Text = "ACU 6";
-            this.checkBox15.UseVisualStyleBackColor = true;
+            this.flowAcu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowAcu.Controls.Add(this.ckbAcu1);
+            this.flowAcu.Controls.Add(this.ckbAcu2);
+            this.flowAcu.Controls.Add(this.ckbAcu3);
+            this.flowAcu.Controls.Add(this.ckbAcu4);
+            this.flowAcu.Controls.Add(this.ckbAcu5);
+            this.flowAcu.Controls.Add(this.ckbAcu6);
+            this.flowAcu.Controls.Add(this.ckbAcu7);
+            this.flowAcu.Controls.Add(this.ckbAcu8);
+            this.flowAcu.Controls.Add(this.ckbAcuAll);
+            this.flowAcu.Location = new System.Drawing.Point(6, 20);
+            this.flowAcu.Name = "flowAcu";
+            this.flowAcu.Size = new System.Drawing.Size(483, 45);
+            this.flowAcu.TabIndex = 1;
             // 
-            // checkBox16
+            // ckbAcu1
             // 
-            this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(363, 3);
-            this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(54, 16);
-            this.checkBox16.TabIndex = 0;
-            this.checkBox16.Text = "ACU 7";
-            this.checkBox16.UseVisualStyleBackColor = true;
+            this.ckbAcu1.AutoSize = true;
+            this.ckbAcu1.Location = new System.Drawing.Point(3, 3);
+            this.ckbAcu1.Name = "ckbAcu1";
+            this.ckbAcu1.Size = new System.Drawing.Size(54, 16);
+            this.ckbAcu1.TabIndex = 0;
+            this.ckbAcu1.Text = "ACU 1";
+            this.ckbAcu1.UseVisualStyleBackColor = true;
+            this.ckbAcu1.Click += new System.EventHandler(this.ckbAcus_Click);
             // 
-            // checkBox17
+            // ckbAcu2
             // 
-            this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(423, 3);
-            this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(54, 16);
-            this.checkBox17.TabIndex = 0;
-            this.checkBox17.Text = "ACU 8";
-            this.checkBox17.UseVisualStyleBackColor = true;
+            this.ckbAcu2.AutoSize = true;
+            this.ckbAcu2.Location = new System.Drawing.Point(63, 3);
+            this.ckbAcu2.Name = "ckbAcu2";
+            this.ckbAcu2.Size = new System.Drawing.Size(54, 16);
+            this.ckbAcu2.TabIndex = 0;
+            this.ckbAcu2.Text = "ACU 2";
+            this.ckbAcu2.UseVisualStyleBackColor = true;
+            this.ckbAcu2.Click += new System.EventHandler(this.ckbAcus_Click);
             // 
-            // checkBox19
+            // ckbAcu3
             // 
-            this.checkBox19.AutoSize = true;
-            this.checkBox19.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
-            this.checkBox19.Location = new System.Drawing.Point(483, 3);
-            this.checkBox19.Name = "checkBox19";
-            this.checkBox19.Size = new System.Drawing.Size(94, 16);
-            this.checkBox19.TabIndex = 1;
-            this.checkBox19.Text = "Select All";
-            this.checkBox19.UseVisualStyleBackColor = true;
+            this.ckbAcu3.AutoSize = true;
+            this.ckbAcu3.Location = new System.Drawing.Point(123, 3);
+            this.ckbAcu3.Name = "ckbAcu3";
+            this.ckbAcu3.Size = new System.Drawing.Size(54, 16);
+            this.ckbAcu3.TabIndex = 0;
+            this.ckbAcu3.Text = "ACU 3";
+            this.ckbAcu3.UseVisualStyleBackColor = true;
+            this.ckbAcu3.Click += new System.EventHandler(this.ckbAcus_Click);
+            // 
+            // ckbAcu4
+            // 
+            this.ckbAcu4.AutoSize = true;
+            this.ckbAcu4.Location = new System.Drawing.Point(183, 3);
+            this.ckbAcu4.Name = "ckbAcu4";
+            this.ckbAcu4.Size = new System.Drawing.Size(54, 16);
+            this.ckbAcu4.TabIndex = 0;
+            this.ckbAcu4.Text = "ACU 4";
+            this.ckbAcu4.UseVisualStyleBackColor = true;
+            this.ckbAcu4.Click += new System.EventHandler(this.ckbAcus_Click);
+            // 
+            // ckbAcu5
+            // 
+            this.ckbAcu5.AutoSize = true;
+            this.ckbAcu5.Location = new System.Drawing.Point(243, 3);
+            this.ckbAcu5.Name = "ckbAcu5";
+            this.ckbAcu5.Size = new System.Drawing.Size(54, 16);
+            this.ckbAcu5.TabIndex = 0;
+            this.ckbAcu5.Text = "ACU 5";
+            this.ckbAcu5.UseVisualStyleBackColor = true;
+            this.ckbAcu5.Click += new System.EventHandler(this.ckbAcus_Click);
+            // 
+            // ckbAcu6
+            // 
+            this.ckbAcu6.AutoSize = true;
+            this.ckbAcu6.Location = new System.Drawing.Point(303, 3);
+            this.ckbAcu6.Name = "ckbAcu6";
+            this.ckbAcu6.Size = new System.Drawing.Size(54, 16);
+            this.ckbAcu6.TabIndex = 0;
+            this.ckbAcu6.Text = "ACU 6";
+            this.ckbAcu6.UseVisualStyleBackColor = true;
+            this.ckbAcu6.Click += new System.EventHandler(this.ckbAcus_Click);
+            // 
+            // ckbAcu7
+            // 
+            this.ckbAcu7.AutoSize = true;
+            this.ckbAcu7.Location = new System.Drawing.Point(363, 3);
+            this.ckbAcu7.Name = "ckbAcu7";
+            this.ckbAcu7.Size = new System.Drawing.Size(54, 16);
+            this.ckbAcu7.TabIndex = 0;
+            this.ckbAcu7.Text = "ACU 7";
+            this.ckbAcu7.UseVisualStyleBackColor = true;
+            this.ckbAcu7.Click += new System.EventHandler(this.ckbAcus_Click);
+            // 
+            // ckbAcu8
+            // 
+            this.ckbAcu8.AutoSize = true;
+            this.ckbAcu8.Location = new System.Drawing.Point(423, 3);
+            this.ckbAcu8.Name = "ckbAcu8";
+            this.ckbAcu8.Size = new System.Drawing.Size(54, 16);
+            this.ckbAcu8.TabIndex = 0;
+            this.ckbAcu8.Text = "ACU 8";
+            this.ckbAcu8.UseVisualStyleBackColor = true;
+            this.ckbAcu8.Click += new System.EventHandler(this.ckbAcus_Click);
+            // 
+            // ckbAcuAll
+            // 
+            this.ckbAcuAll.AutoSize = true;
+            this.ckbAcuAll.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.ckbAcuAll.Location = new System.Drawing.Point(3, 25);
+            this.ckbAcuAll.Name = "ckbAcuAll";
+            this.ckbAcuAll.Size = new System.Drawing.Size(94, 16);
+            this.ckbAcuAll.TabIndex = 1;
+            this.ckbAcuAll.Text = "Select All";
+            this.ckbAcuAll.UseVisualStyleBackColor = true;
+            this.ckbAcuAll.Click += new System.EventHandler(this.ckbAcuAll_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.groupBox6);
+            this.groupBox5.Controls.Add(this.ckbChamberEnable);
+            this.groupBox5.Location = new System.Drawing.Point(350, 3);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(152, 131);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Others";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.flowLayoutPanel5);
+            this.groupBox6.Location = new System.Drawing.Point(6, 47);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(140, 78);
+            this.groupBox6.TabIndex = 1;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Crash Out Type";
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.Controls.Add(this.rdoAdvanced);
+            this.flowLayoutPanel5.Controls.Add(this.rdoConventional);
+            this.flowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 17);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(134, 58);
+            this.flowLayoutPanel5.TabIndex = 1;
+            // 
+            // rdoAdvanced
+            // 
+            this.rdoAdvanced.AutoSize = true;
+            this.rdoAdvanced.Checked = true;
+            this.rdoAdvanced.Location = new System.Drawing.Point(3, 3);
+            this.rdoAdvanced.Name = "rdoAdvanced";
+            this.rdoAdvanced.Size = new System.Drawing.Size(71, 16);
+            this.rdoAdvanced.TabIndex = 0;
+            this.rdoAdvanced.TabStop = true;
+            this.rdoAdvanced.Text = "Advanced";
+            this.rdoAdvanced.UseVisualStyleBackColor = true;
+            // 
+            // rdoConventional
+            // 
+            this.rdoConventional.AutoSize = true;
+            this.rdoConventional.Location = new System.Drawing.Point(3, 25);
+            this.rdoConventional.Name = "rdoConventional";
+            this.rdoConventional.Size = new System.Drawing.Size(95, 16);
+            this.rdoConventional.TabIndex = 0;
+            this.rdoConventional.Text = "Conventional";
+            this.rdoConventional.UseVisualStyleBackColor = true;
+            // 
+            // ckbChamberEnable
+            // 
+            this.ckbChamberEnable.AutoSize = true;
+            this.ckbChamberEnable.Checked = true;
+            this.ckbChamberEnable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbChamberEnable.Location = new System.Drawing.Point(12, 22);
+            this.ckbChamberEnable.Name = "ckbChamberEnable";
+            this.ckbChamberEnable.Size = new System.Drawing.Size(108, 16);
+            this.ckbChamberEnable.TabIndex = 0;
+            this.ckbChamberEnable.Text = "Chamber Enable";
+            this.ckbChamberEnable.UseVisualStyleBackColor = true;
+            this.ckbChamberEnable.CheckedChanged += new System.EventHandler(this.ckbChamberEnable_CheckedChanged);
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.grbTvValue);
+            this.flowLayoutPanel3.Controls.Add(this.grbTvSetting);
+            this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel4);
+            this.flowLayoutPanel3.Controls.Add(this.groupBox4);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(734, 514);
+            this.flowLayoutPanel3.TabIndex = 5;
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.AutoSize = true;
+            this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel4.Controls.Add(this.groupBox3);
+            this.flowLayoutPanel4.Controls.Add(this.groupBox5);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(226, 3);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(505, 137);
+            this.flowLayoutPanel4.TabIndex = 6;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.flowLayoutPanel3);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Window;
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Size = new System.Drawing.Size(734, 594);
+            this.splitContainer1.SplitterDistance = 514;
+            this.splitContainer1.TabIndex = 6;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnLoad);
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Controls.Add(this.btnSave);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(734, 76);
+            this.panel1.TabIndex = 2;
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnLoad.Location = new System.Drawing.Point(155, 24);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(75, 23);
+            this.btnLoad.TabIndex = 0;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(455, 24);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSave.Location = new System.Drawing.Point(305, 24);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "Config File|*.config|All Files|*.*";
+            this.openFileDialog1.RestoreDirectory = true;
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "config";
+            this.saveFileDialog1.Filter = "Config File|*.config|All Files|*.*";
+            this.saveFileDialog1.RestoreDirectory = true;
             // 
             // InitializationForm
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 569);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(734, 594);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "InitializationForm";
             this.Text = "Initialization";
-            this.groupBox1.ResumeLayout(false);
+            this.grbTvValue.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLowTemp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNorTemp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHighTemp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numLowVolt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNorVolt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHighVolt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDuration)).EndInit();
+            this.grbTvSetting.ResumeLayout(false);
+            this.flowTvSetting.ResumeLayout(false);
+            this.flowTvSetting.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
+            this.flowAcu.ResumeLayout(false);
+            this.flowAcu.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.flowLayoutPanel5.ResumeLayout(false);
+            this.flowLayoutPanel5.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grbTvValue;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numLowTemp;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown numNorTemp;
+        private System.Windows.Forms.NumericUpDown numHighTemp;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
+        private System.Windows.Forms.NumericUpDown numLowVolt;
+        private System.Windows.Forms.NumericUpDown numNorVolt;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
-        private System.Windows.Forms.NumericUpDown numericUpDown10;
+        private System.Windows.Forms.NumericUpDown numHighVolt;
+        private System.Windows.Forms.NumericUpDown numDuration;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox ckbSelectAll;
+        private System.Windows.Forms.Button btnDefault;
+        private System.Windows.Forms.GroupBox grbTvSetting;
+        private System.Windows.Forms.FlowLayoutPanel flowTvSetting;
+        private System.Windows.Forms.CheckBox ckbLL;
+        private System.Windows.Forms.CheckBox ckbLN;
+        private System.Windows.Forms.CheckBox ckbLH;
+        private System.Windows.Forms.CheckBox ckbNL;
+        private System.Windows.Forms.CheckBox ckbNN;
+        private System.Windows.Forms.CheckBox ckbNH;
+        private System.Windows.Forms.CheckBox ckbHL;
+        private System.Windows.Forms.CheckBox ckbHN;
+        private System.Windows.Forms.CheckBox ckbHH;
+        private System.Windows.Forms.CheckBox ckbTvAll;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label5;
@@ -773,26 +1176,48 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtId1;
+        private System.Windows.Forms.TextBox txtId2;
+        private System.Windows.Forms.TextBox txtId3;
+        private System.Windows.Forms.TextBox txtId5;
+        private System.Windows.Forms.TextBox txtId6;
+        private System.Windows.Forms.TextBox txtId7;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtId4;
+        private System.Windows.Forms.TextBox txtId8;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.CheckBox checkBox12;
-        private System.Windows.Forms.CheckBox checkBox13;
-        private System.Windows.Forms.CheckBox checkBox14;
-        private System.Windows.Forms.CheckBox checkBox15;
-        private System.Windows.Forms.CheckBox checkBox16;
-        private System.Windows.Forms.CheckBox checkBox17;
-        private System.Windows.Forms.CheckBox checkBox19;
+        private System.Windows.Forms.FlowLayoutPanel flowAcu;
+        private System.Windows.Forms.CheckBox ckbAcu1;
+        private System.Windows.Forms.CheckBox ckbAcu2;
+        private System.Windows.Forms.CheckBox ckbAcu3;
+        private System.Windows.Forms.CheckBox ckbAcu4;
+        private System.Windows.Forms.CheckBox ckbAcu5;
+        private System.Windows.Forms.CheckBox ckbAcu6;
+        private System.Windows.Forms.CheckBox ckbAcu7;
+        private System.Windows.Forms.CheckBox ckbAcu8;
+        private System.Windows.Forms.CheckBox ckbAcuAll;
+        private System.Windows.Forms.ListBox lbxTarget;
+        private System.Windows.Forms.Button btnCancelAll;
+        private System.Windows.Forms.Button btnCancelOne;
+        private System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.Button btnSelectOne;
+        private System.Windows.Forms.ListBox lbxSource;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.RadioButton rdoAdvanced;
+        private System.Windows.Forms.RadioButton rdoConventional;
+        private System.Windows.Forms.CheckBox ckbChamberEnable;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
