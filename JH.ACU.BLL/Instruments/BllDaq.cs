@@ -72,14 +72,14 @@ namespace JH.ACU.BLL.Instruments
         {
             var res = D2KDask.D2K_DO_WritePort((ushort) _mDev, channel, mask);
             Thread.Sleep(delay);
-            D2KDask.ThrowException((D2KDask.Error) res);
+            D2KDask.ThrowException((D2KDask.Error) res, channel, mask);
         }
 
         private double AiReadChannel(ushort channel)
         {
             double value;
             var res = D2KDask.D2K_AI_VReadChannel((ushort) _mDev, channel, out value);
-            D2KDask.ThrowException((D2KDask.Error) res);
+            D2KDask.ThrowException((D2KDask.Error) res, channel);
             return value;
         }
         /// <summary>
@@ -96,22 +96,22 @@ namespace JH.ACU.BLL.Instruments
             double[] voltageArray;
 
             var ret = D2KDask.D2K_AI_Config((ushort)_mDev, D2KDask.DAQ2K_AI_ADCONVSRC_Int, D2KDask.DAQ2K_AI_TRGSRC_SOFT, 0, 0, 1, true);
-            D2KDask.ThrowException((D2KDask.Error) ret);
+            D2KDask.ThrowException((D2KDask.Error)ret, channel); 
             ret = D2KDask.D2K_AI_ContBufferSetup((ushort)_mDev, dataBuffer, 1000, out bufId);
-            D2KDask.ThrowException((D2KDask.Error)ret);
+            D2KDask.ThrowException((D2KDask.Error)ret, channel);
             ret = D2KDask.D2K_AI_ContReadChannel((ushort)_mDev, channel, bufId, 1000, 400, 400, D2KDask.ASYNCH_OP);
-            D2KDask.ThrowException((D2KDask.Error)ret);//                       100,40000,40000
+            D2KDask.ThrowException((D2KDask.Error) ret, channel);//                       100,40000,40000
             do
             {
                 ret = D2KDask.D2K_AI_AsyncCheck((ushort)_mDev, out stopped, out accessCnt);
-                D2KDask.ThrowException((D2KDask.Error)ret);
+                D2KDask.ThrowException((D2KDask.Error)ret, channel);
             } while (stopped == 0);
 
             ret = D2KDask.D2K_AI_AsyncClear((ushort)_mDev, out startPos, out accessCnt);
-            D2KDask.ThrowException((D2KDask.Error)ret);
+            D2KDask.ThrowException((D2KDask.Error)ret, channel); 
 
             ret = D2KDask.D2K_AI_ContVScale((ushort)_mDev, D2KDask.AD_B_10_V, dataBuffer,out voltageArray, 1000);
-            D2KDask.ThrowException((D2KDask.Error)ret);
+            D2KDask.ThrowException((D2KDask.Error)ret, channel);
             return voltageArray;
         }
         /// <summary>

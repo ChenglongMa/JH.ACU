@@ -1,5 +1,8 @@
 using System;
+using System.Linq;
 using System.Runtime.InteropServices;
+using JH.ACU.Lib;
+using NationalInstruments.Restricted;
 
 namespace JH.ACU.DAL
 {
@@ -749,7 +752,7 @@ namespace JH.ACU.DAL
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_ContVScale(ushort wCardNumber, ushort adRange, IntPtr readingArray,
-            out double[] voltageArray, int count);//QUES:增加out关键字
+            out double[] voltageArray, int count); //QUES:增加out关键字
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_ContVScale(ushort wCardNumber, ushort adRange, IntPtr readingArray,
@@ -1202,11 +1205,46 @@ namespace JH.ACU.DAL
         #endregion
 
         #region 公共方法
-        //TODO：增加参数记录
-        public static void ThrowException(Error errorCode, Exception innerException = null)
+
+        /// <summary>
+        /// 根据返回值抛出异常
+        /// </summary>
+        /// <param name="errorCode">返回值转换为异常码</param>
+        /// <param name="paraValue">参数值（依次填入）</param>
+        public static void ThrowException(Error errorCode, params ushort[] paraValue)
+        {
+            if (errorCode >= Error.NoError) return;
+            var extraMessage = paraValue.Aggregate<ushort, string>(null,
+                (current, o) =>
+                    current +
+                    string.Format(" 参数[{0}]的值为：0x{1};", paraValue.IndexOf(o), o.ToString("X4")));
+            throw new Exception(errorCode + extraMessage);
+        }
+
+        /// <summary>
+        /// 根据返回值抛出异常
+        /// </summary>
+        /// <param name="errorCode">返回值转换为异常码</param>
+        /// <param name="innerException">内部异常</param>
+        public static void ThrowException(Error errorCode, Exception innerException)
         {
             if (errorCode >= Error.NoError) return;
             throw new Exception(errorCode.ToString(), innerException);
+        }
+
+        /// <summary>
+        /// 根据返回值抛出异常
+        /// </summary>
+        /// <param name="errorCode">返回值转换为异常码</param>
+        /// <param name="extraMessage">备注</param>
+        public static void ThrowException(Error errorCode, string extraMessage = null)
+        {
+            if (errorCode >= Error.NoError) return;
+            if (extraMessage.IsNullOrEmpty())
+            {
+                throw new Exception(errorCode.ToString());
+            }
+            throw new Exception(errorCode + "ExtraMessage:" + extraMessage);
         }
 
         #endregion
