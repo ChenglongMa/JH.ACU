@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using JH.ACU.Lib;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.InstrumentConfig;
+using JH.ACU.Model.Config.TestConfig;
 using NationalInstruments.Visa;
 
 namespace JH.ACU.BLL.Config
@@ -15,9 +17,12 @@ namespace JH.ACU.BLL.Config
     /// </summary>
     public static class BllConfig
     {
+        #region InstrConfig
+
         private static readonly string SettingFileName = Environment.CurrentDirectory + "\\Config\\InstrConfig.xml";
 
         #region Visa Resource Converter
+
         /// <summary>
         /// 根据仪器类型查找本机资源
         /// </summary>
@@ -97,7 +102,7 @@ namespace JH.ACU.BLL.Config
         /// </summary>
         /// <param name="instr"></param>
         /// <param name="instrs"></param>
-        public static void Save(Instr instr,List<Instr> instrs=null)
+        public static void SaveInstr(Instr instr, List<Instr> instrs = null)
         {
             var list = instrs ?? GetInstrConfigs();
             var i = list.Find(ins => ins.Name == instr.Name);
@@ -110,7 +115,7 @@ namespace JH.ACU.BLL.Config
                 list.Remove(i);
                 list.Add(instr);
             }
-            var resList=new InstrConfig();
+            var resList = new InstrConfig();
             resList.AddRange(list.OrderBy(o => o.Name));
             XmlHelper.XmlSerializeToFile(resList, SettingFileName, Encoding.UTF8);
         }
@@ -119,13 +124,43 @@ namespace JH.ACU.BLL.Config
         /// 获取配置
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="instrs"></param>
+        /// <param name="instrs">该值为Null时从文件中查找</param>
         /// <returns></returns>
-        public static Instr GetInstr(InstrName name,List<Instr> instrs=null )
+        public static Instr GetInstr(InstrName name, List<Instr> instrs = null)
         {
             var list = instrs ?? GetInstrConfigs();
             var instr = list.Find(i => i.Name == name);
-            return instr ?? new Instr { Name = name };
+            return instr ?? new Instr {Name = name};
         }
+
+        #endregion
+
+        #region TestConditionConfig
+
+        /// <summary>
+        /// 保存测试条件至文件
+        /// </summary>
+        /// <param name="testCondition"></param>
+        /// <param name="fileName"></param>
+        public static void SaveTestCondition(TestCondition testCondition, string fileName)
+        {
+            if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
+            if (testCondition == null) throw new ArgumentNullException("testCondition");
+            XmlHelper.XmlSerializeToFile(testCondition, fileName);
+        }
+
+        /// <summary>
+        /// 获取指定路径下文件
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static TestCondition GetTestCondition(string fileName)
+        {
+            if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
+            return XmlHelper.XmlDeserializeFromFile<TestCondition>(fileName);
+        }
+
+        #endregion
+
     }
 }

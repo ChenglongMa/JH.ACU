@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using JH.ACU.BLL.Config;
 using JH.ACU.Model.Config.TestConfig;
 
 namespace JH.ACU.UI
@@ -100,10 +101,27 @@ namespace JH.ACU.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(saveFileDialog1.ShowDialog()==DialogResult.OK)
+            if(saveFileDialog1.ShowDialog(this)==DialogResult.OK)
             {
                 lbxSource.Items.Add(saveFileDialog1.FileName);
 
+            }
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                var testCondition = BllConfig.GetTestCondition(fileName);
+                numDuration.Value = (decimal)testCondition.Temperature.Duration;
+                numHighTemp.Value = (decimal)testCondition.Temperature.HighTemp;
+                numLowTemp.Value = (decimal)testCondition.Temperature.LowTemp;
+                numNorTemp.Value = (decimal)testCondition.Temperature.NorTemp;
+                numHighVolt.Value = (decimal)testCondition.Voltage.HighVolt;
+                numNorVolt.Value = (decimal)testCondition.Voltage.NorVolt;
+                numLowVolt.Value = (decimal)testCondition.Voltage.LowVolt;
+                ckbChamberEnable.Checked = testCondition.Temperature.Enable;
             }
         }
     }

@@ -106,12 +106,12 @@ namespace JH.ACU.Lib
         /// <param name="path">文件路径</param>
         /// <param name="encoding">编码方式</param>
         /// <returns>反序列化得到的对象</returns>
-        public static T XmlDeserializeFromFile<T>(string path, Encoding encoding)
+        public static T XmlDeserializeFromFile<T>(string path, Encoding encoding=null)
         {
             if (path.IsNullOrEmpty())
                 throw new ArgumentNullException("path");
             if (encoding == null)
-                throw new ArgumentNullException("encoding");
+                encoding=Encoding.UTF8;
             if (!File.Exists(path)) return Activator.CreateInstance<T>();
             string xml = File.ReadAllText(path, encoding);
             return xml.Trim().IsNullOrEmpty() ? Activator.CreateInstance<T>() : XmlDeserialize<T>(xml, encoding);

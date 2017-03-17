@@ -7,7 +7,7 @@ namespace JH.ACU.Model.Config.TestConfig
         [XmlAttribute]
         public bool Enable { get; set; }
         [XmlAttribute]
-        public int Duration { get; set; }
+        public double Duration { get; set; }
         [XmlElement]
         public double LowTemp { get; set; }
         [XmlElement]

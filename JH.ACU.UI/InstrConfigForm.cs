@@ -200,7 +200,7 @@ namespace JH.ACU.UI
                         throw new ArgumentOutOfRangeException();
                 }
 
-                BllConfig.Save(_instr,_instrs);
+                BllConfig.SaveInstr(_instr,_instrs);
                 MessageBoxHelper.ShowInformationOk("保存成功!");
             }
             catch (Exception ex)
