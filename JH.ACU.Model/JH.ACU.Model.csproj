@@ -68,7 +68,7 @@
     <Compile Include="Config\TestConfig\Temperature.cs" />
     <Compile Include="Config\TestConfig\TestCondition.cs" />
     <Compile Include="Config\TestConfig\Voltage.cs" />
-    <Compile Include="ConstParameter.cs" />
+    <Compile Include="GlobalConst.cs" />
     <Compile Include="Config\InstrumentConfig\Gpib.cs" />
     <Compile Include="Config\InstrumentConfig\InstrConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

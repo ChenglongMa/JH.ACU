@@ -34,8 +34,8 @@ namespace JH.ACU.UI
 
             #region Serial
 
-            cmbBaudRate.DataSource = ConstParameter.BaudRate;
-            cmbDataBits.DataSource = ConstParameter.DataBits;
+            cmbBaudRate.DataSource = GlobalConst.BaudRate;
+            cmbDataBits.DataSource = GlobalConst.DataBits;
             cmbParity.DataSource = Enum.GetValues(typeof (SerialParity));
             cmbStopBits.DataSource = Enum.GetValues(typeof (SerialStopBitsMode));
             cmbSerialPort.DataSource = BllConfig.FindResources(InstrType.Serial);
@@ -58,7 +58,7 @@ namespace JH.ACU.UI
 
             cmbInstrName.DisplayMember = "Key";
             cmbInstrName.ValueMember = "Value";
-            cmbInstrName.DataSource = new BindingSource {DataSource = ConstParameter.InstrNameString};
+            cmbInstrName.DataSource = new BindingSource {DataSource = GlobalConst.InstrNameString};
 
 
             #endregion
