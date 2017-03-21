@@ -8,7 +8,7 @@ namespace JH.ACU.Model
     /// <summary>
     /// 常量参数
     /// </summary>
-    public struct ConstParameter
+    public struct GlobalConst
     {
         /// <summary>
         /// 获取波特率集合
@@ -45,6 +45,9 @@ namespace JH.ACU.Model
                 };
             }
         }
+
+        public static double[,] TempVoltCondition = new double[3, 3];
+
     }
 
     /// <summary>
@@ -94,6 +97,23 @@ namespace JH.ACU.Model
         Gpib,
         Serial,
         Tcp,
+    }
+
+    /// <summary>
+    /// 温度电压模式
+    /// </summary>
+    [Flags]
+    public enum TempVoltMode
+    {
+        LowTempLowVolt = 0x01,
+        LowTempNorVolt = 0x02,
+        LowTempHighVolt = 0x04,
+        NorTempLowVolt = 0x08,
+        NorTempNorVolt = 0x10,
+        NorTempHighVolt = 0x20,
+        HighTempLowVolt = 0x40,
+        HighTempNorVolt = 0x80,
+        HighTempHighVolt = 0x100
     }
 
 }
