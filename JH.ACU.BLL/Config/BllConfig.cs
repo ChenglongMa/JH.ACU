@@ -19,7 +19,7 @@ namespace JH.ACU.BLL.Config
     {
         #region InstrConfig
 
-        private static readonly string SettingFileName = Environment.CurrentDirectory + "\\Config\\InstrConfig.xml";
+        private static readonly string InstrFileName = Environment.CurrentDirectory + "\\Config\\InstrConfig.xml";
 
         #region Visa Resource Converter
 
@@ -94,7 +94,7 @@ namespace JH.ACU.BLL.Config
         /// <returns></returns>
         public static List<Instr> GetInstrConfigs()
         {
-            return XmlHelper.XmlDeserializeFromFile<InstrConfig>(SettingFileName, Encoding.UTF8);
+            return XmlHelper.XmlDeserializeFromFile<InstrConfig>(InstrFileName, Encoding.UTF8);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace JH.ACU.BLL.Config
         /// </summary>
         /// <param name="instr"></param>
         /// <param name="instrs"></param>
-        public static void SaveInstr(Instr instr, List<Instr> instrs = null)
+        public static void SaveToFile(this Instr instr, List<Instr> instrs = null)
         {
             var list = instrs ?? GetInstrConfigs();
             var i = list.Find(ins => ins.Name == instr.Name);
@@ -117,7 +117,7 @@ namespace JH.ACU.BLL.Config
             }
             var resList = new InstrConfig();
             resList.AddRange(list.OrderBy(o => o.Name));
-            XmlHelper.XmlSerializeToFile(resList, SettingFileName, Encoding.UTF8);
+            XmlHelper.XmlSerializeToFile(resList, InstrFileName, Encoding.UTF8);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace JH.ACU.BLL.Config
         /// </summary>
         /// <param name="testCondition"></param>
         /// <param name="fileName"></param>
-        public static void SaveTestCondition(TestCondition testCondition, string fileName)
+        public static void SaveToFile(this TestCondition testCondition, string fileName)
         {
             if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
             if (testCondition == null) throw new ArgumentNullException("testCondition");

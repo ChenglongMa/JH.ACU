@@ -101,10 +101,27 @@ namespace JH.ACU.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(saveFileDialog1.ShowDialog(this)==DialogResult.OK)
+            if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
-                lbxSource.Items.Add(saveFileDialog1.FileName);
-
+                var fileName = saveFileDialog1.FileName;
+                var testCondition = new TestCondition
+                {
+                    Temperature =
+                    {
+                        Duration = (double) numDuration.Value,
+                        HighTemp = (double) numHighTemp.Value,
+                        LowTemp = (double) numLowTemp.Value,
+                        NorTemp = (double) numNorTemp.Value,
+                        Enable = ckbChamberEnable.Checked
+                    },
+                    Voltage =
+                    {
+                        HighVolt = (double) numHighVolt.Value,
+                        NorVolt = (double) numNorVolt.Value,
+                        LowVolt = (double) numLowVolt.Value
+                    }
+                };
+                testCondition.SaveToFile(fileName);
             }
         }
 
@@ -114,13 +131,13 @@ namespace JH.ACU.UI
             {
                 var fileName = openFileDialog1.FileName;
                 var testCondition = BllConfig.GetTestCondition(fileName);
-                numDuration.Value = (decimal)testCondition.Temperature.Duration;
-                numHighTemp.Value = (decimal)testCondition.Temperature.HighTemp;
-                numLowTemp.Value = (decimal)testCondition.Temperature.LowTemp;
-                numNorTemp.Value = (decimal)testCondition.Temperature.NorTemp;
-                numHighVolt.Value = (decimal)testCondition.Voltage.HighVolt;
-                numNorVolt.Value = (decimal)testCondition.Voltage.NorVolt;
-                numLowVolt.Value = (decimal)testCondition.Voltage.LowVolt;
+                numDuration.Value = (decimal) testCondition.Temperature.Duration;
+                numHighTemp.Value = (decimal) testCondition.Temperature.HighTemp;
+                numLowTemp.Value = (decimal) testCondition.Temperature.LowTemp;
+                numNorTemp.Value = (decimal) testCondition.Temperature.NorTemp;
+                numHighVolt.Value = (decimal) testCondition.Voltage.HighVolt;
+                numNorVolt.Value = (decimal) testCondition.Voltage.NorVolt;
+                numLowVolt.Value = (decimal) testCondition.Voltage.LowVolt;
                 ckbChamberEnable.Checked = testCondition.Temperature.Enable;
             }
         }
