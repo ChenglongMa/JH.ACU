@@ -29,8 +29,8 @@ namespace JH.ACU.UI
  
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                //Application.Run(new MainForm());//TODO:修改启动窗体
-                Application.Run(new InitializationForm());
+                Application.Run(new MainForm());//TODO:修改启动窗体
+                //Application.Run(new InitializationForm());
             }
             catch (Exception ex)
             {

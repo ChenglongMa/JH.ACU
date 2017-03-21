@@ -15,11 +15,12 @@ namespace JH.ACU.BLL
     {
         public BllMain()
         {
-            _testCondition=new TestCondition();
+            _testCondition = new TestCondition();
             TempWorker = new NewBackgroundWorker();
-            TempWorker.DoWork+=TempWorker_DoWork;
-            TempWorker.RunWorkerCompleted+=TempWorker_RunWorkerCompleted;
+            TempWorker.DoWork += TempWorker_DoWork;
+            TempWorker.RunWorkerCompleted += TempWorker_RunWorkerCompleted;
         }
+
         /// <summary>
         /// 温度达到要求时执行 //TODO:UI层还可以写一下同样方法
         /// </summary>
@@ -54,8 +55,8 @@ namespace JH.ACU.BLL
                 _chamber = new BllChamber();
             }
             var tempValue = (double) e.Argument;
-            _chamber.SetTemp(tempValue);//设置温度值
-            var tick = Environment.TickCount;//获取当前时刻值
+            _chamber.SetTemp(tempValue); //设置温度值
+            var tick = Environment.TickCount; //获取当前时刻值
             do
             {
                 #region 若取消
@@ -67,6 +68,7 @@ namespace JH.ACU.BLL
                 }
 
                 #endregion
+
                 Thread.Sleep(30000);
                 var currTemp = _chamber.GetTemp();
                 TempWorker.ReportProgress(0, currTemp);
@@ -120,6 +122,7 @@ namespace JH.ACU.BLL
         #endregion
 
         #region 私有方法
+
         /// <summary>
         /// 开启所有仪器
         /// </summary>
@@ -145,6 +148,7 @@ namespace JH.ACU.BLL
         #endregion
 
     }
+
     /// <summary>
     /// 继承自BackgroundWorker，设置属性默认值
     /// </summary>
