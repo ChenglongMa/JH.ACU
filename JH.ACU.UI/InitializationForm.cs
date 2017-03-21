@@ -20,7 +20,7 @@ namespace JH.ACU.UI
 
         #region 属性字段
 
-        private TestCondition _testCondition = new TestCondition();
+        public TestCondition TestCondition = new TestCondition();
 
         #endregion
 
@@ -104,7 +104,7 @@ namespace JH.ACU.UI
             if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 var fileName = saveFileDialog1.FileName;
-                var testCondition = new TestCondition
+                var testCondition = new TestCondition//TODO:items未保存
                 {
                     Temperature =
                     {
@@ -140,6 +140,11 @@ namespace JH.ACU.UI
                 numLowVolt.Value = (decimal) testCondition.Voltage.LowVolt;
                 ckbChamberEnable.Checked = testCondition.Temperature.Enable;
             }
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            //TODO:items未保存
         }
     }
 }
