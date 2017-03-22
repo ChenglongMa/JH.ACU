@@ -109,13 +109,13 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 77);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 64);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(996, 469);
+            this.splitContainer1.Size = new System.Drawing.Size(996, 482);
             this.splitContainer1.SplitterDistance = 481;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -133,8 +133,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ultraGrid1);
-            this.splitContainer2.Size = new System.Drawing.Size(511, 469);
-            this.splitContainer2.SplitterDistance = 228;
+            this.splitContainer2.Size = new System.Drawing.Size(511, 482);
+            this.splitContainer2.SplitterDistance = 235;
             this.splitContainer2.TabIndex = 0;
             // 
 //			'UltraChart' properties's serialization: Since 'ChartType' changes the way axes look,
@@ -322,7 +322,7 @@
             this.ultraChart1.LineChart = lineChartAppearance1;
             this.ultraChart1.Location = new System.Drawing.Point(0, 0);
             this.ultraChart1.Name = "ultraChart1";
-            this.ultraChart1.Size = new System.Drawing.Size(511, 228);
+            this.ultraChart1.Size = new System.Drawing.Size(511, 235);
             this.ultraChart1.TabIndex = 0;
             this.ultraChart1.Tooltips.HighlightFillColor = System.Drawing.Color.DimGray;
             this.ultraChart1.Tooltips.HighlightOutlineColor = System.Drawing.Color.DarkGray;
@@ -390,7 +390,7 @@
             this.ultraGrid1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ultraGrid1.Location = new System.Drawing.Point(0, 0);
             this.ultraGrid1.Name = "ultraGrid1";
-            this.ultraGrid1.Size = new System.Drawing.Size(511, 237);
+            this.ultraGrid1.Size = new System.Drawing.Size(511, 243);
             this.ultraGrid1.TabIndex = 0;
             this.ultraGrid1.Text = "ultraGrid1";
             // 
@@ -420,9 +420,9 @@
             this._MainForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.SystemColors.Control;
             this._MainForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._MainForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 77);
+            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 64);
             this._MainForm_Toolbars_Dock_Area_Left.Name = "_MainForm_Toolbars_Dock_Area_Left";
-            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 469);
+            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 482);
             this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // ultraToolbarsManager1
@@ -445,6 +445,7 @@
             buttonTool19,
             buttonTool20,
             buttonTool21});
+            ultraToolbar2.Settings.UseLargeImages = Infragistics.Win.DefaultableBoolean.True;
             ultraToolbar2.Text = "ultraTools";
             this.ultraToolbarsManager1.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
             ultraToolbar1,
@@ -510,9 +511,9 @@
             this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.SystemColors.Control;
             this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(996, 77);
+            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(996, 64);
             this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
-            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 469);
+            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 482);
             this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _MainForm_Toolbars_Dock_Area_Top
@@ -523,7 +524,7 @@
             this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
-            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(996, 77);
+            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(996, 64);
             this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _MainForm_Toolbars_Dock_Area_Bottom
