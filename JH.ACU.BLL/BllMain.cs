@@ -16,9 +16,72 @@ namespace JH.ACU.BLL
         public BllMain()
         {
             _testCondition = new TestCondition();
-            TempWorker = new NewBackgroundWorker();
-            TempWorker.DoWork += TempWorker_DoWork;
-            TempWorker.RunWorkerCompleted += TempWorker_RunWorkerCompleted;
+            ChamberWorker = new NewBackgroundWorker();
+            ChamberWorker.DoWork += ChamberWorker_DoWork;
+            ChamberWorker.RunWorkerCompleted += ChamberWorker_RunWorkerCompleted;
+            ChamberStay = new NewBackgroundWorker();
+            ChamberStay.DoWork+=ChamberStay_DoWork;
+            ChamberStay.RunWorkerCompleted+=ChamberStay_RunWorkerCompleted;
+            TestWorker = new NewBackgroundWorker();
+            TestWorker.DoWork+=TestWorker_DoWork;
+            TestWorker.RunWorkerCompleted+=TestWorker_RunWorkerCompleted;
+        }
+
+        private void TestWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TestWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            #region 启动仪器、设定外部环境
+            OpenAllInstrs();
+
+
+            #endregion
+
+        }
+
+        private void ChamberStay_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                throw e.Error;
+            }
+            if (e.Cancelled)
+            {
+                //操作取消
+            }
+            else
+            {
+                //正常完成
+            }
+        }
+
+        private void ChamberStay_DoWork(object sender, DoWorkEventArgs e)
+        {
+            #region 使温度保持
+
+            var tick = Environment.TickCount;
+            do
+            {
+                #region 若取消
+
+                if (ChamberStay.CancellationPending)
+                {
+                    _chamber.Stop();
+                    e.Cancel = true;
+                    return;
+                }
+
+                #endregion
+                Thread.Sleep(30000);
+                var currTemp = _chamber.GetTemp();
+                ChamberStay.ReportProgress(0, currTemp);
+            } while (Environment.TickCount - tick <= _testCondition.Temperature.Duration * 60 * 1000);
+
+            #endregion
+
         }
 
         /// <summary>
@@ -26,7 +89,7 @@ namespace JH.ACU.BLL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TempWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void ChamberWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Error != null)
             {
@@ -37,9 +100,13 @@ namespace JH.ACU.BLL
                 //操作取消
                 return;
             }
+
+            if (_testCondition.Temperature.Enable)
             {
-                //TODO；补充后续操作
+                ChamberStay.RunWorkerAsync();
             }
+            TestWorker.RunWorkerAsync();
+
         }
 
         /// <summary>
@@ -47,7 +114,7 @@ namespace JH.ACU.BLL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TempWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void ChamberWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             if (!_testCondition.Temperature.Enable) return;
             if (_chamber == null)
@@ -61,48 +128,28 @@ namespace JH.ACU.BLL
             {
                 #region 若取消
 
-                if (TempWorker.CancellationPending)
+                if (ChamberWorker.CancellationPending)
                 {
+                    _chamber.Stop();
                     e.Cancel = true;
-                    break;
+                    return;
                 }
 
                 #endregion
 
                 Thread.Sleep(30000);
                 var currTemp = _chamber.GetTemp();
-                TempWorker.ReportProgress(0, currTemp);
+                ChamberWorker.ReportProgress(0, currTemp);
             } while (Math.Abs(tempValue - _chamber.GetTemp()) <= 1 || Environment.TickCount - tick < 60*60*1000);
-            tick = Environment.TickCount;
             _chamber.Stay();
-
-            #region 使温度保持
-
-            //do
-            //{
-            //    #region 若取消
-
-            //    if (TempWorker.CancellationPending)
-            //    {
-            //        e.Cancel = true;
-            //        break;
-            //    }
-
-            //    #endregion
-            //    Thread.Sleep(30000);
-
-            //    var currTemp = _chamber.GetTemp();
-            //    TempWorker.ReportProgress(0,currTemp);
-            //} while (Environment.TickCount - tick <= _testCondition.Temperature.Duration * 60 * 1000);
-
-            #endregion
-
 
         }
 
         #region 属性字段
 
-        public readonly NewBackgroundWorker TempWorker;
+        public NewBackgroundWorker ChamberWorker { get; private set; }
+        public NewBackgroundWorker ChamberStay { get; private set; }
+        public NewBackgroundWorker TestWorker { get; private set; }
         private readonly TestCondition _testCondition;
 
         #region 各类仪器
@@ -126,7 +173,7 @@ namespace JH.ACU.BLL
         /// <summary>
         /// 开启所有仪器
         /// </summary>
-        private void Open()
+        private void OpenAllInstrs()
         {
             _chamber = new BllChamber();
             _daq = new BllDaq();

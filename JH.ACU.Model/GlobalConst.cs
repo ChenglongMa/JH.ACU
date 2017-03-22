@@ -100,6 +100,16 @@ namespace JH.ACU.Model
     }
 
     /// <summary>
+    /// ACU开关枚举
+    /// </summary>
+    public enum BeltSwitch
+    {
+        Dsb,
+        Psb,
+        Pads
+    }
+
+    /// <summary>
     /// 温度电压模式
     /// </summary>
     [Flags]

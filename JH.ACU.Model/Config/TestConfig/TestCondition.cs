@@ -14,13 +14,22 @@ namespace JH.ACU.Model.Config.TestConfig
             Temperature = new Temperature();
             Voltage = new Voltage();
             AcuItems = new List<AcuItems>();
+            TvItems = new List<double[]>();
         }
 
         [XmlElement]
         public Temperature Temperature { get; set; }
+
         [XmlElement]
         public Voltage Voltage { get; set; }
-        [XmlArrayItem("AcuItem",typeof(AcuItems))]
+
+        /// <summary>
+        /// 温度、电压测试项
+        /// </summary>
+        [XmlIgnore]
+        public List<double[]> TvItems { get; set; }
+
+        [XmlArrayItem("AcuItem", typeof (AcuItems))]
         public List<AcuItems> AcuItems { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using JH.ACU.BLL.Config;
+using JH.ACU.Lib;
 using JH.ACU.Model.Config.TestConfig;
 
 namespace JH.ACU.UI
@@ -20,7 +21,7 @@ namespace JH.ACU.UI
 
         #region 属性字段
 
-        public TestCondition TestCondition = new TestCondition();
+        public TestCondition TestCondition { get; private set; }
 
         #endregion
 
@@ -104,24 +105,8 @@ namespace JH.ACU.UI
             if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 var fileName = saveFileDialog1.FileName;
-                var testCondition = new TestCondition//TODO:items未保存
-                {
-                    Temperature =
-                    {
-                        Duration = (double) numDuration.Value,
-                        HighTemp = (double) numHighTemp.Value,
-                        LowTemp = (double) numLowTemp.Value,
-                        NorTemp = (double) numNorTemp.Value,
-                        Enable = ckbChamberEnable.Checked
-                    },
-                    Voltage =
-                    {
-                        HighVolt = (double) numHighVolt.Value,
-                        NorVolt = (double) numNorVolt.Value,
-                        LowVolt = (double) numLowVolt.Value
-                    }
-                };
-                testCondition.SaveToFile(fileName);
+                TestCondition = BuildTestCondition();
+                TestCondition.SaveToFile(fileName);
             }
         }
 
@@ -144,7 +129,75 @@ namespace JH.ACU.UI
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            //TODO:items未保存
+            //TODO:还可以再完善：将上次Apply但未Save的显示出来
+            TestCondition = TestCondition ?? BuildTestCondition();
+            DialogResult=DialogResult.OK;
+        }
+
+        private TestCondition BuildTestCondition()
+        {
+            var temp = new Temperature
+            {
+                Duration = (double) numDuration.Value,
+                HighTemp = (double) numHighTemp.Value,
+                LowTemp = (double) numLowTemp.Value,
+                NorTemp = (double) numNorTemp.Value,
+                Enable = ckbChamberEnable.Checked
+            };
+            var volt = new Voltage
+            {
+                HighVolt = (double) numHighVolt.Value,
+                NorVolt = (double) numNorVolt.Value,
+                LowVolt = (double) numLowVolt.Value
+            };
+            var tvItems = new List<double[]>();
+            if (ckbLL.Checked)
+            {
+                tvItems.Add(new[] {temp.LowTemp, volt.LowVolt});
+            }
+            if (ckbLN.Checked)
+            {
+                tvItems.Add(new[] {temp.LowTemp, volt.NorVolt});
+            }
+            if (ckbLH.Checked)
+            {
+                tvItems.Add(new[] {temp.LowTemp, volt.HighVolt});
+            }
+            if (ckbNL.Checked)
+            {
+                tvItems.Add(new[] {temp.NorTemp, volt.LowVolt});
+            }
+            if (ckbNN.Checked)
+            {
+                tvItems.Add(new[] {temp.NorTemp, volt.NorVolt});
+            }
+            if (ckbNH.Checked)
+            {
+                tvItems.Add(new[] {temp.NorTemp, volt.HighVolt});
+            }
+            if (ckbHL.Checked)
+            {
+                tvItems.Add(new[] {temp.HighTemp, volt.LowVolt});
+            }
+            if (ckbHN.Checked)
+            {
+                tvItems.Add(new[] {temp.HighTemp, volt.NorVolt});
+            }
+            if (ckbHH.Checked)
+            {
+                tvItems.Add(new[] {temp.HighTemp, volt.HighVolt});
+            }
+            if (tvItems.IsNullOrEmpty())
+            {
+                tvItems.Add(new[] {temp.NorTemp, volt.NorVolt});
+            }
+            return new TestCondition
+            {
+                Temperature = temp,
+                Voltage = volt,
+                TvItems = tvItems.OrderBy(i => i[0]).ToList(), //对选择项进行排序，使温箱测试从低温开始以节省能源//QUES：会不会对产品造成影响待定
+                //TODO:ACU Items 未保存
+            };
         }
     }
 }

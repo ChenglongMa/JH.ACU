@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using JH.ACU.DAL;
+using JH.ACU.Model;
 
 namespace JH.ACU.BLL.Instruments
 {
@@ -34,7 +35,7 @@ namespace JH.ACU.BLL.Instruments
 
         private const int BoardNum = 8, GroupNum = 13;
 
-        private byte _mainRelayMask = 0;
+        private byte _mainRelayMask;
 
         /// <summary>
         /// 继电器组状态值
@@ -61,6 +62,24 @@ namespace JH.ACU.BLL.Instruments
         {
             get { return _relaysGroupMask; }
         }
+        /// <summary>
+        /// 回路继电器分组
+        /// </summary>
+        public static readonly int[,] FcGroup =
+        {
+            {214, 215, 216, 217}, {220, 221, 222, 223}, {224, 225, 226, 227}, {230, 231, 232, 233},
+            {234, 235, 236, 237}, {240, 241, 242, 243}, {244, 245, 246, 247}, {250, 251, 252, 253},
+            {254, 255, 256, 257}, {260, 261, 262, 263}, {310, 311, 312, 313}, {314, 315, 316, 317},
+            {320, 321, 322, 323}, {324, 325, 326, 327}, {330, 331, 332, 333}, {334, 335, 336, 337}
+        };
+        /// <summary>
+        /// 开关继电器分组
+        /// 使用示例:BeltGroup[(int) BeltSwitch.Dsb,index1]
+        /// </summary>
+        public static readonly int[,] BeltGroup =
+        {
+            {200, 201, 202, 203}, {204, 205, 206, 207}, {210, 211, 212, 213}
+        };
 
         #endregion
 
@@ -100,7 +119,7 @@ namespace JH.ACU.BLL.Instruments
             ret = D2KDask.D2K_AI_ContBufferSetup((ushort)_mDev, dataBuffer, 1000, out bufId);
             D2KDask.ThrowException((D2KDask.Error)ret, channel);
             ret = D2KDask.D2K_AI_ContReadChannel((ushort)_mDev, channel, bufId, 1000, 400, 400, D2KDask.ASYNCH_OP);
-            D2KDask.ThrowException((D2KDask.Error) ret, channel);//                       100,40000,40000
+            D2KDask.ThrowException((D2KDask.Error) ret, channel);//             100,40000,40000
             do
             {
                 ret = D2KDask.D2K_AI_AsyncCheck((ushort)_mDev, out stopped, out accessCnt);
