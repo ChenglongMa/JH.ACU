@@ -32,8 +32,7 @@ namespace JH.ACU.UI
 
         #region 私有方法
 
-        private void ultraToolbarsManager1_ToolClick(object sender,
-            ToolClickEventArgs e)
+        private void ultraToolbarsManager1_ToolClick(object sender, ToolClickEventArgs e)
         {
             InstrConfigForm instrConfig;
             switch (e.Tool.Key)

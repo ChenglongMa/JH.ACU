@@ -191,6 +191,7 @@ namespace JH.ACU.BLL.Abstract
         {
             if (!MbSession.IsDisposed)
             {
+                Reset();
                 MbSession.Dispose();
             }
         }

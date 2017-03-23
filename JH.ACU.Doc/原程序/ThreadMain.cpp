@@ -181,7 +181,7 @@ void __fastcall TThreadMain::AutoTest()
 				}
                 ViewProgressInfo(false, 10);
 
-				// 控制写入TempSheet中的温度是每块板卡是不一样的
+				// 控制写入TempSheet中的温度时每块板卡是不一样的
 				FormMain->m_bTempBoard = !FormMain->m_bTempBoard;
 				g_iCurrBoard = iBoard;
                 // 板卡显示

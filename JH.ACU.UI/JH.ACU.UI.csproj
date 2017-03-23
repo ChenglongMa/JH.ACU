@@ -203,6 +203,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="NoteBook.txt" />
+    <None Include="Resources\setting.png" />
     <None Include="Resources\wrong.png" />
     <None Include="Resources\wraning.png" />
     <None Include="Resources\wifi.png" />

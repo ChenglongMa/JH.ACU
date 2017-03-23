@@ -74,6 +74,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\InstrumentConfig\Serial.cs" />
     <Compile Include="Config\InstrumentConfig\TcpIp.cs" />
+    <Compile Include="Report.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JH.ACU.Lib\JH.ACU.Lib.csproj">

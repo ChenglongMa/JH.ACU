@@ -400,7 +400,7 @@ bool OpenDevice()
     return true;
 }
 
-// 关闭所遇设备
+// 关闭所有设备
 bool CloseDevice(void)
 {
 	if(false == g_bAllDevice)
