@@ -63,6 +63,26 @@ namespace JH.ACU.UI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap acu {
+            get {
+                object obj = ResourceManager.GetObject("acu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon AcuItems {
+            get {
+                object obj = ResourceManager.GetObject("AcuItems", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
@@ -326,6 +346,16 @@ namespace JH.ACU.UI.Properties {
         internal static System.Drawing.Bitmap interrupt {
             get {
                 object obj = ResourceManager.GetObject("interrupt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap item {
+            get {
+                object obj = ResourceManager.GetObject("item", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -686,6 +716,16 @@ namespace JH.ACU.UI.Properties {
         internal static System.Drawing.Bitmap rotate {
             get {
                 object obj = ResourceManager.GetObject("rotate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap select {
+            get {
+                object obj = ResourceManager.GetObject("select", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

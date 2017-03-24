@@ -17,6 +17,8 @@ namespace JH.ACU.UI
         public InitializationForm()
         {
             InitializeComponent();
+            TestCondition = BllConfig.GetTestCondition(); //从默认路径获取
+            DisplayTestCondition(TestCondition);
         }
 
         #region 属性字段
@@ -102,12 +104,13 @@ namespace JH.ACU.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            TestCondition = BuildTestCondition();
             if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 var fileName = saveFileDialog1.FileName;
-                TestCondition = BuildTestCondition();
-                TestCondition.SaveToFile(fileName);
+                TestCondition.SaveToFile(fileName); //保存到指定路径一份
             }
+            TestCondition.SaveToFile(); //保存到默认路径一份
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -116,24 +119,39 @@ namespace JH.ACU.UI
             {
                 var fileName = openFileDialog1.FileName;
                 var testCondition = BllConfig.GetTestCondition(fileName);
-                numDuration.Value = (decimal) testCondition.Temperature.Duration;
-                numHighTemp.Value = (decimal) testCondition.Temperature.HighTemp;
-                numLowTemp.Value = (decimal) testCondition.Temperature.LowTemp;
-                numNorTemp.Value = (decimal) testCondition.Temperature.NorTemp;
-                numHighVolt.Value = (decimal) testCondition.Voltage.HighVolt;
-                numNorVolt.Value = (decimal) testCondition.Voltage.NorVolt;
-                numLowVolt.Value = (decimal) testCondition.Voltage.LowVolt;
-                ckbChamberEnable.Checked = testCondition.Temperature.Enable;
+                DisplayTestCondition(testCondition);
             }
         }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            //TODO:还可以再完善：将上次Apply但未Save的显示出来
-            TestCondition = TestCondition ?? BuildTestCondition();
-            DialogResult=DialogResult.OK;
+            TestCondition = BuildTestCondition();
+            TestCondition.SaveToFile(); //保存到默认路径
+            DialogResult = DialogResult.OK;
         }
 
+        /// <summary>
+        /// 将配置的值显示到控件上
+        /// </summary>
+        /// <param name="testCondition"></param>
+        private void DisplayTestCondition(TestCondition testCondition)
+        {
+            if (testCondition == null) return;
+            numDuration.Value = (decimal) testCondition.Temperature.Duration;
+            numHighTemp.Value = (decimal) testCondition.Temperature.HighTemp;
+            numLowTemp.Value = (decimal) testCondition.Temperature.LowTemp;
+            numNorTemp.Value = (decimal) testCondition.Temperature.NorTemp;
+            numHighVolt.Value = (decimal) testCondition.Voltage.HighVolt;
+            numNorVolt.Value = (decimal) testCondition.Voltage.NorVolt;
+            numLowVolt.Value = (decimal) testCondition.Voltage.LowVolt;
+            ckbChamberEnable.Checked = testCondition.Temperature.Enable;
+            //TODO：未完
+        }
+
+        /// <summary>
+        /// 控件值赋给配置
+        /// </summary>
+        /// <returns></returns>
         private TestCondition BuildTestCondition()
         {
             var temp = new Temperature
@@ -198,6 +216,11 @@ namespace JH.ACU.UI
                 TvItems = tvItems.OrderBy(i => i[0]).ToList(), //对选择项进行排序，使温箱测试从低温开始以节省能源//QUES：会不会对产品造成影响待定
                 //TODO:ACU Items 未保存
             };
+        }
+
+        private void BuildAcuItemTree()
+        {
+            
         }
     }
 }

@@ -137,13 +137,29 @@ namespace JH.ACU.BLL.Config
 
         #region TestConditionConfig
 
+        private static readonly string DefaultConFileName = Environment.CurrentDirectory +
+                                                            "\\Config\\DefaultTestCondition.config";
+
         /// <summary>
         /// 保存测试条件至文件
         /// </summary>
         /// <param name="testCondition"></param>
         /// <param name="fileName"></param>
-        public static void SaveToFile(this TestCondition testCondition, string fileName)
+        public static void SaveToFile(this TestCondition testCondition, string fileName = null)
         {
+            #region 若路径赋值为空则保存到默认位置
+
+            if (fileName.IsNullOrEmpty())
+            {
+                if (!File.Exists(DefaultConFileName))
+                {
+                    File.Create(DefaultConFileName).Dispose();
+                }
+                fileName = DefaultConFileName;
+            }
+
+            #endregion
+
             if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
             if (testCondition == null) throw new ArgumentNullException("testCondition");
             XmlHelper.XmlSerializeToFile(testCondition, fileName);
@@ -152,10 +168,18 @@ namespace JH.ACU.BLL.Config
         /// <summary>
         /// 获取指定路径下文件
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fileName">路径，若为空则从默认路径加载</param>
         /// <returns></returns>
-        public static TestCondition GetTestCondition(string fileName)
+        public static TestCondition GetTestCondition(string fileName = null)
         {
+            if (fileName.IsNullOrEmpty())
+            {
+                if (!File.Exists(DefaultConFileName))
+                {
+                    return null;
+                }
+                fileName = DefaultConFileName;
+            }
             if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
             return XmlHelper.XmlDeserializeFromFile<TestCondition>(fileName);
         }

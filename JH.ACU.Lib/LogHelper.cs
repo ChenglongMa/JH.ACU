@@ -20,7 +20,7 @@ namespace JH.ACU.Lib
         /// 创建日志文件夹
         /// </summary>
         /// <returns></returns>
-        private static void CreateLog_Directory(string path, string strfile)
+        private static void CreateLogDirectory(string path, string strfile)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace JH.ACU.Lib
         {
             var path = RootPath;
             var strFile = "\\ErrorLog_" + fileName + DateTime.Now.ToString("yyyyMMdd") + ".log";
-            CreateLog_Directory(path, strFile);
+            CreateLogDirectory(path, strFile);
             using (var sw = new StreamWriter(path + strFile, true, Encoding.Default))
             {
                 sw.WriteLine("*****************************************【"
@@ -78,7 +78,7 @@ namespace JH.ACU.Lib
         {
             var path = RootPath;
             var strFile = "\\WarningLog_" + fileName + DateTime.Now.ToString("yyyyMMdd") + ".log";
-            CreateLog_Directory(path, strFile);
+            CreateLogDirectory(path, strFile);
             using (var sw = new StreamWriter(path + strFile, true, Encoding.Default))
             {
                 sw.WriteLine("*****************************************【"
