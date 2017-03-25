@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using JH.ACU.BLL.Instruments;
+using JH.ACU.Lib.Component;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.TestConfig;
 
@@ -282,15 +283,4 @@ namespace JH.ACU.BLL
 
     }
 
-    /// <summary>
-    /// 继承自BackgroundWorker，设置属性默认值
-    /// </summary>
-    public class NewBackgroundWorker : BackgroundWorker
-    {
-        public NewBackgroundWorker()
-        {
-            WorkerReportsProgress = true;
-            WorkerSupportsCancellation = true;
-        }
-    }
 }

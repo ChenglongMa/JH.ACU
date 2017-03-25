@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\TestConfig\AcuItems.cs" />
+    <Compile Include="Config\TestConfig\SpecUnit.cs" />
     <Compile Include="Config\TestConfig\Temperature.cs" />
     <Compile Include="Config\TestConfig\TestCondition.cs" />
     <Compile Include="Config\TestConfig\Voltage.cs" />

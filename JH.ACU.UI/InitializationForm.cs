@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model.Config.TestConfig;
+using NationalInstruments.Restricted;
 
 namespace JH.ACU.UI
 {
@@ -19,6 +20,7 @@ namespace JH.ACU.UI
             InitializeComponent();
             TestCondition = BllConfig.GetTestCondition(); //从默认路径获取
             DisplayTestCondition(TestCondition);
+            BindingSourceTable();
         }
 
         #region 属性字段
@@ -218,9 +220,47 @@ namespace JH.ACU.UI
             };
         }
 
-        private void BuildAcuItemTree()
+        private void BindingSourceTable()
         {
-            
+            var list = BllConfig.GetSpecConfig();
+            if (list.IsNullOrEmpty()) return;
+            dgSource.DataSource = list;
         }
+
+        /// <summary>
+        /// 设置错误信息
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="message"></param>
+        private void SetError(Control control,string message)
+        {
+            errorProvider1.Clear();
+            errorProvider1.SetError(control, message);
+        }
+
+        private void btnSelectOne_Click(object sender, EventArgs e)
+        {
+            if (tvTarget.SelectedNode == null||tvTarget.SelectedNode==tvTarget.TopNode)
+            {
+                SetError(btnSelectOne, "未选择ACU项");
+                return;
+            }
+            if(dgSource.Selected==null)
+            {
+                SetError(btnSelectOne, "未选择测试项");
+                return;
+            }
+            foreach (var row in dgSource.Selected.Rows)
+            {
+                var spec = (SpecUnit)row.ListObject;
+                if (!tvTarget.SelectedNode.Nodes.ContainsKey(spec.Index.ToString()))
+                {
+                    tvTarget.SelectedNode.Nodes.Add(new TreeNode(spec.Index.ToString(), 2, 3)
+                    {
+                        Name = spec.Index.ToString(),
+                        Tag = spec,
+                    });
+                }
+            }        }
     }
 }

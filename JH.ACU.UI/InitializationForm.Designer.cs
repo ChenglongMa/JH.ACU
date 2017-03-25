@@ -29,24 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("ACU#1");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("ACU#2");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("ACU#3");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("ACU#4");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("ACU#5");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("ACU#6");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("ACU#7");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("ACU#8");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("ACU Items", 0, 3, new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6,
-            treeNode7,
-            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("ACU#1");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("ACU#2");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("ACU#3");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("ACU#4");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("ACU#5");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("ACU#6");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("ACU#7");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("ACU#8");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("ACU Items", 0, 3, new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InitializationForm));
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             this.grbTvValue = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -101,7 +113,6 @@
             this.btnCancelOne = new System.Windows.Forms.Button();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnSelectOne = new System.Windows.Forms.Button();
-            this.lbxSource = new System.Windows.Forms.ListBox();
             this.flowAcu = new System.Windows.Forms.FlowLayoutPanel();
             this.ckbAcu1 = new System.Windows.Forms.CheckBox();
             this.ckbAcu2 = new System.Windows.Forms.CheckBox();
@@ -128,6 +139,9 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ultraGrid1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.dgSource = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.grbTvValue.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLowTemp)).BeginInit();
@@ -153,6 +167,9 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgSource)).BeginInit();
             this.SuspendLayout();
             // 
             // grbTvValue
@@ -795,12 +812,12 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.dgSource);
             this.groupBox4.Controls.Add(this.tvTarget);
             this.groupBox4.Controls.Add(this.btnCancelAll);
             this.groupBox4.Controls.Add(this.btnCancelOne);
             this.groupBox4.Controls.Add(this.btnSelectAll);
             this.groupBox4.Controls.Add(this.btnSelectOne);
-            this.groupBox4.Controls.Add(this.lbxSource);
             this.groupBox4.Controls.Add(this.flowAcu);
             this.groupBox4.Location = new System.Drawing.Point(301, 184);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
@@ -817,28 +834,28 @@
             this.tvTarget.ImageList = this.imageList1;
             this.tvTarget.Location = new System.Drawing.Point(367, 76);
             this.tvTarget.Name = "tvTarget";
-            treeNode1.Name = "acu1";
-            treeNode1.Text = "ACU#1";
-            treeNode2.Name = "acu2";
-            treeNode2.Text = "ACU#2";
-            treeNode3.Name = "acu3";
-            treeNode3.Text = "ACU#3";
-            treeNode4.Name = "acu4";
-            treeNode4.Text = "ACU#4";
-            treeNode5.Name = "acu5";
-            treeNode5.Text = "ACU#5";
-            treeNode6.Name = "acu6";
-            treeNode6.Text = "ACU#6";
-            treeNode7.Name = "acu7";
-            treeNode7.Text = "ACU#7";
-            treeNode8.Name = "acu8";
-            treeNode8.Text = "ACU#8";
-            treeNode9.ImageIndex = 0;
-            treeNode9.Name = "rootNode";
-            treeNode9.SelectedImageIndex = 3;
-            treeNode9.Text = "ACU Items";
+            treeNode10.Name = "acu1";
+            treeNode10.Text = "ACU#1";
+            treeNode11.Name = "acu2";
+            treeNode11.Text = "ACU#2";
+            treeNode12.Name = "acu3";
+            treeNode12.Text = "ACU#3";
+            treeNode13.Name = "acu4";
+            treeNode13.Text = "ACU#4";
+            treeNode14.Name = "acu5";
+            treeNode14.Text = "ACU#5";
+            treeNode15.Name = "acu6";
+            treeNode15.Text = "ACU#6";
+            treeNode16.Name = "acu7";
+            treeNode16.Text = "ACU#7";
+            treeNode17.Name = "acu8";
+            treeNode17.Text = "ACU#8";
+            treeNode18.ImageIndex = 0;
+            treeNode18.Name = "rootNode";
+            treeNode18.SelectedImageIndex = 3;
+            treeNode18.Text = "ACU Items";
             this.tvTarget.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode9});
+            treeNode18});
             this.tvTarget.SelectedImageIndex = 3;
             this.tvTarget.Size = new System.Drawing.Size(285, 364);
             this.tvTarget.TabIndex = 5;
@@ -891,18 +908,7 @@
             this.btnSelectOne.TabIndex = 3;
             this.btnSelectOne.Text = ">";
             this.btnSelectOne.UseVisualStyleBackColor = true;
-            // 
-            // lbxSource
-            // 
-            this.lbxSource.FormattingEnabled = true;
-            this.lbxSource.HorizontalScrollbar = true;
-            this.lbxSource.ItemHeight = 15;
-            this.lbxSource.Location = new System.Drawing.Point(11, 76);
-            this.lbxSource.Margin = new System.Windows.Forms.Padding(4);
-            this.lbxSource.Name = "lbxSource";
-            this.lbxSource.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lbxSource.Size = new System.Drawing.Size(285, 364);
-            this.lbxSource.TabIndex = 2;
+            this.btnSelectOne.Click += new System.EventHandler(this.btnSelectOne_Click);
             // 
             // flowAcu
             // 
@@ -1117,7 +1123,7 @@
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(979, 660);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(1240, 658);
             this.flowLayoutPanel3.TabIndex = 5;
             // 
             // flowLayoutPanel4
@@ -1150,8 +1156,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(979, 742);
-            this.splitContainer1.SplitterDistance = 660;
+            this.splitContainer1.Size = new System.Drawing.Size(1240, 742);
+            this.splitContainer1.SplitterDistance = 658;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 6;
             // 
@@ -1167,14 +1173,14 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(979, 77);
+            this.panel1.Size = new System.Drawing.Size(1240, 79);
             this.panel1.TabIndex = 2;
             // 
             // btnApply
             // 
             this.btnApply.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnApply.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnApply.Location = new System.Drawing.Point(533, 14);
+            this.btnApply.Location = new System.Drawing.Point(664, 16);
             this.btnApply.Margin = new System.Windows.Forms.Padding(4);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(100, 29);
@@ -1186,7 +1192,7 @@
             // btnLoad
             // 
             this.btnLoad.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnLoad.Location = new System.Drawing.Point(184, 14);
+            this.btnLoad.Location = new System.Drawing.Point(315, 16);
             this.btnLoad.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(100, 29);
@@ -1199,7 +1205,7 @@
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(708, 14);
+            this.btnCancel.Location = new System.Drawing.Point(839, 16);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 29);
@@ -1210,7 +1216,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSave.Location = new System.Drawing.Point(359, 14);
+            this.btnSave.Location = new System.Drawing.Point(490, 16);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 29);
@@ -1230,6 +1236,80 @@
             this.saveFileDialog1.Filter = "Config File|*.config|All Files|*.*";
             this.saveFileDialog1.RestoreDirectory = true;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // ultraGrid1
+            // 
+            this.ultraGrid1.Location = new System.Drawing.Point(0, 0);
+            this.ultraGrid1.Name = "ultraGrid1";
+            this.ultraGrid1.Size = new System.Drawing.Size(550, 80);
+            this.ultraGrid1.TabIndex = 0;
+            // 
+            // dgSource
+            // 
+            appearance1.BackColor = System.Drawing.SystemColors.Window;
+            appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dgSource.DisplayLayout.Appearance = appearance1;
+            this.dgSource.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
+            this.dgSource.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.dgSource.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            this.dgSource.DisplayLayout.EmptyRowSettings.ShowEmptyRows = true;
+            appearance2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance2.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance2.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance2.BorderColor = System.Drawing.SystemColors.Window;
+            this.dgSource.DisplayLayout.GroupByBox.Appearance = appearance2;
+            appearance3.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.dgSource.DisplayLayout.GroupByBox.BandLabelAppearance = appearance3;
+            this.dgSource.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            appearance4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            appearance4.BackColor2 = System.Drawing.SystemColors.Control;
+            appearance4.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance4.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.dgSource.DisplayLayout.GroupByBox.PromptAppearance = appearance4;
+            this.dgSource.DisplayLayout.MaxColScrollRegions = 1;
+            this.dgSource.DisplayLayout.MaxRowScrollRegions = 1;
+            appearance5.BackColor = System.Drawing.SystemColors.Window;
+            appearance5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.dgSource.DisplayLayout.Override.ActiveCellAppearance = appearance5;
+            appearance6.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance6.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgSource.DisplayLayout.Override.ActiveRowAppearance = appearance6;
+            this.dgSource.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
+            this.dgSource.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
+            appearance7.BackColor = System.Drawing.SystemColors.Window;
+            this.dgSource.DisplayLayout.Override.CardAreaAppearance = appearance7;
+            appearance8.BorderColor = System.Drawing.Color.Silver;
+            appearance8.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
+            this.dgSource.DisplayLayout.Override.CellAppearance = appearance8;
+            this.dgSource.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            this.dgSource.DisplayLayout.Override.CellPadding = 0;
+            appearance9.BackColor = System.Drawing.SystemColors.Control;
+            appearance9.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance9.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance9.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance9.BorderColor = System.Drawing.SystemColors.Window;
+            this.dgSource.DisplayLayout.Override.GroupByRowAppearance = appearance9;
+            appearance10.TextHAlignAsString = "Left";
+            this.dgSource.DisplayLayout.Override.HeaderAppearance = appearance10;
+            this.dgSource.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+            this.dgSource.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
+            appearance11.BackColor = System.Drawing.SystemColors.Window;
+            appearance11.BorderColor = System.Drawing.Color.Silver;
+            this.dgSource.DisplayLayout.Override.RowAppearance = appearance11;
+            this.dgSource.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
+            appearance12.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.dgSource.DisplayLayout.Override.TemplateAddRowAppearance = appearance12;
+            this.dgSource.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.dgSource.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.dgSource.Location = new System.Drawing.Point(15, 76);
+            this.dgSource.Name = "dgSource";
+            this.dgSource.Size = new System.Drawing.Size(285, 364);
+            this.dgSource.TabIndex = 6;
+            this.dgSource.Text = "ultraGrid2";
+            // 
             // InitializationForm
             // 
             this.AcceptButton = this.btnApply;
@@ -1237,7 +1317,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(979, 742);
+            this.ClientSize = new System.Drawing.Size(1240, 742);
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "InitializationForm";
@@ -1274,6 +1354,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1341,7 +1424,6 @@
         private System.Windows.Forms.Button btnCancelOne;
         private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.Button btnSelectOne;
-        private System.Windows.Forms.ListBox lbxSource;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
@@ -1361,5 +1443,8 @@
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.TreeView tvTarget;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private Infragistics.Win.UltraWinGrid.UltraGrid ultraGrid1;
+        private Infragistics.Win.UltraWinGrid.UltraGrid dgSource;
     }
 }

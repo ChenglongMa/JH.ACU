@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -182,6 +183,48 @@ namespace JH.ACU.BLL.Config
             }
             if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
             return XmlHelper.XmlDeserializeFromFile<TestCondition>(fileName);
+        }
+
+        #endregion
+
+        #region SPEC_unit
+
+        private static readonly string DefaultSpecFileName = Environment.CurrentDirectory +
+                                                             "\\Config\\SPEC_unit.txt";
+
+        /// <summary>
+        /// 从指定路径或默认路径加载测试信息
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static List<SpecUnit> GetSpecConfig(string fileName = null)
+        {
+            if (fileName.IsNullOrEmpty())
+            {
+                fileName = DefaultSpecFileName;
+            }
+            if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
+            var res = new List<SpecUnit>();
+            using (var sw = new StreamReader(new FileStream(fileName, FileMode.Open)))
+            {
+                while (!sw.EndOfStream)
+                {
+                    var text = sw.ReadLine();
+                    if (text == null) continue;
+                    var strArray = text.Split(new[] {'#'}, StringSplitOptions.RemoveEmptyEntries);
+                    if (strArray.Length < typeof (SpecUnit).GetProperties().Length) continue;
+                    var spec = new SpecUnit
+                    {
+                        Index = Convert.ToInt32(strArray[0].Trim()),
+                        Description = strArray[1].Trim(),
+                        Specification = strArray[2].Trim(),
+                        Uom = strArray[3].Trim(),
+                        Dtc = Convert.ToByte(strArray[4].Trim(), 16)
+                    };
+                    res.Add(spec);
+                }
+            }
+            return res.OrderBy(s => s.Index).ToList();
         }
 
         #endregion
