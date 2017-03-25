@@ -8,67 +8,180 @@
 08#PCAB Squib Resistance Too High#          4.84-7.28#          Ohm#      0x1F#
 09#RDSAB Squib Resistance Too High#         4.84-7.28#          Ohm#      0x22#
 10#RPSAB Squib Resistance Too High#         4.84-7.28#          Ohm#      0x25#
-11#DAB Squib Resistance Too Low or Short#   1.74-2.46#          Ohm#      0x05#
-12#PAB Squib Resistance Too Low or Short#   1.30-1.96#          Ohm#      0x0B#
-13#DBPT Squib Resistance Too Low or Short#  1.30-1.96#          Ohm#      0x11#
-14#PBPT Squib Resistance Too Low or Short#  1.30-1.96#          Ohm#      0x14#
-15#DSAB Squib Resistance Too Low or Short#  0.40-1.60#          Ohm#      0x17#
-16#PSAB Squib Resistance Too Low or Short#  0.40-1.60#          Ohm#      0x1A#
-17#DCAB Squib Resistance Too Low or Short#  0.40-1.60#          Ohm#      0x1D#
-18#PCAB Squib Resistance Too Low or Short#  0.40-1.60#          Ohm#      0x20#
-19#RDSAB Squib Resistance Too Low or Short# 0.40-1.60#          Ohm#      0x23#
-20#RPSAB Squib Resistance Too Low or Short# 0.40-1.60#          Ohm#      0x26#
-21#DAB Squib Short to Ground#               1000.00-10000.00#   Ohm#      0x28#
-22#PAB Squib Short to Ground#               1000.00-10000.00#   Ohm#      0x2C#
-23#DBPT Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x30#
-24#PBPT Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x32#
-25#DSAB Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x34#
-26#PSAB Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x36#
-27#DCAB Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x38#
-28#PCAB Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x3A#
-29#RDSAB Squib Short to Ground#             1000.00-10000.00#   Ohm#      0x3C#
-30#RPSAB Squib Short to Ground#             1000.00-10000.00#   Ohm#      0x3E#
-31#DAB Squib Short to Battery#              1000.00-10000.00#   Ohm#      0x27#
-32#PAB Squib Short to Battery#              1000.00-10000.00#   Ohm#      0x2B#
-33#DBPT Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x2F#
-34#PBPT Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x31#
-35#DSAB Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x33#
-36#PSAB Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x35#
-37#DCAB Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x37#
-38#PCAB Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x39#
-39#RDSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3B#
-40#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#
-41#S/Belt 1  STG <-> Unbelted#              200.00-350.00#      Ohm#      0x49#
-42#S/Belt 1  Unbelted <-> Belted#           480.00-560.00#      Ohm#      0x48#
-43#S/Belt 1  Belted <-> STB#                750.00-1150.00#     Ohm#      0x45#
-44#S/Belt 2  STG <-> Unbelted#              200.00-350.00#      Ohm#      0x4E#
-45#S/Belt 2  Unbelted <-> Belted#           480.00-560.00#      Ohm#      0x4D#
-46#S/Belt 2  Belted <-> STB#                750.00-1150.00#     Ohm#      0x4A#
-47#PADS 1  STG <-> OFF#                     60.00-90.00#        Ohm#      0x71#
-48#PADS 1  OFF <-> ON#                      110.00-372.00#      Ohm#      0x72#
-49#PADS 1  ON <-> STB#                      428.00-600.00#      Ohm#      0x6E#
-50#Vbatt Too High#                          16.00-19.20#        V#        0x01#
-51#Vbatt Too Low#                           7.20-9.00#          V#        0x02#
-52#SIS 1 Short to Vbatt#                    0.00-10000.00#      Ohm#      0x6D#
-53#SIS 2 Short to Vbatt#                    0.00-10000.00#      Ohm#      0x6E#
-54#SIS 3 Short to Vbatt#                    0.00-10000.00#      Ohm#      0x6D#
-55#SIS 4 Short to Vbatt#                    0.00-10000.00#      Ohm#      0x70#
-56#SIS 1 Short to GND#                      0.00-10000.00#      Ohm#      0x71#
-57#SIS 2 Short to GND#                      0.00-10000.00#      Ohm#      0x72#
-58#SIS 3 Short to GND#                      0.00-10000.00#      Ohm#      0x71#
-59#SIS 4 Short to GND#                      0.00-10000.00#      Ohm#      0x74#
-60#SIS 1 Sensor Output#                                                   0x8B#
-61#SIS 2 Sensor Output#                                                   0x8C#
-62#SIS 3 Sensor Output#                                                   0x8D#
-63#SIS 4 Sensor Output#                                                   0x8E#
-64#WL1_VOLT(OFF)#                           7.48-vbatt#         V#           0#
-65#WL1_VOLT(ON)#                            0.00-3.50#          V#           0#
-66#WL1_CURRENT(normal)#                     10.00-100.00#       mA#          0#
-67#WL1_CURRENT(short)#                      150.00-650.00#      mA#          0#
-68#WL2_VOLT(OFF)#                           8.34-vbatt#         V#           0#
-69#WL2_VOLT(ON)#                            0.00-3.50#          V#           0#
-70#WL2_CURRENT(normal)#                     10.00-100.00#       mA#          0#
-71#WL2_CURRENT(short)#                      150.00-650.00#      mA#          0#
-72#Autonomous time( )#                      200.00-4000.00#     mS#          0#
-73#ACU_CURRENT( )#                          20.00-140.00#       mA#          0#
-74#Crash Output Check#                      Signal check#       #            0#
+11#RPSAB Squib Resistance Too High#         4.84-7.28#          Ohm#      0x25#//需要修改
+12#RPSAB Squib Resistance Too High#         4.84-7.28#          Ohm#      0x25#//需要修改
+13#RPSAB Squib Resistance Too High#         4.84-7.28#          Ohm#      0x25#//需要修改
+14#RPSAB Squib Resistance Too High#         4.84-7.28#          Ohm#      0x25#//需要修改
+15#RPSAB Squib Resistance Too High#         4.84-7.28#          Ohm#      0x25#//需要修改
+16#RPSAB Squib Resistance Too High#         4.84-7.28#          Ohm#      0x25#//需要修改
+17#DAB Squib Resistance Too Low or Short#   1.74-2.46#          Ohm#      0x05#
+18#PAB Squib Resistance Too Low or Short#   1.30-1.96#          Ohm#      0x0B#
+19#DBPT Squib Resistance Too Low or Short#  1.30-1.96#          Ohm#      0x11#
+20#PBPT Squib Resistance Too Low or Short#  1.30-1.96#          Ohm#      0x14#
+21#DSAB Squib Resistance Too Low or Short#  0.40-1.60#          Ohm#      0x17#
+22#PSAB Squib Resistance Too Low or Short#  0.40-1.60#          Ohm#      0x1A#
+23#DCAB Squib Resistance Too Low or Short#  0.40-1.60#          Ohm#      0x1D#
+24#PCAB Squib Resistance Too Low or Short#  0.40-1.60#          Ohm#      0x20#
+25#RDSAB Squib Resistance Too Low or Short# 0.40-1.60#          Ohm#      0x23#
+26#RPSAB Squib Resistance Too Low or Short# 0.40-1.60#          Ohm#      0x26#
+27#RPSAB Squib Resistance Too Low or Short# 0.40-1.60#          Ohm#      0x26#//需要修改
+28#RPSAB Squib Resistance Too Low or Short# 0.40-1.60#          Ohm#      0x26#//需要修改
+29#RPSAB Squib Resistance Too Low or Short# 0.40-1.60#          Ohm#      0x26#//需要修改
+30#RPSAB Squib Resistance Too Low or Short# 0.40-1.60#          Ohm#      0x26#//需要修改
+31#RPSAB Squib Resistance Too Low or Short# 0.40-1.60#          Ohm#      0x26#//需要修改
+32#RPSAB Squib Resistance Too Low or Short# 0.40-1.60#          Ohm#      0x26#//需要修改
+33#DAB Squib Short to Ground#               1000.00-10000.00#   Ohm#      0x28#
+34#PAB Squib Short to Ground#               1000.00-10000.00#   Ohm#      0x2C#
+35#DBPT Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x30#
+36#PBPT Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x32#
+37#DSAB Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x34#
+38#PSAB Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x36#
+39#DCAB Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x38#
+40#PCAB Squib Short to Ground#              1000.00-10000.00#   Ohm#      0x3A#
+41#RDSAB Squib Short to Ground#             1000.00-10000.00#   Ohm#      0x3C#
+42#RPSAB Squib Short to Ground#             1000.00-10000.00#   Ohm#      0x3E#
+43#RPSAB Squib Short to Ground#             1000.00-10000.00#   Ohm#      0x3E#//需要修改
+44#RPSAB Squib Short to Ground#             1000.00-10000.00#   Ohm#      0x3E#//需要修改
+45#RPSAB Squib Short to Ground#             1000.00-10000.00#   Ohm#      0x3E#//需要修改
+46#RPSAB Squib Short to Ground#             1000.00-10000.00#   Ohm#      0x3E#//需要修改
+47#RPSAB Squib Short to Ground#             1000.00-10000.00#   Ohm#      0x3E#//需要修改
+48#RPSAB Squib Short to Ground#             1000.00-10000.00#   Ohm#      0x3E#//需要修改
+49#DAB Squib Short to Battery#              1000.00-10000.00#   Ohm#      0x27#
+50#PAB Squib Short to Battery#              1000.00-10000.00#   Ohm#      0x2B#
+51#DBPT Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x2F#
+52#PBPT Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x31#
+53#DSAB Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x33#
+54#PSAB Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x35#
+55#DCAB Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x37#
+56#PCAB Squib Short to Battery#             1000.00-10000.00#   Ohm#      0x39#
+57#RDSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3B#
+58#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#
+59#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#//需要修改
+60#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#//需要修改
+61#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#//需要修改
+62#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#//需要修改
+63#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#//需要修改
+64#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#//需要修改
+65#S/Belt 1  STG <-> Unbelted#              200.00-350.00#      Ohm#      0x49#
+66#S/Belt 1  Unbelted <-> Belted#           480.00-560.00#      Ohm#      0x48#
+67#S/Belt 1  Belted <-> STB#                750.00-1150.00#     Ohm#      0x45#
+68#S/Belt 2  STG <-> Unbelted#              200.00-350.00#      Ohm#      0x4E#
+69#S/Belt 2  Unbelted <-> Belted#           480.00-560.00#      Ohm#      0x4D#
+70#S/Belt 2  Belted <-> STB#                750.00-1150.00#     Ohm#      0x4A#
+71#PADS 1  STG <-> OFF#                     60.00-90.00#        Ohm#      0x71#
+72#PADS 1  OFF <-> ON#                      110.00-372.00#      Ohm#      0x72#
+73#PADS 1  ON <-> STB#                      428.00-600.00#      Ohm#      0x6E#
+74#Vbatt Too High#                          16.00-19.20#        V#        0x01#
+75#Vbatt Too Low#                           7.20-9.00#          V#        0x02#
+76#SIS 1 Short to Vbatt#                    0.00-10000.00#      Ohm#      0x6D#
+77#SIS 2 Short to Vbatt#                    0.00-10000.00#      Ohm#      0x6E#
+78#SIS 3 Short to Vbatt#                    0.00-10000.00#      Ohm#      0x6D#
+79#SIS 4 Short to Vbatt#                    0.00-10000.00#      Ohm#      0x70#
+80#SIS 1 Short to GND#                      0.00-10000.00#      Ohm#      0x71#
+81#SIS 2 Short to GND#                      0.00-10000.00#      Ohm#      0x72#
+82#SIS 3 Short to GND#                      0.00-10000.00#      Ohm#      0x71#
+83#SIS 4 Short to GND#                      0.00-10000.00#      Ohm#      0x74#
+84#SIS 1 Sensor Output#                                                   0x8B#
+85#SIS 2 Sensor Output#                                                   0x8C#
+86#SIS 3 Sensor Output#                                                   0x8D#
+87#SIS 4 Sensor Output#                                                   0x8E#
+88#WL1_VOLT(OFF)#                           7.48-vbatt#         V#           0#
+89#WL1_VOLT(ON)#                            0.00-3.50#          V#           0#
+90#WL1_CURRENT(normal)#                     10.00-100.00#       mA#          0#
+91#WL1_CURRENT(short)#                      150.00-650.00#      mA#          0#
+92#WL2_VOLT(OFF)#                           8.34-vbatt#         V#           0#
+93#WL2_VOLT(ON)#                            0.00-3.50#          V#           0#
+94#WL2_CURRENT(normal)#                     10.00-100.00#       mA#          0#
+95#WL2_CURRENT(short)#                      150.00-650.00#      mA#          0#
+96#Autonomous time( )#                      200.00-4000.00#     mS#          0#
+97#ACU_CURRENT( )#                          20.00-140.00#       mA#          0#
+98#Crash Output Check#                      Signal check#       #            0#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

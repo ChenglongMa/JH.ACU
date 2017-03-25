@@ -42,7 +42,7 @@ namespace JH.ACU.BLL.Instruments
 
         private void RunInConst(RunEnum isRun)
         {
-            var value = ((ushort) isRun).GetBytes();
+            var value = ((ushort) isRun).ToBytes();
             SendMultiRegisters(47, value);
         }
 
@@ -57,7 +57,7 @@ namespace JH.ACU.BLL.Instruments
         public void SetTemp(double temp)
         {
             var value = (short) (temp*10);
-            var data = value.GetBytes();
+            var data = value.ToBytes();
             SendMultiRegisters(43, data);
         }
 
@@ -68,7 +68,7 @@ namespace JH.ACU.BLL.Instruments
         public double GetTemp()
         {
             var data = ReceiveRegister(0, 1).Take(2).ToArray();
-            var res = data.GetShort();
+            var res = data.ToShort();
             return Convert.ToDouble(res)/10;
         }
 

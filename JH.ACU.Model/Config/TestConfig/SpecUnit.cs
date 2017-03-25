@@ -46,6 +46,11 @@ namespace JH.ACU.Model.Config.TestConfig
         /// </summary>
         public byte Dtc { get; set; }
 
+        /// <summary>
+        /// 测试结果
+        /// </summary>
+        public object Result { get; set; }
+
         #endregion
 
     }

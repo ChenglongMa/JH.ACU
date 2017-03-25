@@ -5,7 +5,9 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
+using JH.ACU.BLL.Config;
 using JH.ACU.BLL.Instruments;
+using JH.ACU.Lib;
 using JH.ACU.Lib.Component;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.TestConfig;
@@ -18,6 +20,8 @@ namespace JH.ACU.BLL
         {
             _report = new Report();
             _testCondition = new TestCondition();
+            SpecUnits = BllConfig.GetSpecConfig();
+
             TestWorker = new NewBackgroundWorker();
             TestWorker.DoWork += TestWorker_DoWork;
             TestWorker.RunWorkerCompleted += TestWorker_RunWorkerCompleted;
@@ -160,32 +164,196 @@ namespace JH.ACU.BLL
                     if (boardIndex < 0 || boardIndex > 7) continue;
                     _daq.OpenBoard((byte) boardIndex);
                     //TODO:DAQ读取PIN脚电压,测试外部环境,如失败则抛出异常中止测试
-                    var isStart = false;
-                    for (int i = 0; i < 3; i++)
+                    if (!StartAcu(boardIndex))
                     {
-                        _acu = new BllAcu();
-                        if(_acu.Start())
-                        {
-                            isStart = true;
-                            break;
-                        }
-                        //ACU启动失败则重启仪器重试
-                        RebootAllInstrs();
+                        continue;
                     }
-                    if (!isStart) throw new TimeoutException("ACU启动超时,测试中止");
                     // QUES:B: ReadMemory WriteMemory Kline出错的可能性非常低
-                    // QUES:C: TestHasFaultCode 需要故障码的测试
-                    //以上两项作用未知,个人看法应该测试ACU有没有故障,如是故障件则取消测试
-                    foreach (var item in acuItem.Items)
+                    //此项作用未知,个人看法应该测试ACU有没有故障,如是故障件则取消测试
+                    if (!TestHasDtc(acuItem))
                     {
-                        //TODO:根据item值选择进行哪些测试
+                        continue;
                     }
+
                 }
 
             }
 
         }
+        /// <summary>
+        /// 启动ACU，自动重连三次
+        /// </summary>
+        /// <param name="index">ACU索引</param>
+        /// <returns></returns>
+        private bool StartAcu(int index)
+        {
+            var isStart = false;
+            for (int i = 0; i < 3; i++)
+            {
+                _acu = new BllAcu();
+                if (_acu.Start())
+                {
+                    isStart = true;
+                    break;
+                }
+                //ACU启动失败则重启仪器重试
+                RebootAllInstrs();
+            }
+            if (!isStart)
+            {
+                LogHelper.WriteWarningLog(LogFileName, string.Format("ACU#{0}启动失败", index));
+            }
+            return isStart;
+        }
+        /// <summary>
+        /// 含有故障码测试，对应SPEC_unit.txt中01-87项
+        /// </summary>
+        /// <param name="acuItem"></param>
+        /// <returns>测试过程有无异常</returns>
+        private bool TestHasDtc(AcuItems acuItem)
+        {
+            try
+            {
+                //A:Squib测试
+                //01-16 Too High
+                //17-32 Too Low
+                //31-48 To Ground
+                //49-64 To Battery
+                for (int iMode = 1; iMode <= 4; iMode++)
+                {
+                    for (int iSquib = 1; iSquib <= 16; iSquib++)
+                    {
+                        if(acuItem.Items.Contains(iSquib*iMode))
+                        {
+                            SpecUnits.Find(s => s.Index == iSquib*iMode).Result = TestSquib(acuItem.Index, iSquib, iMode);
+                        }
+                    }
+                }
+                //B:Belt测试
+                return true;//测试过程无异常
+            }
+            catch (Exception ex)
+            {
+                var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
+                LogHelper.WriteErrorLog(LogFileName,e);
+                return false;
+            }
+        }
 
+        /// <summary>
+        /// 回路测试
+        /// </summary>
+        /// <param name="boardIndex">ACU索引</param>
+        /// <param name="squib">回路数 1-16</param>
+        /// <param name="mode">故障情况，共4种</param>
+        private double TestSquib(int boardIndex,int squib, int mode)
+        {
+            var spec = SpecUnits.FirstOrDefault(s => s.Index == squib*mode);
+            if (spec == null) return 0;
+            var range = spec.Specification.Split(new[] {'-'}, StringSplitOptions.RemoveEmptyEntries);
+            var minValue = double.Parse(range[0]);
+            var maxValue = double.Parse(range[1]);
+            var dtc = spec.Dtc;
+            //A:TODO 打开继电器
+            _daq
+            //B:开始测试
+            return FindSquib(minValue, maxValue, dtc, mode);
+
+        }
+
+        private double FindSquib(double minValue, double maxValue, byte dtc, int mode)
+        {
+            if (maxValue - minValue <= GlobalConst.Precision)
+            {
+                return (maxValue - minValue)/2;
+            }
+            FindResult findresult;
+            // 正向 小电阻肯定没有：表示错误码在测试规范的大值处附近
+            // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
+            bool forwardMax;//TODO:查找方向
+            switch (mode)
+            {
+                case 1:
+                    forwardMax = true;
+                    break;
+                case 2:
+                    forwardMax = false;
+                    break;
+                case 3:
+                    forwardMax = false;
+                    break;
+                case 4:
+                    forwardMax = false;//QUES:为什么为false
+                    break;
+                default:
+                    forwardMax = true;
+                    break;
+            }
+            //QUES:原程序中mode<2时启动电阻箱#2，所以需要确认两个电阻箱分别控制哪几项
+            //本例暂时只用_prs0;
+            bool acuConnect;
+            _prs0.SetResistance(minValue);
+            var findMin = _acu.HasFoundDtc(dtc,out acuConnect);
+            if (!acuConnect)
+            {
+                throw new Exception("ACU连接失败");
+            }
+            _prs0.SetResistance(maxValue);
+            var findMax = _acu.HasFoundDtc(dtc,out acuConnect);
+            if (!acuConnect)
+            {
+                throw new Exception("ACU连接失败");
+            }
+            if (!forwardMax)
+            {
+                findMax = !findMax;
+                findMin = !findMin;
+            }
+            if (!findMax && !findMin)
+            {
+                findresult=FindResult.AboveMax;
+            }
+            else if (findMax && !findMin)
+            {
+                findresult=FindResult.InBetween;
+            }
+            else if(findMax)
+            {
+                findresult=FindResult.UnderMin;
+            }
+            else
+            {
+                findresult=FindResult.Error;
+            }
+
+            switch (findresult)
+            {
+                case FindResult.Error:
+                    throw new Exception(string.Format("寻找DTC:0x{0}失败", dtc.ToString("X2")));
+                case FindResult.InBetween:
+                    var mid = (maxValue + minValue)/2;
+                    if (forwardMax)
+                    {
+                        maxValue = mid;
+                    }
+                    else
+                    {
+                        minValue = mid;
+                    }
+                    break;
+                case FindResult.UnderMin:
+                    maxValue = minValue;
+                    minValue = minValue/2.0;
+                    break;
+                case FindResult.AboveMax:
+                    minValue = maxValue;
+                    maxValue = maxValue*2.0;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return FindSquib(minValue, maxValue, dtc, mode);
+        }
 
         #region 属性字段
 
@@ -193,6 +361,11 @@ namespace JH.ACU.BLL
         public NewBackgroundWorker ChamberStay { get; private set; }
         private readonly TestCondition _testCondition;
         private readonly Report _report;
+        /// <summary>
+        /// 传值至UI层，填表用
+        /// </summary>
+        public List<SpecUnit> SpecUnits { get; private set; }
+        private static readonly string LogFileName = "TestLog" + DateTime.Now.ToString("yy_MM_dd");
         #region 各类仪器
 
         private BllAcu _acu;
@@ -204,8 +377,6 @@ namespace JH.ACU.BLL
         private BllPwr _pwr;
 
         #endregion
-
-
 
         #endregion
 
@@ -273,14 +444,10 @@ namespace JH.ACU.BLL
 
         public void AutoRun()
         {
-            var tvItems = _testCondition.Temperature.Enable
-                ? _testCondition.TvItems
-                : RemoveTempList(_testCondition.TvItems);
+            var tvItems = _testCondition.Temperature.Enable ? _testCondition.TvItems : RemoveTempList(_testCondition.TvItems);
             TestWorker.RunWorkerAsync(tvItems);
         }
 
         #endregion
-
     }
-
 }

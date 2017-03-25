@@ -10,6 +10,11 @@ namespace JH.ACU.Model
     /// </summary>
     public struct GlobalConst
     {
+        static GlobalConst()
+        {
+            Precision = 0.01;
+        }
+
         /// <summary>
         /// 获取波特率集合
         /// </summary>
@@ -45,8 +50,16 @@ namespace JH.ACU.Model
                 };
             }
         }
-
+        
         public static double[,] TempVoltCondition = new double[3, 3];
+
+        #region FC测试
+        /// <summary>
+        /// 测试精度
+        /// </summary>
+        public static double Precision { get; set; }
+
+        #endregion
 
     }
 
@@ -109,21 +122,30 @@ namespace JH.ACU.Model
         Pads
     }
 
+    ///// <summary>
+    ///// 温度电压模式
+    ///// </summary>
+    //[Flags]
+    //public enum TempVoltMode
+    //{
+    //    LowTempLowVolt = 0x01,
+    //    LowTempNorVolt = 0x02,
+    //    LowTempHighVolt = 0x04,
+    //    NorTempLowVolt = 0x08,
+    //    NorTempNorVolt = 0x10,
+    //    NorTempHighVolt = 0x20,
+    //    HighTempLowVolt = 0x40,
+    //    HighTempNorVolt = 0x80,
+    //    HighTempHighVolt = 0x100
+    //}
     /// <summary>
-    /// 温度电压模式
+    /// 二分法查找结果枚举
     /// </summary>
-    [Flags]
-    public enum TempVoltMode
+    public enum FindResult
     {
-        LowTempLowVolt = 0x01,
-        LowTempNorVolt = 0x02,
-        LowTempHighVolt = 0x04,
-        NorTempLowVolt = 0x08,
-        NorTempNorVolt = 0x10,
-        NorTempHighVolt = 0x20,
-        HighTempLowVolt = 0x40,
-        HighTempNorVolt = 0x80,
-        HighTempHighVolt = 0x100
+        Error,
+        InBetween,
+        UnderMin,
+        AboveMax,
     }
-
 }
