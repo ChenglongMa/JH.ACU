@@ -424,7 +424,6 @@ namespace JH.ACU.BLL.Instruments
                 }
             }
         }
-
         /// <summary>
         /// 准备开始测试环境,注意时序
         /// </summary>
@@ -441,7 +440,128 @@ namespace JH.ACU.BLL.Instruments
             SetRelaysGroup(boardIndex, 12, mask12);
             //Thread.Sleep(100);
         }
+        //QUES:弄清楚ACU FC 继电器三种状态：1、接PRS时；2、接固定电阻时；3、接万用表时
+        /// <summary>
+        /// 将指定ACU指定回路设置为测试状态
+        /// </summary>
+        /// <param name="acuIndex">ACU索引 0-7</param>
+        /// <param name="squibIndex">回路索引 1-16</param>
+        /// <param name="mode">回路测试模式</param>
+        public void SetFcInTestMode(int acuIndex, int squibIndex, SquibMode mode)
+        {
+            if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
+            {
+                SetSubRelayStatus((byte)acuIndex, 273, true); //接通kLine
+            }
+            //Tips:以下注释以FC#1为例
+            switch (mode)
+            {
+                case SquibMode.TooHigh:
+                case SquibMode.TooLow:
+                    #region 断开固定电阻，接入电阻箱#1
 
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 0], false); //k214断开
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 1], true); //k215闭合
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 2], false); //k216断开
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 3], true); //k217闭合
+
+                    #endregion
+                    break;
+                case SquibMode.ToGround:
+                case SquibMode.ToBattery:
+                    #region 断开固定电阻，接入电阻箱#2
+
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 0], false);//k214断开
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 1], false); //k215断开
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 2], false); //k216断开
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 3], true); //k217闭合
+                    
+                    #endregion
+
+                    #region 将电阻箱#2接电源或接地
+
+                    SetMainRelayStatus(300, true);
+                    SetMainRelayStatus(301, mode == SquibMode.ToBattery);
+                    SetMainRelayStatus(302, mode == SquibMode.ToGround);
+
+                    #endregion
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("mode", mode, null);
+            }
+        }
+
+        /// <summary>
+        /// 将指定ACU指定回路设置为DMM读取状态
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="squibIndex"></param>
+        /// <param name="mode"></param>
+        public void SetFcInReadMode(int acuIndex, int squibIndex, SquibMode mode)
+        {
+            if((RelaysGroupMask[acuIndex,7]&0x08)!=0x08)
+            {
+                SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
+            }
+            switch (mode)
+            {
+                case SquibMode.TooHigh:
+                case SquibMode.TooLow:
+
+                    #region 将DMM接到电阻箱#1两端
+
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 0], true); //k214闭合
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 1], false); //k215断开
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 2], true); //k216闭合
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 3], true); //k217闭合
+
+                    #endregion
+
+                    break;
+                case SquibMode.ToGround:
+                case SquibMode.ToBattery:
+
+                    #region 将DMM接到电阻箱#2两端
+
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 0], false); //k214断开
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 1], false); //k215断开
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 2], false); //k216断开
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 3], false); //k217断开
+                    SetMainRelayStatus(300,false);
+                    SetMainRelayStatus(301,false);
+                    SetMainRelayStatus(302,false);
+                    SetSubRelayStatus((byte) acuIndex, 284, true); //连接PRS2+、DMMS+、DMM+
+                    SetSubRelayStatus((byte) acuIndex, 285, true); //连接PRS2-、DMMS-、DMM-
+                    #endregion
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("mode", mode, null);
+            }
+        }
+        /// <summary>
+        /// 将指定ACU指定回路恢复到连接固定电阻状态
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="squibIndex"></param>
+        public void SetFcReset(int acuIndex, int squibIndex)
+        {
+            if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
+            {
+                SetSubRelayStatus((byte)acuIndex, 273, true); //接通kLine
+            }
+            SetMainRelayStatus(300, false);
+            SetMainRelayStatus(301, false);
+            SetMainRelayStatus(302, false);
+            SetSubRelayStatus((byte) acuIndex, 284, false);
+            SetSubRelayStatus((byte) acuIndex, 285, false);
+            SetSubRelayStatus((byte)acuIndex, FcGroup[squibIndex, 0], false); //k214断开
+            SetSubRelayStatus((byte)acuIndex, FcGroup[squibIndex, 1], false); //k215断开
+            SetSubRelayStatus((byte)acuIndex, FcGroup[squibIndex, 2], false); //k216断开
+            SetSubRelayStatus((byte)acuIndex, FcGroup[squibIndex, 3], false); //k217断开
+            //TODO:以上四句存疑
+        }
         /// <summary>
         /// 复位
         /// 即关闭所有板卡,ACU断电
@@ -463,11 +583,9 @@ namespace JH.ACU.BLL.Instruments
             //if (iRetCode != NoError) return false;
 
             #endregion
-
         }
 
         #endregion
-
 
         public void Dispose()
         {
@@ -480,6 +598,5 @@ namespace JH.ACU.BLL.Instruments
         }
 
         #endregion
-
     }
 }

@@ -58,7 +58,7 @@ namespace JH.ACU.Model
         /// 测试精度
         /// </summary>
         public static double Precision { get; set; }
-
+        public static double AmendResistance { get; set; }//TODO:获取修正值
         #endregion
 
     }
@@ -147,5 +147,28 @@ namespace JH.ACU.Model
         InBetween,
         UnderMin,
         AboveMax,
+    }
+    /// <summary>
+    /// 回路测试时模式枚举
+    /// 与测试规范顺序相同（SPEC_unit.txt）
+    /// </summary>
+    public enum SquibMode
+    {
+        /// <summary>
+        /// Squib Resistance Too High
+        /// </summary>
+        TooHigh = 1,
+        /// <summary>
+        /// Squib Resistance Too Low
+        /// </summary>
+        TooLow = 2,
+        /// <summary>
+        /// Squib Short to Ground
+        /// </summary>
+        ToGround = 3,
+        /// <summary>
+        /// Squib Short to Battery
+        /// </summary>
+        ToBattery = 4
     }
 }
