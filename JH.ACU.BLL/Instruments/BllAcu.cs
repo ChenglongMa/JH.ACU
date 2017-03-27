@@ -7,6 +7,7 @@ using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.InstrumentConfig;
+using NationalInstruments.Restricted;
 using NationalInstruments.VisaNS;
 using LineState = NationalInstruments.VisaNS.LineState;
 
@@ -64,6 +65,7 @@ namespace JH.ACU.BLL.Instruments
 
 
         #region 属性
+        private List<byte> RealTimeData { get; set; }
         public string RomCs { get; set; }
         public string RomVer { get; set; }
         public string AcuSn{ get; set; }
@@ -74,7 +76,7 @@ namespace JH.ACU.BLL.Instruments
 
         #region 私有方法
         /// <summary>
-        /// 
+        /// 增加校验位
         /// </summary>
         /// <param name="data">data为CFC+(Address)+data</param>
         /// <returns>CFC+(Address)+data+CheckSum</returns>
@@ -93,18 +95,16 @@ namespace JH.ACU.BLL.Instruments
             addCheckSum[data.Count + 1] = checkSum;
             return addCheckSum;
         }
-        public string ByteArrayToAscii(byte[] dataBytes)
+        private void _serial_AnyCharacterReceived(object sender, SerialSessionEventArgs e)
         {
-            var asciiEncoding = new ASCIIEncoding();
-            return asciiEncoding.GetString(dataBytes).Trim();
+            if (_serial.AvailableNumber <= 0) return;
+            var data = _serial.ReadByteArray(1)[0];
+            if (!RealTimeData.Contains(data))
+            {
+                RealTimeData.Add(data);
+            }
         }
 
-        public string ByteToAscii(byte data)
-        {
-            var asciiEncoding = new ASCIIEncoding();
-            var dataBytes = new[] { data };
-            return asciiEncoding.GetString(dataBytes).Trim();
-        }
 
         #endregion
 
@@ -142,7 +142,7 @@ namespace JH.ACU.BLL.Instruments
             RomVer = data.Skip(3 + 2).Take(4).Aggregate("", (current, b) => current + b.ToString("X2"));
             AcuSn = data.Skip(3 + 2 + 4).Take(4).Aggregate("", (current, b) => current + b.ToString("X2"));
             LabVer = data.Skip(3 + 2 + 4 + 4).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
-            Mlfb = ByteArrayToAscii(data.Skip(3 + 2 + 4 + 4 + 2).Take(3).ToArray());
+            Mlfb = data.Skip(3 + 2 + 4 + 4 + 2).Take(3).ToArray().ToAscii();
             ParaVer = data.Skip(3 + 2 + 4 + 4 + 2 + 3).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
             var cs = new[] {data[data.Length-1]};
             _serial.Write(cs);
@@ -172,30 +172,50 @@ namespace JH.ACU.BLL.Instruments
             _serial.Clear();
             _realTimeFlag = false;
         }
-        public void ReadRtFault()
+        public bool ReadRtFault()
         {
             try
             {
+                RealTimeData = new List<byte>();
                 byte[] temp = { 0x75 };
                 _serial.Write(AddChecksum(temp));
                 _serial.AnyCharacterReceived+=_serial_AnyCharacterReceived;
                 _serial.EnableEvent(SerialSessionEventType.AnyCharacterReceived, EventMechanism.Handler);
                 _realTimeFlag = true;
-                //_serial.EnableEvent((EventType)1073684533);//1073684533);
-
+                return true;
             }
             catch (Exception ex)
             {
                 LogHelper.WriteErrorLog("BllAcu", ex);
                 Stop();
+                return false;
             }
         }
 
-        private void _serial_AnyCharacterReceived(object sender, SerialSessionEventArgs e)
+        /// <summary>
+        /// 指示是否找到指定故障码
+        /// </summary>
+        /// <param name="code">指定故障码</param>
+        /// <param name="connect"></param>
+        /// <returns></returns>
+        public bool HasFoundDtc(byte code,out bool connect)
         {
-            if(_serial.AvailableNumber<=0)return;
-            var data = _serial.ReadByteArray(1);
+            connect=ReadRtFault();
+            //最多重复3次
+            for (int i = 0; i < 3; i++)
+            {
+                Thread.Sleep(200);
+                if (RealTimeData.Contains(code))//若事件读取到的RealTimeData中含有所需code则返回True;
+                {
+                    StopRtFault();
+                    return true;
+                }
+            }
+            StopRtFault();
+            //outBytes = RealTimeData;
+            return false;
         }
+
         public void Dispose()
         {
             Stop();

@@ -87,13 +87,13 @@ namespace JH.ACU.BLL.Abstract
             var sendData = new List<byte>(255);
 
             //[1].Send
-            sendData.AddRange(NextDataIndex().GetBytes()); //0~1.(Transaction Identifier)
+            sendData.AddRange(NextDataIndex().ToBytes()); //0~1.(Transaction Identifier)
             sendData.AddRange(new byte[] {0, 0}); //2~3:Protocol Identifier,0 = MODBUS protocol
-            sendData.AddRange(((ushort) 6).GetBytes()); //4~5:后续的Byte数量（针对读请求，后续为6个byte）
+            sendData.AddRange(((ushort) 6).ToBytes()); //4~5:后续的Byte数量（针对读请求，后续为6个byte）
             sendData.Add(IdentifierAddress); //6:Unit Identifier:This field is used for intra-system routing purpose.
             sendData.Add((byte) function); //7.Function Code eg. 3 (Read Multiple Register)
-            sendData.AddRange(address.GetBytes()); //8~9.起始地址
-            sendData.AddRange(count.GetBytes()); //10~11.需要读取的寄存器数量
+            sendData.AddRange(address.ToBytes()); //8~9.起始地址
+            sendData.AddRange(count.ToBytes()); //10~11.需要读取的寄存器数量
             Write(sendData.ToArray()); //发送读请求
 
             //[2].防止连续读写引起前台UI线程阻塞
@@ -140,15 +140,15 @@ namespace JH.ACU.BLL.Abstract
             var values = new List<byte>();
 
             //[1].Write Header：MODBUS Application Protocol header
-            values.AddRange(NextDataIndex().GetBytes()); //0~1.(Transaction Identifier)
+            values.AddRange(NextDataIndex().ToBytes()); //0~1.(Transaction Identifier)
             values.AddRange(new byte[] {0, 0}); //2~3:Protocol Identifier,0 = MODBUS protocol
-            values.AddRange(ValueHelper.GetBytes((byte) (data.Length + 7))); //4~5:后续的Byte数量
+            values.AddRange(ValueHelper.ToBytes((byte) (data.Length + 7))); //4~5:后续的Byte数量
 
             values.Add(IdentifierAddress); //6:Unit Identifier:This field is used for intra-system routing purpose.
             values.Add((byte) function); //7.Function Code eg. 16(0x10) (Write Multiple Register)
 
-            values.AddRange(address.GetBytes()); //8~9.起始地址
-            values.AddRange(((ushort) (data.Length/2)).GetBytes()); //10~11.寄存器数量
+            values.AddRange(address.ToBytes()); //8~9.起始地址
+            values.AddRange(((ushort) (data.Length/2)).ToBytes()); //10~11.寄存器数量
 
             values.Add((byte) data.Length); //12.数据的Byte数量
 

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model.Config.TestConfig;
+using NationalInstruments.Restricted;
 
 namespace JH.ACU.UI
 {
@@ -17,6 +18,9 @@ namespace JH.ACU.UI
         public InitializationForm()
         {
             InitializeComponent();
+            TestCondition = BllConfig.GetTestCondition(); //从默认路径获取
+            DisplayTestCondition(TestCondition);
+            BindingSourceTable();
         }
 
         #region 属性字段
@@ -102,12 +106,13 @@ namespace JH.ACU.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            TestCondition = BuildTestCondition();
             if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 var fileName = saveFileDialog1.FileName;
-                TestCondition = BuildTestCondition();
-                TestCondition.SaveToFile(fileName);
+                TestCondition.SaveToFile(fileName); //保存到指定路径一份
             }
+            TestCondition.SaveToFile(); //保存到默认路径一份
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -116,24 +121,39 @@ namespace JH.ACU.UI
             {
                 var fileName = openFileDialog1.FileName;
                 var testCondition = BllConfig.GetTestCondition(fileName);
-                numDuration.Value = (decimal) testCondition.Temperature.Duration;
-                numHighTemp.Value = (decimal) testCondition.Temperature.HighTemp;
-                numLowTemp.Value = (decimal) testCondition.Temperature.LowTemp;
-                numNorTemp.Value = (decimal) testCondition.Temperature.NorTemp;
-                numHighVolt.Value = (decimal) testCondition.Voltage.HighVolt;
-                numNorVolt.Value = (decimal) testCondition.Voltage.NorVolt;
-                numLowVolt.Value = (decimal) testCondition.Voltage.LowVolt;
-                ckbChamberEnable.Checked = testCondition.Temperature.Enable;
+                DisplayTestCondition(testCondition);
             }
         }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            //TODO:还可以再完善：将上次Apply但未Save的显示出来
-            TestCondition = TestCondition ?? BuildTestCondition();
-            DialogResult=DialogResult.OK;
+            TestCondition = BuildTestCondition();
+            TestCondition.SaveToFile(); //保存到默认路径
+            DialogResult = DialogResult.OK;
         }
 
+        /// <summary>
+        /// 将配置的值显示到控件上
+        /// </summary>
+        /// <param name="testCondition"></param>
+        private void DisplayTestCondition(TestCondition testCondition)
+        {
+            if (testCondition == null) return;
+            numDuration.Value = (decimal) testCondition.Temperature.Duration;
+            numHighTemp.Value = (decimal) testCondition.Temperature.HighTemp;
+            numLowTemp.Value = (decimal) testCondition.Temperature.LowTemp;
+            numNorTemp.Value = (decimal) testCondition.Temperature.NorTemp;
+            numHighVolt.Value = (decimal) testCondition.Voltage.HighVolt;
+            numNorVolt.Value = (decimal) testCondition.Voltage.NorVolt;
+            numLowVolt.Value = (decimal) testCondition.Voltage.LowVolt;
+            ckbChamberEnable.Checked = testCondition.Temperature.Enable;
+            //TODO：未完
+        }
+
+        /// <summary>
+        /// 控件值赋给配置
+        /// </summary>
+        /// <returns></returns>
         private TestCondition BuildTestCondition()
         {
             var temp = new Temperature
@@ -199,5 +219,48 @@ namespace JH.ACU.UI
                 //TODO:ACU Items 未保存
             };
         }
+
+        private void BindingSourceTable()
+        {
+            var list = BllConfig.GetSpecConfig();
+            if (list.IsNullOrEmpty()) return;
+            dgSource.DataSource = list;
+        }
+
+        /// <summary>
+        /// 设置错误信息
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="message"></param>
+        private void SetError(Control control,string message)
+        {
+            errorProvider1.Clear();
+            errorProvider1.SetError(control, message);
+        }
+
+        private void btnSelectOne_Click(object sender, EventArgs e)
+        {
+            if (tvTarget.SelectedNode == null||tvTarget.SelectedNode==tvTarget.TopNode)
+            {
+                SetError(btnSelectOne, "未选择ACU项");
+                return;
+            }
+            if(dgSource.Selected==null)
+            {
+                SetError(btnSelectOne, "未选择测试项");
+                return;
+            }
+            foreach (var row in dgSource.Selected.Rows)
+            {
+                var spec = (SpecUnit)row.ListObject;
+                if (!tvTarget.SelectedNode.Nodes.ContainsKey(spec.Index.ToString()))
+                {
+                    tvTarget.SelectedNode.Nodes.Add(new TreeNode(spec.Index.ToString(), 2, 3)
+                    {
+                        Name = spec.Index.ToString(),
+                        Tag = spec,
+                    });
+                }
+            }        }
     }
 }

@@ -2407,7 +2407,7 @@ bool __fastcall TThreadMain::GetFaultCodeStateByItem(int iMethod, float fRes, un
         g_gpibPcResS.SetRes(fRes);
         G_SDelay(100);
     }
-    String strOut = "";
+/*    String strOut = "";
     strOut = "Board:" + IntToStr(g_iCurrBoard) + ":\t";
     strOut = "TVCond:" + IntToStr(g_iTVCond) + ":\t";
     strOut = strOut + "Item:" + IntToStr(g_iCurrItem) + ":\t";
@@ -2421,7 +2421,8 @@ bool __fastcall TThreadMain::GetFaultCodeStateByItem(int iMethod, float fRes, un
     g_fCurveCurrY = fRes;
     g_strCurrSet = FloatToStr(fRes) + "ohm";
     Synchronize(FormMain->ViewWave);
-    Synchronize(FormMain->ViewLabelCurrSet);
+    Synchronize(FormMain->ViewLabelCurrSet);*/
+	//以上无用
     bFind = GetFaultCodeState(iFaultCode, bKline);
     return bFind;
 }

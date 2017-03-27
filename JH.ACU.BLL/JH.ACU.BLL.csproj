@@ -69,9 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BllMain.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="BllMain.cs" />
     <Compile Include="Instruments\BllAcu.cs" />
     <Compile Include="Instruments\BllChamber.cs">
       <SubType>Code</SubType>

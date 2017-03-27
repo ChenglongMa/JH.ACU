@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -137,13 +138,29 @@ namespace JH.ACU.BLL.Config
 
         #region TestConditionConfig
 
+        private static readonly string DefaultConFileName = Environment.CurrentDirectory +
+                                                            "\\Config\\DefaultTestCondition.config";
+
         /// <summary>
         /// 保存测试条件至文件
         /// </summary>
         /// <param name="testCondition"></param>
         /// <param name="fileName"></param>
-        public static void SaveToFile(this TestCondition testCondition, string fileName)
+        public static void SaveToFile(this TestCondition testCondition, string fileName = null)
         {
+            #region 若路径赋值为空则保存到默认位置
+
+            if (fileName.IsNullOrEmpty())
+            {
+                if (!File.Exists(DefaultConFileName))
+                {
+                    File.Create(DefaultConFileName).Dispose();
+                }
+                fileName = DefaultConFileName;
+            }
+
+            #endregion
+
             if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
             if (testCondition == null) throw new ArgumentNullException("testCondition");
             XmlHelper.XmlSerializeToFile(testCondition, fileName);
@@ -152,12 +169,62 @@ namespace JH.ACU.BLL.Config
         /// <summary>
         /// 获取指定路径下文件
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fileName">路径，若为空则从默认路径加载</param>
         /// <returns></returns>
-        public static TestCondition GetTestCondition(string fileName)
+        public static TestCondition GetTestCondition(string fileName = null)
         {
+            if (fileName.IsNullOrEmpty())
+            {
+                if (!File.Exists(DefaultConFileName))
+                {
+                    return null;
+                }
+                fileName = DefaultConFileName;
+            }
             if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
             return XmlHelper.XmlDeserializeFromFile<TestCondition>(fileName);
+        }
+
+        #endregion
+
+        #region SPEC_unit
+
+        private static readonly string DefaultSpecFileName = Environment.CurrentDirectory +
+                                                             "\\Config\\SPEC_unit.txt";
+
+        /// <summary>
+        /// 从指定路径或默认路径加载测试信息
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static List<SpecUnit> GetSpecConfig(string fileName = null)
+        {
+            if (fileName.IsNullOrEmpty())
+            {
+                fileName = DefaultSpecFileName;
+            }
+            if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
+            var res = new List<SpecUnit>();
+            using (var sw = new StreamReader(new FileStream(fileName, FileMode.Open)))
+            {
+                while (!sw.EndOfStream)
+                {
+                    var text = sw.ReadLine();
+                    if (text == null) continue;
+                    var strArray = text.Split(new[] {'#'}, StringSplitOptions.RemoveEmptyEntries);
+                    if (strArray.Length < typeof (SpecUnit).GetProperties().Length) continue;
+                    var spec = new SpecUnit
+                    {
+                        Index = Convert.ToInt32(strArray[0].Trim()),
+                        Description = strArray[1].Trim(),
+                        Specification = strArray[2].Trim(),
+                        Uom = strArray[3].Trim(),
+                        Dtc = Convert.ToByte(strArray[4].Trim(), 16)
+                    };
+                    res.Add(spec);
+                }
+            }
+            return res.OrderBy(s => s.Index).ToList();
         }
 
         #endregion
