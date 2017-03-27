@@ -13,7 +13,6 @@ namespace JH.ACU.Lib
     /// </summary>
     public static class LogHelper
     {
-        //TODO:获取调用方法的参数的值
         private static readonly string RootPath = AppDomain.CurrentDomain.BaseDirectory + "Log";
 
         /// <summary>

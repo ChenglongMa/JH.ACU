@@ -62,15 +62,15 @@
 62#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#//需要修改
 63#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#//需要修改
 64#RPSAB Squib Short to Battery#            1000.00-10000.00#   Ohm#      0x3D#//需要修改
-65#S/Belt 1  STG <-> Unbelted#              200.00-350.00#      Ohm#      0x49#
-66#S/Belt 1  Unbelted <-> Belted#           480.00-560.00#      Ohm#      0x48#
-67#S/Belt 1  Belted <-> STB#                750.00-1150.00#     Ohm#      0x45#
-68#S/Belt 2  STG <-> Unbelted#              200.00-350.00#      Ohm#      0x4E#
-69#S/Belt 2  Unbelted <-> Belted#           480.00-560.00#      Ohm#      0x4D#
-70#S/Belt 2  Belted <-> STB#                750.00-1150.00#     Ohm#      0x4A#
-71#PADS 1  STG <-> OFF#                     60.00-90.00#        Ohm#      0x71#
-72#PADS 1  OFF <-> ON#                      110.00-372.00#      Ohm#      0x72#
-73#PADS 1  ON <-> STB#                      428.00-600.00#      Ohm#      0x6E#
+65#S/Belt 1  STG <-> Unbelted#              200.00-350.00#      Ohm#      0x49#//需要修改
+66#S/Belt 1  Unbelted <-> Belted#           480.00-560.00#      Ohm#      0x48#//需要修改
+67#S/Belt 1  Belted <-> STB#                750.00-1150.00#     Ohm#      0x45#//需要修改
+68#S/Belt 2  STG <-> Unbelted#              200.00-350.00#      Ohm#      0x4E#//需要修改
+69#S/Belt 2  Unbelted <-> Belted#           480.00-560.00#      Ohm#      0x4D#//需要修改
+70#S/Belt 2  Belted <-> STB#                750.00-1150.00#     Ohm#      0x4A#//需要修改
+71#PADS 1  STG <-> OFF#                     60.00-90.00#        Ohm#      0x71#//需要修改
+72#PADS 1  OFF <-> ON#                      110.00-372.00#      Ohm#      0x72#//需要修改
+73#PADS 1  ON <-> STB#                      428.00-600.00#      Ohm#      0x6E#//需要修改
 74#Vbatt Too High#                          16.00-19.20#        V#        0x01#
 75#Vbatt Too Low#                           7.20-9.00#          V#        0x02#
 76#SIS 1 Short to Vbatt#                    0.00-10000.00#      Ohm#      0x6D#

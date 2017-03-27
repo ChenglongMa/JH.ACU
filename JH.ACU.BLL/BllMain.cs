@@ -224,11 +224,11 @@ namespace JH.ACU.BLL
                 //17-32 Too Low
                 //31-48 To Ground
                 //49-64 To Battery
-                for (int iMode = 1; iMode <= 4; iMode++)
+                for (int iMode = 1; iMode <= ModeNum; iMode++)
                 {
-                    for (int iSquib = 1; iSquib <= 16; iSquib++)
+                    for (int iSquib = 1; iSquib <= SquibNum; iSquib++)
                     {
-                        var itemIndex = 16*(iMode - 1) + iSquib;
+                        var itemIndex = SquibNum*(iMode - 1) + iSquib;
                         if (acuItem.Items.Contains(itemIndex))
                         {
                             SpecUnits.Find(s => s.Index == itemIndex).Result = TestSquib(acuItem.Index, iSquib, iMode);
@@ -236,16 +236,51 @@ namespace JH.ACU.BLL
                     }
                 }
                 //B:Belt测试
-
+                //TODO:规范需要修改
+                //同一测试情况归于一类
+                for (int iMode = 0; iMode < BeltModeNum; iMode++)
+                {
+                    for (int iBelt = 0; iBelt < BeltNum; iBelt++)
+                    {
+                        var itemIndex = BeltNum*(iMode - 1) + iBelt + SquibNum*ModeNum;
+                        SpecUnits.Find(s => s.Index == itemIndex).Result = TestBelt(acuItem.Index, iBelt, iMode);
+                    }
+                }
                 return true; //测试过程无异常
             }
             catch (Exception ex)
             {
+                //QUES:测试过程有异常是否直接跳过后面测试
                 var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
                 LogHelper.WriteErrorLog(LogFileName, e);
                 return false;
             }
         }
+        #region Belt测试方法
+        /// <summary>
+        /// Belt开关测试
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="belt">开关类型 DSB PSB PADS</param>
+        /// <param name="mode">故障情况，共4种</param>
+        /// <returns></returns>
+        private double TestBelt(int acuIndex, int belt, int mode)
+        {
+            var itemIndex = BeltNum * (mode - 1) + belt + SquibNum * ModeNum;
+            var spec = SpecUnits.FirstOrDefault(s => s.Index == itemIndex);
+            if (spec == null) return 0;
+            var range = spec.Specification.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+            var minValue = double.Parse(range[0]);
+            var maxValue = double.Parse(range[1]);
+            var dtc = spec.Dtc;
+            //A:打开继电器
+            //B:开始测试
+            //C:复位继电器
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
 
         #region 回路测试方法
 
@@ -404,12 +439,17 @@ namespace JH.ACU.BLL
         #endregion
 
 
+
         #region 属性字段
 
         public NewBackgroundWorker TestWorker { get; private set; }
         public NewBackgroundWorker ChamberStay { get; private set; }
         private readonly TestCondition _testCondition;
         private readonly Report _report;
+        private const int SquibNum = 16;//回路数常量
+        private const int ModeNum = 4;//回路测试情况常量
+        private const int BeltNum = 3;//开关数常量
+        private const int BeltModeNum = 4;//开关测试情况常量
 
         /// <summary>
         /// 传值至UI层，填表用

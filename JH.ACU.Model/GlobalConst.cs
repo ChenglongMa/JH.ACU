@@ -58,6 +58,7 @@ namespace JH.ACU.Model
         /// 测试精度
         /// </summary>
         public static double Precision { get; set; }
+        [Obsolete("该属性待迁移到默认设置中")]
         public static double AmendResistance { get; set; }//TODO:获取修正值
         #endregion
 
@@ -113,7 +114,8 @@ namespace JH.ACU.Model
     }
 
     /// <summary>
-    /// ACU开关枚举
+    /// ACU开关枚举,注意顺序
+    /// 与测试规范顺序相同（SPEC_unit.txt）
     /// </summary>
     public enum BeltSwitch
     {
@@ -149,7 +151,7 @@ namespace JH.ACU.Model
         AboveMax,
     }
     /// <summary>
-    /// 回路测试时模式枚举
+    /// 回路测试时模式枚举,注意顺序
     /// 与测试规范顺序相同（SPEC_unit.txt）
     /// </summary>
     public enum SquibMode
@@ -170,5 +172,17 @@ namespace JH.ACU.Model
         /// Squib Short to Battery
         /// </summary>
         ToBattery = 4
+    }
+
+    /// <summary>
+    /// Belt测试时模式枚举,注意顺序
+    /// 与测试规范顺序相同(SPEC_unit.txt)
+    /// </summary>
+    public enum BeltMode
+    {
+        UnbuckledOrDisabled,
+        BuckledOrEnabled,
+        ToGround,
+        ToBattery
     }
 }

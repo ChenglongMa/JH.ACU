@@ -17,10 +17,13 @@ namespace JH.ACU.UI
         public MainForm()
         {
             InitializeComponent();
+            ugDisplay.DataSource = list;
+            
         }
 
         #region 属性字段
 
+        BindingList<SpecUnit> list = new BindingList<SpecUnit>();
         private InitializationForm _conditionForm;
 
         private TestCondition TestCondition
@@ -101,7 +104,16 @@ namespace JH.ACU.UI
 
         #endregion
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            list.Add(new SpecUnit
+            {
+                Description = "sadfasdf"
+            });
+        }
+
         #region 公有方法
+
 
         #endregion
 
