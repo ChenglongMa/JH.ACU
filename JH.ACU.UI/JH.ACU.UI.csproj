@@ -202,7 +202,14 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Config\SPEC_unit.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="NoteBook.txt" />
+    <None Include="Resources\select.png" />
+    <None Include="Resources\item.png" />
+    <None Include="Resources\AcuItems.ico" />
+    <None Include="Resources\acu.png" />
     <None Include="Resources\wrongNew.png" />
     <None Include="Resources\wrongCircle.png" />
     <None Include="Resources\upFile.png" />
