@@ -257,6 +257,7 @@ namespace JH.ACU.BLL
             }
         }
         #region Belt测试方法
+
         /// <summary>
         /// Belt开关测试
         /// </summary>
