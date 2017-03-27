@@ -440,7 +440,9 @@ namespace JH.ACU.BLL.Instruments
             SetRelaysGroup(boardIndex, 12, mask12);
             //Thread.Sleep(100);
         }
-        //QUES:弄清楚ACU FC 继电器三种状态：1、接PRS时；2、接固定电阻时；3、接万用表时
+
+        #region ACU回路测试用
+
         /// <summary>
         /// 将指定ACU指定回路设置为测试状态
         /// </summary>
@@ -451,13 +453,14 @@ namespace JH.ACU.BLL.Instruments
         {
             if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
             {
-                SetSubRelayStatus((byte)acuIndex, 273, true); //接通kLine
+                SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
             //Tips:以下注释以FC#1为例
             switch (mode)
             {
                 case SquibMode.TooHigh:
                 case SquibMode.TooLow:
+
                     #region 断开固定电阻，接入电阻箱#1
 
                     SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 0], false); //k214断开
@@ -466,16 +469,18 @@ namespace JH.ACU.BLL.Instruments
                     SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 3], true); //k217闭合
 
                     #endregion
+
                     break;
                 case SquibMode.ToGround:
                 case SquibMode.ToBattery:
+
                     #region 断开固定电阻，接入电阻箱#2
 
-                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 0], false);//k214断开
+                    SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 0], false); //k214断开
                     SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 1], false); //k215断开
                     SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 2], false); //k216断开
                     SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 3], true); //k217闭合
-                    
+
                     #endregion
 
                     #region 将电阻箱#2接电源或接地
@@ -500,7 +505,7 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="mode"></param>
         public void SetFcInReadMode(int acuIndex, int squibIndex, SquibMode mode)
         {
-            if((RelaysGroupMask[acuIndex,7]&0x08)!=0x08)
+            if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
             {
                 SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
@@ -528,11 +533,12 @@ namespace JH.ACU.BLL.Instruments
                     SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 1], false); //k215断开
                     SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 2], false); //k216断开
                     SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 3], false); //k217断开
-                    SetMainRelayStatus(300,false);
-                    SetMainRelayStatus(301,false);
-                    SetMainRelayStatus(302,false);
+                    SetMainRelayStatus(300, false);
+                    SetMainRelayStatus(301, false);
+                    SetMainRelayStatus(302, false);
                     SetSubRelayStatus((byte) acuIndex, 284, true); //连接PRS2+、DMMS+、DMM+
                     SetSubRelayStatus((byte) acuIndex, 285, true); //连接PRS2-、DMMS-、DMM-
+
                     #endregion
 
                     break;
@@ -540,6 +546,7 @@ namespace JH.ACU.BLL.Instruments
                     throw new ArgumentOutOfRangeException("mode", mode, null);
             }
         }
+
         /// <summary>
         /// 将指定ACU指定回路恢复到连接固定电阻状态
         /// </summary>
@@ -549,19 +556,26 @@ namespace JH.ACU.BLL.Instruments
         {
             if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
             {
-                SetSubRelayStatus((byte)acuIndex, 273, true); //接通kLine
+                SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
             SetMainRelayStatus(300, false);
             SetMainRelayStatus(301, false);
             SetMainRelayStatus(302, false);
             SetSubRelayStatus((byte) acuIndex, 284, false);
             SetSubRelayStatus((byte) acuIndex, 285, false);
-            SetSubRelayStatus((byte)acuIndex, FcGroup[squibIndex, 0], false); //k214断开
-            SetSubRelayStatus((byte)acuIndex, FcGroup[squibIndex, 1], false); //k215断开
-            SetSubRelayStatus((byte)acuIndex, FcGroup[squibIndex, 2], false); //k216断开
-            SetSubRelayStatus((byte)acuIndex, FcGroup[squibIndex, 3], false); //k217断开
-            //TODO:以上四句存疑
+            SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 0], false); //k214断开
+            SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 1], false); //k215断开
+            SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 2], false); //k216断开
+            SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 3], false); //k217断开
         }
+
+        #endregion
+
+        #region ACU Belt测试用
+
+
+        #endregion
+
         /// <summary>
         /// 复位
         /// 即关闭所有板卡,ACU断电

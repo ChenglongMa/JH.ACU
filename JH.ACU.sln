@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.UI", "JH.ACU.UI\JH.A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assembly", "Assembly", "{CE67C9B0-1099-46CB-967E-316461C24A16}"
 	ProjectSection(SolutionItems) = preProject
+		Assembly\D2K-Dask.dll = Assembly\D2K-Dask.dll
+		Assembly\D2K-Dask64.dll = Assembly\D2K-Dask64.dll
 		Assembly\GPIB-32.DLL = Assembly\GPIB-32.DLL
 		Assembly\Infragistics4.Documents.Core.v12.1.dll = Assembly\Infragistics4.Documents.Core.v12.1.dll
 		Assembly\Infragistics4.Documents.Excel.v12.1.dll = Assembly\Infragistics4.Documents.Excel.v12.1.dll
