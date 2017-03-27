@@ -180,9 +180,38 @@ namespace JH.ACU.Model
     /// </summary>
     public enum BeltMode
     {
-        UnbuckledOrDisabled,
-        BuckledOrEnabled,
-        ToGround,
-        ToBattery
+        UnbuckledOrDisabled=1,
+        BuckledOrEnabled=2,
+        ToGround=3,
+        ToBattery=4,
+    }
+
+    /// <summary>
+    /// SIS测试时模式枚举,注意顺序
+    /// 与测试规范顺序相同(SPEC_unit.txt)
+    /// </summary>
+    public enum SisMode
+    {
+        ToBattery=1,
+        ToGround=2,
+    }
+    /// <summary>
+    /// Volt测试时模式枚举,注意顺序
+    /// 与测试规范顺序相同(SPEC_unit.txt)
+    /// </summary>
+    public enum BatteryMode
+    {
+        TooHigh,
+        TooLow,
+    }
+    /// <summary>
+    /// 测试类型
+    /// </summary>
+    public enum TestType
+    {
+        SquibMode,
+        BeltMode,
+        SisMode,
+        BatteryMode,
     }
 }

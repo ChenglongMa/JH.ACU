@@ -441,6 +441,78 @@ namespace JH.ACU.BLL.Instruments
             //Thread.Sleep(100);
         }
 
+        #region ACU Belt测试用
+        /// <summary>
+        /// 将指定ACU指定Belt设置为测试状态
+        /// </summary>
+        /// <param name="acuIndex">ACU索引 0-7</param>
+        /// <param name="squibIndex">Belt索引 DSB PSB PADS</param>
+        /// <param name="mode">Belt测试模式</param>
+        public void SetBeltInTestMode(int acuIndex, int squibIndex, BeltMode mode)
+        {
+            if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
+            {
+                SetSubRelayStatus((byte)acuIndex, 273, true); //接通kLine
+            }
+            throw new NotImplementedException("是否取消");
+        }
+        #endregion
+
+        #region ACU SIS测试用
+
+        /// <summary>
+        /// 将指定ACU指定SIS设置为测试状态
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="sisIndex">侧传感器索引 1-6</param>
+        /// <param name="mode">SIS测试模式</param>
+        public void SetSisInTestMode(int acuIndex, int sisIndex, SisMode mode)
+        {
+            if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
+            {
+                SetSubRelayStatus((byte)acuIndex, 273, true); //接通kLine
+            }
+            var relayIndex = 279 + sisIndex;
+            SetSubRelayStatus((byte) acuIndex, relayIndex, true);
+            SetSubRelayStatus((byte) acuIndex, 284, false);
+            SetSubRelayStatus((byte) acuIndex, 285, false);
+            SetMainRelayStatus(301, mode == SisMode.ToBattery);
+            SetMainRelayStatus(302, mode == SisMode.ToGround);
+        }
+
+        /// <summary>
+        /// 将指定ACU指定SIS设置为DMM读取状态
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="sisIndex"></param>
+        public void SetSisInReadMode(int acuIndex, int sisIndex)
+        {
+            var relayIndex = 279 + sisIndex;
+            SetSubRelayStatus((byte) acuIndex, relayIndex, false);
+            SetMainRelayStatus(301, false);
+            SetMainRelayStatus(302, false);
+            SetSubRelayStatus((byte)acuIndex, 284, true);
+            SetSubRelayStatus((byte)acuIndex, 285, true);
+        }
+
+        /// <summary>
+        /// 将指定ACU指定SIS恢复到初始状态
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="sisIndex"></param>
+        public void SetSisReset(int acuIndex, int sisIndex)
+        {
+            var relayIndex = 279 + sisIndex;
+            SetSubRelayStatus((byte)acuIndex, relayIndex, false);
+            SetMainRelayStatus(301, false);
+            SetMainRelayStatus(302, false);
+            SetSubRelayStatus((byte)acuIndex, 284, false);
+            SetSubRelayStatus((byte)acuIndex, 285, false);
+        }
+        #endregion
+
+
+
         #region ACU回路测试用
 
         /// <summary>
@@ -505,10 +577,7 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="mode"></param>
         public void SetFcInReadMode(int acuIndex, int squibIndex, SquibMode mode)
         {
-            if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
-            {
-                SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
-            }
+            //Tips:以下注释以FC#1为例
             switch (mode)
             {
                 case SquibMode.TooHigh:
@@ -558,6 +627,7 @@ namespace JH.ACU.BLL.Instruments
             {
                 SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
+            //Tips:以下注释以FC#1为例
             SetMainRelayStatus(300, false);
             SetMainRelayStatus(301, false);
             SetMainRelayStatus(302, false);
@@ -568,11 +638,6 @@ namespace JH.ACU.BLL.Instruments
             SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 2], false); //k216断开
             SetSubRelayStatus((byte) acuIndex, FcGroup[squibIndex, 3], false); //k217断开
         }
-
-        #endregion
-
-        #region ACU Belt测试用
-
 
         #endregion
 

@@ -81,10 +81,10 @@
 81#SIS 2 Short to GND#                      0.00-10000.00#      Ohm#      0x72#
 82#SIS 3 Short to GND#                      0.00-10000.00#      Ohm#      0x71#
 83#SIS 4 Short to GND#                      0.00-10000.00#      Ohm#      0x74#
-84#SIS 1 Sensor Output#                                                   0x8B#
-85#SIS 2 Sensor Output#                                                   0x8C#
-86#SIS 3 Sensor Output#                                                   0x8D#
-87#SIS 4 Sensor Output#                                                   0x8E#
+84#SIS 1 Sensor Output#								 NULL#	   NULL#      0x8B#
+85#SIS 2 Sensor Output#                              NULL#	   NULL#      0x8C#
+86#SIS 3 Sensor Output#                              NULL#	   NULL#      0x8D#
+87#SIS 4 Sensor Output#                              NULL#	   NULL#      0x8E#
 88#WL1_VOLT(OFF)#                           7.48-vbatt#         V#           0#
 89#WL1_VOLT(ON)#                            0.00-3.50#          V#           0#
 90#WL1_CURRENT(normal)#                     10.00-100.00#       mA#          0#

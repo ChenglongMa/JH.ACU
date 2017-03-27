@@ -1518,7 +1518,7 @@ int __fastcall TThreadMain::FindSIS(float fMin, float fMax, unsigned int iFaultC
 	{
 		case 0:		bDirection = false; break;
 		case 1:		bDirection = false; break;
-		case 2:		bDirection = false; break;
+		case 2:		bDirection = false; break;//此句无用 mcl 
 		default:	bDirection = true; break;
 	}
 
@@ -2422,7 +2422,7 @@ bool __fastcall TThreadMain::GetFaultCodeStateByItem(int iMethod, float fRes, un
     g_strCurrSet = FloatToStr(fRes) + "ohm";
     Synchronize(FormMain->ViewWave);
     Synchronize(FormMain->ViewLabelCurrSet);*/
-	//以上无用
+	//以上无用 mcl
     bFind = GetFaultCodeState(iFaultCode, bKline);
     return bFind;
 }
