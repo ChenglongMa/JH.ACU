@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -19,7 +20,7 @@ namespace JH.ACU.BLL
         public BllMain()
         {
             _report = new Report();
-            SpecUnits = BllConfig.GetSpecConfig();
+            SpecUnits = BllConfig.GetSpecItems();
 
             TestWorker = new NewBackgroundWorker();
             TestWorker.DoWork += TestWorker_DoWork;
@@ -141,7 +142,7 @@ namespace JH.ACU.BLL
                 #region 启动仪器、设定外部环境
 
                 OpenAllInstrs();
-                var voltTarget = tvItem[1];
+                VoltTarget = tvItem[1];
                 /*			// 电源基本设定
  
                             double dVoltInit = 0.0;
@@ -153,19 +154,18 @@ namespace JH.ACU.BLL
                             ViewProgressInfo(false, 2);*/
                 _pwr.Ocp = false;
                 _pwr.OutPutState = false;
-                _pwr.OutputVoltage = voltTarget;
+                _pwr.OutputVoltage = VoltTarget;
                 _pwr.OutputCurrent = 5.0;
                 _pwr.OutPutState = true; //开始输出电压
 
                 #endregion
 
-                //TODO:DAQ读取PIN脚电压,检查是否设置成功
                 foreach (var acuItem in TestCondition.AcuItems)
                 {
                     var boardIndex = acuItem.Index;
                     if (boardIndex < 0 || boardIndex > 7) continue;
                     _daq.OpenBoard((byte) boardIndex);
-                    //TODO:DAQ读取PIN脚电压,测试外部环境,如失败则抛出异常中止测试
+                    //QUES:DAQ读取PIN脚电压,测试外部环境,如失败则抛出异常中止测试
                     if (!StartAcu(boardIndex))
                     {
                         continue;
@@ -176,8 +176,6 @@ namespace JH.ACU.BLL
                     {
                         continue;
                     }
-                    _pwr.OutputVoltage = voltTarget;
-                    _pwr.OutPutState = true;
                     if (!TestWarnLamp(acuItem))
                     {
                         continue;
@@ -250,14 +248,14 @@ namespace JH.ACU.BLL
                 //B:Belt测试
                 //TODO:规范需要修改
                 //同一测试情况归于一类
-                /* for (int iMode = 0; mode < BeltModeNum; mode++)
+                for (int iMode = 0; iMode < BeltModeNum; iMode++)
                 {
                     for (int iBelt = 0; iBelt < BeltNum; iBelt++)
                     {
                         var itemIndex = BeltNum*(iMode - 1) + iBelt + SquibNum*SquibModeNum;
                         SpecUnits.Find(s => s.Index == itemIndex).Result = TestBelt(acuItem.Index, iBelt, iMode);
                     }
-                }*/
+                }
                 //C:Volt测试
                 for (int iMode = 0; iMode < VoltModeNum; iMode++)
                 {
@@ -265,6 +263,8 @@ namespace JH.ACU.BLL
                         var itemIndex = VoltNum*(iMode - 1) + 1 + SquibNum*SquibModeNum + BeltModeNum*BeltNum;
                         SpecUnits.Find(s => s.Index == itemIndex).Result = TestVolt(acuItem.Index,iMode);
                 }
+                _pwr.OutputVoltage = VoltTarget;//电压测试完成后将外围电压恢复到原先状态
+                _pwr.OutPutState = true;//可省略，保险起见保留此句
                 //D:SIS测试
                 for (int iMode = 0; iMode < SisModeNum; iMode++)
                 {
@@ -299,14 +299,11 @@ namespace JH.ACU.BLL
         /// <returns></returns>
         private double TestSis(int acuIndex, int sisIndex, int mode)
         {
-            var itemIndex = SisNum*(mode - 1) + sisIndex + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
-                            VoltModeNum*VoltNum;
-            var spec = SpecUnits.FirstOrDefault(s => s.Index == itemIndex);
-            if (spec == null) return 0;
-            var range = spec.Specification.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
-            var minValue = double.Parse(range[0]);
-            var maxValue = double.Parse(range[1]);
-            var dtc = spec.Dtc;
+            double minValue, maxValue;
+            byte dtc;
+            var itemIndex = SisNum * (mode - 1) + sisIndex + SquibNum * SquibModeNum + BeltModeNum * BeltNum +
+                VoltModeNum * VoltNum;
+            FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //A:打开继电器//QUES:是否应该先设置好电阻箱？
             _daq.SetSisInTestMode(acuIndex, sisIndex, (SisMode) mode);
             //B:开始测试
@@ -438,7 +435,7 @@ namespace JH.ACU.BLL
 
         #endregion
 
-        #region Belt测试方法 暂不用
+        #region Belt测试方法
 
         /// <summary>
         /// Belt开关测试//QUES:是否取消
@@ -447,16 +444,13 @@ namespace JH.ACU.BLL
         /// <param name="belt">开关类型 DSB PSB PADS</param>
         /// <param name="mode">故障情况，共4种</param>
         /// <returns></returns>
-        [Obsolete]
         private double TestBelt(int acuIndex, int belt, int mode)
         {
-            var itemIndex = BeltNum * (mode - 1) + belt + SquibNum * SquibModeNum;
-            var spec = SpecUnits.FirstOrDefault(s => s.Index == itemIndex);
-            if (spec == null) return 0;
-            var range = spec.Specification.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
-            var minValue = double.Parse(range[0]);
-            var maxValue = double.Parse(range[1]);
-            var dtc = spec.Dtc;
+            var itemIndex = BeltNum*(mode - 1) + belt + SquibNum*SquibModeNum;
+            double minValue;
+            double maxValue;
+            byte dtc;
+            FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //A:打开继电器
             //B:开始测试
             //C:复位继电器
@@ -471,12 +465,10 @@ namespace JH.ACU.BLL
         private double TestVolt(int acuIndex, int mode)
         {
             var itemIndex = VoltNum * (mode - 1) + 1 + SquibNum * SquibModeNum + BeltModeNum * BeltNum;
-            var spec = SpecUnits.FirstOrDefault(s => s.Index == itemIndex);
-            if (spec == null) return 0;
-            var range = spec.Specification.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
-            var minValue = double.Parse(range[0]);
-            var maxValue = double.Parse(range[1]);
-            var dtc = spec.Dtc;
+            double minValue;
+            double maxValue;
+            byte dtc;
+            FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //A:打开继电器-正常情况下已打开
             //B:开始测试
             var res = FindVolt(minValue, maxValue, dtc, mode);
@@ -600,12 +592,10 @@ namespace JH.ACU.BLL
         private double TestSquib(int acuIndex, int squib, int mode)
         {
             var itemIndex = SquibNum * (mode - 1) + squib;
-            var spec = SpecUnits.FirstOrDefault(s => s.Index == itemIndex);
-            if (spec == null) return 0;
-            var range = spec.Specification.Split(new[] {'-'}, StringSplitOptions.RemoveEmptyEntries);
-            var minValue = double.Parse(range[0]);
-            var maxValue = double.Parse(range[1]);
-            var dtc = spec.Dtc;
+            double minValue;
+            double maxValue;
+            byte dtc;
+            FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //A:打开继电器//QUES:是否应该先设置好电阻箱？
             _daq.SetFcInTestMode(acuIndex, squib, (SquibMode) mode);
             //B:开始测试
@@ -750,7 +740,7 @@ namespace JH.ACU.BLL
         private NewBackgroundWorker ChamberStay { get; set; }
         public TestCondition TestCondition { private get; set; }
         private readonly Report _report;
-
+        private double VoltTarget { get; set; }
         #region 从规范中归纳的常量值 SPEC_unit.txt
 
         private const int SquibNum = 16; //回路数常量
@@ -767,7 +757,7 @@ namespace JH.ACU.BLL
         /// <summary>
         /// 传值至UI层，填表用
         /// </summary>
-        public List<SpecUnit> SpecUnits { get; private set; }
+        public List<SpecItem> SpecUnits { get; private set; }
 
         private static readonly string LogFileName = "TestLog" + DateTime.Now.ToString("yy_MM_dd");
 
@@ -827,6 +817,11 @@ namespace JH.ACU.BLL
             var isStart = false;
             for (int i = 0; i < 3; i++)
             {
+                var canTest = _daq.CheckPowerStatus(VoltTarget);
+                if (!canTest)
+                {
+                    LogHelper.WriteWarningLog(LogFileName, "外围设备供电不正常");
+                }
                 _acu = new BllAcu();
                 if (_acu.Start())
                 {
@@ -835,6 +830,7 @@ namespace JH.ACU.BLL
                 }
                 //ACU启动失败则重启仪器重试
                 RebootAllInstrs();
+                _daq.OpenBoard((byte) index);
             }
             if (!isStart)
             {
@@ -868,6 +864,30 @@ namespace JH.ACU.BLL
             return tem.Select(value => new[] {0, value}).ToList();
         }
 
+        /// <summary>
+        /// 解析规范文件中的item
+        /// </summary>
+        /// <param name="itemIndex"></param>
+        /// <param name="minValue"></param>
+        /// <param name="maxValue"></param>
+        /// <param name="dtc"></param>
+        private void FindSpec(int itemIndex, out double minValue, out double maxValue, out byte dtc)
+        {
+            try
+            {
+                var spec = SpecUnits.FirstOrDefault(s => s.Index == itemIndex);
+                if (spec == null) throw new FileNotFoundException(string.Format("未找到项目:{0}", itemIndex));
+                var range = spec.Specification.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                minValue = double.Parse(range[0]);
+                maxValue = double.Parse(range[1]);
+                dtc = spec.Dtc;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("规范解析失败[{0}]，错误信息：{1}", itemIndex, ex.Message), ex);
+            }
+
+        }
         #endregion
 
         #region 公有方法
@@ -878,23 +898,6 @@ namespace JH.ACU.BLL
             TestWorker.RunWorkerAsync(tvItems);
         }
 
-        public double Fun(ushort ch)
-        {
-            _daq = new BllDaq();
-            _daq.Initialize();
-            _daq.OpenBoard(7);
-            return _daq.GetVoltFromChannelBySingle(ch);
-        }
-
-        public double Fun1(ushort ch)
-        {
-            return _daq.AiReadChannel(ch);
-        }
-
-        public double[] Fun2(ushort ch)
-        {
-            return _daq.AiReadSingleBuffer(ch);
-        }
         #endregion
     }
 }

@@ -27,6 +27,8 @@ namespace JH.ACU.BLL.Instruments
         private short _mDev = -1;
         private int _currBoard = -1;
         private int _currGroup = -1;
+        private readonly double _amplify12V = (4.7 + 4.7)/4.7;
+        private readonly double _amplifyPow = (10.0 + 4.7)/4.7;
 
         /// <summary>
         /// PB5不复位常量
@@ -81,6 +83,9 @@ namespace JH.ACU.BLL.Instruments
             {200, 201, 202, 203}, {204, 205, 206, 207}, {210, 211, 212, 213}
         };
 
+        /// <summary>
+        /// AI通道命名
+        /// </summary>
         #endregion
 
         #region 私有方法
@@ -98,13 +103,14 @@ namespace JH.ACU.BLL.Instruments
         {
             double value;
             var res = D2KDask.D2K_AI_VReadChannel((ushort) _mDev, channel, out value);
-            D2KDask.ThrowException((D2KDask.Error) res, channel);
+            D2KDask.ThrowException((D2KDask.Error) res,string.Format("AI Point读取失败，Channel:{0}", channel));
             return value;
         }
         /// <summary>
         /// in D2KDASK DEMO
         /// </summary>
         /// <returns></returns>
+        [Obsolete("测试失败")]
         private double[] AiReadSingleBuffer(ushort channel)
         {
             ushort bufId;
@@ -133,6 +139,24 @@ namespace JH.ACU.BLL.Instruments
             D2KDask.ThrowException((D2KDask.Error)ret, channel);
             return voltageArray;
         }
+        /// <summary>
+        /// in old program//TODO；待测试
+        /// </summary>
+        /// <param name="channel"></param>
+        /// <returns></returns>
+        private double AiReadSingleBuffer2(ushort channel)
+        {
+            short[] pwBuffer = { };
+            ushort bufId;
+            const uint countScan = 100;
+            D2KDask.D2K_AI_CH_Config((ushort)_mDev, (short)channel, D2KDask.AD_B_10_V);
+            D2KDask.D2K_AI_ContBufferSetup((ushort)_mDev, pwBuffer, countScan, out bufId);
+            var ret = D2KDask.D2K_AI_ContReadChannel((ushort)_mDev, channel, bufId, countScan, 40000, 40000, D2KDask.SYNCH_OP);
+            D2KDask.ThrowException((D2KDask.Error)ret, string.Format("AI Multi读取失败，Channel:{0}", channel));
+            var voltsum = pwBuffer.Aggregate<short, long>(0, (current, s) => current + s);
+            return (double)voltsum / pwBuffer.Length * 10D / 32768D;//QUES:该数值不知是从哪里获得
+        }
+
         /// <summary>
         /// Data 0~7 用于选择一组中某几个继电器
         /// </summary>
@@ -185,12 +209,48 @@ namespace JH.ACU.BLL.Instruments
         }
 
         #endregion
+        private double GetVoltFromChannelByPoint(AiChannel channel)
+        {
+            var res = AiReadChannel((ushort)channel);
+            switch (channel)
+            {
+                case AiChannel._5VCh:
+                    break;
+                case AiChannel._12VCh:
+                    res *= _amplify12V;
+                    break;
+                case AiChannel.PowCh:
+                    res *= _amplifyPow;
+                    break;
+                case AiChannel.Tsensor:
+                    break;
+            }
+            return res;
+        }
+        private double GetVoltFromChannelByMulti(AiChannel channel)
+        {
+            var res = AiReadSingleBuffer2((ushort)channel);
+            switch (channel)
+            {
+                case AiChannel._5VCh:
+                    break;
+                case AiChannel._12VCh:
+                    res *= _amplify12V;
+                    break;
+                case AiChannel.PowCh:
+                    res *= _amplifyPow;
+                    break;
+                case AiChannel.Tsensor:
+                    break;
+            }
+            return res;
+        }
 
         /// <summary>
         /// 板卡使能
         /// </summary>
         /// <param name="boardIndex">取值范围0~7</param>
-        private void Enable(byte boardIndex)
+        private void EnableBoard(byte boardIndex)
         {
             WriteToPB((byte) (NoReset | boardIndex));
             WriteToPB((byte) (NoReset | 0x08 | boardIndex));
@@ -209,7 +269,7 @@ namespace JH.ACU.BLL.Instruments
             if (groupIndex > GroupNum - 1) throw new ArgumentException("输入继电器组索引无效", "groupIndex");
             SelectRelays(mask);
             SelectRelayGroup(groupIndex);
-            Enable(boardIndex);
+            EnableBoard(boardIndex);
             _currBoard = boardIndex;
             _currGroup = groupIndex;
             _relaysGroupMask[boardIndex, groupIndex] = mask;
@@ -237,7 +297,6 @@ namespace JH.ACU.BLL.Instruments
             else
             {
                 groupIndex = (byte) ((relayIndex - 200)/10 - 2);
-
             }
             if (groupIndex > GroupNum - 1) throw new ArgumentException("输入继电器索引无效", "relayIndex");
 
@@ -252,43 +311,6 @@ namespace JH.ACU.BLL.Instruments
                 return;
             }
             mask = (byte) (_relaysGroupMask[boardIndex, groupIndex] | ulPaStatus);
-
-            #region 原方法内容，作用待定
-
-            //if (iBit >= 0 && iBit <= 3)
-            //{
-            //    switch (groupIndex)
-            //    {
-            //        case 6:
-            //            mask = (byte)(_relaysGroupMask[boardIndex, groupIndex] & 0x3F | ulPaStatus);
-            //            break;
-            //        case 7:
-            //            mask = (byte)(_relaysGroupMask[boardIndex, groupIndex] & 0x8F | ulPaStatus);
-            //            break;
-            //        default:
-            //            mask = (byte)(_relaysGroupMask[boardIndex, groupIndex] & 0x0F | ulPaStatus);
-            //            break;
-            //    }
-            //}
-            //else
-            //{
-            //    switch (groupIndex)
-            //    {
-            //        case 6:
-            //            mask = (byte)(_relaysGroupMask[boardIndex, groupIndex] & 0xF0 | ulPaStatus);
-            //            break;
-            //        case 7:
-            //            mask = (byte)(_relaysGroupMask[boardIndex, groupIndex] & 0xF8 | ulPaStatus);
-            //            break;
-            //        default:
-            //            mask = (byte)(_relaysGroupMask[boardIndex, groupIndex] & 0xF0 | ulPaStatus);
-            //            break;
-            //    }
-
-            //}
-
-            #endregion
-
         }
 
         #endregion
@@ -297,24 +319,61 @@ namespace JH.ACU.BLL.Instruments
 
         #region AI
 
-        public double GetVoltFromChannelBySingle(ushort channel)
+        /// <summary>
+        /// 读取通道电压
+        /// </summary>
+        /// <param name="channel"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public double GetVoltFromChannel(AiChannel channel, AiReadMode mode)
         {
-            var res = AiReadChannel(channel);
-            switch (channel)
+            double res;
+            switch (mode)
             {
-                case 1:		// 5V 没有分压
+                case AiReadMode.Point:
+                    res = GetVoltFromChannelByPoint(channel);
                     break;
-                case 2:		// 12V 分压
-                    res = res * 2.0;
+                case AiReadMode.Multi:
+                    res = GetVoltFromChannelByMulti(channel);
                     break;
-                case 3:		// POW_ECU 分压
-                    res = res * 3.12;
-                    break;
-                case 4:		// AD_T Sensor 分压
-                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("mode", mode, null);
             }
             return res;
         }
+
+        /// <summary>
+        /// 检查DAQ供电状态
+        /// </summary>
+        /// <param name="voltTarget">目标电压，即Pwr输出电压</param>
+        /// <returns></returns>
+        public bool CheckPowerStatus(double voltTarget)
+        {
+            foreach (AiChannel aChannel in Enum.GetValues(typeof (AiChannel)))
+            {
+                var channel = aChannel;
+                foreach (var res in from AiReadMode aMode in Enum.GetValues(typeof (AiReadMode))
+                    where channel != AiChannel.Tsensor
+                    select GetVoltFromChannel(channel, aMode))
+                {
+                    switch (aChannel)
+                    {
+                        case AiChannel._5VCh:
+                            return Math.Abs(res - 5D) < 1D;
+                        case AiChannel._12VCh:
+                            return Math.Abs(res - 12D) < 1D;
+                        case AiChannel.PowCh:
+                            return Math.Abs(res - voltTarget) < 1D;
+                        case AiChannel.Tsensor:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                }
+            }
+            return false;
+        }
+
         #endregion
 
         #region DO
@@ -397,16 +456,12 @@ namespace JH.ACU.BLL.Instruments
             #region 模拟量输入
 
             //TODO：待完善
-            ret =D2KDask.D2K_AI_CH_Config((ushort)_mDev, -1, D2KDask.AD_B_10_V);
+            ret = D2KDask.D2K_AI_CH_Config((ushort) _mDev, -1, D2KDask.AD_B_10_V);
             D2KDask.ThrowException((D2KDask.Error) ret, new Exception("AI配置失败"));
 
-
             #endregion
 
-
             #endregion
-
-
         }
 
         /// <summary>
@@ -424,6 +479,7 @@ namespace JH.ACU.BLL.Instruments
                 }
             }
         }
+
         /// <summary>
         /// 准备开始测试环境,注意时序
         /// </summary>
@@ -434,14 +490,15 @@ namespace JH.ACU.BLL.Instruments
             byte mask7 = (byte) (0x88 | _relaysGroupMask[boardIndex, 7]);
             byte mask12 = (byte) (0x01 | _relaysGroupMask[boardIndex, 12]);
             SetRelaysGroup(boardIndex, 6, mask6);
-            //Thread.Sleep(100);
+            Thread.Sleep(100);
             SetRelaysGroup(boardIndex, 7, mask7);
-            //Thread.Sleep(100);
+            Thread.Sleep(100);
             SetRelaysGroup(boardIndex, 12, mask12);
-            //Thread.Sleep(100);
+            Thread.Sleep(100);
         }
 
         #region ACU Belt测试用
+
         /// <summary>
         /// 将指定ACU指定Belt设置为测试状态
         /// </summary>
@@ -452,10 +509,11 @@ namespace JH.ACU.BLL.Instruments
         {
             if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
             {
-                SetSubRelayStatus((byte)acuIndex, 273, true); //接通kLine
+                SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
             throw new NotImplementedException("是否取消");
         }
+
         #endregion
 
         #region ACU SIS测试用
@@ -470,7 +528,7 @@ namespace JH.ACU.BLL.Instruments
         {
             if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
             {
-                SetSubRelayStatus((byte)acuIndex, 273, true); //接通kLine
+                SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
             var relayIndex = 279 + sisIndex;
             SetSubRelayStatus((byte) acuIndex, relayIndex, true);
@@ -491,8 +549,8 @@ namespace JH.ACU.BLL.Instruments
             SetSubRelayStatus((byte) acuIndex, relayIndex, false);
             SetMainRelayStatus(301, false);
             SetMainRelayStatus(302, false);
-            SetSubRelayStatus((byte)acuIndex, 284, true);
-            SetSubRelayStatus((byte)acuIndex, 285, true);
+            SetSubRelayStatus((byte) acuIndex, 284, true);
+            SetSubRelayStatus((byte) acuIndex, 285, true);
         }
 
         /// <summary>
@@ -503,15 +561,14 @@ namespace JH.ACU.BLL.Instruments
         public void SetSisReset(int acuIndex, int sisIndex)
         {
             var relayIndex = 279 + sisIndex;
-            SetSubRelayStatus((byte)acuIndex, relayIndex, false);
+            SetSubRelayStatus((byte) acuIndex, relayIndex, false);
             SetMainRelayStatus(301, false);
             SetMainRelayStatus(302, false);
-            SetSubRelayStatus((byte)acuIndex, 284, false);
-            SetSubRelayStatus((byte)acuIndex, 285, false);
+            SetSubRelayStatus((byte) acuIndex, 284, false);
+            SetSubRelayStatus((byte) acuIndex, 285, false);
         }
+
         #endregion
-
-
 
         #region ACU回路测试用
 
@@ -677,5 +734,22 @@ namespace JH.ACU.BLL.Instruments
         }
 
         #endregion
+    }
+
+    public enum AiChannel : ushort
+    {
+        _5VCh = 1,
+        _12VCh = 2,
+        PowCh = 3,
+        Tsensor = 4,
+    }
+
+    /// <summary>
+    /// AI读取方式
+    /// </summary>
+    public enum AiReadMode
+    {
+        Point,
+        Multi,
     }
 }

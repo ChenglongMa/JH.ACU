@@ -222,7 +222,7 @@ namespace JH.ACU.UI
 
         private void BindingSourceTable()
         {
-            var list = BllConfig.GetSpecConfig();
+            var list = BllConfig.GetSpecItems();
             if (list.IsNullOrEmpty()) return;
             dgSource.DataSource = list;
         }
@@ -252,7 +252,7 @@ namespace JH.ACU.UI
             }
             foreach (var row in dgSource.Selected.Rows)
             {
-                var spec = (SpecUnit)row.ListObject;
+                var spec = (SpecItem)row.ListObject;
                 if (!tvTarget.SelectedNode.Nodes.ContainsKey(spec.Index.ToString()))
                 {
                     tvTarget.SelectedNode.Nodes.Add(new TreeNode(spec.Index.ToString(), 2, 3)

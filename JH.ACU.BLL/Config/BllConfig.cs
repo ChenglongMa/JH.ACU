@@ -190,41 +190,38 @@ namespace JH.ACU.BLL.Config
         #region SPEC_unit
 
         private static readonly string DefaultSpecFileName = Environment.CurrentDirectory +
-                                                             "\\Config\\SPEC_unit.txt";
+                                                             "\\Config\\SPEC_unit.xml";
 
         /// <summary>
-        /// 从指定路径或默认路径加载测试信息
+        /// 从指定路径或默认路径加载测试规范
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static List<SpecUnit> GetSpecConfig(string fileName = null)
+        public static List<SpecItem> GetSpecItems(string fileName = null)
         {
             if (fileName.IsNullOrEmpty())
             {
                 fileName = DefaultSpecFileName;
             }
             if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
-            var res = new List<SpecUnit>();
-            using (var sw = new StreamReader(new FileStream(fileName, FileMode.Open)))
+            var specUnit = XmlHelper.XmlDeserializeFromFile<SpecUnit>(fileName);
+            return specUnit.ToList();
+        }
+
+        /// <summary>
+        /// 将测试规范保存到指定或默认路径
+        /// </summary>
+        /// <param name="specItems"></param>
+        /// <param name="fileName"></param>
+        public static void SaveToFile(this List<SpecItem> specItems, string fileName = null)
+        {
+            if (fileName.IsNullOrEmpty())
             {
-                while (!sw.EndOfStream)
-                {
-                    var text = sw.ReadLine();
-                    if (text == null) continue;
-                    var strArray = text.Split(new[] {'#'}, StringSplitOptions.RemoveEmptyEntries);
-                    if (strArray.Length < typeof (SpecUnit).GetProperties().Length) continue;
-                    var spec = new SpecUnit
-                    {
-                        Index = Convert.ToInt32(strArray[0].Trim()),
-                        Description = strArray[1].Trim(),
-                        Specification = strArray[2].Trim(),
-                        Uom = strArray[3].Trim(),
-                        Dtc = Convert.ToByte(strArray[4].Trim(), 16)
-                    };
-                    res.Add(spec);
-                }
+                fileName = DefaultSpecFileName;
             }
-            return res.OrderBy(s => s.Index).ToList();
+            var specUnit = new SpecUnit();
+            specUnit.AddRange(specItems);
+            XmlHelper.XmlSerializeToFile(specUnit, fileName);
         }
 
         #endregion

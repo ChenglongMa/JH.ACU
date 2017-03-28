@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinToolbars;
 using JH.ACU.BLL;
+using JH.ACU.BLL.Config;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.TestConfig;
 
@@ -24,7 +25,7 @@ namespace JH.ACU.UI
 
         #region 属性字段
 
-        BindingList<SpecUnit> list = new BindingList<SpecUnit>();
+        BindingList<SpecItem> list = new BindingList<SpecItem>();
         private InitializationForm _conditionForm;
 
         private TestCondition TestCondition
@@ -135,16 +136,10 @@ namespace JH.ACU.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var s = ushort.Parse(textBox1.Text);
+            var spec = BllConfig.GetSpecItems();
+            var p = Environment.CurrentDirectory + "\\Config\\SPEC_unit.xml";
 
-            textBox2.Text=_bllMain.Fun(s).ToString();
-            textBox3.Text = _bllMain.Fun1(s).ToString();
-            foreach (var d in _bllMain.Fun2(s))
-            {
-                textBox4.Text += d+",";
-
-            }
-
+            //spec.SaveToFile(p);
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
