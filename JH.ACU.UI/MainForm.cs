@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinToolbars;
+using JH.ACU.BLL;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.TestConfig;
 
@@ -104,12 +105,51 @@ namespace JH.ACU.UI
 
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private readonly BllMain _bllMain=new BllMain();
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            list.Add(new SpecUnit
+            _bllMain.TestCondition = new TestCondition
             {
-                Description = "sadfasdf"
-            });
+                Temperature = new Temperature {Enable = false},
+                Voltage = new Voltage {HighVolt = 13.5, LowVolt = 6.5, NorVolt = 12},
+                AcuItems = new List<AcuItems>
+                {
+                    new AcuItems
+                    {
+                        Index = 5,
+                        Items = new List<int>
+                        {
+                            1,
+                            2,
+                            17,
+                            18,
+                            33,
+                            49
+                        }
+                    }
+                },
+                TvItems = new List<double[]> {new[] {25D, 12D}}
+            };
+            _bllMain.AutoRun();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var s = ushort.Parse(textBox1.Text);
+
+            textBox2.Text=_bllMain.Fun(s).ToString();
+            textBox3.Text = _bllMain.Fun1(s).ToString();
+            foreach (var d in _bllMain.Fun2(s))
+            {
+                textBox4.Text += d+",";
+
+            }
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         #region 公有方法

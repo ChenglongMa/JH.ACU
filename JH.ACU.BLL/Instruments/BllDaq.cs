@@ -87,14 +87,14 @@ namespace JH.ACU.BLL.Instruments
 
         #region Basic Method
 
-        private void DoWritePort(ushort channel, byte mask, int delay = 100)//TODO:注意延时问题
+        private void DoWritePort(ushort channel, byte mask, int delay = 100)
         {
             var res = D2KDask.D2K_DO_WritePort((ushort) _mDev, channel, mask);
             Thread.Sleep(delay);
             D2KDask.ThrowException((D2KDask.Error) res, channel, mask);
         }
 
-        private double AiReadChannel(ushort channel)
+        private double AiReadChannel(ushort channel)//TODO:private
         {
             double value;
             var res = D2KDask.D2K_AI_VReadChannel((ushort) _mDev, channel, out value);
@@ -128,7 +128,7 @@ namespace JH.ACU.BLL.Instruments
 
             ret = D2KDask.D2K_AI_AsyncClear((ushort)_mDev, out startPos, out accessCnt);
             D2KDask.ThrowException((D2KDask.Error)ret, channel); 
-
+            //BUG:下面这句有问题
             ret = D2KDask.D2K_AI_ContVScale((ushort)_mDev, D2KDask.AD_B_10_V, dataBuffer,out voltageArray, 1000);
             D2KDask.ThrowException((D2KDask.Error)ret, channel);
             return voltageArray;

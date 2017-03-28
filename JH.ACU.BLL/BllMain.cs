@@ -19,7 +19,6 @@ namespace JH.ACU.BLL
         public BllMain()
         {
             _report = new Report();
-            _testCondition = new TestCondition();
             SpecUnits = BllConfig.GetSpecConfig();
 
             TestWorker = new NewBackgroundWorker();
@@ -68,7 +67,7 @@ namespace JH.ACU.BLL
                 Thread.Sleep(30000);
                 var currTemp = _chamber.GetTemp();
                 ChamberStay.ReportProgress(0, currTemp);
-            } while (Environment.TickCount - tick <= _testCondition.Temperature.Duration*60*1000);
+            } while (Environment.TickCount - tick <= TestCondition.Temperature.Duration*60*1000);
 
             #endregion
 
@@ -108,7 +107,7 @@ namespace JH.ACU.BLL
             {
                 #region 温度操作
 
-                if (_testCondition.Temperature.Enable) //若值为Ture则执行温度操作
+                if (TestCondition.Temperature.Enable) //若值为Ture则执行温度操作
                 {
                     if (_chamber == null)
                     {
@@ -161,7 +160,7 @@ namespace JH.ACU.BLL
                 #endregion
 
                 //TODO:DAQ读取PIN脚电压,检查是否设置成功
-                foreach (var acuItem in _testCondition.AcuItems)
+                foreach (var acuItem in TestCondition.AcuItems)
                 {
                     var boardIndex = acuItem.Index;
                     if (boardIndex < 0 || boardIndex > 7) continue;
@@ -235,7 +234,7 @@ namespace JH.ACU.BLL
                 //A:Squib测试
                 //01-16 Too High
                 //17-32 Too Low
-                //31-48 To Ground
+                //33-48 To Ground
                 //49-64 To Battery
                 for (int iMode = 1; iMode <= SquibModeNum; iMode++)
                 {
@@ -748,8 +747,8 @@ namespace JH.ACU.BLL
         #region 属性字段
 
         public NewBackgroundWorker TestWorker { get; private set; }
-        public NewBackgroundWorker ChamberStay { get; private set; }
-        private readonly TestCondition _testCondition;
+        private NewBackgroundWorker ChamberStay { get; set; }
+        public TestCondition TestCondition { private get; set; }
         private readonly Report _report;
 
         #region 从规范中归纳的常量值 SPEC_unit.txt
@@ -800,7 +799,7 @@ namespace JH.ACU.BLL
             _dmm.Initialize();
             _prs0 = new BllPrs(InstrName.Prs0);
             _prs0.Initialize();
-            _prs1 = new BllPrs(InstrName.Prs0);
+            _prs1 = new BllPrs(InstrName.Prs1);
             _prs1.Initialize();
             _pwr = new BllPwr();
             _pwr.Initialize();
@@ -875,10 +874,27 @@ namespace JH.ACU.BLL
 
         public void AutoRun()
         {
-            var tvItems = _testCondition.Temperature.Enable ? _testCondition.TvItems : RemoveTempList(_testCondition.TvItems);
+            var tvItems = TestCondition.Temperature.Enable ? TestCondition.TvItems : RemoveTempList(TestCondition.TvItems);
             TestWorker.RunWorkerAsync(tvItems);
         }
 
+        public double Fun(ushort ch)
+        {
+            _daq = new BllDaq();
+            _daq.Initialize();
+            _daq.OpenBoard(7);
+            return _daq.GetVoltFromChannelBySingle(ch);
+        }
+
+        public double Fun1(ushort ch)
+        {
+            return _daq.AiReadChannel(ch);
+        }
+
+        public double[] Fun2(ushort ch)
+        {
+            return _daq.AiReadSingleBuffer(ch);
+        }
         #endregion
     }
 }
