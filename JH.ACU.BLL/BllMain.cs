@@ -452,6 +452,7 @@ namespace JH.ACU.BLL
             byte dtc;
             FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //A:打开继电器
+            _daq.SetBeltInTestMode(acuIndex,belt,(BeltMode) mode);
             //B:开始测试
             //C:复位继电器
             return 0;

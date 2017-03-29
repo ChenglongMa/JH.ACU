@@ -503,15 +503,30 @@ namespace JH.ACU.BLL.Instruments
         /// 将指定ACU指定Belt设置为测试状态
         /// </summary>
         /// <param name="acuIndex">ACU索引 0-7</param>
-        /// <param name="squibIndex">Belt索引 DSB PSB PADS</param>
+        /// <param name="beltIndex">Belt索引 DSB PSB PADS</param>
         /// <param name="mode">Belt测试模式</param>
-        public void SetBeltInTestMode(int acuIndex, int squibIndex, BeltMode mode)
+        public void SetBeltInTestMode(int acuIndex, int beltIndex, BeltMode mode)
         {
             if ((RelaysGroupMask[acuIndex, 7] & 0x08) != 0x08)
             {
                 SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
-            throw new NotImplementedException("是否取消");
+            //Tips:以下注释以DSB为例
+            switch (mode)
+            {
+                case BeltMode.UnbuckledOrDisabled:
+                    break;
+                case BeltMode.BuckledOrEnabled:
+                    SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 0], true);
+                    throw new NotImplementedException("未完 0329");
+                    break;
+                case BeltMode.ToGround:
+                    break;
+                case BeltMode.ToBattery:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("mode", mode, null);
+            }
         }
 
         #endregion
