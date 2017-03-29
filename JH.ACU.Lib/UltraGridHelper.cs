@@ -23,7 +23,7 @@ namespace JH.ACU.Lib
             public static void SetGridDefaultStyle(UltraGrid grid)
             {
                 //设置UltraGrid样式
-                grid.DisplayLayout.Override.AllowUpdate = DefaultableBoolean.False;
+                grid.DisplayLayout.Override.AllowUpdate = DefaultableBoolean.True;
                 grid.DisplayLayout.Override.AllowDelete = DefaultableBoolean.False;
                 grid.DisplayLayout.EmptyRowSettings.ShowEmptyRows = true;
                 grid.DisplayLayout.EmptyRowSettings.Style = EmptyRowStyle.ExtendRowSelector;
@@ -62,7 +62,7 @@ namespace JH.ACU.Lib
 
 
                 //列头样式 XP风格
-                //grid.DisplayLayout.Override.HeaderStyle = HeaderStyle.WindowsXPCommand;
+                grid.DisplayLayout.Override.HeaderStyle = HeaderStyle.WindowsXPCommand;
 
 
 

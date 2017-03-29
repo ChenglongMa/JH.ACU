@@ -58,7 +58,10 @@ namespace JH.ACU.UI
                     _conditionForm = new InitializationForm();
                     _conditionForm.ShowDialog(this);
                     break;
-
+                case "btnSpecConfig":
+                    var specForm=new SpecConfigForm();
+                    specForm.Show(this);
+                    break;
                 case "menuInstrConfig": // PopupMenuTool
                     // Place code here
                     break;
