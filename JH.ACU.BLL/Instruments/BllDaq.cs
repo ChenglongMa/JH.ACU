@@ -50,9 +50,9 @@ namespace JH.ACU.BLL.Instruments
             get
             {
                 if (_currBoard == -1) return false;
-                var pwr = (_relaysGroupMask[_currBoard, 6] & 0x30) == 0x30;//k264 k265同时使能
-                var kLineAcout1 = (_relaysGroupMask[_currBoard, 7] & 0x88) == 0x88;//k273 k277同时使能
-                var cout2 = (_relaysGroupMask[_currBoard, 12] & 0x01) == 0x01;//k340使能
+                var pwr = (_relaysGroupMask[_currBoard, 6] & 0x30) == 0x30; //k264 k265同时使能
+                var kLineAcout1 = (_relaysGroupMask[_currBoard, 7] & 0x88) == 0x88; //k273 k277同时使能
+                var cout2 = (_relaysGroupMask[_currBoard, 12] & 0x01) == 0x01; //k340使能
                 return pwr && kLineAcout1 && cout2;
             }
         }
@@ -64,6 +64,7 @@ namespace JH.ACU.BLL.Instruments
         {
             get { return _relaysGroupMask; }
         }
+
         /// <summary>
         /// 回路继电器分组
         /// </summary>
@@ -74,6 +75,7 @@ namespace JH.ACU.BLL.Instruments
             {254, 255, 256, 257}, {260, 261, 262, 263}, {310, 311, 312, 313}, {314, 315, 316, 317},
             {320, 321, 322, 323}, {324, 325, 326, 327}, {330, 331, 332, 333}, {334, 335, 336, 337}
         };
+
         /// <summary>
         /// 开关继电器分组
         /// 使用示例:BeltGroup[(int) BeltSwitch.Dsb,index1]
@@ -86,6 +88,7 @@ namespace JH.ACU.BLL.Instruments
         /// <summary>
         /// AI通道命名
         /// </summary>
+
         #endregion
 
         #region 私有方法
@@ -99,13 +102,14 @@ namespace JH.ACU.BLL.Instruments
             D2KDask.ThrowException((D2KDask.Error) res, channel, mask);
         }
 
-        private double AiReadChannel(ushort channel)//TODO:private
+        private double AiReadChannel(ushort channel) //TODO:private
         {
             double value;
             var res = D2KDask.D2K_AI_VReadChannel((ushort) _mDev, channel, out value);
-            D2KDask.ThrowException((D2KDask.Error) res,string.Format("AI Point读取失败，Channel:{0}", channel));
+            D2KDask.ThrowException((D2KDask.Error) res, string.Format("AI Point读取失败，Channel:{0}", channel));
             return value;
         }
+
         /// <summary>
         /// in D2KDASK DEMO
         /// </summary>
@@ -117,28 +121,30 @@ namespace JH.ACU.BLL.Instruments
             byte stopped;
             uint accessCnt;
             uint startPos;
-            var dataBuffer = Marshal.AllocHGlobal(sizeof(short) * 1000);
+            var dataBuffer = Marshal.AllocHGlobal(sizeof (short)*1000);
             double[] voltageArray;
 
-            var ret = D2KDask.D2K_AI_Config((ushort)_mDev, D2KDask.DAQ2K_AI_ADCONVSRC_Int, D2KDask.DAQ2K_AI_TRGSRC_SOFT, 0, 0, 1, true);
-            D2KDask.ThrowException((D2KDask.Error)ret, channel); 
-            ret = D2KDask.D2K_AI_ContBufferSetup((ushort)_mDev, dataBuffer, 1000, out bufId);
-            D2KDask.ThrowException((D2KDask.Error)ret, channel);
-            ret = D2KDask.D2K_AI_ContReadChannel((ushort)_mDev, channel, bufId, 1000, 400, 400, D2KDask.ASYNCH_OP);
-            D2KDask.ThrowException((D2KDask.Error) ret, channel);//             100,40000,40000
+            var ret = D2KDask.D2K_AI_Config((ushort) _mDev, D2KDask.DAQ2K_AI_ADCONVSRC_Int, D2KDask.DAQ2K_AI_TRGSRC_SOFT,
+                0, 0, 1, true);
+            D2KDask.ThrowException((D2KDask.Error) ret, channel);
+            ret = D2KDask.D2K_AI_ContBufferSetup((ushort) _mDev, dataBuffer, 1000, out bufId);
+            D2KDask.ThrowException((D2KDask.Error) ret, channel);
+            ret = D2KDask.D2K_AI_ContReadChannel((ushort) _mDev, channel, bufId, 1000, 400, 400, D2KDask.ASYNCH_OP);
+            D2KDask.ThrowException((D2KDask.Error) ret, channel); //             100,40000,40000
             do
             {
-                ret = D2KDask.D2K_AI_AsyncCheck((ushort)_mDev, out stopped, out accessCnt);
-                D2KDask.ThrowException((D2KDask.Error)ret, channel);
+                ret = D2KDask.D2K_AI_AsyncCheck((ushort) _mDev, out stopped, out accessCnt);
+                D2KDask.ThrowException((D2KDask.Error) ret, channel);
             } while (stopped == 0);
 
-            ret = D2KDask.D2K_AI_AsyncClear((ushort)_mDev, out startPos, out accessCnt);
-            D2KDask.ThrowException((D2KDask.Error)ret, channel); 
+            ret = D2KDask.D2K_AI_AsyncClear((ushort) _mDev, out startPos, out accessCnt);
+            D2KDask.ThrowException((D2KDask.Error) ret, channel);
             //BUG:下面这句有问题
-            ret = D2KDask.D2K_AI_ContVScale((ushort)_mDev, D2KDask.AD_B_10_V, dataBuffer,out voltageArray, 1000);
-            D2KDask.ThrowException((D2KDask.Error)ret, channel);
+            ret = D2KDask.D2K_AI_ContVScale((ushort) _mDev, D2KDask.AD_B_10_V, dataBuffer, out voltageArray, 1000);
+            D2KDask.ThrowException((D2KDask.Error) ret, channel);
             return voltageArray;
         }
+
         /// <summary>
         /// in old program//TODO；待测试
         /// </summary>
@@ -146,15 +152,16 @@ namespace JH.ACU.BLL.Instruments
         /// <returns></returns>
         private double AiReadSingleBuffer2(ushort channel)
         {
-            short[] pwBuffer = { };
+            short[] pwBuffer = {};
             ushort bufId;
             const uint countScan = 100;
-            D2KDask.D2K_AI_CH_Config((ushort)_mDev, (short)channel, D2KDask.AD_B_10_V);
-            D2KDask.D2K_AI_ContBufferSetup((ushort)_mDev, pwBuffer, countScan, out bufId);
-            var ret = D2KDask.D2K_AI_ContReadChannel((ushort)_mDev, channel, bufId, countScan, 40000, 40000, D2KDask.SYNCH_OP);
-            D2KDask.ThrowException((D2KDask.Error)ret, string.Format("AI Multi读取失败，Channel:{0}", channel));
+            D2KDask.D2K_AI_CH_Config((ushort) _mDev, (short) channel, D2KDask.AD_B_10_V);
+            D2KDask.D2K_AI_ContBufferSetup((ushort) _mDev, pwBuffer, countScan, out bufId);
+            var ret = D2KDask.D2K_AI_ContReadChannel((ushort) _mDev, channel, bufId, countScan, 40000, 40000,
+                D2KDask.SYNCH_OP);
+            D2KDask.ThrowException((D2KDask.Error) ret, string.Format("AI Multi读取失败，Channel:{0}", channel));
             var voltsum = pwBuffer.Aggregate<short, long>(0, (current, s) => current + s);
-            return (double)voltsum / pwBuffer.Length * 10D / 32768D;//QUES:该数值不知是从哪里获得
+            return (double) voltsum/pwBuffer.Length*10D/32768D; //QUES:该数值不知是从哪里获得
         }
 
         /// <summary>
@@ -209,9 +216,10 @@ namespace JH.ACU.BLL.Instruments
         }
 
         #endregion
+
         private double GetVoltFromChannelByPoint(AiChannel channel)
         {
-            var res = AiReadChannel((ushort)channel);
+            var res = AiReadChannel((ushort) channel);
             switch (channel)
             {
                 case AiChannel._5VCh:
@@ -227,9 +235,10 @@ namespace JH.ACU.BLL.Instruments
             }
             return res;
         }
+
         private double GetVoltFromChannelByMulti(AiChannel channel)
         {
-            var res = AiReadSingleBuffer2((ushort)channel);
+            var res = AiReadSingleBuffer2((ushort) channel);
             switch (channel)
             {
                 case AiChannel._5VCh:
@@ -512,21 +521,45 @@ namespace JH.ACU.BLL.Instruments
                 SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
             //Tips:以下注释以DSB为例
-            switch (mode)
-            {
-                case BeltMode.UnbuckledOrDisabled:
-                    break;
-                case BeltMode.BuckledOrEnabled:
-                    SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 0], true);
-                    throw new NotImplementedException("未完 0329");
-                    break;
-                case BeltMode.ToGround:
-                    break;
-                case BeltMode.ToBattery:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("mode", mode, null);
-            }
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 0], false); //k200
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 1], true); //k201
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 2], false); //k202
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 3], true); //k203
+            SetMainRelayStatus(302, true);
+            if (mode == BeltMode.ToGround || mode == BeltMode.ToBattery) return; //QUES:还未确定要开启哪些继电器
+            //SetMainRelayStatus(302,mode != BeltMode.ToBattery);//QUES:存疑
+        }
+
+        /// <summary>
+        /// 将指定ACU指定Belt设置为读取状态
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="beltIndex"></param>
+        public void SetBeltInReadMode(int acuIndex, int beltIndex)
+        {
+            //Tips:以下注释以DSB为例
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 0], true); //k200
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 1], false); //k201
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 2], true); //k202
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 3], true); //k203
+
+        }
+
+        /// <summary>
+        /// 将指定ACU指定Belt复位
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="beltIndex"></param>
+        public void SetBeltReset(int acuIndex, int beltIndex)
+        {
+            //Tips:以下注释以DSB为例
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 0], true); //k200
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 1], false); //k201
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 2], true); //k202
+            SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 3], true); //k203
+            SetMainRelayStatus(302, false);
+            SetMainRelayStatus(301, false); //QUES:是否赋值未知
+
         }
 
         #endregion

@@ -171,7 +171,7 @@ namespace JH.ACU.BLL
                         continue;
                     }
                     // QUES:B: ReadMemory WriteMemory Kline出错的可能性非常低
-                    //此项作用未知,个人看法应该测试ACU有没有故障,如是故障件则取消测试
+                    //以上步骤测试ACU有没有故障,返回故障码
                     if (!TestHasDtc(acuItem))
                     {
                         continue;
@@ -304,7 +304,10 @@ namespace JH.ACU.BLL
             var itemIndex = SisNum * (mode - 1) + sisIndex + SquibNum * SquibModeNum + BeltModeNum * BeltNum +
                 VoltModeNum * VoltNum;
             FindSpec(itemIndex, out minValue, out maxValue, out dtc);
-            //A:打开继电器//QUES:是否应该先设置好电阻箱？
+            //0：先设置好电阻箱//QUES:测试时验证是否合理
+            _prs0.SetResistance(maxValue);
+            _prs1.SetResistance(maxValue);
+            //A:打开继电器
             _daq.SetSisInTestMode(acuIndex, sisIndex, (SisMode) mode);
             //B:开始测试
             var res = FindSis(minValue, maxValue, dtc, mode);
@@ -438,7 +441,7 @@ namespace JH.ACU.BLL
         #region Belt测试方法
 
         /// <summary>
-        /// Belt开关测试//QUES:是否取消
+        /// Belt开关测试
         /// </summary>
         /// <param name="acuIndex"></param>
         /// <param name="belt">开关类型 DSB PSB PADS</param>
@@ -451,12 +454,145 @@ namespace JH.ACU.BLL
             double maxValue;
             byte dtc;
             FindSpec(itemIndex, out minValue, out maxValue, out dtc);
+            //0：先设置好电阻箱//QUES:测试时验证是否合理
+            _prs0.SetResistance(maxValue);
+            _prs1.SetResistance(maxValue);
             //A:打开继电器
             _daq.SetBeltInTestMode(acuIndex,belt,(BeltMode) mode);
             //B:开始测试
+            var res = FindBelt(minValue, maxValue, dtc, mode);
+            _daq.SetBeltInReadMode(acuIndex, belt);
+            res = _dmm.GetFourWireRes(); //该返回值为实际测量值
+            res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
             //C:复位继电器
-            return 0;
-            throw new NotImplementedException();
+            _daq.SetBeltReset(acuIndex, belt);
+            return res;
+        }
+
+        /// <summary>
+        /// 根据取值范围及故障码查找临界阻值
+        /// </summary>
+        /// <param name="minValue">最小值</param>
+        /// <param name="maxValue">最大值</param>
+        /// <param name="dtc">故障码</param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        private double FindBelt(double minValue, double maxValue, byte dtc, int mode)
+        {
+            //若最大值及最小值之差足够小则返回两者平均值
+            if (maxValue - minValue <= GlobalConst.Precision)
+            {
+                return (maxValue - minValue) / 2;
+            }
+            if (minValue < 0.1 || maxValue > 2000) throw new Exception("寻找电阻值测试失败，找不到有效值");
+            FindResult findresult;
+            // 正向 小电阻肯定没有：表示错误码在测试规范的大值处附近
+            // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
+            bool forwardMax, acuConnect;
+            BllPrs prs;
+            #region 根据测试模式设置寻找方向及电阻箱选择
+
+            switch ((BeltMode) mode)
+            {
+                default:
+                case BeltMode.UnbuckledOrDisabled:
+                    forwardMax = false;
+                    prs = _prs1;
+                    break;
+                case BeltMode.BuckledOrEnabled:
+                    forwardMax = true;
+                    prs = _prs1;
+                    break;
+                case BeltMode.ToGround:
+                    throw new NotImplementedException("配置待定");
+                    forwardMax = false;
+                    prs = _prs1;
+                    break;
+                case BeltMode.ToBattery:
+                    throw new NotImplementedException("配置待定");
+                    forwardMax = false;
+                    prs = _prs1;
+                    break;
+            }
+
+            #endregion
+
+            #region 设置电阻箱输出阻值并检查ACU是否报错
+
+            prs.SetResistance(minValue);
+            var findMin = _acu.HasFoundDtc(dtc, out acuConnect);
+            if (!acuConnect)
+            {
+                throw new Exception("ACU连接失败");
+            }
+            prs.SetResistance(maxValue);
+            var findMax = _acu.HasFoundDtc(dtc, out acuConnect);
+            if (!acuConnect)
+            {
+                throw new Exception("ACU连接失败");
+            }
+
+            #endregion
+
+            #region 根据ACU反馈给FindResult赋值
+
+            if (!forwardMax)
+            {
+                findMax = !findMax;
+                findMin = !findMin;
+            }
+            if (!findMax && !findMin)
+            {
+                findresult = FindResult.AboveMax;
+            }
+            else if (findMax && !findMin)
+            {
+                findresult = FindResult.InBetween;
+            }
+            else if (findMax)
+            {
+                findresult = FindResult.UnderMin;
+            }
+            else
+            {
+                findresult = FindResult.Error;
+            }
+
+            #endregion
+
+            #region 根据FindResult值重新设定大小范围
+
+            switch (findresult)
+            {
+                case FindResult.Error:
+                    throw new Exception(string.Format("寻找DTC:0x{0}失败", dtc.ToString("X2")));
+                case FindResult.InBetween:
+                    var mid = (maxValue + minValue)/2;
+                    if (forwardMax)
+                    {
+                        maxValue = mid;
+                    }
+                    else
+                    {
+                        minValue = mid;
+                    }
+                    break;
+                case FindResult.UnderMin:
+                    maxValue = minValue;
+                    minValue = minValue/2.0;
+                    break;
+                case FindResult.AboveMax:
+                    minValue = maxValue;
+                    maxValue = maxValue*2.0;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            #endregion
+
+            //递归调用精确查找结果
+            return FindBelt(minValue, maxValue, dtc, mode);
         }
 
         #endregion
@@ -465,7 +601,7 @@ namespace JH.ACU.BLL
 
         private double TestVolt(int acuIndex, int mode)
         {
-            var itemIndex = VoltNum * (mode - 1) + 1 + SquibNum * SquibModeNum + BeltModeNum * BeltNum;
+            var itemIndex = VoltNum*(mode - 1) + 1 + SquibNum*SquibModeNum + BeltModeNum*BeltNum;
             double minValue;
             double maxValue;
             byte dtc;
@@ -473,10 +609,10 @@ namespace JH.ACU.BLL
             //A:打开继电器-正常情况下已打开
             //B:开始测试
             var res = FindVolt(minValue, maxValue, dtc, mode);
-            _daq.SetSubRelayStatus((byte) acuIndex,266,true);
+            _daq.SetSubRelayStatus((byte) acuIndex, 266, true);
             res = _dmm.GetVoltage(); //该返回值为实际测量值
             //C:复位继电器
-            _daq.SetSubRelayStatus((byte)acuIndex, 266, false);
+            _daq.SetSubRelayStatus((byte) acuIndex, 266, false);
 
             return res;
         }
@@ -486,13 +622,14 @@ namespace JH.ACU.BLL
             //若最大值及最小值之差足够小则返回两者平均值
             if (maxValue - minValue <= GlobalConst.Precision)
             {
-                return (maxValue - minValue) / 2;
+                return (maxValue - minValue)/2;
             }
             if (minValue < 0.1 || maxValue > 20) throw new Exception("寻找电压值测试失败，找不到有效值");
             FindResult findresult;
             // 正向 小电阻肯定没有：表示错误码在测试规范的大值处附近
             // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
             bool acuConnect;
+
             #region 根据测试模式设置寻找方向
 
             var forwardMax = ((BatteryMode) mode) == BatteryMode.TooHigh;
@@ -551,7 +688,7 @@ namespace JH.ACU.BLL
                 case FindResult.Error:
                     throw new Exception(string.Format("寻找DTC:0x{0}失败", dtc.ToString("X2")));
                 case FindResult.InBetween:
-                    var mid = (maxValue + minValue) / 2;
+                    var mid = (maxValue + minValue)/2;
                     if (forwardMax)
                     {
                         maxValue = mid;
@@ -563,11 +700,11 @@ namespace JH.ACU.BLL
                     break;
                 case FindResult.UnderMin:
                     maxValue = minValue;
-                    minValue = minValue / 2.0;
+                    minValue = minValue/2.0;
                     break;
                 case FindResult.AboveMax:
                     minValue = maxValue;
-                    maxValue = maxValue * 2.0;
+                    maxValue = maxValue*2.0;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -577,7 +714,6 @@ namespace JH.ACU.BLL
 
             //递归调用精确查找结果
             return FindVolt(minValue, maxValue, dtc, mode);
-
         }
 
         #endregion
@@ -592,12 +728,15 @@ namespace JH.ACU.BLL
         /// <param name="mode">故障情况，共4种</param>
         private double TestSquib(int acuIndex, int squib, int mode)
         {
-            var itemIndex = SquibNum * (mode - 1) + squib;
+            var itemIndex = SquibNum*(mode - 1) + squib;
             double minValue;
             double maxValue;
             byte dtc;
             FindSpec(itemIndex, out minValue, out maxValue, out dtc);
-            //A:打开继电器//QUES:是否应该先设置好电阻箱？
+            //0：先设置好电阻箱//QUES:测试时验证是否合理
+            _prs0.SetResistance(maxValue);
+            _prs1.SetResistance(maxValue);
+            //A:打开继电器
             _daq.SetFcInTestMode(acuIndex, squib, (SquibMode) mode);
             //B:开始测试
             var res = FindSquib(minValue, maxValue, dtc, mode); //QUES：该返回值为代码计算出的值，调试时查看与测量结果偏差
@@ -630,9 +769,10 @@ namespace JH.ACU.BLL
             // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
             bool forwardMax, acuConnect;
             BllPrs prs;
+
             #region 根据测试模式设置寻找方向及电阻箱选择
 
-            switch ((SquibMode)mode)
+            switch ((SquibMode) mode)
             {
                 default:
                 case SquibMode.TooHigh:
@@ -742,16 +882,17 @@ namespace JH.ACU.BLL
         public TestCondition TestCondition { private get; set; }
         private readonly Report _report;
         private double VoltTarget { get; set; }
+
         #region 从规范中归纳的常量值 SPEC_unit.txt
 
         private const int SquibNum = 16; //回路数常量
         private const int SquibModeNum = 4; //回路测试情况常量
         private const int BeltNum = 3; //开关数常量
         private const int BeltModeNum = 4; //开关测试情况常量
-        public const int VoltNum = 1;//测电压处常量
-        public const int VoltModeNum = 2;//电压测试情况常量
-        private const int SisNum = 6;//侧传感器数常量
-        private const int SisModeNum = 2;//侧传感器测试情况常量
+        public const int VoltNum = 1; //测电压处常量
+        public const int VoltModeNum = 2; //电压测试情况常量
+        private const int SisNum = 6; //侧传感器数常量
+        private const int SisModeNum = 2; //侧传感器测试情况常量
 
         #endregion
 
@@ -808,6 +949,7 @@ namespace JH.ACU.BLL
             _prs1.Dispose();
             _pwr.Dispose();
         }
+
         /// <summary>
         /// 启动ACU，自动重连三次
         /// </summary>
@@ -821,7 +963,7 @@ namespace JH.ACU.BLL
                 var canTest = _daq.CheckPowerStatus(VoltTarget);
                 if (!canTest)
                 {
-                    LogHelper.WriteWarningLog(LogFileName, "外围设备供电不正常");
+                    LogHelper.WriteWarningLog(LogFileName, string.Format("外围设备供电不正常[{0}]",i));
                 }
                 _acu = new BllAcu();
                 if (_acu.Start())
@@ -878,7 +1020,7 @@ namespace JH.ACU.BLL
             {
                 var spec = SpecUnits.FirstOrDefault(s => s.Index == itemIndex);
                 if (spec == null) throw new FileNotFoundException(string.Format("未找到项目:{0}", itemIndex));
-                var range = spec.Specification.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                var range = spec.Specification.Split(new[] {'-'}, StringSplitOptions.RemoveEmptyEntries);
                 minValue = double.Parse(range[0]);
                 maxValue = double.Parse(range[1]);
                 dtc = spec.Dtc;
@@ -887,8 +1029,8 @@ namespace JH.ACU.BLL
             {
                 throw new Exception(string.Format("规范解析失败[{0}]，错误信息：{1}", itemIndex, ex.Message), ex);
             }
-
         }
+
         #endregion
 
         #region 公有方法
