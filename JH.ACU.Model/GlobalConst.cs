@@ -50,16 +50,19 @@ namespace JH.ACU.Model
                 };
             }
         }
-        
+
         public static double[,] TempVoltCondition = new double[3, 3];
 
         #region FC测试
+
         /// <summary>
         /// 测试精度
         /// </summary>
         public static double Precision { get; set; }
+
         [Obsolete("该属性待迁移到默认设置中")]
-        public static double AmendResistance { get; set; }//TODO:获取修正值
+        public static double AmendResistance { get; set; } //TODO:获取修正值
+
         #endregion
 
     }
@@ -124,22 +127,6 @@ namespace JH.ACU.Model
         Pads
     }
 
-    ///// <summary>
-    ///// 温度电压模式
-    ///// </summary>
-    //[Flags]
-    //public enum TempVoltMode
-    //{
-    //    LowTempLowVolt = 0x01,
-    //    LowTempNorVolt = 0x02,
-    //    LowTempHighVolt = 0x04,
-    //    NorTempLowVolt = 0x08,
-    //    NorTempNorVolt = 0x10,
-    //    NorTempHighVolt = 0x20,
-    //    HighTempLowVolt = 0x40,
-    //    HighTempNorVolt = 0x80,
-    //    HighTempHighVolt = 0x100
-    //}
     /// <summary>
     /// 二分法查找结果枚举
     /// </summary>
@@ -150,6 +137,7 @@ namespace JH.ACU.Model
         UnderMin,
         AboveMax,
     }
+
     /// <summary>
     /// 回路测试时模式枚举,注意顺序
     /// 与测试规范顺序相同（SPEC_unit.txt）
@@ -160,14 +148,17 @@ namespace JH.ACU.Model
         /// Squib Resistance Too High
         /// </summary>
         TooHigh = 1,
+
         /// <summary>
         /// Squib Resistance Too Low
         /// </summary>
         TooLow = 2,
+
         /// <summary>
         /// Squib Short to Ground
         /// </summary>
         ToGround = 3,
+
         /// <summary>
         /// Squib Short to Battery
         /// </summary>
@@ -180,10 +171,10 @@ namespace JH.ACU.Model
     /// </summary>
     public enum BeltMode
     {
-        UnbuckledOrDisabled=1,
-        BuckledOrEnabled=2,
-        ToGround=3,
-        ToBattery=4,
+        UnbuckledOrDisabled = 1,
+        BuckledOrEnabled = 2,
+        ToGround = 3,
+        ToBattery = 4,
     }
 
     /// <summary>
@@ -192,9 +183,10 @@ namespace JH.ACU.Model
     /// </summary>
     public enum SisMode
     {
-        ToBattery=1,
-        ToGround=2,
+        ToBattery = 1,
+        ToGround = 2,
     }
+
     /// <summary>
     /// Volt测试时模式枚举,注意顺序
     /// 与测试规范顺序相同(SPEC_unit.txt)
@@ -204,14 +196,41 @@ namespace JH.ACU.Model
         TooHigh,
         TooLow,
     }
-    /// <summary>
-    /// 测试类型
-    /// </summary>
-    public enum TestType
-    {
-        SquibMode,
-        BeltMode,
-        SisMode,
-        BatteryMode,
-    }
+
+    ///// <summary>
+    ///// 告警灯测试模式
+    ///// </summary>
+    //public enum WarnLampMode
+    //{
+    //    /// <summary>
+    //    /// 打开时电压
+    //    /// </summary>
+    //    OnVolt,
+
+    //    /// <summary>
+    //    /// 关闭时电压
+    //    /// </summary>
+    //    OffVolt,
+
+    //    /// <summary>
+    //    /// 正常电流
+    //    /// </summary>
+    //    NorCurr,
+
+    //    /// <summary>
+    //    /// 短路电流
+    //    /// </summary>
+    //    ShortCurr,
+    //}
+
+    ///// <summary>
+    ///// 测试类型
+    ///// </summary>
+    //public enum TestType
+    //{
+    //    SquibMode,
+    //    BeltMode,
+    //    SisMode,
+    //    BatteryMode,
+    //}
 }

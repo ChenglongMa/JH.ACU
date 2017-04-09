@@ -166,7 +166,7 @@ namespace JH.ACU.BLL
                     if (boardIndex < 0 || boardIndex > 7) continue;
                     _daq.OpenBoard((byte) boardIndex);
                     //QUES:DAQ读取PIN脚电压,测试外部环境,如失败则抛出异常中止测试
-                    if (!StartAcu(boardIndex))
+                    if (!AcuExecute(boardIndex))
                     {
                         continue;
                     }
@@ -201,24 +201,219 @@ namespace JH.ACU.BLL
 
         private bool TestCrashOut(AcuItems acuItem)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var items = acuItem.Items;
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                //QUES:测试过程有异常是否直接跳过后面测试
+                var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
+                LogHelper.WriteErrorLog(LogFileName, e);
+                return false;
+            }
         }
 
         private bool TestACUCurr(AcuItems acuItem)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var items = acuItem.Items;
+                throw new NotImplementedException();
+
+            }
+            catch (Exception ex)
+            {
+                //QUES:测试过程有异常是否直接跳过后面测试
+                var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
+                LogHelper.WriteErrorLog(LogFileName, e);
+                return false;
+            }
         }
 
         private bool TestHoldTime(AcuItems acuItem)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var items = acuItem.Items;
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                //QUES:测试过程有异常是否直接跳过后面测试
+                var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
+                LogHelper.WriteErrorLog(LogFileName, e);
+                return false;
+            }
         }
 
+        #region 告警灯测试方法
+
+        /// <summary>
+        /// 告警灯测试
+        /// </summary>
+        /// <param name="acuItem"></param>
+        /// <returns></returns>
         private bool TestWarnLamp(AcuItems acuItem)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var items = acuItem.Items;
+
+                #region 告警灯电压测试
+
+                if (items.Contains((int) WLTest.WL1VoltOn))
+                {
+                    FindSpec((int) WLTest.WL1VoltOn).Result =
+                        GetWLVolt(acuItem.Index, 1, true);
+                }
+                if (items.Contains((int) WLTest.WL1VoltOff))
+                {
+                    FindSpec((int) WLTest.WL1VoltOff).Result =
+                        GetWLVolt(acuItem.Index, 1, false);
+                }
+                if (items.Contains((int) WLTest.WL2VoltOn))
+                {
+                    FindSpec((int) WLTest.WL2VoltOn).Result =
+                        GetWLVolt(acuItem.Index, 2, true);
+                }
+                if (items.Contains((int) WLTest.WL2VoltOff))
+                {
+                    FindSpec((int) WLTest.WL2VoltOff).Result =
+                        GetWLVolt(acuItem.Index, 2, false);
+                }
+
+                #endregion
+
+                #region 告警灯电流测试
+
+                if (items.Contains((int) WLTest.WL1CurrentNormal))
+                {
+                    FindSpec((int) WLTest.WL1CurrentNormal).Result =
+                        GetWLCurr(acuItem.Index, WLTest.WL1CurrentNormal);
+                }
+                if (items.Contains((int) WLTest.WL1CurrentShort))
+                {
+                    FindSpec((int) WLTest.WL1CurrentShort).Result =
+                        GetWLCurr(acuItem.Index, WLTest.WL1CurrentShort);
+                }
+                if (items.Contains((int) WLTest.WL2CurrentNormal))
+                {
+                    FindSpec((int) WLTest.WL2CurrentNormal).Result =
+                        GetWLCurr(acuItem.Index, WLTest.WL2CurrentNormal);
+                }
+                if (items.Contains((int) WLTest.WL2CurrentShort))
+                {
+                    FindSpec((int) WLTest.WL2CurrentShort).Result =
+                        GetWLCurr(acuItem.Index, WLTest.WL2CurrentShort);
+                }
+
+                #endregion
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //QUES:测试过程有异常是否直接跳过后面测试
+                var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
+                LogHelper.WriteErrorLog(LogFileName, e);
+                return false;
+            }
         }
 
+        /// <summary>
+        /// 获取ACU告警灯正常或短路时电流
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="wlTest"></param>
+        /// <returns></returns>
+        private double GetWLCurr(int acuIndex, WLTest wlTest)
+        {
+            int wlIndex, relayIndex, relayIndex2 = -1;
+            switch (wlTest)
+            {
+                default:
+                    LogHelper.WriteWarningLog(LogFileName, "WLTest赋值错误：" + wlTest);
+                    return -1;
+                case WLTest.WL1CurrentNormal:
+                    wlIndex = 1;
+                    relayIndex = 271;
+                    break;
+                case WLTest.WL1CurrentShort:
+                    wlIndex = 1;
+                    relayIndex = 271;
+                    relayIndex2 = 270;
+                    break;
+                case WLTest.WL2CurrentNormal:
+                    wlIndex = 2;
+                    relayIndex = 275;
+
+                    break;
+                case WLTest.WL2CurrentShort:
+                    relayIndex = 275;
+                    relayIndex2 = 274;
+                    wlIndex = 2;
+
+                    break;
+            }
+            //A:打开设置
+            AcuExecute(acuIndex, () => _acu.EnableWarnLamp(wlIndex, true));
+            _daq.SetSubRelayStatus((byte) acuIndex, 264, true);
+            _daq.SetSubRelayStatus((byte) acuIndex, relayIndex, true);
+            if (relayIndex2 > 0) //大于0表示测试项为Short类
+            {
+                _daq.SetSubRelayStatus((byte) acuIndex, relayIndex2, true);
+            }
+            //B:开始测试
+            var res = _dmm.GetCurrent();
+            //C:复位设置
+            _daq.SetSubRelayStatus((byte) acuIndex, 264, false);
+            _daq.SetSubRelayStatus((byte) acuIndex, relayIndex, false);
+            if (relayIndex2 > 0) //大于0表示测试项为Short类
+            {
+                _daq.SetSubRelayStatus((byte) acuIndex, relayIndex2, false);
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 获取ACU告警灯打开或关闭时电压
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="wLIndex"></param>
+        /// <param name="isOn"></param>
+        /// <returns></returns>
+        private double GetWLVolt(int acuIndex, int wLIndex, bool isOn)
+        {
+            //A:打开设置
+            AcuExecute(acuIndex, () => _acu.EnableWarnLamp(wLIndex, isOn));
+            _daq.SetSubRelayStatus((byte) acuIndex, 264, true);
+            switch (wLIndex)
+            {
+                case 1:
+                    _daq.SetSubRelayStatus((byte) acuIndex, 272, true);
+                    break;
+                case 2:
+                    _daq.SetSubRelayStatus((byte) acuIndex, 276, true);
+                    break;
+            }
+            //B:开始测试
+            var res = _dmm.GetVoltage();
+            //C:复位设置
+            switch (wLIndex)
+            {
+                case 1:
+                    _daq.SetSubRelayStatus((byte) acuIndex, 272, false);
+                    break;
+                case 2:
+                    _daq.SetSubRelayStatus((byte) acuIndex, 276, false);
+                    break;
+            }
+            return res;
+        }
+
+        #endregion
 
         /// <summary>
         /// 含有故障码测试，对应SPEC_unit.txt中01-87项
@@ -241,7 +436,7 @@ namespace JH.ACU.BLL
                         var itemIndex = SquibNum*(iMode - 1) + iSquib;
                         if (acuItem.Items.Contains(itemIndex))
                         {
-                            SpecUnits.Find(s => s.Index == itemIndex).Result = TestSquib(acuItem.Index, iSquib, iMode);
+                            TestSquib(acuItem.Index, iSquib, iMode);
                         }
                     }
                 }
@@ -253,26 +448,33 @@ namespace JH.ACU.BLL
                     for (int iBelt = 0; iBelt < BeltNum; iBelt++)
                     {
                         var itemIndex = BeltNum*(iMode - 1) + iBelt + SquibNum*SquibModeNum;
-                        SpecUnits.Find(s => s.Index == itemIndex).Result = TestBelt(acuItem.Index, iBelt, iMode);
+                        if (acuItem.Items.Contains(itemIndex))
+                        {
+                            TestBelt(acuItem.Index, iBelt, iMode);
+                        }
                     }
                 }
                 //C:Volt测试
                 for (int iMode = 0; iMode < VoltModeNum; iMode++)
                 {
-
-                        var itemIndex = VoltNum*(iMode - 1) + 1 + SquibNum*SquibModeNum + BeltModeNum*BeltNum;
-                        SpecUnits.Find(s => s.Index == itemIndex).Result = TestVolt(acuItem.Index,iMode);
+                    var itemIndex = VoltNum*(iMode - 1) + 1 + SquibNum*SquibModeNum + BeltModeNum*BeltNum;
+                    if (acuItem.Items.Contains(itemIndex))
+                    {
+                        TestVolt(acuItem.Index, iMode);
+                    }
                 }
-                _pwr.OutputVoltage = VoltTarget;//电压测试完成后将外围电压恢复到原先状态
-                _pwr.OutPutState = true;//可省略，保险起见保留此句
+                _pwr.OutputVoltage = VoltTarget; //电压测试完成后将外围电压恢复到原先状态
+                _pwr.OutPutState = true; //可省略，保险起见保留此句
                 //D:SIS测试
                 for (int iMode = 0; iMode < SisModeNum; iMode++)
                 {
                     for (int iSis = 0; iSis < SisNum; iSis++)
                     {
-                        var itemIndex = SisNum*(iMode - 1) + iSis + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
-                                        VoltModeNum*VoltNum;
-                        SpecUnits.Find(s => s.Index == itemIndex).Result = TestSis(acuItem.Index, iSis, iMode);
+                        var itemIndex = SisNum*(iMode - 1) + iSis + SquibNum*SquibModeNum + BeltModeNum*BeltNum + VoltModeNum*VoltNum;
+                        if (acuItem.Items.Contains(itemIndex))
+                        {
+                            TestSis(acuItem.Index, iSis, iMode);
+                        }
                     }
                 }
                 return true; //测试过程无异常
@@ -285,8 +487,6 @@ namespace JH.ACU.BLL
                 return false;
             }
         }
-
-
 
         #region SIS测试方法
 
@@ -301,9 +501,8 @@ namespace JH.ACU.BLL
         {
             double minValue, maxValue;
             byte dtc;
-            var itemIndex = SisNum * (mode - 1) + sisIndex + SquibNum * SquibModeNum + BeltModeNum * BeltNum +
-                VoltModeNum * VoltNum;
-            FindSpec(itemIndex, out minValue, out maxValue, out dtc);
+            var itemIndex = SisNum*(mode - 1) + sisIndex + SquibNum*SquibModeNum + BeltModeNum*BeltNum + VoltModeNum*VoltNum;
+            var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //0：先设置好电阻箱//QUES:测试时验证是否合理
             _prs0.SetResistance(maxValue);
             _prs1.SetResistance(maxValue);
@@ -314,6 +513,7 @@ namespace JH.ACU.BLL
             _daq.SetSisInReadMode(acuIndex, sisIndex);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
+            spec.Result = res;
             //C:复位继电器
             _daq.SetSisReset(acuIndex, sisIndex);
             return res;
@@ -332,7 +532,7 @@ namespace JH.ACU.BLL
             //若最大值及最小值之差足够小则返回两者平均值
             if (maxValue - minValue <= GlobalConst.Precision)
             {
-                return (maxValue - minValue) / 2;
+                return (maxValue - minValue)/2;
             }
             if (minValue < 0.1 || maxValue > 2000) throw new Exception("寻找电阻值测试失败，找不到有效值");
             FindResult findresult;
@@ -343,7 +543,7 @@ namespace JH.ACU.BLL
 
             #region 根据测试模式设置寻找方向及电阻箱选择
 
-            switch ((SisMode)mode)
+            switch ((SisMode) mode)
             {
                 default:
                 case SisMode.ToGround:
@@ -408,7 +608,7 @@ namespace JH.ACU.BLL
                 case FindResult.Error:
                     throw new Exception(string.Format("寻找DTC:0x{0}失败", dtc.ToString("X2")));
                 case FindResult.InBetween:
-                    var mid = (maxValue + minValue) / 2;
+                    var mid = (maxValue + minValue)/2;
                     if (forwardMax)
                     {
                         maxValue = mid;
@@ -420,11 +620,11 @@ namespace JH.ACU.BLL
                     break;
                 case FindResult.UnderMin:
                     maxValue = minValue;
-                    minValue = minValue / 2.0;
+                    minValue = minValue/2.0;
                     break;
                 case FindResult.AboveMax:
                     minValue = maxValue;
-                    maxValue = maxValue * 2.0;
+                    maxValue = maxValue*2.0;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -453,17 +653,18 @@ namespace JH.ACU.BLL
             double minValue;
             double maxValue;
             byte dtc;
-            FindSpec(itemIndex, out minValue, out maxValue, out dtc);
+            var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //0：先设置好电阻箱//QUES:测试时验证是否合理
             _prs0.SetResistance(maxValue);
             _prs1.SetResistance(maxValue);
             //A:打开继电器
-            _daq.SetBeltInTestMode(acuIndex,belt,(BeltMode) mode);
+            _daq.SetBeltInTestMode(acuIndex, belt, (BeltMode) mode);
             //B:开始测试
             var res = FindBelt(minValue, maxValue, dtc, mode);
             _daq.SetBeltInReadMode(acuIndex, belt);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
+            spec.Result = res;
             //C:复位继电器
             _daq.SetBeltReset(acuIndex, belt);
             return res;
@@ -482,7 +683,7 @@ namespace JH.ACU.BLL
             //若最大值及最小值之差足够小则返回两者平均值
             if (maxValue - minValue <= GlobalConst.Precision)
             {
-                return (maxValue - minValue) / 2;
+                return (maxValue - minValue)/2;
             }
             if (minValue < 0.1 || maxValue > 2000) throw new Exception("寻找电阻值测试失败，找不到有效值");
             FindResult findresult;
@@ -490,6 +691,7 @@ namespace JH.ACU.BLL
             // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
             bool forwardMax, acuConnect;
             BllPrs prs;
+
             #region 根据测试模式设置寻找方向及电阻箱选择
 
             switch ((BeltMode) mode)
@@ -605,12 +807,13 @@ namespace JH.ACU.BLL
             double minValue;
             double maxValue;
             byte dtc;
-            FindSpec(itemIndex, out minValue, out maxValue, out dtc);
+            var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //A:打开继电器-正常情况下已打开
             //B:开始测试
             var res = FindVolt(minValue, maxValue, dtc, mode);
             _daq.SetSubRelayStatus((byte) acuIndex, 266, true);
             res = _dmm.GetVoltage(); //该返回值为实际测量值
+            spec.Result = res;
             //C:复位继电器
             _daq.SetSubRelayStatus((byte) acuIndex, 266, false);
 
@@ -732,7 +935,7 @@ namespace JH.ACU.BLL
             double minValue;
             double maxValue;
             byte dtc;
-            FindSpec(itemIndex, out minValue, out maxValue, out dtc);
+            var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //0：先设置好电阻箱//QUES:测试时验证是否合理
             _prs0.SetResistance(maxValue);
             _prs1.SetResistance(maxValue);
@@ -743,6 +946,7 @@ namespace JH.ACU.BLL
             _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
+            spec.Result = res;
             //C:复位继电器
             _daq.SetFcReset(acuIndex, squib);
             return res;
@@ -894,6 +1098,18 @@ namespace JH.ACU.BLL
         private const int SisNum = 6; //侧传感器数常量
         private const int SisModeNum = 2; //侧传感器测试情况常量
 
+        private enum WLTest
+        {
+            WL1VoltOff = 88,
+            WL1VoltOn = 89,
+            WL1CurrentNormal = 90,
+            WL1CurrentShort = 91,
+            WL2VoltOff = 92,
+            WL2VoltOn = 93,
+            WL2CurrentNormal = 94,
+            WL2CurrentShort = 95,
+        }
+
         #endregion
 
         /// <summary>
@@ -954,8 +1170,9 @@ namespace JH.ACU.BLL
         /// 启动ACU，自动重连三次
         /// </summary>
         /// <param name="index">ACU索引</param>
+        /// <param name="func">尝试执行的ACU命令委托</param>
         /// <returns></returns>
-        private bool StartAcu(int index)
+        private bool AcuExecute(int index, Func<bool> func = null)
         {
             var isStart = false;
             for (int i = 0; i < 3; i++)
@@ -963,13 +1180,24 @@ namespace JH.ACU.BLL
                 var canTest = _daq.CheckPowerStatus(VoltTarget);
                 if (!canTest)
                 {
-                    LogHelper.WriteWarningLog(LogFileName, string.Format("外围设备供电不正常[{0}]",i));
+                    LogHelper.WriteWarningLog(LogFileName, string.Format("外围设备供电不正常[{0}]", i));
                 }
-                _acu = new BllAcu();
+                _acu = _acu ?? new BllAcu();
+                if (func != null)
+                {
+                    if (func())
+                    {
+                        isStart = true;
+                        break;
+                    }
+                }
                 if (_acu.Start())
                 {
-                    isStart = true;
-                    break;
+                    if (func == null)
+                    {
+                        isStart = true;
+                        break;
+                    }
                 }
                 //ACU启动失败则重启仪器重试
                 RebootAllInstrs();
@@ -1014,16 +1242,36 @@ namespace JH.ACU.BLL
         /// <param name="minValue"></param>
         /// <param name="maxValue"></param>
         /// <param name="dtc"></param>
-        private void FindSpec(int itemIndex, out double minValue, out double maxValue, out byte dtc)
+        private SpecItem FindSpec(int itemIndex, out double minValue, out double maxValue, out byte dtc)
         {
             try
             {
-                var spec = SpecUnits.FirstOrDefault(s => s.Index == itemIndex);
+                var spec = SpecUnits.Find(s => s.Index == itemIndex);
                 if (spec == null) throw new FileNotFoundException(string.Format("未找到项目:{0}", itemIndex));
                 var range = spec.Specification.Split(new[] {'-'}, StringSplitOptions.RemoveEmptyEntries);
                 minValue = double.Parse(range[0]);
                 maxValue = double.Parse(range[1]);
                 dtc = spec.Dtc;
+                return spec;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("规范解析失败[{0}]，错误信息：{1}", itemIndex, ex.Message), ex);
+            }
+        }
+
+        /// <summary>
+        /// 解析规范文件中的item
+        /// </summary>
+        /// <param name="itemIndex"></param>
+        /// <returns></returns>
+        private SpecItem FindSpec(int itemIndex)
+        {
+            try
+            {
+                var spec = SpecUnits.Find(s => s.Index == itemIndex);
+                if (spec == null) throw new FileNotFoundException(string.Format("未找到项目:{0}", itemIndex));
+                return spec;
             }
             catch (Exception ex)
             {

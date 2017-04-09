@@ -199,6 +199,7 @@ namespace JH.ACU.BLL.Instruments
             //outBytes = RealTimeData;
             return false;
         }
+
         /// <summary>
         /// 读取RAM或FRAM数据
         /// </summary>
@@ -217,13 +218,47 @@ namespace JH.ACU.BLL.Instruments
             return WriteAndRead(temp);
         }
         /// <summary>
+        /// 设置指定WL开关状态
+        /// </summary>
+        /// <param name="index">WL1=1;WL2=2</param>
+        /// <param name="isOn">是否打开</param>
+        /// <returns>命令是否成功执行</returns>
+        public bool EnableWarnLamp(int index, bool isOn)
+        {
+            Command command;
+            if (index == 1 && isOn)
+            {
+                command=Command.WL1On;
+            }
+            else if(index==1&&!isOn)
+            {
+                command = Command.WL1Off;
+            }
+            else if (index == 2 && isOn)
+            {
+                command = Command.WL2On;
+
+            }
+            else if(index==2&&!isOn)
+            {
+                command = Command.WL2Off;
+            }
+            else
+            {
+                return false;
+            }
+            return Execute(command);
+        }
+        /// <summary>
         /// 赋值相应code,执行内部功能
         /// </summary>
-        /// <param name="code"></param>
-        public void Execute(byte code)
+        /// <param name="command"></param>
+        /// <returns>执行命令是否成功</returns>
+        public bool Execute(Command command)
         {
-            byte[] temp = { 0x79, code };
-            WriteAndRead(temp);
+            byte[] temp = {0x79, (byte) command};
+            var res = WriteAndRead(temp);
+            return res[0] != 0x0a;
         }
 
         public void Dispose()
@@ -259,4 +294,32 @@ namespace JH.ACU.BLL.Instruments
         FRAM = 0x84
     }
 
+    /// <summary>
+    /// User Function Codes
+    /// </summary>
+    public enum Command : byte
+    {
+        ClearDtc = 0,
+        ClearEepromCrash = 1,
+        ClearFramCrash = 2,
+        StartDiag = 3,
+        StopDiag = 4,
+        FrontInjectionStart = 5,
+        FrontInjectionData = 6,
+        FrontInjectionStop = 7,
+        CrashOutput = 8,
+        ClearOperationTimerCounter = 10,
+        ClearFramIgnCounter = 11,
+        FramMassErase = 13,
+        DFlashMassErase = 14,
+        SideInjectionStart = 15,
+        SideInjectionData = 16,
+        SideInjectionStop = 17,
+        WL1On = 20,
+        WL1Off = 21,
+        WL2On = 22,
+        WL2Off = 23,
+        AlgorithmReset = 30,
+        AcuReset = 0xff,
+    }
 }
