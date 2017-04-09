@@ -136,7 +136,12 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
             this.ultraToolbarsManager1 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -168,12 +173,16 @@
             this.flowLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAcuIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
+            this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ugTestItems)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            this.flowLayoutPanel6.SuspendLayout();
+            this.flowLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -209,7 +218,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
             this.splitContainer3.Size = new System.Drawing.Size(622, 718);
-            this.splitContainer3.SplitterDistance = 359;
+            this.splitContainer3.SplitterDistance = 271;
             this.splitContainer3.TabIndex = 1;
             // 
             // splitContainer4
@@ -229,8 +238,8 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer4.Size = new System.Drawing.Size(622, 359);
-            this.splitContainer4.SplitterDistance = 69;
+            this.splitContainer4.Size = new System.Drawing.Size(622, 271);
+            this.splitContainer4.SplitterDistance = 66;
             this.splitContainer4.TabIndex = 0;
             // 
             // label2
@@ -279,15 +288,12 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.groupBox1.Controls.Add(this.flowLayoutPanel3);
-            this.groupBox1.Controls.Add(this.flowLayoutPanel2);
-            this.groupBox1.Controls.Add(this.flowLayoutPanel1);
+            this.groupBox1.Controls.Add(this.flowLayoutPanel4);
             this.groupBox1.Controls.Add(this.groupBox5);
-            this.groupBox1.Controls.Add(this.numAcuIndex);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(622, 286);
+            this.groupBox1.Size = new System.Drawing.Size(622, 201);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test Condition";
@@ -397,7 +403,7 @@
             this.ultraChart1.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ultraChart1.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ultraChart1.Axis.Y.MinorGridLines.Visible = false;
-            this.ultraChart1.Axis.Y.TickmarkInterval = 50D;
+            this.ultraChart1.Axis.Y.TickmarkInterval = 20D;
             this.ultraChart1.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ultraChart1.Axis.Y.Visible = true;
             this.ultraChart1.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -424,7 +430,7 @@
             this.ultraChart1.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ultraChart1.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ultraChart1.Axis.Y2.MinorGridLines.Visible = false;
-            this.ultraChart1.Axis.Y2.TickmarkInterval = 50D;
+            this.ultraChart1.Axis.Y2.TickmarkInterval = 20D;
             this.ultraChart1.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ultraChart1.Axis.Y2.Visible = false;
             this.ultraChart1.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -690,11 +696,10 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.groupBox6);
-            this.groupBox5.Controls.Add(this.checkBox1);
-            this.groupBox5.Location = new System.Drawing.Point(470, 3);
+            this.groupBox5.Controls.Add(this.flowLayoutPanel7);
+            this.groupBox5.Location = new System.Drawing.Point(405, 21);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(152, 131);
+            this.groupBox5.Size = new System.Drawing.Size(178, 179);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Option";
@@ -702,7 +707,8 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.flowLayoutPanel5);
-            this.groupBox6.Location = new System.Drawing.Point(6, 47);
+            this.groupBox6.Location = new System.Drawing.Point(3, 74);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(140, 78);
             this.groupBox6.TabIndex = 1;
@@ -747,7 +753,8 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(12, 22);
+            this.checkBox1.Location = new System.Drawing.Point(3, 49);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(127, 17);
             this.checkBox1.TabIndex = 0;
@@ -757,14 +764,14 @@
             // numAcuIndex
             // 
             this.numAcuIndex.BackColor = System.Drawing.SystemColors.WindowText;
-            this.numAcuIndex.Font = new System.Drawing.Font("Let\'s go Digital", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numAcuIndex.Font = new System.Drawing.Font("Let\'s go Digital", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numAcuIndex.ForeColor = System.Drawing.Color.Lime;
-            this.numAcuIndex.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateSimpleDoubleMode(0);
-            this.numAcuIndex.Location = new System.Drawing.Point(62, 153);
+            this.numAcuIndex.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("00");
+            this.numAcuIndex.Location = new System.Drawing.Point(98, 3);
             this.numAcuIndex.Name = "numAcuIndex";
             this.numAcuIndex.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
             this.numAcuIndex.Range = new NationalInstruments.UI.Range(1D, 8D);
-            this.numAcuIndex.Size = new System.Drawing.Size(57, 47);
+            this.numAcuIndex.Size = new System.Drawing.Size(57, 32);
             this.numAcuIndex.TabIndex = 1;
             this.numAcuIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numAcuIndex.Value = 1D;
@@ -776,11 +783,15 @@
             this.splitContainer5.Name = "splitContainer5";
             this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
+            // splitContainer5.Panel1
+            // 
+            this.splitContainer5.Panel1.Controls.Add(this.groupBox2);
+            // 
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.ugTestItems);
-            this.splitContainer5.Size = new System.Drawing.Size(622, 355);
-            this.splitContainer5.SplitterDistance = 120;
+            this.splitContainer5.Size = new System.Drawing.Size(622, 443);
+            this.splitContainer5.SplitterDistance = 149;
             this.splitContainer5.TabIndex = 0;
             // 
             // ugTestItems
@@ -846,7 +857,7 @@
             this.ugTestItems.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugTestItems.Location = new System.Drawing.Point(0, 0);
             this.ugTestItems.Name = "ugTestItems";
-            this.ugTestItems.Size = new System.Drawing.Size(622, 231);
+            this.ugTestItems.Size = new System.Drawing.Size(622, 290);
             this.ugTestItems.TabIndex = 1;
             this.ugTestItems.Text = "ultraGrid1";
             // 
@@ -875,8 +886,8 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(3, 20);
-            this.label5.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.label5.Location = new System.Drawing.Point(3, 40);
+            this.label5.Margin = new System.Windows.Forms.Padding(3, 40, 3, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 19);
             this.label5.TabIndex = 7;
@@ -887,8 +898,8 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(15, 59);
-            this.label6.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.label6.Location = new System.Drawing.Point(15, 84);
+            this.label6.Margin = new System.Windows.Forms.Padding(3, 25, 3, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 19);
             this.label6.TabIndex = 7;
@@ -896,35 +907,85 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Controls.Add(this.numTempReal);
             this.flowLayoutPanel1.Controls.Add(this.numVoltReal);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(325, 6);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(227, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(139, 128);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(138, 119);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel2.Controls.Add(this.label4);
             this.flowLayoutPanel2.Controls.Add(this.numTempTarget);
             this.flowLayoutPanel2.Controls.Add(this.numVoltTarget);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(118, 11);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(67, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(165, 123);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(154, 119);
             this.flowLayoutPanel2.TabIndex = 9;
             // 
             // flowLayoutPanel3
             // 
+            this.flowLayoutPanel3.AutoSize = true;
+            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel3.Controls.Add(this.label5);
             this.flowLayoutPanel3.Controls.Add(this.label6);
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(55, 33);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(60, 100);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(58, 103);
             this.flowLayoutPanel3.TabIndex = 10;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.label7.Location = new System.Drawing.Point(3, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 19);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "ACU Index";
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel3);
+            this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel2);
+            this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel1);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(12, 67);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(387, 133);
+            this.flowLayoutPanel4.TabIndex = 11;
+            // 
+            // flowLayoutPanel6
+            // 
+            this.flowLayoutPanel6.AutoSize = true;
+            this.flowLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel6.Controls.Add(this.label7);
+            this.flowLayoutPanel6.Controls.Add(this.numAcuIndex);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(158, 38);
+            this.flowLayoutPanel6.TabIndex = 12;
+            // 
+            // flowLayoutPanel7
+            // 
+            this.flowLayoutPanel7.Controls.Add(this.flowLayoutPanel6);
+            this.flowLayoutPanel7.Controls.Add(this.checkBox1);
+            this.flowLayoutPanel7.Controls.Add(this.groupBox6);
+            this.flowLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(3, 17);
+            this.flowLayoutPanel7.Name = "flowLayoutPanel7";
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(172, 159);
+            this.flowLayoutPanel7.TabIndex = 1;
             // 
             // ultraToolbarsManager1
             // 
@@ -1018,6 +1079,17 @@
             buttonTool26});
             this.ultraToolbarsManager1.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.ultraToolbarsManager1_ToolClick);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(622, 149);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "groupBox2";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1059,11 +1131,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numVoltReal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTempReal)).EndInit();
             this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAcuIndex)).EndInit();
+            this.splitContainer5.Panel1.ResumeLayout(false);
             this.splitContainer5.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
@@ -1074,6 +1146,12 @@
             this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
+            this.flowLayoutPanel6.ResumeLayout(false);
+            this.flowLayoutPanel6.PerformLayout();
+            this.flowLayoutPanel7.ResumeLayout(false);
+            this.flowLayoutPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).EndInit();
             this.ResumeLayout(false);
 
@@ -1118,6 +1196,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel7;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel6;
+        private System.Windows.Forms.GroupBox groupBox2;
 
     }
 }
