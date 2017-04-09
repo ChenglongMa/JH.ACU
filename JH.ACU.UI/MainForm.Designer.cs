@@ -89,6 +89,13 @@
             Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool26 = new Infragistics.Win.UltraWinToolbars.ButtonTool("btnSpecConfig");
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ledManualRun = new NationalInstruments.UI.WindowsForms.Led();
+            this.ledAutoRun = new NationalInstruments.UI.WindowsForms.Led();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.ultraChart1 = new Infragistics.Win.UltraWinChart.UltraChart();
             this.ugDisplay = new Infragistics.Win.UltraWinGrid.UltraGrid();
@@ -97,17 +104,32 @@
             this._MainForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.ledAutoRun = new NationalInstruments.UI.WindowsForms.Led();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ledManualRun = new NationalInstruments.UI.WindowsForms.Led();
-            this.label2 = new System.Windows.Forms.Label();
+            this.numTempTarget = new NationalInstruments.UI.WindowsForms.NumericEdit();
             this.ultraToolbarsManager1 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
+            this.numVoltTarget = new NationalInstruments.UI.WindowsForms.NumericEdit();
+            this.numVoltReal = new NationalInstruments.UI.WindowsForms.NumericEdit();
+            this.numTempReal = new NationalInstruments.UI.WindowsForms.NumericEdit();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.rdoAdvanced = new System.Windows.Forms.RadioButton();
+            this.rdoConventional = new System.Windows.Forms.RadioButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.numAcuIndex = new NationalInstruments.UI.WindowsForms.NumericEdit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ledManualRun)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ledAutoRun)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -115,15 +137,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraChart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ugDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraStatusBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ledAutoRun)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ledManualRun)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTempTarget)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numVoltTarget)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numVoltReal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTempReal)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numAcuIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -140,8 +162,103 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1293, 718);
-            this.splitContainer1.SplitterDistance = 623;
+            this.splitContainer1.SplitterDistance = 622;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.splitContainer4);
+            this.splitContainer3.Size = new System.Drawing.Size(622, 718);
+            this.splitContainer3.SplitterDistance = 359;
+            this.splitContainer3.TabIndex = 1;
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.label2);
+            this.splitContainer4.Panel1.Controls.Add(this.label1);
+            this.splitContainer4.Panel1.Controls.Add(this.ledManualRun);
+            this.splitContainer4.Panel1.Controls.Add(this.ledAutoRun);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer4.Size = new System.Drawing.Size(622, 359);
+            this.splitContainer4.SplitterDistance = 69;
+            this.splitContainer4.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(256, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 25);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Manual Run";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(68, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Auto Run";
+            // 
+            // ledManualRun
+            // 
+            this.ledManualRun.ImmediateUpdates = true;
+            this.ledManualRun.InteractionMode = NationalInstruments.UI.BooleanInteractionMode.SwitchWhenPressed;
+            this.ledManualRun.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
+            this.ledManualRun.Location = new System.Drawing.Point(216, 17);
+            this.ledManualRun.Name = "ledManualRun";
+            this.ledManualRun.Size = new System.Drawing.Size(40, 40);
+            this.ledManualRun.TabIndex = 0;
+            this.ledManualRun.Click += new System.EventHandler(this.ledManualRun_Click);
+            // 
+            // ledAutoRun
+            // 
+            this.ledAutoRun.InteractionMode = NationalInstruments.UI.BooleanInteractionMode.SwitchWhenPressed;
+            this.ledAutoRun.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
+            this.ledAutoRun.Location = new System.Drawing.Point(28, 17);
+            this.ledAutoRun.Name = "ledAutoRun";
+            this.ledAutoRun.Size = new System.Drawing.Size(40, 40);
+            this.ledAutoRun.TabIndex = 0;
+            this.ledAutoRun.Value = true;
+            this.ledAutoRun.StateChanged += new NationalInstruments.UI.ActionEventHandler(this.ledAutoRun_StateChanged);
+            this.ledAutoRun.Click += new System.EventHandler(this.ledAutoRun_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.groupBox1.Controls.Add(this.groupBox5);
+            this.groupBox1.Controls.Add(this.numTempReal);
+            this.groupBox1.Controls.Add(this.numVoltReal);
+            this.groupBox1.Controls.Add(this.numAcuIndex);
+            this.groupBox1.Controls.Add(this.numVoltTarget);
+            this.groupBox1.Controls.Add(this.numTempTarget);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(622, 286);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Test Condition";
             // 
             // splitContainer2
             // 
@@ -157,7 +274,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ugDisplay);
-            this.splitContainer2.Size = new System.Drawing.Size(666, 718);
+            this.splitContainer2.Size = new System.Drawing.Size(667, 718);
             this.splitContainer2.SplitterDistance = 346;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -248,7 +365,7 @@
             this.ultraChart1.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ultraChart1.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ultraChart1.Axis.Y.MinorGridLines.Visible = false;
-            this.ultraChart1.Axis.Y.TickmarkInterval = 50D;
+            this.ultraChart1.Axis.Y.TickmarkInterval = 20D;
             this.ultraChart1.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ultraChart1.Axis.Y.Visible = true;
             this.ultraChart1.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -275,7 +392,7 @@
             this.ultraChart1.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ultraChart1.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ultraChart1.Axis.Y2.MinorGridLines.Visible = false;
-            this.ultraChart1.Axis.Y2.TickmarkInterval = 50D;
+            this.ultraChart1.Axis.Y2.TickmarkInterval = 20D;
             this.ultraChart1.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ultraChart1.Axis.Y2.Visible = false;
             this.ultraChart1.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -346,7 +463,7 @@
             this.ultraChart1.LineChart = lineChartAppearance1;
             this.ultraChart1.Location = new System.Drawing.Point(0, 0);
             this.ultraChart1.Name = "ultraChart1";
-            this.ultraChart1.Size = new System.Drawing.Size(666, 346);
+            this.ultraChart1.Size = new System.Drawing.Size(667, 346);
             this.ultraChart1.TabIndex = 0;
             this.ultraChart1.Tooltips.HighlightFillColor = System.Drawing.Color.DimGray;
             this.ultraChart1.Tooltips.HighlightOutlineColor = System.Drawing.Color.DarkGray;
@@ -414,7 +531,7 @@
             this.ugDisplay.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugDisplay.Location = new System.Drawing.Point(0, 0);
             this.ugDisplay.Name = "ugDisplay";
-            this.ugDisplay.Size = new System.Drawing.Size(666, 368);
+            this.ugDisplay.Size = new System.Drawing.Size(667, 368);
             this.ugDisplay.TabIndex = 0;
             this.ugDisplay.Text = "ultraGrid1";
             // 
@@ -482,79 +599,19 @@
             this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1293, 0);
             this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
             // 
-            // splitContainer3
+            // numTempTarget
             // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Name = "splitContainer3";
-            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer3.Panel1
-            // 
-            this.splitContainer3.Panel1.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(623, 718);
-            this.splitContainer3.SplitterDistance = 359;
-            this.splitContainer3.TabIndex = 1;
-            // 
-            // splitContainer4
-            // 
-            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Name = "splitContainer4";
-            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer4.Panel1
-            // 
-            this.splitContainer4.Panel1.Controls.Add(this.label2);
-            this.splitContainer4.Panel1.Controls.Add(this.label1);
-            this.splitContainer4.Panel1.Controls.Add(this.ledManualRun);
-            this.splitContainer4.Panel1.Controls.Add(this.ledAutoRun);
-            this.splitContainer4.Size = new System.Drawing.Size(623, 359);
-            this.splitContainer4.SplitterDistance = 69;
-            this.splitContainer4.TabIndex = 0;
-            // 
-            // ledAutoRun
-            // 
-            this.ledAutoRun.InteractionMode = NationalInstruments.UI.BooleanInteractionMode.SwitchWhenPressed;
-            this.ledAutoRun.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
-            this.ledAutoRun.Location = new System.Drawing.Point(28, 17);
-            this.ledAutoRun.Name = "ledAutoRun";
-            this.ledAutoRun.Size = new System.Drawing.Size(40, 40);
-            this.ledAutoRun.TabIndex = 0;
-            this.ledAutoRun.Value = true;
-            this.ledAutoRun.StateChanged += new NationalInstruments.UI.ActionEventHandler(this.ledAutoRun_StateChanged);
-            this.ledAutoRun.Click += new System.EventHandler(this.ledAutoRun_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(68, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Auto Run";
-            // 
-            // ledManualRun
-            // 
-            this.ledManualRun.ImmediateUpdates = true;
-            this.ledManualRun.InteractionMode = NationalInstruments.UI.BooleanInteractionMode.SwitchWhenPressed;
-            this.ledManualRun.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
-            this.ledManualRun.Location = new System.Drawing.Point(216, 17);
-            this.ledManualRun.Name = "ledManualRun";
-            this.ledManualRun.Size = new System.Drawing.Size(40, 40);
-            this.ledManualRun.TabIndex = 0;
-            this.ledManualRun.Click += new System.EventHandler(this.ledManualRun_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(256, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Manual Run";
+            this.numTempTarget.BackColor = System.Drawing.SystemColors.WindowText;
+            this.numTempTarget.CoercionInterval = 0.1D;
+            this.numTempTarget.Font = new System.Drawing.Font("Let\'s go Digital", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numTempTarget.ForeColor = System.Drawing.Color.Lime;
+            this.numTempTarget.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateSimpleDoubleMode(2);
+            this.numTempTarget.Location = new System.Drawing.Point(73, 40);
+            this.numTempTarget.Name = "numTempTarget";
+            this.numTempTarget.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
+            this.numTempTarget.Size = new System.Drawing.Size(148, 47);
+            this.numTempTarget.TabIndex = 1;
+            this.numTempTarget.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // ultraToolbarsManager1
             // 
@@ -648,6 +705,130 @@
             buttonTool26});
             this.ultraToolbarsManager1.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.ultraToolbarsManager1_ToolClick);
             // 
+            // numVoltTarget
+            // 
+            this.numVoltTarget.BackColor = System.Drawing.SystemColors.WindowText;
+            this.numVoltTarget.Font = new System.Drawing.Font("Let\'s go Digital", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numVoltTarget.ForeColor = System.Drawing.Color.Lime;
+            this.numVoltTarget.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateSimpleDoubleMode(2);
+            this.numVoltTarget.Location = new System.Drawing.Point(73, 93);
+            this.numVoltTarget.Name = "numVoltTarget";
+            this.numVoltTarget.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
+            this.numVoltTarget.Size = new System.Drawing.Size(148, 47);
+            this.numVoltTarget.TabIndex = 1;
+            this.numVoltTarget.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // numVoltReal
+            // 
+            this.numVoltReal.BackColor = System.Drawing.SystemColors.WindowText;
+            this.numVoltReal.CoercionInterval = 0.1D;
+            this.numVoltReal.Font = new System.Drawing.Font("Let\'s go Digital", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numVoltReal.ForeColor = System.Drawing.Color.Lime;
+            this.numVoltReal.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateSimpleDoubleMode(2);
+            this.numVoltReal.InteractionMode = NationalInstruments.UI.NumericEditInteractionModes.Indicator;
+            this.numVoltReal.Location = new System.Drawing.Point(232, 93);
+            this.numVoltReal.Name = "numVoltReal";
+            this.numVoltReal.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
+            this.numVoltReal.Size = new System.Drawing.Size(148, 47);
+            this.numVoltReal.TabIndex = 1;
+            this.numVoltReal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // numTempReal
+            // 
+            this.numTempReal.BackColor = System.Drawing.SystemColors.WindowText;
+            this.numTempReal.CoercionInterval = 0.1D;
+            this.numTempReal.Font = new System.Drawing.Font("Let\'s go Digital", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numTempReal.ForeColor = System.Drawing.Color.Lime;
+            this.numTempReal.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateSimpleDoubleMode(2);
+            this.numTempReal.InteractionMode = NationalInstruments.UI.NumericEditInteractionModes.Indicator;
+            this.numTempReal.Location = new System.Drawing.Point(232, 40);
+            this.numTempReal.Name = "numTempReal";
+            this.numTempReal.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
+            this.numTempReal.Size = new System.Drawing.Size(148, 47);
+            this.numTempReal.TabIndex = 1;
+            this.numTempReal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.groupBox6);
+            this.groupBox5.Controls.Add(this.checkBox1);
+            this.groupBox5.Location = new System.Drawing.Point(386, 40);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(152, 131);
+            this.groupBox5.TabIndex = 5;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Option";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.flowLayoutPanel5);
+            this.groupBox6.Location = new System.Drawing.Point(6, 47);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(140, 78);
+            this.groupBox6.TabIndex = 1;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Crash Out Type";
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.Controls.Add(this.rdoAdvanced);
+            this.flowLayoutPanel5.Controls.Add(this.rdoConventional);
+            this.flowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 17);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(134, 58);
+            this.flowLayoutPanel5.TabIndex = 1;
+            // 
+            // rdoAdvanced
+            // 
+            this.rdoAdvanced.AutoSize = true;
+            this.rdoAdvanced.Checked = true;
+            this.rdoAdvanced.Location = new System.Drawing.Point(3, 3);
+            this.rdoAdvanced.Name = "rdoAdvanced";
+            this.rdoAdvanced.Size = new System.Drawing.Size(84, 17);
+            this.rdoAdvanced.TabIndex = 0;
+            this.rdoAdvanced.TabStop = true;
+            this.rdoAdvanced.Text = "Advanced";
+            this.rdoAdvanced.UseVisualStyleBackColor = true;
+            // 
+            // rdoConventional
+            // 
+            this.rdoConventional.AutoSize = true;
+            this.rdoConventional.Location = new System.Drawing.Point(3, 26);
+            this.rdoConventional.Name = "rdoConventional";
+            this.rdoConventional.Size = new System.Drawing.Size(112, 17);
+            this.rdoConventional.TabIndex = 0;
+            this.rdoConventional.Text = "Conventional";
+            this.rdoConventional.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(12, 22);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(127, 17);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Chamber Enable";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // numAcuIndex
+            // 
+            this.numAcuIndex.BackColor = System.Drawing.SystemColors.WindowText;
+            this.numAcuIndex.Font = new System.Drawing.Font("Let\'s go Digital", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numAcuIndex.ForeColor = System.Drawing.Color.Lime;
+            this.numAcuIndex.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateSimpleDoubleMode(0);
+            this.numAcuIndex.Location = new System.Drawing.Point(73, 146);
+            this.numAcuIndex.Name = "numAcuIndex";
+            this.numAcuIndex.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
+            this.numAcuIndex.Range = new NationalInstruments.UI.Range(1D, 8D);
+            this.numAcuIndex.Size = new System.Drawing.Size(57, 47);
+            this.numAcuIndex.TabIndex = 1;
+            this.numAcuIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numAcuIndex.Value = 1D;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -665,6 +846,17 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel1.PerformLayout();
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ledManualRun)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ledAutoRun)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -672,16 +864,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraChart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ugDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraStatusBar1)).EndInit();
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ledAutoRun)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ledManualRun)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTempTarget)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numVoltTarget)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numVoltReal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTempReal)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.flowLayoutPanel5.ResumeLayout(false);
+            this.flowLayoutPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numAcuIndex)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -704,6 +897,18 @@
         private NationalInstruments.UI.WindowsForms.Led ledAutoRun;
         private System.Windows.Forms.Label label2;
         private NationalInstruments.UI.WindowsForms.Led ledManualRun;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private NationalInstruments.UI.WindowsForms.NumericEdit numTempTarget;
+        private NationalInstruments.UI.WindowsForms.NumericEdit numTempReal;
+        private NationalInstruments.UI.WindowsForms.NumericEdit numVoltReal;
+        private NationalInstruments.UI.WindowsForms.NumericEdit numVoltTarget;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.RadioButton rdoAdvanced;
+        private System.Windows.Forms.RadioButton rdoConventional;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private NationalInstruments.UI.WindowsForms.NumericEdit numAcuIndex;
 
     }
 }
