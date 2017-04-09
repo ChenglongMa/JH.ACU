@@ -23,6 +23,7 @@ namespace JH.ACU.UI
 
         #region 属性字段
 
+        private bool _isAuto;
         #endregion
 
         #region 私有方法
@@ -45,7 +46,7 @@ namespace JH.ACU.UI
                     break;
 
                 case "btnCondition": // ButtonTool
-                    _conditionForm = new InitializationForm();
+                    var _conditionForm = new InitializationForm();
                     _conditionForm.ShowDialog(this);
                     break;
                 case "btnSpecConfig":
@@ -98,6 +99,24 @@ namespace JH.ACU.UI
         }
 
         #endregion
+
+        private void ledAutoRun_StateChanged(object sender, NationalInstruments.UI.ActionEventArgs e)
+        {
+        }
+
+        private void ledAutoRun_Click(object sender, EventArgs e)
+        {
+            ledManualRun.Value = !ledAutoRun.Value;
+            _isAuto = ledAutoRun.Value;
+
+        }
+
+        private void ledManualRun_Click(object sender, EventArgs e)
+        {
+            ledAutoRun.Value = !ledManualRun.Value;
+            _isAuto = !ledManualRun.Value;
+
+        }
 
 
         #region 公有方法

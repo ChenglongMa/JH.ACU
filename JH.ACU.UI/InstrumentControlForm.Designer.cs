@@ -177,34 +177,21 @@
             this.led301 = new NationalInstruments.UI.WindowsForms.Led();
             this.led302 = new NationalInstruments.UI.WindowsForms.Led();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds20.ItemTemplate)).BeginInit();
             this.flowSubRelays.SuspendLayout();
             this.flowLayoutPanel15.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds21.ItemTemplate)).BeginInit();
             this.flowLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds22.ItemTemplate)).BeginInit();
             this.flowLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds23.ItemTemplate)).BeginInit();
             this.flowLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds24.ItemTemplate)).BeginInit();
             this.flowLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds25.ItemTemplate)).BeginInit();
             this.flowLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds26.ItemTemplate)).BeginInit();
             this.flowLayoutPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds27.ItemTemplate)).BeginInit();
             this.flowLayoutPanel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds28.ItemTemplate)).BeginInit();
             this.flowLayoutPanel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds31.ItemTemplate)).BeginInit();
             this.flowLayoutPanel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds32.ItemTemplate)).BeginInit();
             this.flowLayoutPanel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds33.ItemTemplate)).BeginInit();
             this.flowLayoutPanel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds34.ItemTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -246,7 +233,6 @@
             this.groupBox2.SuspendLayout();
             this.flowBoard.SuspendLayout();
             this.flowLayoutPanel17.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ledBoard.ItemTemplate)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.flowMainRelays.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.led300)).BeginInit();
@@ -267,7 +253,7 @@
             // toolStatus
             // 
             this.toolStatus.Name = "toolStatus";
-            this.toolStatus.Size = new System.Drawing.Size(44, 17);
+            this.toolStatus.Size = new System.Drawing.Size(35, 17);
             this.toolStatus.Text = "Ready";
             // 
             // leds20
@@ -1929,6 +1915,7 @@
             this.led300.Caption = "300";
             this.led300.CaptionBackColor = System.Drawing.SystemColors.Control;
             this.led300.CaptionFont = new System.Drawing.Font("宋体", 12F);
+            this.led300.CaptionForeColor = System.Drawing.SystemColors.ControlText;
             this.led300.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
             this.led300.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
             this.led300.Location = new System.Drawing.Point(3, 3);
@@ -1941,6 +1928,7 @@
             this.led301.Caption = "301";
             this.led301.CaptionBackColor = System.Drawing.SystemColors.Control;
             this.led301.CaptionFont = new System.Drawing.Font("宋体", 12F);
+            this.led301.CaptionForeColor = System.Drawing.SystemColors.ControlText;
             this.led301.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
             this.led301.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
             this.led301.Location = new System.Drawing.Point(49, 3);
@@ -1953,6 +1941,7 @@
             this.led302.Caption = "302";
             this.led302.CaptionBackColor = System.Drawing.SystemColors.Control;
             this.led302.CaptionFont = new System.Drawing.Font("宋体", 12F);
+            this.led302.CaptionForeColor = System.Drawing.SystemColors.ControlText;
             this.led302.CaptionVerticalOrientation = NationalInstruments.UI.VerticalCaptionOrientation.BottomToTop;
             this.led302.LedStyle = NationalInstruments.UI.LedStyle.Square3D;
             this.led302.Location = new System.Drawing.Point(95, 3);
@@ -1971,7 +1960,6 @@
             this.Text = "InstrumentControl";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds20.ItemTemplate)).EndInit();
             this.flowSubRelays.ResumeLayout(false);
             this.flowSubRelays.PerformLayout();
             this.flowLayoutPanel15.ResumeLayout(false);
@@ -1980,40 +1968,28 @@
             this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds21.ItemTemplate)).EndInit();
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds22.ItemTemplate)).EndInit();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds23.ItemTemplate)).EndInit();
             this.flowLayoutPanel6.ResumeLayout(false);
             this.flowLayoutPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds24.ItemTemplate)).EndInit();
             this.flowLayoutPanel7.ResumeLayout(false);
             this.flowLayoutPanel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds25.ItemTemplate)).EndInit();
             this.flowLayoutPanel8.ResumeLayout(false);
             this.flowLayoutPanel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds26.ItemTemplate)).EndInit();
             this.flowLayoutPanel9.ResumeLayout(false);
             this.flowLayoutPanel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds27.ItemTemplate)).EndInit();
             this.flowLayoutPanel10.ResumeLayout(false);
             this.flowLayoutPanel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds28.ItemTemplate)).EndInit();
             this.flowLayoutPanel11.ResumeLayout(false);
             this.flowLayoutPanel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds31.ItemTemplate)).EndInit();
             this.flowLayoutPanel12.ResumeLayout(false);
             this.flowLayoutPanel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds32.ItemTemplate)).EndInit();
             this.flowLayoutPanel14.ResumeLayout(false);
             this.flowLayoutPanel14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds33.ItemTemplate)).EndInit();
             this.flowLayoutPanel13.ResumeLayout(false);
             this.flowLayoutPanel13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds34.ItemTemplate)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -2063,7 +2039,6 @@
             this.flowBoard.PerformLayout();
             this.flowLayoutPanel17.ResumeLayout(false);
             this.flowLayoutPanel17.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ledBoard.ItemTemplate)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.flowMainRelays.ResumeLayout(false);
