@@ -108,6 +108,7 @@
             this.ledManualRun = new NationalInstruments.UI.WindowsForms.Led();
             this.ledAutoRun = new NationalInstruments.UI.WindowsForms.Led();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel8 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
@@ -116,20 +117,23 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numTempTarget = new NationalInstruments.UI.WindowsForms.NumericEdit();
             this.numVoltTarget = new NationalInstruments.UI.WindowsForms.NumericEdit();
+            this.ckbChamberEnable = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.numTempReal = new NationalInstruments.UI.WindowsForms.NumericEdit();
             this.numVoltReal = new NationalInstruments.UI.WindowsForms.NumericEdit();
+            this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.numAcuIndex = new NationalInstruments.UI.WindowsForms.NumericEdit();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.grbCout = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.rdoAdvanced = new System.Windows.Forms.RadioButton();
             this.rdoConventional = new System.Windows.Forms.RadioButton();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ultraProgressBar2 = new Infragistics.Win.UltraWinProgressBar.UltraProgressBar();
+            this.ultraProgressBar1 = new Infragistics.Win.UltraWinProgressBar.UltraProgressBar();
             this.ugTestItems = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.ultraChart1 = new Infragistics.Win.UltraWinChart.UltraChart();
@@ -139,11 +143,11 @@
             this._MainForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel8 = new System.Windows.Forms.FlowLayoutPanel();
-            this.ultraToolbarsManager1 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
-            this.ultraProgressBar1 = new Infragistics.Win.UltraWinProgressBar.UltraProgressBar();
-            this.ultraProgressBar2 = new Infragistics.Win.UltraWinProgressBar.UltraProgressBar();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtDtc = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.toolBarsManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -159,6 +163,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ledManualRun)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ledAutoRun)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.flowLayoutPanel8.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -167,9 +172,10 @@
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTempReal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numVoltReal)).BeginInit();
+            this.flowLayoutPanel7.SuspendLayout();
             this.flowLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAcuIndex)).BeginInit();
-            this.groupBox6.SuspendLayout();
+            this.grbCout.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
             this.splitContainer5.Panel1.SuspendLayout();
@@ -184,9 +190,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraChart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ugDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraStatusBar1)).BeginInit();
-            this.flowLayoutPanel7.SuspendLayout();
-            this.flowLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolBarsManager)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -299,6 +303,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test Condition";
             // 
+            // flowLayoutPanel8
+            // 
+            this.flowLayoutPanel8.Controls.Add(this.flowLayoutPanel4);
+            this.flowLayoutPanel8.Controls.Add(this.flowLayoutPanel7);
+            this.flowLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel8.Location = new System.Drawing.Point(3, 17);
+            this.flowLayoutPanel8.Name = "flowLayoutPanel8";
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(522, 154);
+            this.flowLayoutPanel8.TabIndex = 0;
+            // 
             // flowLayoutPanel4
             // 
             this.flowLayoutPanel4.AutoSize = true;
@@ -354,7 +368,7 @@
             this.flowLayoutPanel2.Controls.Add(this.label4);
             this.flowLayoutPanel2.Controls.Add(this.numTempTarget);
             this.flowLayoutPanel2.Controls.Add(this.numVoltTarget);
-            this.flowLayoutPanel2.Controls.Add(this.checkBox1);
+            this.flowLayoutPanel2.Controls.Add(this.ckbChamberEnable);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(58, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -397,6 +411,20 @@
             this.numVoltTarget.Size = new System.Drawing.Size(148, 37);
             this.numVoltTarget.TabIndex = 1;
             this.numVoltTarget.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // ckbChamberEnable
+            // 
+            this.ckbChamberEnable.AutoSize = true;
+            this.ckbChamberEnable.Checked = true;
+            this.ckbChamberEnable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbChamberEnable.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.ckbChamberEnable.Location = new System.Drawing.Point(3, 108);
+            this.ckbChamberEnable.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.ckbChamberEnable.Name = "ckbChamberEnable";
+            this.ckbChamberEnable.Size = new System.Drawing.Size(127, 21);
+            this.ckbChamberEnable.TabIndex = 0;
+            this.ckbChamberEnable.Text = "Chamber Enable";
+            this.ckbChamberEnable.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel1
             // 
@@ -451,6 +479,17 @@
             this.numVoltReal.TabIndex = 1;
             this.numVoltReal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // flowLayoutPanel7
+            // 
+            this.flowLayoutPanel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel7.Controls.Add(this.flowLayoutPanel6);
+            this.flowLayoutPanel7.Controls.Add(this.grbCout);
+            this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(370, 3);
+            this.flowLayoutPanel7.Name = "flowLayoutPanel7";
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(140, 140);
+            this.flowLayoutPanel7.TabIndex = 13;
+            // 
             // flowLayoutPanel6
             // 
             this.flowLayoutPanel6.AutoSize = true;
@@ -489,31 +528,17 @@
             this.numAcuIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numAcuIndex.Value = 1D;
             // 
-            // checkBox1
+            // grbCout
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.checkBox1.Location = new System.Drawing.Point(3, 108);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(127, 21);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Chamber Enable";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.flowLayoutPanel5);
-            this.groupBox6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.groupBox6.Location = new System.Drawing.Point(3, 44);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(123, 78);
-            this.groupBox6.TabIndex = 1;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Crash Out Type";
+            this.grbCout.Controls.Add(this.flowLayoutPanel5);
+            this.grbCout.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.grbCout.Location = new System.Drawing.Point(3, 44);
+            this.grbCout.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.grbCout.Name = "grbCout";
+            this.grbCout.Size = new System.Drawing.Size(123, 78);
+            this.grbCout.TabIndex = 1;
+            this.grbCout.TabStop = false;
+            this.grbCout.Text = "Crash Out Type";
             // 
             // flowLayoutPanel5
             // 
@@ -571,6 +596,9 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.txtDtc);
             this.groupBox2.Controls.Add(this.ultraProgressBar2);
             this.groupBox2.Controls.Add(this.ultraProgressBar1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -580,6 +608,24 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Test Process";
+            // 
+            // ultraProgressBar2
+            // 
+            this.ultraProgressBar2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ultraProgressBar2.Location = new System.Drawing.Point(3, 80);
+            this.ultraProgressBar2.Name = "ultraProgressBar2";
+            this.ultraProgressBar2.Size = new System.Drawing.Size(522, 23);
+            this.ultraProgressBar2.TabIndex = 1;
+            this.ultraProgressBar2.Text = "[Formatted]";
+            // 
+            // ultraProgressBar1
+            // 
+            this.ultraProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ultraProgressBar1.Location = new System.Drawing.Point(3, 103);
+            this.ultraProgressBar1.Name = "ultraProgressBar1";
+            this.ultraProgressBar1.Size = new System.Drawing.Size(522, 23);
+            this.ultraProgressBar1.TabIndex = 0;
+            this.ultraProgressBar1.Text = "[Formatted]";
             // 
             // ugTestItems
             // 
@@ -753,7 +799,7 @@
             this.ultraChart1.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ultraChart1.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ultraChart1.Axis.Y.MinorGridLines.Visible = false;
-            this.ultraChart1.Axis.Y.TickmarkInterval = 40D;
+            this.ultraChart1.Axis.Y.TickmarkInterval = 10D;
             this.ultraChart1.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ultraChart1.Axis.Y.Visible = true;
             this.ultraChart1.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -780,7 +826,7 @@
             this.ultraChart1.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ultraChart1.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ultraChart1.Axis.Y2.MinorGridLines.Visible = false;
-            this.ultraChart1.Axis.Y2.TickmarkInterval = 40D;
+            this.ultraChart1.Axis.Y2.TickmarkInterval = 10D;
             this.ultraChart1.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ultraChart1.Axis.Y2.Visible = false;
             this.ultraChart1.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -952,7 +998,7 @@
             this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 77);
             this._MainForm_Toolbars_Dock_Area_Left.Name = "_MainForm_Toolbars_Dock_Area_Left";
             this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 622);
-            this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager1;
+            this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarsManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Right
             // 
@@ -963,7 +1009,7 @@
             this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1099, 77);
             this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
             this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 622);
-            this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
+            this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarsManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Top
             // 
@@ -974,7 +1020,7 @@
             this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
             this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1099, 77);
-            this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
+            this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarsManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Bottom
             // 
@@ -985,38 +1031,55 @@
             this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 699);
             this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
             this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1099, 0);
-            this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
+            this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarsManager;
             // 
-            // flowLayoutPanel7
+            // button1
             // 
-            this.flowLayoutPanel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel7.Controls.Add(this.flowLayoutPanel6);
-            this.flowLayoutPanel7.Controls.Add(this.groupBox6);
-            this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel7.Location = new System.Drawing.Point(370, 3);
-            this.flowLayoutPanel7.Name = "flowLayoutPanel7";
-            this.flowLayoutPanel7.Size = new System.Drawing.Size(140, 140);
-            this.flowLayoutPanel7.TabIndex = 13;
+            this.button1.Location = new System.Drawing.Point(373, 32);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // flowLayoutPanel8
+            // txtDtc
             // 
-            this.flowLayoutPanel8.Controls.Add(this.flowLayoutPanel4);
-            this.flowLayoutPanel8.Controls.Add(this.flowLayoutPanel7);
-            this.flowLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel8.Location = new System.Drawing.Point(3, 17);
-            this.flowLayoutPanel8.Name = "flowLayoutPanel8";
-            this.flowLayoutPanel8.Size = new System.Drawing.Size(522, 154);
-            this.flowLayoutPanel8.TabIndex = 0;
+            this.txtDtc.BackColor = System.Drawing.SystemColors.Info;
+            this.txtDtc.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtDtc.Location = new System.Drawing.Point(3, 59);
+            this.txtDtc.Name = "txtDtc";
+            this.txtDtc.ReadOnly = true;
+            this.txtDtc.Size = new System.Drawing.Size(522, 21);
+            this.txtDtc.TabIndex = 2;
             // 
-            // ultraToolbarsManager1
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 32);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 12);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "ACU ID:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(59, 32);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 12);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "__ /__ /__";
+            // 
+            // toolBarsManager
             // 
             appearance25.BackColor = System.Drawing.Color.Gainsboro;
-            this.ultraToolbarsManager1.Appearance = appearance25;
-            this.ultraToolbarsManager1.DesignerFlags = 1;
-            this.ultraToolbarsManager1.DockWithinContainer = this;
-            this.ultraToolbarsManager1.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
-            this.ultraToolbarsManager1.ImageSizeLarge = new System.Drawing.Size(45, 45);
-            this.ultraToolbarsManager1.LockToolbars = true;
+            this.toolBarsManager.Appearance = appearance25;
+            this.toolBarsManager.DesignerFlags = 1;
+            this.toolBarsManager.DockWithinContainer = this;
+            this.toolBarsManager.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
+            this.toolBarsManager.ImageSizeLarge = new System.Drawing.Size(45, 45);
+            this.toolBarsManager.LockToolbars = true;
             ultraToolbar1.DockedColumn = 0;
             ultraToolbar1.DockedRow = 0;
             ultraToolbar1.IsMainMenuBar = true;
@@ -1033,7 +1096,7 @@
             buttonTool21});
             ultraToolbar2.Settings.UseLargeImages = Infragistics.Win.DefaultableBoolean.True;
             ultraToolbar2.Text = "ultraTools";
-            this.ultraToolbarsManager1.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
+            this.toolBarsManager.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
             ultraToolbar1,
             ultraToolbar2});
             popupMenuTool10.SharedPropsInternal.Caption = "File";
@@ -1080,7 +1143,7 @@
             buttonTool24.SharedPropsInternal.Caption = "Stop";
             buttonTool24.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
             buttonTool26.SharedPropsInternal.Caption = "Specification Config";
-            this.ultraToolbarsManager1.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            this.toolBarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
             popupMenuTool10,
             popupMenuTool12,
             popupMenuTool16,
@@ -1098,31 +1161,14 @@
             buttonTool23,
             buttonTool24,
             buttonTool26});
-            this.ultraToolbarsManager1.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.ultraToolbarsManager1_ToolClick);
-            // 
-            // ultraProgressBar1
-            // 
-            this.ultraProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ultraProgressBar1.Location = new System.Drawing.Point(3, 103);
-            this.ultraProgressBar1.Name = "ultraProgressBar1";
-            this.ultraProgressBar1.Size = new System.Drawing.Size(522, 23);
-            this.ultraProgressBar1.TabIndex = 0;
-            this.ultraProgressBar1.Text = "[Formatted]";
-            // 
-            // ultraProgressBar2
-            // 
-            this.ultraProgressBar2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ultraProgressBar2.Location = new System.Drawing.Point(3, 80);
-            this.ultraProgressBar2.Name = "ultraProgressBar2";
-            this.ultraProgressBar2.Size = new System.Drawing.Size(522, 23);
-            this.ultraProgressBar2.TabIndex = 1;
-            this.ultraProgressBar2.Text = "[Formatted]";
+            this.toolBarsManager.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.ultraToolbarsManager1_ToolClick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 722);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Left);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Right);
@@ -1147,6 +1193,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ledManualRun)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ledAutoRun)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.flowLayoutPanel8.ResumeLayout(false);
+            this.flowLayoutPanel8.PerformLayout();
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
@@ -1159,10 +1207,12 @@
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTempReal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numVoltReal)).EndInit();
+            this.flowLayoutPanel7.ResumeLayout(false);
+            this.flowLayoutPanel7.PerformLayout();
             this.flowLayoutPanel6.ResumeLayout(false);
             this.flowLayoutPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAcuIndex)).EndInit();
-            this.groupBox6.ResumeLayout(false);
+            this.grbCout.ResumeLayout(false);
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
             this.splitContainer5.Panel1.ResumeLayout(false);
@@ -1170,6 +1220,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ugTestItems)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -1178,11 +1229,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraChart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ugDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraStatusBar1)).EndInit();
-            this.flowLayoutPanel7.ResumeLayout(false);
-            this.flowLayoutPanel7.PerformLayout();
-            this.flowLayoutPanel8.ResumeLayout(false);
-            this.flowLayoutPanel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolBarsManager)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1194,7 +1241,7 @@
         private Infragistics.Win.UltraWinChart.UltraChart ultraChart1;
         private Infragistics.Win.UltraWinGrid.UltraGrid ugDisplay;
         private Infragistics.Win.UltraWinStatusBar.UltraStatusBar ultraStatusBar1;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsManager ultraToolbarsManager1;
+        private Infragistics.Win.UltraWinToolbars.UltraToolbarsManager toolBarsManager;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _MainForm_Toolbars_Dock_Area_Left;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _MainForm_Toolbars_Dock_Area_Right;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _MainForm_Toolbars_Dock_Area_Bottom;
@@ -1210,11 +1257,11 @@
         private NationalInstruments.UI.WindowsForms.NumericEdit numTempReal;
         private NationalInstruments.UI.WindowsForms.NumericEdit numVoltReal;
         private NationalInstruments.UI.WindowsForms.NumericEdit numVoltTarget;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox grbCout;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
         private System.Windows.Forms.RadioButton rdoAdvanced;
         private System.Windows.Forms.RadioButton rdoConventional;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox ckbChamberEnable;
         private NationalInstruments.UI.WindowsForms.NumericEdit numAcuIndex;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -1233,6 +1280,10 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel8;
         private Infragistics.Win.UltraWinProgressBar.UltraProgressBar ultraProgressBar2;
         private Infragistics.Win.UltraWinProgressBar.UltraProgressBar ultraProgressBar1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtDtc;
 
     }
 }

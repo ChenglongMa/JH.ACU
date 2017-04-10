@@ -10,6 +10,7 @@ using JH.ACU.BLL;
 using JH.ACU.BLL.Config;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.TestConfig;
+using NationalInstruments.UI;
 
 namespace JH.ACU.UI
 {
@@ -19,6 +20,7 @@ namespace JH.ACU.UI
         {
             InitializeComponent();
             _bllMain=new BllMain();
+            RefreshControlByIsBusy();
         }
 
         #region 属性字段
@@ -35,10 +37,36 @@ namespace JH.ACU.UI
 
         #region 私有方法
 
-        private void RefreshControlEnablement()
+        /// <summary>
+        /// 根据测试线程状态更新按钮状态
+        /// </summary>
+        private void RefreshControlByIsBusy()
         {
-            
+            ledAutoRun.Enabled = !IsBusy;
+            ledManualRun.Enabled = !IsBusy;
+            numTempTarget.InteractionMode = IsBusy
+                ? NumericEditInteractionModes.Indicator
+                : NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
+                  NumericEditInteractionModes.Text;
+            numVoltTarget.InteractionMode = IsBusy
+                ? NumericEditInteractionModes.Indicator
+                : NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
+                  NumericEditInteractionModes.Text;            
+            numAcuIndex.InteractionMode = IsBusy
+                ? NumericEditInteractionModes.Indicator
+                : NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
+                  NumericEditInteractionModes.Text;
+            ckbChamberEnable.Enabled = !IsBusy;
+            grbCout.Enabled = !IsBusy;
+            toolBarsManager.Tools["btnInitialize"].SharedProps.Enabled = !IsBusy;
+            toolBarsManager.Tools["btnStop"].SharedProps.Enabled = IsBusy;
+            toolBarsManager.Tools["btnRunPause"].SharedProps.Caption = IsBusy ? "Pause" : "Run";
+            toolBarsManager.Tools["btnRunPause"].SharedPropsInternal.AppearancesLarge.Appearance.Image =
+                IsBusy ? Properties.Resources.pauseNew : Properties.Resources.StartBlue;
+            //TODO：随时更新
         }
+
+
         private void ultraToolbarsManager1_ToolClick(object sender, ToolClickEventArgs e)
         {
             InstrConfigForm instrConfig;
@@ -123,6 +151,12 @@ namespace JH.ACU.UI
 
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //IsBusy = !IsBusy;
+            RefreshControlByIsBusy();
+        }
 
         #region 公有方法
 
