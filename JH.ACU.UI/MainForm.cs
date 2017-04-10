@@ -18,16 +18,27 @@ namespace JH.ACU.UI
         public MainForm()
         {
             InitializeComponent();
-            
+            _bllMain=new BllMain();
         }
 
         #region 属性字段
 
         private bool _isAuto;
+
+        private bool IsBusy
+        {
+            get { return _bllMain != null && _bllMain.TestWorker != null && _bllMain.TestWorker.IsBusy; }
+        }
+
+        private readonly BllMain _bllMain;
         #endregion
 
         #region 私有方法
 
+        private void RefreshControlEnablement()
+        {
+            
+        }
         private void ultraToolbarsManager1_ToolClick(object sender, ToolClickEventArgs e)
         {
             InstrConfigForm instrConfig;
@@ -98,12 +109,6 @@ namespace JH.ACU.UI
 
         }
 
-        #endregion
-
-        private void ledAutoRun_StateChanged(object sender, NationalInstruments.UI.ActionEventArgs e)
-        {
-        }
-
         private void ledAutoRun_Click(object sender, EventArgs e)
         {
             ledManualRun.Value = !ledAutoRun.Value;
@@ -117,7 +122,7 @@ namespace JH.ACU.UI
             _isAuto = !ledManualRun.Value;
 
         }
-
+        #endregion
 
         #region 公有方法
 
