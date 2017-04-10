@@ -665,7 +665,7 @@ namespace JH.ACU.UI
                     MessageBoxHelper.ShowInformationOk("命令行为空");
                     return;
                 }
-                var bll = cmbInstrName.SelectedValue as BllVisa;
+                var bll = cmbInstrName.SelectedValue as BllVisa;//bug:此处恒为null
                 if (bll == null)
                 {
                     MessageBoxHelper.ShowError("相关仪器未启动");

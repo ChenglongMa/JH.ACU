@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JH.ACU.Model.Config.TestConfig;
 
 
 namespace JH.ACU.Model
@@ -21,7 +22,7 @@ namespace JH.ACU.Model
         public Report()
         {
             ValueDic = new Dictionary<string, object>();
-
+            SpecUnits=new List<SpecItem>();
         }
 
         #endregion
@@ -31,7 +32,19 @@ namespace JH.ACU.Model
         public double Temp { get; set; }
         public double Volt { get; set; }
         public string Message { get; set; }
+        /// <summary>
+        /// 单项进度
+        /// </summary>
+        public double SingleProgress { get; set; }
+        /// <summary>
+        /// 总进度
+        /// </summary>
+        public double TotalProgress { get; set; }
 
+        /// <summary>
+        /// 所有测试项
+        /// </summary>
+        public List<SpecItem> SpecUnits { get; set; } 
         /// <summary>
         /// 扩展属性
         /// </summary>
