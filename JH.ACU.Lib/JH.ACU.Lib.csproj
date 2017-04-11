@@ -87,6 +87,7 @@
     <Compile Include="Component\NewBackgroundWorker.Designer.cs">
       <DependentUpon>NewBackgroundWorker.cs</DependentUpon>
     </Compile>
+    <Compile Include="GridConfig\FieldMetaInfo.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MessageBoxHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

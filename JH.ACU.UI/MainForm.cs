@@ -11,9 +11,11 @@ using Infragistics.Win.UltraWinToolbars;
 using JH.ACU.BLL;
 using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
+using JH.ACU.Lib.GridConfig;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.TestConfig;
 using NationalInstruments.UI;
+using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace JH.ACU.UI
 {
@@ -23,11 +25,12 @@ namespace JH.ACU.UI
         {
             InitializeComponent();
             _report = new Report();
-            BindingControls();
+            _fieldsProgress = BllFieldConfig.LoadFieldsInfo("SpecProgress.xml");
             _bllMain = new BllMain();
             _bllMain.TestWorker.ProgressChanged += TestWorker_ProgressChanged;
             _bllMain.TestWorker.RunWorkerCompleted += TestWorker_RunWorkerCompleted;
             SetControlEnabled(!IsBusy);
+            BindingControls(_report);
         }
 
 
@@ -43,23 +46,34 @@ namespace JH.ACU.UI
         }
 
         private readonly BllMain _bllMain;
-        private Report _report; //绑定至UI控件
-
+        private readonly Report _report; //绑定至UI控件
+        private readonly List<FieldMetaInfo> _fieldsProgress;
+        private InitializationForm _conditionForm;
         #endregion
 
         #region 私有方法
 
-        private void BindingControls()
+        private void BindingControls(Report report)
         {
-            if (_report == null) _report = new Report();
-            numTempTarget.DataBindings.Add("Value", _report, "SettingTemp");
-            numVoltTarget.DataBindings.Add("Value", _report, "SettingVolt");
-            numTempReal.DataBindings.Add("Value", _report, "ActualTemp");
-            numVoltReal.DataBindings.Add("Value", _report, "ActualVolt");
-            ckbChamberEnable.DataBindings.Add("Checked", _report, "ChamberEnable");
-            numAcuIndex.DataBindings.Add("Value", _report, "AcuIndex");
-            lblAcuName.DataBindings.Add("Text", _report, "AcuName");
-            //TODO:还差两个Grid
+            numTempTarget.DataBindings.Add("Value", report, "SettingTemp");
+            numVoltTarget.DataBindings.Add("Value", report, "SettingVolt");
+            numTempReal.DataBindings.Add("Value", report, "ActualTemp");
+            numVoltReal.DataBindings.Add("Value", report, "ActualVolt");
+            ckbChamberEnable.DataBindings.Add("Checked", report, "ChamberEnable");
+            numAcuIndex.DataBindings.Add("Value", report, "AcuIndex");
+            lblAcuName.DataBindings.Add("Text", report, "AcuName");
+            //TODO:还差Grid
+            BindingGridToTestItems(report);
+        }
+
+        private void BindingGridToTestItems(Report report)
+        {
+            ugTestItems.DataSource = report.SpecUnitsDict.ContainsKey(_bllMain.SelectedTvType)
+                ? new BindingList<SpecItem>(report.SpecUnitsDict[_bllMain.SelectedTvType])
+                : new BindingList<SpecItem>(BllConfig.GetSpecItems());
+            ugTestItems.SetStyle(_fieldsProgress);
+            ugTestItems.SetGridDefaultStyle();
+            ugTestItems.DisplayLayout.Override.CellClickAction=CellClickAction.RowSelect;
         }
 
         /// <summary>
@@ -101,10 +115,11 @@ namespace JH.ACU.UI
         {
             var report = e.UserState as Report;
             if (report == null) return;
-            _report = report;
-            progressBar.Value = e.ProgressPercentage;
+            _report.DeepCopy(report);
+            var progress = e.ProgressPercentage;
+            progressBar.Value = progress <= 100 ? progress : 100;
             statusBar.Panels["messBar"].Text = report.Message;
-
+            BindingGridToTestItems(_report);
         }
 
         private void TestWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -131,8 +146,8 @@ namespace JH.ACU.UI
             {
                 case "btnInitialize": // ButtonTool
                 case "btnCondition": // ButtonTool
-                    var conditionForm = new InitializationForm();
-                    _isSetting = conditionForm.ShowDialog(this) == DialogResult.OK;
+                    _conditionForm = new InitializationForm();
+                    _isSetting = _conditionForm.ShowDialog(this) == DialogResult.OK;
                     break;
                 case "btnSpecConfig":
                     var specForm = new SpecConfigForm();
@@ -259,7 +274,7 @@ namespace JH.ACU.UI
                     return;
                 }
             }
-            var con = BllConfig.GetTestCondition();
+            var con = _conditionForm.TestCondition;
             if (con == null)
             {
                 MessageBoxHelper.ShowError("配置文件缺失");
@@ -287,8 +302,13 @@ namespace JH.ACU.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //IsBusy = !IsBusy;
-            SetControlEnabled(true);
+            _report.ActualTemp = 10.3;
+            _report.ActualVolt = 6.5;
+            _report.SettingTemp = 30;
+            _report.SettingVolt += 12;
+            _report.AcuIndex = 4;
+            _report.AcuName = "测试ACU";
+
         }
 
     }

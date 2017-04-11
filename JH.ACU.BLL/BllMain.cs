@@ -113,6 +113,7 @@ namespace JH.ACU.BLL
             {
                 _tvItem = tvItem;
                 _tvIndex = tvItems.IndexOf(tvItem);
+                SelectedTvType = tvItem.Key;
                 #region 通知UI
 
                 var tempTarget = tvItem.Value[0];
@@ -120,10 +121,16 @@ namespace JH.ACU.BLL
                 VoltTarget = tvItem.Value[1];
                 var specUnits = new List<SpecItem>();
                 specUnits.AddRange(_specUnits);
-                _report.SpecUnitsDict[tvItem.Key] = specUnits;
+                if (_report.SpecUnitsDict.ContainsKey(tvItem.Key))
+                {
+                    _report.SpecUnitsDict[tvItem.Key] = specUnits;
+                }
+                else
+                {
+                    _report.SpecUnitsDict.Add(tvItem.Key, specUnits);
+                }
                 _report.ChamberEnable = TestCondition.Temperature.Enable;
                 TestWorker.ReportProgress(0, _report);
-
                 #endregion
 
                 #region 温度操作
@@ -1282,7 +1289,7 @@ namespace JH.ACU.BLL
         #endregion
 
         #region 属性字段
-
+        public TvType SelectedTvType { get; private set; }
         public NewBackgroundWorker TestWorker { get; private set; }
         private DoWorkEventArgs TestEventArgs { get; set; }
         private NewBackgroundWorker ChamberStay { get; set; }

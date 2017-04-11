@@ -5,10 +5,11 @@
  * ==============================================================================*/
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using JH.ACU.Lib;
-using JH.ACU.Model.Config.GridConfig;
+using JH.ACU.Lib.GridConfig;
 using JH.ACU.Model.Config.InstrumentConfig;
 
 
@@ -46,14 +47,16 @@ namespace JH.ACU.BLL.Config
         /// <returns></returns>
         public static List<FieldMetaInfo> LoadFieldsInfo(string configFile)
         {
-            List<FieldMetaInfo> fields = new List<FieldMetaInfo>();
+            var fields = new List<FieldMetaInfo>();
             //判断配置文件是否存在
-            string fileName = System.IO.Path.Combine(FileName, configFile);
-            if (!System.IO.File.Exists(fileName))
+            var fileName = Path.Combine(FileName, configFile);
+            if (!File.Exists(fileName))
             {
                 return fields;
             }
-            XmlHelper.XmlDeserializeFromFile<InstrConfig>(InstrFileName, Encoding.UTF8);
+            var list = XmlHelper.XmlDeserializeFromFile<FieldList>(fileName, Encoding.UTF8);
+            fields.AddRange(list);
+            return fields;
         }
 
         #endregion

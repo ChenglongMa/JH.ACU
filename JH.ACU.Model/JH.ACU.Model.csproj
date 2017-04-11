@@ -224,7 +224,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\GridConfig\FieldMetaInfo.cs" />
     <Compile Include="Config\TestConfig\AcuItems.cs" />
     <Compile Include="Config\TestConfig\SpecUnit.cs" />
     <Compile Include="Config\TestConfig\Temperature.cs" />

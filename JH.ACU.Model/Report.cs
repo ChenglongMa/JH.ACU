@@ -6,7 +6,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using JH.ACU.Model.Annotations;
 using JH.ACU.Model.Config.TestConfig;
@@ -17,7 +21,8 @@ namespace JH.ACU.Model
     /// <summary>
     /// 需要报告给UI层的信息
     /// </summary>
-    public class Report : INotifyPropertyChanged
+    [Serializable]
+    public class Report : INotifyPropertyChanged//,ICloneable
     {
         #region 构造函数
 
@@ -206,5 +211,27 @@ namespace JH.ACU.Model
         }
 
         #endregion
+
+        public static T Copy<T>(T realObject)
+        {
+            using (Stream objectStream = new MemoryStream())
+            {
+                //利用 System.Runtime.Serialization序列化与反序列化完成引用对象的复制     
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(objectStream, realObject);
+                objectStream.Seek(0, SeekOrigin.Begin);
+                return (T)formatter.Deserialize(objectStream);
+            }
+        }
+
+        public void DeepCopy(Report obj)
+        {
+            var type = obj.GetType();
+            var properties = type.GetProperties();
+            foreach (var property in properties.Where(p => p.CanRead && p.CanWrite))
+            {
+                property.SetValue(this, property.GetValue(obj, null), null);
+            }
+        }
     }
 }

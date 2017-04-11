@@ -15,6 +15,7 @@ namespace JH.ACU.Model.Config.TestConfig
     /// <summary>
     /// 测试步骤名、测试规范、单位和对应故障码
     /// </summary>
+    [Serializable]
     public class SpecItem
     {
 
