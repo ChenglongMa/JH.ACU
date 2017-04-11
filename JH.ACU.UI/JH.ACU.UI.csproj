@@ -322,6 +322,9 @@
     <None Include="Resources\alignment2.png" />
     <None Include="Resources\add.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GridFields\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

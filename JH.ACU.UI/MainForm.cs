@@ -22,11 +22,11 @@ namespace JH.ACU.UI
         public MainForm()
         {
             InitializeComponent();
-            _report=new Report();
+            _report = new Report();
             BindingControls();
-            _bllMain=new BllMain();
+            _bllMain = new BllMain();
             _bllMain.TestWorker.ProgressChanged += TestWorker_ProgressChanged;
-            _bllMain.TestWorker.RunWorkerCompleted+=TestWorker_RunWorkerCompleted;
+            _bllMain.TestWorker.RunWorkerCompleted += TestWorker_RunWorkerCompleted;
             SetControlEnabled(!IsBusy);
         }
 
@@ -35,7 +35,7 @@ namespace JH.ACU.UI
 
         private bool _isAuto = true;
 
-        private bool _isSetting;//指示是否设置过配置文件
+        private bool _isSetting; //指示是否设置过配置文件
 
         private bool IsBusy
         {
@@ -43,23 +43,25 @@ namespace JH.ACU.UI
         }
 
         private readonly BllMain _bllMain;
-        private Report _report;//绑定至UI控件
+        private Report _report; //绑定至UI控件
+
         #endregion
 
         #region 私有方法
 
         private void BindingControls()
         {
-            if (_report == null) _report=new Report();
+            if (_report == null) _report = new Report();
             numTempTarget.DataBindings.Add("Value", _report, "SettingTemp");
             numVoltTarget.DataBindings.Add("Value", _report, "SettingVolt");
             numTempReal.DataBindings.Add("Value", _report, "ActualTemp");
-            numVoltReal.DataBindings.Add("Vaule", _report, "ActualVolt");
+            numVoltReal.DataBindings.Add("Value", _report, "ActualVolt");
             ckbChamberEnable.DataBindings.Add("Checked", _report, "ChamberEnable");
-            numAcuIndex.DataBindings.Add("Vaule", _report, "AcuIndex");
+            numAcuIndex.DataBindings.Add("Value", _report, "AcuIndex");
             lblAcuName.DataBindings.Add("Text", _report, "AcuName");
             //TODO:还差两个Grid
         }
+
         /// <summary>
         /// 设置控件是否可用
         /// </summary>
@@ -74,7 +76,7 @@ namespace JH.ACU.UI
             numVoltTarget.InteractionMode = !enabled
                 ? NumericEditInteractionModes.Indicator
                 : NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
-                  NumericEditInteractionModes.Text;            
+                  NumericEditInteractionModes.Text;
             numAcuIndex.InteractionMode = !enabled
                 ? NumericEditInteractionModes.Indicator
                 : NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
@@ -130,12 +132,13 @@ namespace JH.ACU.UI
                 case "btnInitialize": // ButtonTool
                 case "btnCondition": // ButtonTool
                     var conditionForm = new InitializationForm();
-                    _isSetting = conditionForm.ShowDialog(this)==DialogResult.OK;
+                    _isSetting = conditionForm.ShowDialog(this) == DialogResult.OK;
                     break;
                 case "btnSpecConfig":
                     var specForm = new SpecConfigForm();
                     specForm.Show(this);
                     break;
+
                     #region 仪器配置按钮
 
                 case "btnAcu": // ButtonTool
@@ -169,6 +172,7 @@ namespace JH.ACU.UI
                     break;
 
                     #endregion
+
                 case "btnInstrControl": // ButtonTool
                     var instrConForm = new InstrumentControlForm();
                     instrConForm.ShowDialog(this);
@@ -206,9 +210,10 @@ namespace JH.ACU.UI
             }
 
         }
-    /// <summary>
-    /// 手动执行
-    /// </summary>
+
+        /// <summary>
+        /// 手动执行
+        /// </summary>
         private void ManualRun()
         {
             if (ugTestItems.Selected == null)
@@ -249,13 +254,13 @@ namespace JH.ACU.UI
         {
             if (!_isSetting)
             {
-                if(!MessageBoxHelper.ShowQuestion("检测到未初始化设置，是否继续？"))
+                if (!MessageBoxHelper.ShowQuestion("检测到未初始化设置，是否继续？"))
                 {
                     return;
                 }
             }
             var con = BllConfig.GetTestCondition();
-            if (con==null)
+            if (con == null)
             {
                 MessageBoxHelper.ShowError("配置文件缺失");
                 return;
@@ -277,6 +282,7 @@ namespace JH.ACU.UI
             _isAuto = !ledManualRun.Value;
 
         }
+
         #endregion
 
         private void button1_Click(object sender, EventArgs e)

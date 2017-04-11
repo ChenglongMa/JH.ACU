@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BllMain.cs" />
+    <Compile Include="Config\BllFieldConfig.cs" />
     <Compile Include="Instruments\BllAcu.cs" />
     <Compile Include="Instruments\BllChamber.cs">
       <SubType>Code</SubType>

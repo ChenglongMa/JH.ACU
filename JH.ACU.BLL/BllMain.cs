@@ -1329,7 +1329,7 @@ namespace JH.ACU.BLL
         #endregion
 
         /// <summary>
-        /// 传值至UI层，填表用
+        /// 配置中的规范集合
         /// </summary>
         private readonly List<SpecItem> _specUnits;
 
@@ -1510,7 +1510,7 @@ namespace JH.ACU.BLL
 
         private int GetProgress(int specIndex, int tvIndex)
         {
-            //TODO:待完善
+            throw new NotImplementedException();
         }
         #endregion
 
