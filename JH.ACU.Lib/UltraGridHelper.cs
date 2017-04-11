@@ -160,6 +160,10 @@ namespace JH.ACU.Lib
             grid.DisplayLayout.Override.RowSelectorNumberStyle = RowSelectorNumberStyle.VisibleIndex;
             if (grid.DisplayLayout.Bands.Count == 0)
                 return;
+            foreach (var column in grid.DisplayLayout.Bands[0].Columns)
+            {
+                column.Hidden = true;
+            }
             foreach (var field in fields)
             {
                 //获取列

@@ -56,7 +56,7 @@ namespace JH.ACU.BLL
             {
                 #region 若取消
 
-                if (ChamberStay.CancellationPending||TestWorker.CancellationPending)
+                if (ChamberStay.CancellationPending||TestWorker.CancellationPending||!TestWorker.IsBusy)
                 {
                     _chamber.Stop();
                     e.Cancel = true;
@@ -66,8 +66,16 @@ namespace JH.ACU.BLL
                 #endregion
 
                 Thread.Sleep(30000);
-                var currTemp = _chamber.GetTemp();
-                ChamberStay.ReportProgress(0, currTemp);
+                #region 通知UI
+
+                _report.Message = "Chamber is staying...";
+                _report.ActualTemp = _chamber.GetTemp();
+                var progress = 60 +
+                               Math.Abs((Environment.TickCount - tick)/(TestCondition.Temperature.Duration*60*1000))*40;
+                TestWorker.ReportProgress((int)progress, _report);
+
+                #endregion
+
             } while (Environment.TickCount - tick <= TestCondition.Temperature.Duration*60*1000);
 
             #endregion
@@ -116,8 +124,7 @@ namespace JH.ACU.BLL
                 SelectedTvType = tvItem.Key;
                 #region 通知UI
 
-                var tempTarget = tvItem.Value[0];
-                _report.SettingTemp = tempTarget;
+                TempTarget = tvItem.Value[0];
                 VoltTarget = tvItem.Value[1];
                 var specUnits = new List<SpecItem>();
                 specUnits.AddRange(_specUnits);
@@ -142,7 +149,7 @@ namespace JH.ACU.BLL
                     {
                         _chamber = new BllChamber();
                     }
-                    _chamber.SetTemp(tempTarget); //设置温度值
+                    _chamber.SetTemp(TempTarget); //设置温度值
                     var tick = Environment.TickCount; //获取当前时刻值
                     do
                     {
@@ -162,11 +169,11 @@ namespace JH.ACU.BLL
                         #region 通知UI
 
                         _report.ActualTemp = _chamber.GetTemp();
-                        var progress = Math.Abs(_report.ActualTemp/tempTarget)*60;
+                        var progress = Math.Abs(_report.ActualTemp/TempTarget)*60;
                         TestWorker.ReportProgress((int) progress, _report);
 
                         #endregion
-                    } while (Math.Abs(tempTarget - _chamber.GetTemp()) <= 1 || Environment.TickCount - tick < 60*60*1000);
+                    } while (Math.Abs(TempTarget - _chamber.GetTemp()) <= 1 || Environment.TickCount - tick < 60*60*1000);
                     ChamberStay.RunWorkerAsync();
                 }
 
@@ -1307,6 +1314,16 @@ namespace JH.ACU.BLL
             }
             set { _voltTarget = value;
                 _report.SettingVolt = value;
+            }
+        }        private double _tempTarget;
+
+        private double TempTarget
+        {
+            get { return _tempTarget; }
+            set
+            {
+                _tempTarget = value;
+                _report.SettingTemp = value;
             }
         }
 

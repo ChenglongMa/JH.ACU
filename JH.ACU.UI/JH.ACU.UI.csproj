@@ -219,6 +219,9 @@
     <Content Include="GridFields\SpecProgress.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GridFields\SpecResult.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NoteBook.txt" />
     <None Include="Resources\select.png" />
     <None Include="Resources\item.png" />

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinToolbars;
@@ -15,7 +13,6 @@ using JH.ACU.Lib.GridConfig;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.TestConfig;
 using NationalInstruments.UI;
-using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace JH.ACU.UI
 {
@@ -24,8 +21,25 @@ namespace JH.ACU.UI
         public MainForm()
         {
             InitializeComponent();
+            SetGridTag();
             _report = new Report();
+
+            #region Chart Binding
+
+            _dataTable = new DataTable();
+            _dataTable.Columns.Add(new DataColumn("legend"));
+            _actualValueRow = _dataTable.NewRow();
+            _settingValueRow = _dataTable.NewRow();
+            _actualValueRow["legend"] = "Actual Value";
+            _settingValueRow["legend"] = "Setting Value";
+            _dataTable.Rows.Add(_actualValueRow);
+            _dataTable.Rows.Add(_settingValueRow);
+            chart.DataSource = _dataTable;
+
+            #endregion
+
             _fieldsProgress = BllFieldConfig.LoadFieldsInfo("SpecProgress.xml");
+            _fieldsResult = BllFieldConfig.LoadFieldsInfo("SpecResult.xml");
             _bllMain = new BllMain();
             _bllMain.TestWorker.ProgressChanged += TestWorker_ProgressChanged;
             _bllMain.TestWorker.RunWorkerCompleted += TestWorker_RunWorkerCompleted;
@@ -47,12 +61,28 @@ namespace JH.ACU.UI
 
         private readonly BllMain _bllMain;
         private readonly Report _report; //绑定至UI控件
+        private readonly DataTable _dataTable;
+        private readonly DataRow _actualValueRow;
+        private readonly DataRow _settingValueRow;
         private readonly List<FieldMetaInfo> _fieldsProgress;
+        private readonly List<FieldMetaInfo> _fieldsResult;
         private InitializationForm _conditionForm;
         #endregion
 
         #region 私有方法
 
+        private void BindingChart(double actualValue, double settingValue)
+        {
+            var name = DateTime.Now.ToString("T");
+            var col = new DataColumn(name, typeof (double));
+            if (!_dataTable.Columns.Contains(name))
+            {
+                _dataTable.Columns.Add(col);
+                _actualValueRow[name] = actualValue;
+                _settingValueRow[name] = settingValue;
+            }
+            chart.DataBind();
+        }
         private void BindingControls(Report report)
         {
             numTempTarget.DataBindings.Add("Value", report, "SettingTemp");
@@ -62,18 +92,52 @@ namespace JH.ACU.UI
             ckbChamberEnable.DataBindings.Add("Checked", report, "ChamberEnable");
             numAcuIndex.DataBindings.Add("Value", report, "AcuIndex");
             lblAcuName.DataBindings.Add("Text", report, "AcuName");
-            //TODO:还差Grid
-            BindingGridToTestItems(report);
+            BindingGridToTestItems();
+            BindingToResultGrid(ugLTLV);
+            BindingToResultGrid(ugLTNV);
+            BindingToResultGrid(ugLTHV);
+            BindingToResultGrid(ugNTLV);
+            BindingToResultGrid(ugNTNV);
+            BindingToResultGrid(ugNTHV);
+            BindingToResultGrid(ugHTLV);
+            BindingToResultGrid(ugHTNV);
+            BindingToResultGrid(ugHTHV);
+            BindingChart(_report.ActualTemp, _report.SettingTemp);
         }
 
-        private void BindingGridToTestItems(Report report)
+        private void BindingGridToTestItems()
         {
-            ugTestItems.DataSource = report.SpecUnitsDict.ContainsKey(_bllMain.SelectedTvType)
-                ? new BindingList<SpecItem>(report.SpecUnitsDict[_bllMain.SelectedTvType])
+            var list = _report.SpecUnitsDict.ContainsKey(_bllMain.SelectedTvType)
+                ? new BindingList<SpecItem>(_report.SpecUnitsDict[_bllMain.SelectedTvType])
                 : new BindingList<SpecItem>(BllConfig.GetSpecItems());
+            ugTestItems.DataSource = list;
             ugTestItems.SetStyle(_fieldsProgress);
             ugTestItems.SetGridDefaultStyle();
             ugTestItems.DisplayLayout.Override.CellClickAction=CellClickAction.RowSelect;
+        }
+
+        private void BindingToResultGrid(UltraGrid grid)
+        {
+            var tvType = (TvType) grid.Tag;
+            var list = _report.SpecUnitsDict.ContainsKey(tvType)
+                ? new BindingList<SpecItem>(_report.SpecUnitsDict[tvType])
+                : new BindingList<SpecItem>(BllConfig.GetSpecItems());
+            grid.DataSource = list;
+            grid.SetStyle(_fieldsResult);
+            grid.SetGridDefaultStyle();
+        }
+
+        private void SetGridTag()
+        {
+            pageLL.Tag = ugLTLV.Tag = TvType.LowTempLowVolt;
+            pageLN.Tag = ugLTNV.Tag = TvType.LowTempNorVolt;
+            pageLH.Tag = ugLTHV.Tag = TvType.LowTempHighVolt;
+            pageNL.Tag = ugNTLV.Tag = TvType.NorTempLowVolt;
+            pageNN.Tag = ugNTNV.Tag = TvType.NorTempNorVolt;
+            pageNH.Tag = ugNTHV.Tag = TvType.NorTempHighVolt;
+            pageHL.Tag = ugHTLV.Tag = TvType.HighTempLowVolt;
+            pageHN.Tag = ugHTNV.Tag = TvType.HighTempNorVolt;
+            pageHH.Tag = ugHTHV.Tag = TvType.HighTempHighVolt;
         }
 
         /// <summary>
@@ -119,7 +183,26 @@ namespace JH.ACU.UI
             var progress = e.ProgressPercentage;
             progressBar.Value = progress <= 100 ? progress : 100;
             statusBar.Panels["messBar"].Text = report.Message;
-            BindingGridToTestItems(_report);
+            BindingGridToTestItems();
+            BindingToResultGrid(ugLTLV);
+            BindingToResultGrid(ugLTNV);
+            BindingToResultGrid(ugLTHV);
+            BindingToResultGrid(ugNTLV);
+            BindingToResultGrid(ugNTNV);
+            BindingToResultGrid(ugNTHV);
+            BindingToResultGrid(ugHTLV);
+            BindingToResultGrid(ugHTNV);
+            BindingToResultGrid(ugHTHV);
+            BindingChart(_report.ActualTemp, _report.SettingTemp);
+            foreach (TabPage page in tabControl1.TabPages)
+            {
+                var tvType = (TvType) page.Tag;
+                if (tvType == _bllMain.SelectedTvType)
+                {
+                    tabControl1.SelectedTab = page;
+                    break;
+                }
+            }
         }
 
         private void TestWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

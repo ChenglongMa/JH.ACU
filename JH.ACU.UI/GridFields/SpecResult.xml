@@ -1,0 +1,8 @@
+﻿<Fields>
+  <Field ColName="Index" ColDisplayName="Index" Width="15" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="Description" ColDisplayName="Description" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="Specification" ColDisplayName="Specification" Width="60" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="Uom" ColDisplayName="UOM" Width="20" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="DtcString" ColDisplayName="DTC" Width="30" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="ResultValue" ColDisplayName="Result" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+</Fields>
