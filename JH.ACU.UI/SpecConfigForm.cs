@@ -33,9 +33,9 @@ namespace JH.ACU.UI
         {
             ultraGrid1.DataSource = _specUnit;
             var columns = ultraGrid1.DisplayLayout.Bands[0].Columns;
-            //if (columns.Exists("Result"))
+            //if (columns.Exists("ResultValue"))
             //{
-            //    columns.Remove("Result");
+            //    columns.Remove("ResultValue");
             //}
             //if (columns.Exists("Dtc"))
             //{

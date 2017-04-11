@@ -14,7 +14,7 @@ namespace JH.ACU.Model.Config.TestConfig
             Temperature = new Temperature();
             Voltage = new Voltage();
             AcuItems = new List<AcuItems>();
-            TvItems = new List<double[]>();
+            TvItems = new Dictionary<TvType, double[]>();
         }
 
         [XmlElement]
@@ -27,9 +27,25 @@ namespace JH.ACU.Model.Config.TestConfig
         /// 温度、电压测试项
         /// </summary>
         [XmlIgnore]
-        public List<double[]> TvItems { get; set; }
+        public Dictionary<TvType, double[]> TvItems { get; set; }
 
         [XmlArrayItem("AcuItem", typeof (AcuItems))]
         public List<AcuItems> AcuItems { get; set; }
+    }
+
+    public enum TvType
+    {
+        LowTempLowVolt,
+        LowTempNorVolt,
+        LowTempHighVolt,
+
+        NorTempLowVolt,
+        NorTempNorVolt,
+        NorTempHighVolt,
+
+        HighTempLowVolt,
+        HighTempNorVolt,
+        HighTempHighVolt,
+
     }
 }

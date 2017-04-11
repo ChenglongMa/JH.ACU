@@ -139,6 +139,16 @@ namespace JH.ACU.Model
     }
 
     /// <summary>
+    /// 测试结果
+    /// </summary>
+    public enum TestResult
+    {
+        Passed = 0,
+        Failed = -1,
+        Cancelled = -2,
+    }
+
+    /// <summary>
     /// 回路测试时模式枚举,注意顺序
     /// 与测试规范顺序相同（SPEC_unit.txt）
     /// </summary>

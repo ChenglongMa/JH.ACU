@@ -58,10 +58,16 @@ namespace JH.ACU.Model.Config.TestConfig
         public string DtcString { get; set; }
 
         /// <summary>
-        /// 测试结果
+        /// 测试结果值
         /// </summary>
         [XmlIgnore]
-        public object Result { get; set; }
+        public object ResultValue { get; set; }
+
+        /// <summary>
+        /// 测试结果信息
+        /// </summary>
+        [XmlIgnore]
+        public object ResultInfo{ get; set; }
 
         #endregion
 

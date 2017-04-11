@@ -72,6 +72,7 @@
     <Compile Include="GlobalConst.cs" />
     <Compile Include="Config\InstrumentConfig\Gpib.cs" />
     <Compile Include="Config\InstrumentConfig\InstrConfig.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\InstrumentConfig\Serial.cs" />
     <Compile Include="Config\InstrumentConfig\TcpIp.cs" />

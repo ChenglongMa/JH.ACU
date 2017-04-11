@@ -170,52 +170,52 @@ namespace JH.ACU.UI
                 NorVolt = (double) numNorVolt.Value,
                 LowVolt = (double) numLowVolt.Value
             };
-            var tvItems = new List<double[]>();
+            var tvItems = new Dictionary<TvType, double[]>();
             if (ckbLL.Checked)
             {
-                tvItems.Add(new[] {temp.LowTemp, volt.LowVolt});
+                tvItems.Add(TvType.LowTempLowVolt,new[] {temp.LowTemp, volt.LowVolt});
             }
             if (ckbLN.Checked)
             {
-                tvItems.Add(new[] {temp.LowTemp, volt.NorVolt});
+                tvItems.Add(TvType.LowTempNorVolt,new[] {temp.LowTemp, volt.NorVolt});
             }
             if (ckbLH.Checked)
             {
-                tvItems.Add(new[] {temp.LowTemp, volt.HighVolt});
+                tvItems.Add(TvType.LowTempHighVolt,new[] {temp.LowTemp, volt.HighVolt});
             }
             if (ckbNL.Checked)
             {
-                tvItems.Add(new[] {temp.NorTemp, volt.LowVolt});
+                tvItems.Add(TvType.NorTempLowVolt,new[] {temp.NorTemp, volt.LowVolt});
             }
             if (ckbNN.Checked)
             {
-                tvItems.Add(new[] {temp.NorTemp, volt.NorVolt});
+                tvItems.Add(TvType.NorTempNorVolt,new[] {temp.NorTemp, volt.NorVolt});
             }
             if (ckbNH.Checked)
             {
-                tvItems.Add(new[] {temp.NorTemp, volt.HighVolt});
+                tvItems.Add(TvType.NorTempHighVolt,new[] {temp.NorTemp, volt.HighVolt});
             }
             if (ckbHL.Checked)
             {
-                tvItems.Add(new[] {temp.HighTemp, volt.LowVolt});
+                tvItems.Add(TvType.HighTempLowVolt,new[] {temp.HighTemp, volt.LowVolt});
             }
             if (ckbHN.Checked)
             {
-                tvItems.Add(new[] {temp.HighTemp, volt.NorVolt});
+                tvItems.Add(TvType.HighTempNorVolt,new[] {temp.HighTemp, volt.NorVolt});
             }
             if (ckbHH.Checked)
             {
-                tvItems.Add(new[] {temp.HighTemp, volt.HighVolt});
+                tvItems.Add(TvType.HighTempHighVolt,new[] {temp.HighTemp, volt.HighVolt});
             }
             if (tvItems.IsNullOrEmpty())
             {
-                tvItems.Add(new[] {temp.NorTemp, volt.NorVolt});
+                tvItems.Add(TvType.NorTempNorVolt,new[] {temp.NorTemp, volt.NorVolt});
             }
             return new TestCondition
             {
                 Temperature = temp,
                 Voltage = volt,
-                TvItems = tvItems.OrderBy(i => i[0]).ToList(), //对选择项进行排序，使温箱测试从低温开始以节省能源//QUES：会不会对产品造成影响待定
+                TvItems = tvItems,
                 //TODO:ACU Items 未保存
             };
         }

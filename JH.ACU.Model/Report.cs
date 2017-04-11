@@ -5,8 +5,10 @@
  * ==============================================================================*/
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using JH.ACU.Model.Annotations;
 using JH.ACU.Model.Config.TestConfig;
 
 
@@ -15,42 +17,194 @@ namespace JH.ACU.Model
     /// <summary>
     /// 需要报告给UI层的信息
     /// </summary>
-    public class Report
+    public class Report : INotifyPropertyChanged
     {
         #region 构造函数
 
         public Report()
         {
-            ValueDic = new Dictionary<string, object>();
-            SpecUnits=new List<SpecItem>();
+            ValueDict = new Dictionary<string, object>();
+            SpecUnitsDict = new Dictionary<TvType, List<SpecItem>>();
         }
 
         #endregion
 
         #region 属性字段
-
-        public double Temp { get; set; }
-        public double Volt { get; set; }
-        public string Message { get; set; }
+        private int _acuIndex;
         /// <summary>
-        /// 单项进度
+        /// 正在测试ACU索引
         /// </summary>
-        public double SingleProgress { get; set; }
+        public int AcuIndex
+        {
+            get { return _acuIndex; }
+            set
+            {
+                _acuIndex = value;
+                OnPropertyChanged("AcuIndex");
+            }
+        }
+        private string _acuName;
+        /// <summary>
+        /// 正在测试ACU ID信息
+        /// </summary>
+        public string AcuName
+        {
+            get { return _acuName; }
+            set
+            {
+                _acuName = value;
+                OnPropertyChanged("AcuName");
+            }
+        }
+
+        private bool _chamberEnable;
+        /// <summary>
+        /// 温箱是否可用
+        /// </summary>
+        public bool ChamberEnable
+        {
+            get { return _chamberEnable; }
+            set
+            {
+                _chamberEnable = value;
+                OnPropertyChanged("ChamberEnable");
+            }
+        }
+        private double _actualTemp;
+
+        /// <summary>
+        /// 温度实际值
+        /// </summary>
+        public double ActualTemp
+        {
+            get { return _actualTemp; }
+            set
+            {
+                _actualTemp = value;
+                OnPropertyChanged("ActualTemp");
+            }
+        }
+
+        private double _actualVolt;
+
+        /// <summary>
+        /// 电压实际值
+        /// </summary>
+        public double ActualVolt
+        {
+            get { return _actualVolt; }
+            set
+            {
+                _actualVolt = value;
+                OnPropertyChanged("ActualVolt");
+            }
+
+
+        }
+
+        private double _settingTemp;
+
+        /// <summary>
+        /// 温度设定值
+        /// </summary>
+        public double SettingTemp
+        {
+            get { return _settingTemp; }
+            set
+            {
+                _settingTemp = value;
+                OnPropertyChanged("SettingTemp");
+            }
+        }
+
+        private double _settingVolt;
+
+        /// <summary>
+        /// 电压设定值
+        /// </summary>
+        public double SettingVolt
+        {
+            get { return _settingVolt; }
+            set
+            {
+                _settingVolt = value;
+                OnPropertyChanged("SettingVolt");
+            }
+        }
+
+        private string _message;
+
+        /// <summary>
+        /// 提示信息
+        /// </summary>
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                OnPropertyChanged("Message");
+            }
+        }
+
+        private double _progress;
+
         /// <summary>
         /// 总进度
         /// </summary>
-        public double TotalProgress { get; set; }
+        public double Progress
+        {
+            get { return _progress; }
+            set
+            {
+                _progress = value;
+                OnPropertyChanged("Progress");
+            }
+        }
+
+        private Dictionary<TvType, List<SpecItem>> _specUnitsDict;
 
         /// <summary>
         /// 所有测试项
         /// </summary>
-        public List<SpecItem> SpecUnits { get; set; } 
+        public Dictionary<TvType, List<SpecItem>> SpecUnitsDict
+        {
+            get { return _specUnitsDict; }
+            set
+            {
+                _specUnitsDict = value;
+                OnPropertyChanged("SpecUnitsDict");
+            }
+        }
+
+        private Dictionary<string, object> _vauleDict;
+
         /// <summary>
         /// 扩展属性
         /// </summary>
-        public Dictionary<string, object> ValueDic { get; set; }
+        public Dictionary<string, object> ValueDict
+        {
+            get { return _vauleDict; }
+            set
+            {
+                _vauleDict = value;
+                OnPropertyChanged("ValueDict");
+            }
+        }
 
         #endregion
 
+        #region UI通知事件
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }

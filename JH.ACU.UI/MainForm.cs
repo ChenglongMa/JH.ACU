@@ -22,10 +22,12 @@ namespace JH.ACU.UI
         public MainForm()
         {
             InitializeComponent();
+            _report=new Report();
+            BindingControls();
             _bllMain=new BllMain();
             _bllMain.TestWorker.ProgressChanged += TestWorker_ProgressChanged;
             _bllMain.TestWorker.RunWorkerCompleted+=TestWorker_RunWorkerCompleted;
-            RefreshControlByIsBusy();
+            SetControlEnabled(!IsBusy);
         }
 
 
@@ -41,83 +43,82 @@ namespace JH.ACU.UI
         }
 
         private readonly BllMain _bllMain;
+        private Report _report;//绑定至UI控件
         #endregion
 
         #region 私有方法
 
-        /// <summary>
-        /// 根据测试线程状态更新按钮状态
-        /// </summary>
-        private void RefreshControlByIsBusy()
+        private void BindingControls()
         {
-            ledAutoRun.Enabled = !IsBusy;
-            ledManualRun.Enabled = !IsBusy;
-            numTempTarget.InteractionMode = IsBusy
+            if (_report == null) _report=new Report();
+            numTempTarget.DataBindings.Add("Value", _report, "SettingTemp");
+            numVoltTarget.DataBindings.Add("Value", _report, "SettingVolt");
+            numTempReal.DataBindings.Add("Value", _report, "ActualTemp");
+            numVoltReal.DataBindings.Add("Vaule", _report, "ActualVolt");
+            ckbChamberEnable.DataBindings.Add("Checked", _report, "ChamberEnable");
+            numAcuIndex.DataBindings.Add("Vaule", _report, "AcuIndex");
+            lblAcuName.DataBindings.Add("Text", _report, "AcuName");
+            //TODO:还差两个Grid
+        }
+        /// <summary>
+        /// 设置控件是否可用
+        /// </summary>
+        private void SetControlEnabled(bool enabled)
+        {
+            ledAutoRun.Enabled = enabled;
+            ledManualRun.Enabled = enabled;
+            numTempTarget.InteractionMode = !enabled
                 ? NumericEditInteractionModes.Indicator
                 : NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
                   NumericEditInteractionModes.Text;
-            numVoltTarget.InteractionMode = IsBusy
+            numVoltTarget.InteractionMode = !enabled
                 ? NumericEditInteractionModes.Indicator
                 : NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
                   NumericEditInteractionModes.Text;            
-            numAcuIndex.InteractionMode = IsBusy
+            numAcuIndex.InteractionMode = !enabled
                 ? NumericEditInteractionModes.Indicator
                 : NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
                   NumericEditInteractionModes.Text;
-            ckbChamberEnable.Enabled = !IsBusy;
-            grbCout.Enabled = !IsBusy;
-            toolBarsManager.Tools["btnInitialize"].SharedProps.Enabled = !IsBusy;
-            toolBarsManager.Tools["btnStop"].SharedProps.Enabled = IsBusy;
-            toolBarsManager.Tools["btnRunPause"].SharedProps.Caption = IsBusy ? "Pause" : "Run";
-            toolBarsManager.Tools["btnRunPause"].SharedPropsInternal.AppearancesLarge.Appearance.Image =
-                IsBusy ? Properties.Resources.pauseNew : Properties.Resources.StartBlue;
-            statusBar.Panels["messBar"].Text = IsBusy ? "Test is running..." : "Ready";
-
+            ckbChamberEnable.Enabled = enabled;
+            grbCout.Enabled = enabled;
+            toolBarsManager.Tools["btnInitialize"].SharedProps.Enabled = enabled;
+            toolBarsManager.Tools["btnStop"].SharedProps.Enabled = !enabled;
+            toolBarsManager.Tools["btnRunPause"].SharedProps.Enabled = enabled;
+            toolBarsManager.Tools["menuFile"].SharedProps.Enabled = enabled;
+            toolBarsManager.Tools["menuConfig"].SharedProps.Enabled = enabled;
+            toolBarsManager.Tools["menuTools"].SharedProps.Enabled = enabled;
+            //toolBarsManager.Tools["btnRunPause"].SharedProps.Caption = !enabled ? "Pause" : "Run";
+            //toolBarsManager.Tools["btnRunPause"].SharedPropsInternal.AppearancesLarge.Appearance.Image =
+            //    !enabled ? Properties.Resources.pauseNew : Properties.Resources.StartBlue;
+            statusBar.Panels["messBar"].Text = !enabled ? "Test is running..." : "Ready";
             //TODO：添加控件后更新
             txtDtc.Focus();
         }
 
-        /// <summary>
-        /// 将控件状态修改为初始状态
-        /// </summary>
-        private void ResetControl()
-        {
-            ledAutoRun.Enabled = true;
-            ledManualRun.Enabled = true;
-            numTempTarget.InteractionMode = NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
-                                            NumericEditInteractionModes.Text;
-            numVoltTarget.InteractionMode = NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
-                                            NumericEditInteractionModes.Text;
-            numAcuIndex.InteractionMode = NumericEditInteractionModes.ArrowKeys | NumericEditInteractionModes.Buttons |
-                                          NumericEditInteractionModes.Text;
-            ckbChamberEnable.Enabled = true;
-            grbCout.Enabled = true;
-            toolBarsManager.Tools["btnInitialize"].SharedProps.Enabled = true;
-            toolBarsManager.Tools["btnStop"].SharedProps.Enabled = false;
-            toolBarsManager.Tools["btnRunPause"].SharedProps.Caption = @"Run";
-            toolBarsManager.Tools["btnRunPause"].SharedPropsInternal.AppearancesLarge.Appearance.Image =
-                Properties.Resources.StartBlue;
-            //TODO：添加控件后更新
-        }
-
         private void TestWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            var report = e.UserState as Report;
+            if (report == null) return;
+            _report = report;
+            progressBar.Value = e.ProgressPercentage;
+            statusBar.Panels["messBar"].Text = report.Message;
 
         }
 
         private void TestWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            ResetControl();
+            SetControlEnabled(true);
             if (e.Cancelled)
             {
                 //操作取消
                 statusBar.Panels["messBar"].Text = @"Test has been cancelled.";
-
-                return;
+                progressBar.Value = 0;
             }
             else
             {
+                //正常完成
                 statusBar.Panels["messBar"].Text = @"Test has been done!";
+                progressBar.Value = 100;
             }
         }
 
@@ -205,7 +206,9 @@ namespace JH.ACU.UI
             }
 
         }
-
+    /// <summary>
+    /// 手动执行
+    /// </summary>
         private void ManualRun()
         {
             if (ugTestItems.Selected == null)
@@ -229,13 +232,19 @@ namespace JH.ACU.UI
                 {
                     NorVolt = numVoltTarget.Value,
                 },
-                TvItems = new List<double[]> {new[] {numTempTarget.Value, numVoltTarget.Value}},
+                TvItems = new Dictionary<TvType, double[]>
+                {
+                    {TvType.NorTempNorVolt, new[] {numTempTarget.Value, numVoltTarget.Value}}
+                },
                 AcuItems = new List<AcuItems> {new AcuItems {Index = (int) numAcuIndex.Value, Items = items}}
             };
             _bllMain.Start(con);
-            RefreshControlByIsBusy();
+            SetControlEnabled(!IsBusy);
         }
 
+        /// <summary>
+        /// 自动运行
+        /// </summary>
         private void AutoRun()
         {
             if (!_isSetting)
@@ -252,7 +261,7 @@ namespace JH.ACU.UI
                 return;
             }
             _bllMain.Start(con);
-            RefreshControlByIsBusy();
+            SetControlEnabled(!IsBusy);
         }
 
         private void ledAutoRun_Click(object sender, EventArgs e)
@@ -273,13 +282,8 @@ namespace JH.ACU.UI
         private void button1_Click(object sender, EventArgs e)
         {
             //IsBusy = !IsBusy;
-            ResetControl();
+            SetControlEnabled(true);
         }
-
-        #region 公有方法
-
-
-        #endregion
 
     }
 }
