@@ -41,6 +41,7 @@
             Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
+            Infragistics.UltraChart.Resources.Appearance.PaintElement paintElement1 = new Infragistics.UltraChart.Resources.Appearance.PaintElement();
             Infragistics.UltraChart.Resources.Appearance.GradientEffect gradientEffect1 = new Infragistics.UltraChart.Resources.Appearance.GradientEffect();
             Infragistics.UltraChart.Resources.Appearance.LineChartAppearance lineChartAppearance1 = new Infragistics.UltraChart.Resources.Appearance.LineChartAppearance();
             Infragistics.UltraChart.Resources.Appearance.ChartTextAppearance chartTextAppearance1 = new Infragistics.UltraChart.Resources.Appearance.ChartTextAppearance();
@@ -357,7 +358,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
             this.splitContainer3.Size = new System.Drawing.Size(702, 793);
-            this.splitContainer3.SplitterDistance = 295;
+            this.splitContainer3.SplitterDistance = 270;
             this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 1;
             // 
@@ -379,8 +380,8 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer4.Size = new System.Drawing.Size(702, 295);
-            this.splitContainer4.SplitterDistance = 68;
+            this.splitContainer4.Size = new System.Drawing.Size(702, 270);
+            this.splitContainer4.SplitterDistance = 60;
             this.splitContainer4.SplitterWidth = 5;
             this.splitContainer4.TabIndex = 0;
             // 
@@ -439,7 +440,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(702, 222);
+            this.groupBox1.Size = new System.Drawing.Size(702, 205);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test Condition";
@@ -452,7 +453,7 @@
             this.flowLayoutPanel8.Location = new System.Drawing.Point(4, 22);
             this.flowLayoutPanel8.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
-            this.flowLayoutPanel8.Size = new System.Drawing.Size(694, 196);
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(694, 179);
             this.flowLayoutPanel8.TabIndex = 0;
             // 
             // flowLayoutPanel4
@@ -749,8 +750,8 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.ugTestItems);
-            this.splitContainer5.Size = new System.Drawing.Size(702, 493);
-            this.splitContainer5.SplitterDistance = 163;
+            this.splitContainer5.Size = new System.Drawing.Size(702, 518);
+            this.splitContainer5.SplitterDistance = 92;
             this.splitContainer5.SplitterWidth = 5;
             this.splitContainer5.TabIndex = 0;
             // 
@@ -766,7 +767,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(702, 163);
+            this.groupBox2.Size = new System.Drawing.Size(702, 92);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Test Process";
@@ -795,7 +796,7 @@
             // 
             this.txtDtc.BackColor = System.Drawing.SystemColors.Info;
             this.txtDtc.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtDtc.Location = new System.Drawing.Point(4, 105);
+            this.txtDtc.Location = new System.Drawing.Point(4, 34);
             this.txtDtc.Margin = new System.Windows.Forms.Padding(4);
             this.txtDtc.Name = "txtDtc";
             this.txtDtc.ReadOnly = true;
@@ -805,7 +806,7 @@
             // progressBar
             // 
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar.Location = new System.Drawing.Point(4, 130);
+            this.progressBar.Location = new System.Drawing.Point(4, 59);
             this.progressBar.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(694, 29);
@@ -876,7 +877,7 @@
             this.ugTestItems.Location = new System.Drawing.Point(0, 0);
             this.ugTestItems.Margin = new System.Windows.Forms.Padding(4);
             this.ugTestItems.Name = "ugTestItems";
-            this.ugTestItems.Size = new System.Drawing.Size(702, 325);
+            this.ugTestItems.Size = new System.Drawing.Size(702, 421);
             this.ugTestItems.TabIndex = 1;
             this.ugTestItems.Text = "ultraGrid1";
             // 
@@ -908,6 +909,9 @@
             // chart
             // 
             this.chart.Axis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(220)))));
+            paintElement1.ElementType = Infragistics.UltraChart.Shared.Styles.PaintElementType.None;
+            paintElement1.Fill = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(220)))));
+            this.chart.Axis.PE = paintElement1;
             this.chart.Axis.X.Extent = 39;
             this.chart.Axis.X.Labels.Font = new System.Drawing.Font("Verdana", 7F);
             this.chart.Axis.X.Labels.FontColor = System.Drawing.Color.DimGray;
@@ -984,7 +988,7 @@
             this.chart.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.chart.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.chart.Axis.Y.MinorGridLines.Visible = false;
-            this.chart.Axis.Y.TickmarkInterval = 40D;
+            this.chart.Axis.Y.TickmarkInterval = 50D;
             this.chart.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.chart.Axis.Y.Visible = true;
             this.chart.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -1011,7 +1015,7 @@
             this.chart.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.chart.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.chart.Axis.Y2.MinorGridLines.Visible = false;
-            this.chart.Axis.Y2.TickmarkInterval = 40D;
+            this.chart.Axis.Y2.TickmarkInterval = 50D;
             this.chart.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.chart.Axis.Y2.Visible = false;
             this.chart.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
