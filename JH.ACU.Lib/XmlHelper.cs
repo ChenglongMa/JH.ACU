@@ -90,11 +90,21 @@ namespace JH.ACU.Lib
                 throw new ArgumentNullException("encoding");
 
             XmlSerializer mySerializer = new XmlSerializer(typeof (T));
-            using (MemoryStream ms = new MemoryStream(encoding.GetBytes(s)))
+            MemoryStream ms = null;
+            try
             {
+                ms = new MemoryStream(encoding.GetBytes(s));
+            
                 using (StreamReader sr = new StreamReader(ms, encoding))
                 {
                     return (T) mySerializer.Deserialize(sr);
+                }
+            }
+            finally
+            {
+                if (ms != null)
+                {
+                    ms.Dispose();
                 }
             }
         }

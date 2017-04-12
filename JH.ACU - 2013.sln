@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.BLL", "JH.ACU.BLL\JH.ACU.BLL.csproj", "{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.DAL", "JH.ACU.DAL\JH.ACU.DAL.csproj", "{58D9FC54-3A4B-4587-BD97-CCB037947732}"
@@ -13,6 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.UI", "JH.ACU.UI\JH.A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assembly", "Assembly", "{CE67C9B0-1099-46CB-967E-316461C24A16}"
 	ProjectSection(SolutionItems) = preProject
+		Assembly\D2K-Dask.dll = Assembly\D2K-Dask.dll
+		Assembly\D2K-Dask64.dll = Assembly\D2K-Dask64.dll
+		Assembly\GPIB-32.DLL = Assembly\GPIB-32.DLL
 		Assembly\Infragistics4.Documents.Core.v12.1.dll = Assembly\Infragistics4.Documents.Core.v12.1.dll
 		Assembly\Infragistics4.Documents.Excel.v12.1.dll = Assembly\Infragistics4.Documents.Excel.v12.1.dll
 		Assembly\Infragistics4.Documents.IO.v12.1.dll = Assembly\Infragistics4.Documents.IO.v12.1.dll
@@ -54,17 +59,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assembly", "Assembly", "{CE
 		Assembly\Infragistics4.Win.v12.1.Design.dll = Assembly\Infragistics4.Win.v12.1.Design.dll
 		Assembly\Infragistics4.Win.v12.1.dll = Assembly\Infragistics4.Win.v12.1.dll
 		Assembly\log4net.dll = Assembly\log4net.dll
+		Assembly\NationalInstruments.Analysis.Enterprise.dll = Assembly\NationalInstruments.Analysis.Enterprise.dll
+		Assembly\NationalInstruments.Analysis.Professional.dll = Assembly\NationalInstruments.Analysis.Professional.dll
+		Assembly\NationalInstruments.Analysis.Standard.dll = Assembly\NationalInstruments.Analysis.Standard.dll
+		Assembly\NationalInstruments.Common.dll = Assembly\NationalInstruments.Common.dll
+		Assembly\NationalInstruments.Controls.Booleans.dll = Assembly\NationalInstruments.Controls.Booleans.dll
+		Assembly\NationalInstruments.Controls.dll = Assembly\NationalInstruments.Controls.dll
+		Assembly\NationalInstruments.Controls.Graphs.dll = Assembly\NationalInstruments.Controls.Graphs.dll
+		Assembly\NationalInstruments.Controls.Numerics.dll = Assembly\NationalInstruments.Controls.Numerics.dll
+		Assembly\NationalInstruments.MStudioCLM.dll = Assembly\NationalInstruments.MStudioCLM.dll
+		Assembly\NationalInstruments.Net.dll = Assembly\NationalInstruments.Net.dll
+		Assembly\NationalInstruments.NetworkVariable.dll = Assembly\NationalInstruments.NetworkVariable.dll
+		Assembly\NationalInstruments.NI4882.dll = Assembly\NationalInstruments.NI4882.dll
+		Assembly\NationalInstruments.NiLmClientDLL.dll = Assembly\NationalInstruments.NiLmClientDLL.dll
+		Assembly\NationalInstruments.Tdms.dll = Assembly\NationalInstruments.Tdms.dll
+		Assembly\NationalInstruments.UI.Design.dll = Assembly\NationalInstruments.UI.Design.dll
+		Assembly\NationalInstruments.UI.dll = Assembly\NationalInstruments.UI.dll
+		Assembly\NationalInstruments.UI.Styles3D.dll = Assembly\NationalInstruments.UI.Styles3D.dll
+		Assembly\NationalInstruments.UI.WebForms.dll = Assembly\NationalInstruments.UI.WebForms.dll
+		Assembly\NationalInstruments.UI.WindowsForms.dll = Assembly\NationalInstruments.UI.WindowsForms.dll
+		Assembly\NationalInstruments.VisaNS.dll = Assembly\NationalInstruments.VisaNS.dll
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.Doc", "JH.ACU.Doc\JH.ACU.Doc.csproj", "{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JH.ACU.UnitTest", "JH.ACU.UnitTest\JH.ACU.UnitTest.csproj", "{383D1F64-04BB-4010-A4E5-3EC62063964D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{33A0541A-67C4-4275-9B53-5C6DBAA12AE5} = {33A0541A-67C4-4275-9B53-5C6DBAA12AE5}
-		{58D9FC54-3A4B-4587-BD97-CCB037947732} = {58D9FC54-3A4B-4587-BD97-CCB037947732}
-		{33C5AF80-1276-4BC2-AD5B-46FA82E6BF99} = {33C5AF80-1276-4BC2-AD5B-46FA82E6BF99}
-		{B8DF45FC-D31E-425D-AB51-D11C7C3A551E} = {B8DF45FC-D31E-425D-AB51-D11C7C3A551E}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -169,23 +186,11 @@ Global
 		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Remote|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Remote|Mixed Platforms.Build.0 = Release|Any CPU
 		{FE1A1F4C-2CE4-4601-9DF9-0A1670BBEFD7}.Remote|x86.ActiveCfg = Release|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Release|x86.ActiveCfg = Release|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Remote|Any CPU.ActiveCfg = Release|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Remote|Any CPU.Build.0 = Release|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Remote|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Remote|Mixed Platforms.Build.0 = Release|Any CPU
-		{383D1F64-04BB-4010-A4E5-3EC62063964D}.Remote|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

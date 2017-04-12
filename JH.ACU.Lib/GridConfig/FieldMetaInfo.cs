@@ -13,8 +13,9 @@ namespace JH.ACU.Lib.GridConfig
     [XmlType("Fields")]
     public class FieldList : List<FieldMetaInfo>
     {
-        
+
     }
+
     /// <summary>
     /// FieldMetaInfo
     /// </summary>
@@ -25,23 +26,62 @@ namespace JH.ACU.Lib.GridConfig
 
         public FieldMetaInfo()
         {
+            ReadOnly = false;
+            Visible = true;
+            ColumnStyle = ColumnStyle.Default;
         }
 
         #endregion
 
         #region 属性字段
+
+        /// <summary>
+        /// 列名
+        /// </summary>
         [XmlAttribute]
         public string ColName { get; set; }
+
+        /// <summary>
+        /// 列显示名
+        /// </summary>
         [XmlAttribute]
         public string ColDisplayName { get; set; }
+
+        /// <summary>
+        /// 列宽度
+        /// </summary>
         [XmlAttribute]
         public int Width { get; set; }
+
+        private ColumnStyle _columnStyle = ColumnStyle.Default;
+
+        /// <summary>
+        /// 列显示类型
+        /// </summary>
         [XmlAttribute]
-        public ColumnStyle ColumnStyle { get; set; }
+        public ColumnStyle ColumnStyle
+        {
+            get { return _columnStyle; }
+            set { _columnStyle = value; }
+        }
+
+        private bool _visible = true;
+
+        /// <summary>
+        /// 列可见性
+        /// </summary>
         [XmlAttribute]
-        public bool Visible { get; set; }
+        public bool Visible
+        {
+            get { return _visible; }
+            set { _visible = value; }
+        }
+
+        /// <summary>
+        /// 是否只读
+        /// </summary>
         [XmlAttribute]
-        public bool ReadOnly{ get; set; }
+        public bool ReadOnly { get; set; }
 
         #endregion
 

@@ -6,8 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Infragistics.Win.UltraWinGrid;
 using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
+using JH.ACU.Lib.GridConfig;
 using JH.ACU.Model.Config.TestConfig;
 using NationalInstruments.Restricted;
 
@@ -15,16 +17,18 @@ namespace JH.ACU.UI
 {
     public partial class InitializationForm : Form
     {
+
         public InitializationForm()
         {
             InitializeComponent();
+            _fields = BllFieldConfig.LoadFieldsInfo("SpecInitialForm.xml");
             TestCondition = BllConfig.GetTestCondition(); //从默认路径获取
             DisplayTestCondition(TestCondition);
             BindingSourceTable();
         }
 
         #region 属性字段
-
+        private readonly List<FieldMetaInfo> _fields;
         public TestCondition TestCondition { get; private set; }
 
         #endregion
@@ -222,9 +226,11 @@ namespace JH.ACU.UI
 
         private void BindingSourceTable()
         {
-            var list = BllConfig.GetSpecItems();
-            if (list.IsNullOrEmpty()) return;
+            var list = new BindingList<SpecItem>(BllConfig.GetSpecItems());
             dgSource.DataSource = list;
+            dgSource.SetStyle(_fields);
+            dgSource.SetGridDefaultStyle();
+            dgSource.DisplayLayout.Override.CellClickAction = CellClickAction.RowSelect;
         }
 
         /// <summary>
