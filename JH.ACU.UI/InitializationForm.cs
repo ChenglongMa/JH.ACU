@@ -27,7 +27,7 @@ namespace JH.ACU.UI
             t.Items.Add(2);
             t.Items.Add(3);
             t.Items.Add(1);
-
+            //bug:Add无效，暂未解决 2017-04-13
             _fields = BllFieldConfig.LoadFieldsInfo("SpecInitialForm.xml");
             TestCondition = BllConfig.GetTestCondition(); //从默认路径获取
             BindingSourceTable();
