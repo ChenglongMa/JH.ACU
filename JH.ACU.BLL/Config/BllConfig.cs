@@ -161,7 +161,8 @@ namespace JH.ACU.BLL.Config
 
             #endregion
 
-            if (!File.Exists(fileName)) throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
+            if (!File.Exists(fileName)) File.Create(fileName).Dispose();
+            //throw new ArgumentException(string.Format("路径无效:{0}", fileName), "fileName");
             if (testCondition == null) throw new ArgumentNullException("testCondition");
             XmlHelper.XmlSerializeToFile(testCondition, fileName);
         }
@@ -219,6 +220,7 @@ namespace JH.ACU.BLL.Config
             {
                 fileName = DefaultSpecFileName;
             }
+            if (!File.Exists(fileName)) File.Create(fileName).Dispose();
             var specUnit = new SpecUnit();
             specUnit.AddRange(specItems);
             XmlHelper.XmlSerializeToFile(specUnit, fileName);

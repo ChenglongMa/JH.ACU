@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using JH.ACU.Lib;
 
 namespace JH.ACU.Model.Config.TestConfig
 {
@@ -16,11 +17,11 @@ namespace JH.ACU.Model.Config.TestConfig
         [XmlAttribute]
         public int Index { get; set; }
 
-        /// <summary>
-        /// ACU别名
-        /// </summary>
-        [XmlAttribute]
-        public string Name { get; set; }
+        ///// <summary>
+        ///// ACU别名
+        ///// </summary>
+        //[XmlAttribute]
+        //public string Name { get; set; }
 
         /// <summary>
         /// 测试项
@@ -30,6 +31,7 @@ namespace JH.ACU.Model.Config.TestConfig
         {
             get
             {
+                if(ItemsString==null) return new List<int>();
                 return (from s in ItemsString.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
                     let n = int.Parse(s)
                     select n).ToList();
@@ -40,7 +42,7 @@ namespace JH.ACU.Model.Config.TestConfig
         /// <summary>
         /// 将测试项转换为字符串保存到xml文件中
         /// </summary>
-        [XmlAttribute("Items")]
+        [XmlElement("Items")]
         public string ItemsString { get; set; }
 
     }

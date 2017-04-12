@@ -329,7 +329,7 @@ namespace JH.ACU.UI
                 {
                     Enable = ckbChamberEnable.Checked,
                     Duration = Properties.Settings.Default.Duration,
-                    NorTemp = numTempTarget.Value,
+                    NorTemp = new Temp{Value = numTempTarget.Value,Delay = 0}
                 },
                 Voltage = new Voltage
                 {

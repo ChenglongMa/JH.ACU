@@ -139,8 +139,7 @@ namespace JH.ACU.UI
             var testCondition = new TestCondition
             {
                 Voltage = {HighVolt = 13.5, NorVolt = 12.0, LowVolt = 6.5},
-                Temperature = {Duration = 1000, Enable = true, HighTemp = 85.0, LowTemp = -40.0, NorTemp = 25.0},
-                AcuItems = new List<AcuItems>(new[] { new AcuItems { Name = "A", Items = new List<int> { 1, 5, 6, 73 } }, new AcuItems { Name = "B", Items = new List<int> { 1, 8,10 } }, new AcuItems { Name = "C", Items = list} })
+                //AcuItems = new List<AcuItems>(new[] { new AcuItems { Name = "A", Items = new List<int> { 1, 5, 6, 73 } }, new AcuItems { Name = "B", Items = new List<int> { 1, 8,10 } }, new AcuItems { Name = "C", Items = list} })
             };
             var settingFileName = Environment.CurrentDirectory + "\\Config\\TestCondition.xml";
 
