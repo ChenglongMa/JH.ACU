@@ -1,0 +1,4 @@
+﻿<Fields>
+  <Field ColName="Index" ColDisplayName="Index" Width="15" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="Description" ColDisplayName="Description" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+</Fields>
