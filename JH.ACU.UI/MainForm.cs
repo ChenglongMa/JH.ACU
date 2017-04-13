@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
@@ -114,6 +115,27 @@ namespace JH.ACU.UI
             ugTestItems.SetStyle(_fieldsProgress);
             ugTestItems.SetGridDefaultStyle();
             ugTestItems.DisplayLayout.Override.CellClickAction=CellClickAction.RowSelect;
+            foreach (var row in ugTestItems.Rows)
+            {
+                var cell = row.Cells["ResultInfo"];
+                var text = cell.Text.ToLower();
+                if (text.Contains("failed"))
+                {
+                    cell.Appearance.ForeColor=Color.Red;
+                }
+                else if (text.Contains("passed"))
+                {
+                    cell.Appearance.ForeColor=Color.Green;
+                }
+                else if (text.Contains("cancelled"))
+                {
+                    cell.Appearance.ForeColor = Color.Orange;
+                }
+                else
+                {
+                    cell.Appearance.ForeColor = DefaultForeColor;
+                }
+            }
         }
 
         private void BindingToResultGrid(UltraGrid grid)

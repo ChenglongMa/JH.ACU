@@ -197,6 +197,7 @@ namespace JH.ACU.BLL
 
                     #endregion
 
+                    _specCount = acuItem.Items.Count;
                     var boardIndex = acuItem.Index;
                     if (boardIndex < 0 || boardIndex > 7) continue;
                     _report.AcuIndex = boardIndex + 1;//ACU Index显示值从1开始
@@ -388,11 +389,12 @@ namespace JH.ACU.BLL
         {
             FindSpec((int) wlTest).ResultInfo = "Progressing...";
             var progress = GetProgress((int) wlTest, _tvIndex);
-            TestWorker.ReportProgress((int) (progress*0.5), _report);
+            TestWorker.ReportProgress(progress, _report);
             var res = func(); //GetWLVolt(acuIndex, 1, true);
             if ((int) res == (int) TestResult.Cancelled)
             {
                 FindSpec((int) wlTest).ResultInfo = "Cancelled";
+                TestWorker.ReportProgress(progress, _report);
                 return false;
             }
             if ((int) res == (int) TestResult.Failed)
@@ -548,7 +550,7 @@ namespace JH.ACU.BLL
                         {
                             FindSpec(itemIndex).ResultInfo = "Progressing...";
                             var progress = GetProgress(itemIndex, _tvIndex);
-                            TestWorker.ReportProgress((int) (progress*0.5), _report);
+                            TestWorker.ReportProgress(progress, _report);
                             var res = TestSquib(acuItem.Index, iSquib, iMode);
                             if ((int) res == (int)TestResult.Cancelled)
                             {
@@ -622,6 +624,7 @@ namespace JH.ACU.BLL
                             if ((int)res == (int)TestResult.Cancelled)
                             {
                                 FindSpec(itemIndex).ResultInfo = "Cancelled";
+                                TestWorker.ReportProgress(progress, _report);
                                 return true;
                             }
                             FindSpec(itemIndex).ResultInfo = (int)res == (int)TestResult.Failed ? "Failed" : "Passed";
@@ -1298,6 +1301,8 @@ namespace JH.ACU.BLL
         private readonly Report _report;
         private KeyValuePair<TvType, double[]> _tvItem;
         private int _tvIndex;//正在测试温度电压组合的项数
+        private int _tvCount;//需要测试温度电压组合总数
+        private int _specCount;//需要测试项的总数
         private double _voltTarget;
 
         private double VoltTarget
@@ -1309,7 +1314,9 @@ namespace JH.ACU.BLL
             set { _voltTarget = value;
                 _report.SettingVolt = value;
             }
-        }        private double _tempTarget;
+        }
+
+        private double _tempTarget;
 
         private double TempTarget
         {
@@ -1387,21 +1394,7 @@ namespace JH.ACU.BLL
             _pwr.Initialize();
         }
 
-        /// <summary>
-        /// 关闭所有仪器
-        /// </summary>
-        public void CloseAllInstrs()
-        {
-            if (_daq != null)
-            {
-                _daq.ResetAll();
-                _daq.Dispose();
-            }
-            if (_dmm != null) _dmm.Dispose();
-            if (_prs0 != null) _prs0.Dispose();
-            if (_prs1 != null) _prs1.Dispose();
-            if (_pwr != null) _pwr.Dispose();
-        }
+
 
         /// <summary>
         /// 启动ACU，自动重连三次
@@ -1526,15 +1519,24 @@ namespace JH.ACU.BLL
             }
         }
 
+        /// <summary>
+        /// 根据测试项和温度电压组合项计算进度值
+        /// </summary>
+        /// <param name="specIndex"></param>
+        /// <param name="tvIndex"></param>
+        /// <returns></returns>
         private int GetProgress(int specIndex, int tvIndex)
         {
-            return 40;
-            throw new NotImplementedException();
+            return (int) ((Convert.ToDouble(specIndex)/Convert.ToDouble(_specCount) + tvIndex)/_tvCount*100);
         }
         #endregion
 
         #region 公有方法
 
+        /// <summary>
+        /// 开始测试
+        /// </summary>
+        /// <param name="testCondition"></param>
         public void Start(TestCondition testCondition)
         {
             TestCondition = testCondition;
@@ -1542,6 +1544,21 @@ namespace JH.ACU.BLL
             TestWorker.RunWorkerAsync(tvItems);
         }
 
+        /// <summary>
+        /// 关闭所有仪器
+        /// </summary>
+        public void CloseAllInstrs()
+        {
+            if (_daq != null)
+            {
+                _daq.ResetAll();
+                _daq.Dispose();
+            }
+            if (_dmm != null) _dmm.Dispose();
+            if (_prs0 != null) _prs0.Dispose();
+            if (_prs1 != null) _prs1.Dispose();
+            if (_pwr != null) _pwr.Dispose();
+        }
         #endregion
     }
 }

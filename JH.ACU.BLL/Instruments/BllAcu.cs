@@ -125,7 +125,7 @@ namespace JH.ACU.BLL.Instruments
             try
             {
                 _serial.Clear();
-                _serial.Write(new byte[] { 0x53 });
+                _serial.Write(new byte[] {0x53});
                 Thread.Sleep(50);
                 var data = _serial.ReadByteArray(21); //0:53 1:length 2:cfc 3(17):id 
                 RomCs = data.Skip(3).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
@@ -133,8 +133,10 @@ namespace JH.ACU.BLL.Instruments
                 AcuSn = data.Skip(3 + 2 + 4).Take(4).Aggregate("", (current, b) => current + b.ToString("X2"));
                 LabVer = data.Skip(3 + 2 + 4 + 4).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
                 Mlfb = data.Skip(3 + 2 + 4 + 4 + 2).Take(3).ToArray().ToAscii();
-                ParaVer = data.Skip(3 + 2 + 4 + 4 + 2 + 3).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
-                var cs = new[] { data[data.Length - 1] };
+                ParaVer = data.Skip(3 + 2 + 4 + 4 + 2 + 3)
+                    .Take(2)
+                    .Aggregate("", (current, b) => current + b.ToString("X2"));
+                var cs = new[] {data[data.Length - 1]};
                 _serial.Write(cs);
                 Thread.Sleep(20);
                 var res = _serial.ReadByteArray(2)[1];
@@ -158,6 +160,9 @@ namespace JH.ACU.BLL.Instruments
             return WriteAndRead(data)[0] == 0xff;
         }
 
+        /// <summary>
+        /// 停止读取实时故障
+        /// </summary>
         public void StopRtFault()
         {
             _serial.AnyCharacterReceived -= _serial_AnyCharacterReceived;
@@ -169,6 +174,7 @@ namespace JH.ACU.BLL.Instruments
             _serial.Clear();
             _realTimeFlag = false;
         }
+
         /// <summary>
         /// 读取实时故障
         /// </summary>
@@ -202,8 +208,8 @@ namespace JH.ACU.BLL.Instruments
         public bool HasFoundDtc(byte code, out bool connect)
         {
             connect = ReadRtFault();
-            //最多重复3次
-            for (int i = 0; i < 50; i++)
+            //最多重复10次
+            for (int i = 0; i < 10; i++)
             {
                 Thread.Sleep(200);
                 if (RealTimeData.Contains(code)) //若事件读取到的RealTimeData中含有所需code则返回True;
@@ -234,6 +240,7 @@ namespace JH.ACU.BLL.Instruments
             temp[3] = readCount;
             return WriteAndRead(temp);
         }
+
         /// <summary>
         /// 设置指定WL开关状态
         /// </summary>
@@ -245,9 +252,9 @@ namespace JH.ACU.BLL.Instruments
             Command command;
             if (index == 1 && isOn)
             {
-                command=Command.WL1On;
+                command = Command.WL1On;
             }
-            else if(index==1&&!isOn)
+            else if (index == 1 && !isOn)
             {
                 command = Command.WL1Off;
             }
@@ -256,7 +263,7 @@ namespace JH.ACU.BLL.Instruments
                 command = Command.WL2On;
 
             }
-            else if(index==2&&!isOn)
+            else if (index == 2 && !isOn)
             {
                 command = Command.WL2Off;
             }
@@ -266,6 +273,7 @@ namespace JH.ACU.BLL.Instruments
             }
             return Execute(command);
         }
+
         /// <summary>
         /// 赋值相应code,执行内部功能
         /// </summary>

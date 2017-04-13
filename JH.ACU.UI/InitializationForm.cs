@@ -22,12 +22,6 @@ namespace JH.ACU.UI
         public InitializationForm()
         {
             InitializeComponent();
-            var t=new AcuItems();
-            t.Items=new List<int>();
-            t.Items.Add(2);
-            t.Items.Add(3);
-            t.Items.Add(1);
-            //bug:Add无效，暂未解决 2017-04-13
             _fields = BllFieldConfig.LoadFieldsInfo("SpecInitialForm.xml");
             TestCondition = BllConfig.GetTestCondition(); //从默认路径获取
             BindingSourceTable();
@@ -232,6 +226,7 @@ namespace JH.ACU.UI
                 AcuItems = GetAcuItems(),
             };
         }
+
         /// <summary>
         /// 将Grid中选中的值转换为AcuItems
         /// </summary>
@@ -249,17 +244,21 @@ namespace JH.ACU.UI
                     var index = res.IndexOf(a => a.Index == acuIndex);
                     var acuItem = res.Find(a => a.Index == acuIndex);
 
-                    if (acuItem!=null)
+                    if (acuItem != null)
                     {
                         acuItem.Items.Add(Convert.ToInt32(row.Cells[0].Text));
                     }
                     else
                     {
-                        res.Add(new AcuItems{Index = acuIndex,Items = new List<int>{Convert.ToInt32(row.Cells[0].Text)}});
+                        res.Add(new AcuItems
+                        {
+                            Index = acuIndex,
+                            Items = new List<int> {Convert.ToInt32(row.Cells[0].Text)}
+                        });
                     }
                 }
             }
-            return res.OrderBy(a=>a.Index).ToList();
+            return res.OrderBy(a => a.Index).ToList();
         }
 
         private void SetAcuItems(List<AcuItems> items)
@@ -288,6 +287,7 @@ namespace JH.ACU.UI
                 }
             }
         }
+
         private void BindingSourceTable()
         {
             var list = new BindingList<SpecItem>(BllConfig.GetSpecItems());
@@ -319,8 +319,8 @@ namespace JH.ACU.UI
         {
             if (e.Cell.Column.Key.Contains("Acu"))
             {
-                e.Cell.ActiveAppearance.BackColor = Convert.ToBoolean(e.Cell.Text) ? Color.Coral : Color.Empty;
-                e.Cell.Appearance.BackColor = Convert.ToBoolean(e.Cell.Text) ? Color.Coral : Color.Empty;
+                e.Cell.ActiveAppearance.BackColor = Convert.ToBoolean(e.Cell.Text) ? Color.Coral : DefaultBackColor;
+                e.Cell.Appearance.BackColor = Convert.ToBoolean(e.Cell.Text) ? Color.Coral : DefaultBackColor;
             }
         }
     }
