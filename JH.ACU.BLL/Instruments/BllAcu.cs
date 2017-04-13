@@ -80,11 +80,16 @@ namespace JH.ACU.BLL.Instruments
         private void _serial_AnyCharacterReceived(object sender, SerialSessionEventArgs e)
         {
             if (_serial.AvailableNumber <= 0) return;
-            var data = _serial.ReadByteArray(1)[0];
-            if (!RealTimeData.Contains(data))
+            var data = _serial.ReadByteArray(_serial.AvailableNumber);
+            foreach (var d in data)
             {
-                RealTimeData.Add(data);
+                if (!RealTimeData.Contains(d))
+                {
+                    RealTimeData.Add(d);
+                }
+
             }
+
         }
 
 
@@ -117,21 +122,30 @@ namespace JH.ACU.BLL.Instruments
 
         public bool Start()
         {
-            _serial.Clear();
-            _serial.Write(new byte[] {0x53});
-            Thread.Sleep(50);
-            var data = _serial.ReadByteArray(21); //0:53 1:length 2:cfc 3(17):id 
-            RomCs = data.Skip(3).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
-            RomVer = data.Skip(3 + 2).Take(4).Aggregate("", (current, b) => current + b.ToString("X2"));
-            AcuSn = data.Skip(3 + 2 + 4).Take(4).Aggregate("", (current, b) => current + b.ToString("X2"));
-            LabVer = data.Skip(3 + 2 + 4 + 4).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
-            Mlfb = data.Skip(3 + 2 + 4 + 4 + 2).Take(3).ToArray().ToAscii();
-            ParaVer = data.Skip(3 + 2 + 4 + 4 + 2 + 3).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
-            var cs = new[] {data[data.Length - 1]};
-            _serial.Write(cs);
-            Thread.Sleep(20);
-            var res = _serial.ReadByteArray(2)[1];
-            return res == 0x4f;
+            try
+            {
+                _serial.Clear();
+                _serial.Write(new byte[] { 0x53 });
+                Thread.Sleep(50);
+                var data = _serial.ReadByteArray(21); //0:53 1:length 2:cfc 3(17):id 
+                RomCs = data.Skip(3).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
+                RomVer = data.Skip(3 + 2).Take(4).Aggregate("", (current, b) => current + b.ToString("X2"));
+                AcuSn = data.Skip(3 + 2 + 4).Take(4).Aggregate("", (current, b) => current + b.ToString("X2"));
+                LabVer = data.Skip(3 + 2 + 4 + 4).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
+                Mlfb = data.Skip(3 + 2 + 4 + 4 + 2).Take(3).ToArray().ToAscii();
+                ParaVer = data.Skip(3 + 2 + 4 + 4 + 2 + 3).Take(2).Aggregate("", (current, b) => current + b.ToString("X2"));
+                var cs = new[] { data[data.Length - 1] };
+                _serial.Write(cs);
+                Thread.Sleep(20);
+                var res = _serial.ReadByteArray(2)[1];
+                return res == 0x4f;
+
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteErrorLog("BllAcu", ex, "ACU 通讯失败");
+                return false;
+            }
         }
 
         public bool Stop()
@@ -155,7 +169,10 @@ namespace JH.ACU.BLL.Instruments
             _serial.Clear();
             _realTimeFlag = false;
         }
-
+        /// <summary>
+        /// 读取实时故障
+        /// </summary>
+        /// <returns></returns>
         public bool ReadRtFault()
         {
             try
@@ -186,7 +203,7 @@ namespace JH.ACU.BLL.Instruments
         {
             connect = ReadRtFault();
             //最多重复3次
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 50; i++)
             {
                 Thread.Sleep(200);
                 if (RealTimeData.Contains(code)) //若事件读取到的RealTimeData中含有所需code则返回True;

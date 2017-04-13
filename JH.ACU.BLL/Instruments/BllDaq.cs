@@ -305,7 +305,7 @@ namespace JH.ACU.BLL.Instruments
             }
             else
             {
-                groupIndex = (byte) ((relayIndex - 200)/10 - 2);
+                groupIndex = (byte) ((relayIndex - 200)/10 - 1);
             }
             if (groupIndex > GroupNum - 1) throw new ArgumentException("输入继电器索引无效", "relayIndex");
 
@@ -495,9 +495,11 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="boardIndex"></param>
         public void OpenBoard(byte boardIndex)
         {
-            byte mask6 = (byte) (0x30 | _relaysGroupMask[boardIndex, 6]);
-            byte mask7 = (byte) (0x88 | _relaysGroupMask[boardIndex, 7]);
-            byte mask12 = (byte) (0x01 | _relaysGroupMask[boardIndex, 12]);
+            byte mask6 = (byte)(0x30 | _relaysGroupMask[boardIndex, 6]);
+            byte mask7 = (byte)(0x88 | _relaysGroupMask[boardIndex, 7]);
+            byte mask12 = (byte)(0x01 | _relaysGroupMask[boardIndex, 12]);
+            SetRelaysGroup(boardIndex, 6, mask6);
+            Thread.Sleep(100);
             SetRelaysGroup(boardIndex, 6, mask6);
             Thread.Sleep(100);
             SetRelaysGroup(boardIndex, 7, mask7);

@@ -207,19 +207,32 @@ namespace JH.ACU.UI
 
         private void TestWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            SetControlEnabled(true);
-            if (e.Cancelled)
+            try
             {
-                //操作取消
-                statusBar.Panels["messBar"].Text = @"Test has been cancelled.";
-                progressBar.Value = 0;
+                if (e.Error != null)
+                {
+                    throw e.Error;
+                }
+                if (e.Cancelled)
+                {
+                    //操作取消
+                    statusBar.Panels["messBar"].Text = @"Test has been cancelled.";
+                    progressBar.Value = 0;
+                }
+                else
+                {
+                    //正常完成
+                    statusBar.Panels["messBar"].Text = @"Test has been done!";
+                    progressBar.Value = 100;
+                }
+
             }
-            else
+            finally
             {
-                //正常完成
-                statusBar.Panels["messBar"].Text = @"Test has been done!";
-                progressBar.Value = 100;
+                SetControlEnabled(true);
+                _bllMain.CloseAllInstrs();
             }
+
         }
 
         private void ultraToolbarsManager1_ToolClick(object sender, ToolClickEventArgs e)
@@ -301,6 +314,7 @@ namespace JH.ACU.UI
                     {
                         _bllMain.TestWorker.CancelAsync();
                     }
+                    //SetControlEnabled(true);
                     break;
 
 
@@ -337,9 +351,9 @@ namespace JH.ACU.UI
                 },
                 TvItems = new Dictionary<TvType, double[]>
                 {
-                    {TvType.NorTempNorVolt, new[] {numTempTarget.Value, numVoltTarget.Value}}
+                    {TvType.NorTempNorVolt, new[] {numTempTarget.Value, numVoltTarget.Value,0}}
                 },
-                AcuItems = new List<AcuItems> {new AcuItems {Index = (int) numAcuIndex.Value, Items = items}}
+                AcuItems = new List<AcuItems> {new AcuItems {Index = (int) numAcuIndex.Value-1, Items = items}}
             };
             _bllMain.Start(con);
             SetControlEnabled(!IsBusy);

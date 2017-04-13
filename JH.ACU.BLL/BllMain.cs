@@ -32,10 +32,6 @@ namespace JH.ACU.BLL
 
         private void ChamberStay_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Error != null)
-            {
-                throw e.Error;
-            }
             if (e.Cancelled)
             {
                 //操作取消
@@ -89,10 +85,6 @@ namespace JH.ACU.BLL
         /// <param name="e"></param>
         private void TestWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Error != null)
-            {
-                throw e.Error;
-            }
             if (e.Cancelled)
             {
                 //操作取消
@@ -175,6 +167,8 @@ namespace JH.ACU.BLL
                         #endregion
                     } while (Math.Abs(TempTarget - _chamber.GetTemp()) <= 1 || Environment.TickCount - tick < 60*60*1000);
                     ChamberStay.RunWorkerAsync();
+                    var delay = Convert.ToInt32(tvItem.Value[2]);
+                    Thread.Sleep(delay);
                 }
 
                 #endregion
@@ -1357,7 +1351,7 @@ namespace JH.ACU.BLL
         /// </summary>
         private readonly List<SpecItem> _specUnits;
 
-        private static readonly string LogFileName = "TestLog" + DateTime.Now.ToString("yy_MM_dd");
+        private const string LogFileName = "BllMain";
 
         #region 各类仪器
 
@@ -1396,7 +1390,7 @@ namespace JH.ACU.BLL
         /// <summary>
         /// 关闭所有仪器
         /// </summary>
-        private void CloseAllInstrs()
+        public void CloseAllInstrs()
         {
             if (_daq != null)
             {
@@ -1534,6 +1528,7 @@ namespace JH.ACU.BLL
 
         private int GetProgress(int specIndex, int tvIndex)
         {
+            return 40;
             throw new NotImplementedException();
         }
         #endregion

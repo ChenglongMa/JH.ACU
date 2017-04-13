@@ -24,7 +24,10 @@ namespace JH.ACU.Model.Config.TestConfig
         public Voltage Voltage { get; set; }
 
         /// <summary>
-        /// 温度、电压测试项
+        /// 温度、电压测试项 
+        /// double[0]:TempValue;
+        /// double[1]:VoltValue;
+        /// double[2]:TempDelay(min);
         /// </summary>
         [XmlIgnore]
         public Dictionary<TvType, double[]> TvItems { get; set; }

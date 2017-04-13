@@ -27,23 +27,30 @@ namespace JH.ACU.Model.Config.TestConfig
         /// 测试项
         /// </summary>
         [XmlIgnore]
-        public List<int> Items
-        {
-            get
-            {
-                if(ItemsString==null) return new List<int>();
-                return (from s in ItemsString.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
-                    let n = int.Parse(s)
-                    select n).ToList();
-            }
-            set { ItemsString = string.Join(",", value.ConvertAll(i => i.ToString()).ToArray()); }
-        }
+        public List<int> Items { get; set; }
 
         /// <summary>
         /// 将测试项转换为字符串保存到xml文件中
         /// </summary>
         [XmlElement("Items")]
-        public string ItemsString { get; set; }
+        public string ItemsString
+        {
+            get { return string.Join(",", Items.ConvertAll(i => i.ToString()).ToArray()); }
+            set
+            {
+                if (value.IsNullOrEmpty())
+                {
+                    Items = new List<int>();
+                }
+                else
+                {
+                    Items = (from s in value.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
+                        let n = int.Parse(s)
+                        select n).ToList();
+
+                }
+            }
+        }
 
     }
 }

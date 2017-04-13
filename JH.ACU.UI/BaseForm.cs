@@ -15,5 +15,10 @@ namespace JH.ACU.UI
         {
             InitializeComponent();
         }
+
+        private void numericEditArray1_ValuesChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

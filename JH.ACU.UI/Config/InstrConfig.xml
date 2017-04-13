@@ -1,9 +1,9 @@
 ﻿<InstrConfig>
   <Instr Name="Acu" Type="Serial">
-    <Serial COM="7" BaudRate="9600" DataBits="8" StopBits="One" />
+    <Serial COM="1" BaudRate="9600" DataBits="8" StopBits="One" />
   </Instr>
   <Instr Name="Pwr" Type="Serial">
-    <Serial COM="8" BaudRate="9600" DataBits="8" StopBits="One" />
+    <Serial COM="2" BaudRate="9600" DataBits="8" StopBits="One" />
   </Instr>
   <Instr Name="Prs0" Type="Gpib">
     <Gpib Address="3" />
