@@ -33,12 +33,17 @@ namespace JH.ACU.BLL.Abstract
             }
         }
 
+        ~BllModbusTcp()
+        {
+            Dispose(false);
+        }
         #endregion
 
         #region 属性、字段
 
         private readonly Socket _socket;
         protected Instr Config { get; set; }
+        private bool _disposed;
 
         /// <summary>
         /// 默认路由地址
@@ -226,13 +231,32 @@ namespace JH.ACU.BLL.Abstract
 
         public void Dispose()
         {
+            Dispose(true);
+            //通知垃圾回收机制不再调用终结器（析构器）
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                //清理托管资源
+            }
+            // 清理非托管资源
             if (_socket.Connected)
             {
                 _socket.Shutdown(SocketShutdown.Both);
             }
             _socket.Close();
             _socket.Dispose();
+
+            //让类型知道自己已经被释放
+            _disposed = true;
         }
+
         #endregion
 
     }

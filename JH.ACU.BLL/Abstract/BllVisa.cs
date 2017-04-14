@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using Ivi.Visa;
 using JH.ACU.BLL.Config;
@@ -21,8 +22,13 @@ namespace JH.ACU.BLL.Abstract
             CreateSession(instr);
         }
 
+        ~BllVisa()
+        {
+            Dispose(false);
+        }
         #region 属性字段
 
+        private bool _disposed;
         protected MessageBasedSession MbSession { get; set; }
 
         protected IMessageBasedRawIO RawIo
@@ -189,11 +195,28 @@ namespace JH.ACU.BLL.Abstract
         /// </summary>
         public void Dispose()
         {
+            Dispose(true);
+            //通知垃圾回收机制不再调用终结器（析构器）
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                // 清理托管资源
+            }
+            // 清理非托管资源
             if (!MbSession.IsDisposed)
             {
                 Reset();
                 MbSession.Dispose();
             }
+            //让类型知道自己已经被释放
+            _disposed = true;
         }
 
         #endregion

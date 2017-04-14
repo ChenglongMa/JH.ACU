@@ -20,6 +20,11 @@ namespace JH.ACU.BLL.Instruments
         {
         }
 
+        ~BllDaq()
+        {
+            Dispose(false);
+        }
+
         #endregion
 
         #region 属性、字段
@@ -29,7 +34,7 @@ namespace JH.ACU.BLL.Instruments
         private int _currGroup = -1;
         private readonly double _amplify12V = (4.7 + 4.7)/4.7;
         private readonly double _amplifyPow = (10.0 + 4.7)/4.7;
-
+        private bool _disposed;
         /// <summary>
         /// PB5不复位常量
         /// </summary>
@@ -775,12 +780,30 @@ namespace JH.ACU.BLL.Instruments
 
         public void Dispose()
         {
+            Dispose(true);
+            //通知垃圾回收机制不再调用终结器（析构器）
+            GC.SuppressFinalize(this);
+
+        }
+        protected void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                // 清理托管资源
+            }
+            //清理非托管资源
             if (_mDev >= 0)
             {
                 ResetAll();
-                D2KDask.D2K_Release_Card((ushort) _mDev);
+                D2KDask.D2K_Release_Card((ushort)_mDev);
                 _mDev = -1;
             }
+            //让类型知道自己已经被释放
+            _disposed = true;
         }
 
         #endregion
