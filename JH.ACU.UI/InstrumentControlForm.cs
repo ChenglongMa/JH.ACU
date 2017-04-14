@@ -11,6 +11,7 @@ using JH.ACU.BLL.Abstract;
 using JH.ACU.BLL.Instruments;
 using JH.ACU.Lib;
 using JH.ACU.Model;
+using NationalInstruments.Restricted;
 using NationalInstruments.UI;
 
 namespace JH.ACU.UI
@@ -98,6 +99,16 @@ namespace JH.ACU.UI
                 default:
                     throw new ArgumentOutOfRangeException("name", name, null);
             }
+        }
+
+        private void InstrumentControlForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _pwr.IfNotNull(p => p.Dispose());
+            _prs0.IfNotNull(prs => prs.Dispose());
+            _prs1.IfNotNull(prs => prs.Dispose());
+            _chamber.IfNotNull(c => c.Dispose());
+            _dmm.IfNotNull(d => d.Dispose());
+            _daq.IfNotNull(d => d.Dispose());
         }
 
         #region 程控电源操作
@@ -682,6 +693,7 @@ namespace JH.ACU.UI
         }
 
         #endregion
+
 
 
     }

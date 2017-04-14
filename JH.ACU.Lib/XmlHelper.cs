@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using NationalInstruments.Restricted;
 
 namespace JH.ACU.Lib
 {
@@ -102,10 +103,7 @@ namespace JH.ACU.Lib
             }
             finally
             {
-                if (ms != null)
-                {
-                    ms.Dispose();
-                }
+                ms.IfNotNull(m=>m.Dispose());
             }
         }
 

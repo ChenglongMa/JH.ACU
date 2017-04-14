@@ -1549,15 +1549,12 @@ namespace JH.ACU.BLL
         /// </summary>
         public void CloseAllInstrs()
         {
-            if (_daq != null)
-            {
-                _daq.ResetAll();
-                _daq.Dispose();
-            }
-            if (_dmm != null) _dmm.Dispose();
-            if (_prs0 != null) _prs0.Dispose();
-            if (_prs1 != null) _prs1.Dispose();
-            if (_pwr != null) _pwr.Dispose();
+            _pwr.IfNotNull(p => p.Dispose());
+            _prs0.IfNotNull(prs => prs.Dispose());
+            _prs1.IfNotNull(prs => prs.Dispose());
+            _chamber.IfNotNull(c => c.Dispose());
+            _dmm.IfNotNull(d => d.Dispose());
+            _daq.IfNotNull(d => d.Dispose());
         }
         #endregion
     }
