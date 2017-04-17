@@ -65,7 +65,7 @@ namespace JH.ACU.BLL
                 #region 通知UI
 
                 _report.Message = "Chamber is staying...";
-                _report.ActualTemp = _chamber.GetTemp();
+                _report.ActualTemp = ActualTemp;
                 var progress = 60 +
                                Math.Abs((Environment.TickCount - tick)/(TestCondition.Temperature.Duration*60*1000))*40;
                 TestWorker.ReportProgress((int)progress, _report);
@@ -109,6 +109,7 @@ namespace JH.ACU.BLL
             TestEventArgs = e;
             _report.Message = "Test is running...";
             var tvItems = (Dictionary<TvType, double[]>)e.Argument; //传入温度电压测试条件集合
+            _tvCount = tvItems.Count;
             foreach (var tvItem in tvItems) //tvItem[0]:温度值;tvItem[1]:电压值
             {
                 _tvItem = tvItem;
@@ -116,8 +117,8 @@ namespace JH.ACU.BLL
                 SelectedTvType = tvItem.Key;
                 #region 通知UI
 
-                TempTarget = tvItem.Value[0];
-                VoltTarget = tvItem.Value[1];
+                SettingTemp = tvItem.Value[0];
+                SettingVolt = tvItem.Value[1];
                 var specUnits = new List<SpecItem>();
                 specUnits.AddRange(_specUnits);
                 if (_report.SpecUnitsDict.ContainsKey(tvItem.Key))
@@ -141,7 +142,7 @@ namespace JH.ACU.BLL
                     {
                         _chamber = new BllChamber();
                     }
-                    _chamber.SetTemp(TempTarget); //设置温度值
+                    _chamber.SetTemp(SettingTemp); //设置温度值
                     var tick = Environment.TickCount; //获取当前时刻值
                     do
                     {
@@ -160,12 +161,12 @@ namespace JH.ACU.BLL
 
                         #region 通知UI
 
-                        _report.ActualTemp = _chamber.GetTemp();
-                        var progress = Math.Abs(_report.ActualTemp/TempTarget)*60;
+                        _report.ActualTemp = ActualTemp;
+                        var progress = Math.Abs(_report.ActualTemp/SettingTemp)*60;
                         TestWorker.ReportProgress((int) progress, _report);
 
                         #endregion
-                    } while (Math.Abs(TempTarget - _chamber.GetTemp()) <= 1 || Environment.TickCount - tick < 60*60*1000);
+                    } while (Math.Abs(SettingTemp - ActualTemp) <= 1 || Environment.TickCount - tick < 60*60*1000);
                     ChamberStay.RunWorkerAsync();
                     var delay = Convert.ToInt32(tvItem.Value[2]);
                     Thread.Sleep(delay);
@@ -178,7 +179,7 @@ namespace JH.ACU.BLL
                 OpenAllInstrs();
                 _pwr.Ocp = false;
                 _pwr.OutPutState = false;
-                _pwr.OutputVoltage = VoltTarget;
+                _pwr.OutputVoltage = SettingVolt;
                 _pwr.OutputCurrent = 5.0;
                 _pwr.OutPutState = true; //开始输出电压
 
@@ -224,7 +225,7 @@ namespace JH.ACU.BLL
                     {
                         //continue;
                     }
-                    if (!TestACUCurr(acuItem))
+                    if (!TestAcuCurr(acuItem))
                     {
                         //continue;
                     }
@@ -255,13 +256,21 @@ namespace JH.ACU.BLL
             }
         }
 
-        private bool TestACUCurr(AcuItems acuItem)
+        #region ACU电流测试
+
+        /// <summary>
+        /// ACU电流测试
+        /// </summary>
+        /// <param name="acuItem"></param>
+        /// <returns></returns>
+        private bool TestAcuCurr(AcuItems acuItem)
         {
             try
             {
                 var items = acuItem.Items;
-                throw new NotImplementedException();
-
+                if (!items.Contains(AcuCurrentItemIndex)) return true;
+                TestFrame(AcuCurrentItemIndex, () => FindCurr(acuItem.Index));
+                return true;
             }
             catch (Exception ex)
             {
@@ -271,6 +280,40 @@ namespace JH.ACU.BLL
                 return false;
             }
         }
+
+        private double FindCurr(int acuIndex)
+        {
+            try
+            {
+                _daq.SetSubRelayStatus((byte) acuIndex, 267, true);
+                double res = 0;
+                for (int i = 0; i < 5; i++)
+                {
+                    #region 若取消测试
+
+                    if (TestWorker.CancellationPending)
+                    {
+                        TestEventArgs.Cancel = true;
+                        _acu.Stop();
+                        CloseAllInstrs();
+                        return (double)TestResult.Cancelled;
+                    }
+
+                    #endregion
+
+                    Thread.Sleep(200);
+                    res += _dmm.GetCurrent();
+                }
+                _daq.SetSubRelayStatus((byte)acuIndex, 267, false);
+                return res/5D;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteErrorLog(LogFileName, ex);
+                return (double) TestResult.Failed;
+            }
+        }
+        #endregion
 
         private bool TestHoldTime(AcuItems acuItem)
         {
@@ -306,28 +349,28 @@ namespace JH.ACU.BLL
 
                 if (items.Contains((int) WLTest.WL1VoltOn))
                 {
-                    if (!SubTestWL(WLTest.WL1VoltOn, () => GetWLVolt(acuItem.Index, 1, true)))
+                    if (!TestFrame((int) WLTest.WL1VoltOn, () => GetWLVolt(acuItem.Index, 1, true)))
                     {
                         return true;
                     }
                 }
                 if (items.Contains((int) WLTest.WL1VoltOff))
                 {
-                    if (!SubTestWL(WLTest.WL1VoltOff,()=>GetWLVolt(acuItem.Index, 1, false)))
+                    if (!TestFrame((int) WLTest.WL1VoltOff,()=>GetWLVolt(acuItem.Index, 1, false)))
                     {
                         return true;
                     }
                 }
                 if (items.Contains((int) WLTest.WL2VoltOn))
                 {
-                    if (!SubTestWL(WLTest.WL2VoltOn, () => GetWLVolt(acuItem.Index, 2, true)))
+                    if (!TestFrame((int) WLTest.WL2VoltOn, () => GetWLVolt(acuItem.Index, 2, true)))
                     {
                         return true;
                     }
                 }
                 if (items.Contains((int) WLTest.WL2VoltOff))
                 {
-                    if (!SubTestWL(WLTest.WL2VoltOff, () => GetWLVolt(acuItem.Index, 2, false)))
+                    if (!TestFrame((int) WLTest.WL2VoltOff, () => GetWLVolt(acuItem.Index, 2, false)))
                     {
                         return true;
                     }
@@ -339,28 +382,28 @@ namespace JH.ACU.BLL
 
                 if (items.Contains((int) WLTest.WL1CurrentNormal))
                 {
-                    if (!SubTestWL(WLTest.WL1CurrentNormal, () => GetWLCurr(acuItem.Index, WLTest.WL1CurrentNormal)))
+                    if (!TestFrame((int) WLTest.WL1CurrentNormal, () => GetWLCurr(acuItem.Index, WLTest.WL1CurrentNormal)))
                     {
                         return true;
                     }
                 }
                 if (items.Contains((int) WLTest.WL1CurrentShort))
                 {
-                    if (!SubTestWL(WLTest.WL1CurrentShort, () => GetWLCurr(acuItem.Index, WLTest.WL1CurrentShort)))
+                    if (!TestFrame((int) WLTest.WL1CurrentShort, () => GetWLCurr(acuItem.Index, WLTest.WL1CurrentShort)))
                     {
                         return true;
                     }
                 }
                 if (items.Contains((int) WLTest.WL2CurrentNormal))
                 {
-                    if (!SubTestWL(WLTest.WL2CurrentNormal, () => GetWLCurr(acuItem.Index, WLTest.WL2CurrentNormal)))
+                    if (!TestFrame((int) WLTest.WL2CurrentNormal, () => GetWLCurr(acuItem.Index, WLTest.WL2CurrentNormal)))
                     {
                         return true;
                     }
                 }
                 if (items.Contains((int) WLTest.WL2CurrentShort))
                 {
-                    if (!SubTestWL(WLTest.WL2CurrentShort, () => GetWLCurr(acuItem.Index, WLTest.WL2CurrentShort)))
+                    if (!TestFrame((int) WLTest.WL2CurrentShort, () => GetWLCurr(acuItem.Index, WLTest.WL2CurrentShort)))
                     {
                         return true;
                     }
@@ -379,36 +422,6 @@ namespace JH.ACU.BLL
             }
         }
 
-        /// <summary>
-        /// 告警灯测试子方法
-        /// </summary>
-        /// <param name="wlTest"></param>
-        /// <param name="func">测试电压或电流的方法委托</param>
-        /// <returns>测试是否被取消</returns>
-        private bool SubTestWL(WLTest wlTest, Func<double> func)
-        {
-            FindSpec((int) wlTest).ResultInfo = "Progressing...";
-            var progress = GetProgress((int) wlTest, _tvIndex);
-            TestWorker.ReportProgress(progress, _report);
-            var res = func(); //GetWLVolt(acuIndex, 1, true);
-            if ((int) res == (int) TestResult.Cancelled)
-            {
-                FindSpec((int) wlTest).ResultInfo = "Cancelled";
-                TestWorker.ReportProgress(progress, _report);
-                return false;
-            }
-            if ((int) res == (int) TestResult.Failed)
-            {
-                FindSpec((int) wlTest).ResultInfo = "Failed";
-            }
-            else
-            {
-                FindSpec((int) wlTest).ResultInfo = "Passed";
-                FindSpec((int) wlTest).ResultValue = res;
-            }
-            TestWorker.ReportProgress(progress, _report);
-            return true;
-        }
 
         /// <summary>
         /// 获取ACU告警灯正常或短路时电流
@@ -511,7 +524,7 @@ namespace JH.ACU.BLL
                     break;
             }
             //B:开始测试
-            var res = _dmm.GetVoltage();
+            var res = ActualVolt;
             //C:复位设置
             switch (wLIndex)
             {
@@ -548,18 +561,10 @@ namespace JH.ACU.BLL
                         var itemIndex = SquibNum*(iMode - 1) + iSquib;
                         if (acuItem.Items.Contains(itemIndex))
                         {
-                            FindSpec(itemIndex).ResultInfo = "Progressing...";
-                            var progress = GetProgress(itemIndex, _tvIndex);
-                            TestWorker.ReportProgress(progress, _report);
-                            var res = TestSquib(acuItem.Index, iSquib, iMode);
-                            if ((int) res == (int)TestResult.Cancelled)
-                            {
-                                FindSpec(itemIndex).ResultInfo = "Cancelled";
-                                return true;
-                            }
-                            FindSpec(itemIndex).ResultInfo = (int) res == (int)TestResult.Failed ? "Failed" : "Passed";
-                            TestWorker.ReportProgress(progress, _report);
-
+                            var squib = iSquib;
+                            var mode = iMode;
+                            var res = TestFrame(itemIndex, () => TestSquib(acuItem.Index, squib, mode));
+                            if (!res) return true;
                         }
                     }
                 }
@@ -573,17 +578,10 @@ namespace JH.ACU.BLL
                         var itemIndex = BeltNum*(iMode - 1) + iBelt + SquibNum*SquibModeNum;
                         if (acuItem.Items.Contains(itemIndex))
                         {
-                            FindSpec(itemIndex).ResultInfo = "Progressing...";
-                            var progress = GetProgress(itemIndex, _tvIndex);
-                            TestWorker.ReportProgress((int)(progress * 0.5), _report);
-                            var res = TestBelt(acuItem.Index, iBelt, iMode);
-                            if ((int)res == (int)TestResult.Cancelled)
-                            {
-                                FindSpec(itemIndex).ResultInfo = "Cancelled";
-                                return true;
-                            }
-                            FindSpec(itemIndex).ResultInfo = (int)res == (int)TestResult.Failed ? "Failed" : "Passed";
-                            TestWorker.ReportProgress(progress, _report);
+                            var belt = iBelt;
+                            var mode = iMode;
+                            var res = TestFrame(itemIndex, () => TestBelt(acuItem.Index, belt, mode));
+                            if (!res) return true;
                         }
                     }
                 }
@@ -593,21 +591,12 @@ namespace JH.ACU.BLL
                     var itemIndex = VoltNum*(iMode - 1) + 1 + SquibNum*SquibModeNum + BeltModeNum*BeltNum;
                     if (acuItem.Items.Contains(itemIndex))
                     {
-                        FindSpec(itemIndex).ResultInfo = "Progressing...";
-                        var progress = GetProgress(itemIndex, _tvIndex);
-                        TestWorker.ReportProgress((int)(progress * 0.5), _report);
-                        var res = TestVolt(acuItem.Index, iMode);
-                        if ((int)res == (int)TestResult.Cancelled)
-                        {
-                            FindSpec(itemIndex).ResultInfo = "Cancelled";
-                            return true;
-                        }
-                        FindSpec(itemIndex).ResultInfo = (int)res == (int)TestResult.Failed ? "Failed" : "Passed";
-                        TestWorker.ReportProgress(progress, _report);
-
+                        var mode = iMode;
+                        var res = TestFrame(itemIndex, () => TestVolt(acuItem.Index, mode));
+                        if (!res) return true;
                     }
                 }
-                _pwr.OutputVoltage = VoltTarget; //电压测试完成后将外围电压恢复到原先状态
+                _pwr.OutputVoltage = SettingVolt; //电压测试完成后将外围电压恢复到原先状态
                 _pwr.OutPutState = true; //可省略，保险起见保留此句
                 //D:SIS测试
                 for (int iMode = 0; iMode < SisModeNum; iMode++)
@@ -617,19 +606,10 @@ namespace JH.ACU.BLL
                         var itemIndex = SisNum*(iMode - 1) + iSis + SquibNum*SquibModeNum + BeltModeNum*BeltNum + VoltModeNum*VoltNum;
                         if (acuItem.Items.Contains(itemIndex))
                         {
-                            FindSpec(itemIndex).ResultInfo = "Progressing...";
-                            var progress = GetProgress(itemIndex, _tvIndex);
-                            TestWorker.ReportProgress((int)(progress * 0.5), _report);
-                            var res = TestSis(acuItem.Index, iSis, iMode);
-                            if ((int)res == (int)TestResult.Cancelled)
-                            {
-                                FindSpec(itemIndex).ResultInfo = "Cancelled";
-                                TestWorker.ReportProgress(progress, _report);
-                                return true;
-                            }
-                            FindSpec(itemIndex).ResultInfo = (int)res == (int)TestResult.Failed ? "Failed" : "Passed";
-                            TestWorker.ReportProgress(progress, _report);
-
+                            var sis = iSis;
+                            var mode = iMode;
+                            var res = TestFrame(itemIndex, () => TestSis(acuItem.Index, sis, mode));
+                            if (!res) return true;
                         }
                     }
                 }
@@ -998,7 +978,7 @@ namespace JH.ACU.BLL
             if ((int)res == (int)TestResult.Failed) return (double)TestResult.Failed;
             if ((int)res == (int)TestResult.Cancelled) return (double)TestResult.Cancelled;
             _daq.SetSubRelayStatus((byte)acuIndex, 266, true);
-            res = _dmm.GetVoltage(); //该返回值为实际测量值
+            res = ActualVolt; //该返回值为实际测量值
             spec.ResultValue = res;
             //C:复位继电器
             _daq.SetSubRelayStatus((byte) acuIndex, 266, false);
@@ -1146,7 +1126,7 @@ namespace JH.ACU.BLL
             _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
-            spec.ResultValue = res;
+            spec.ResultValue = res;//可以省略
             //C:复位继电器
             _daq.SetFcReset(acuIndex, squib);
             return res;
@@ -1292,6 +1272,37 @@ namespace JH.ACU.BLL
 
         #endregion
 
+        /// <summary>
+        /// 测试框架
+        /// </summary>
+        /// <param name="specIndex"></param>
+        /// <param name="func">测试方法委托</param>
+        /// <returns>测试是否完成,取消则返回False</returns>
+        private bool TestFrame(int specIndex, Func<double> func)
+        {
+            var spec = FindSpec(specIndex);
+            spec.ResultInfo = "Progressing...";
+            var progress = GetProgress(specIndex, _tvIndex);
+            TestWorker.ReportProgress(progress, _report);
+            var res = func(); 
+            switch ((int)res)
+            {
+                case (int)TestResult.Cancelled:
+                    spec.ResultInfo = "Cancelled";
+                    TestWorker.ReportProgress(progress, _report);
+                    return false;
+                case (int)TestResult.Failed:
+                    spec.ResultInfo = "Failed";
+                    break;
+                default:
+                    spec.ResultInfo = "Passed";
+                    spec.ResultValue = res;
+                    break;
+            }
+            TestWorker.ReportProgress(progress, _report);
+            return true;
+        }
+
         #region 属性字段
         public TvType SelectedTvType { get; private set; }
         public NewBackgroundWorker TestWorker { get; private set; }
@@ -1299,34 +1310,71 @@ namespace JH.ACU.BLL
         private NewBackgroundWorker ChamberStay { get; set; }
         private TestCondition TestCondition { get; set; }
         private readonly Report _report;
-        private KeyValuePair<TvType, double[]> _tvItem;
+        private KeyValuePair<TvType, double[]> _tvItem;//正在测试条件组合
         private int _tvIndex;//正在测试温度电压组合的项数
         private int _tvCount;//需要测试温度电压组合总数
         private int _specCount;//需要测试项的总数
-        private double _voltTarget;
 
-        private double VoltTarget
+        #region 实际值
+
+        /// <summary>
+        /// 电压实际测量值
+        /// </summary>
+        private double ActualVolt
         {
             get
             {
-                return _voltTarget;
+                if (_dmm == null) return 0;
+                var volt = _dmm.GetVoltage();
+                _report.ActualVolt = volt;
+                return volt;
             }
-            set { _voltTarget = value;
+        }
+
+        /// <summary>
+        /// 温度实际测量值
+        /// </summary>
+        private double ActualTemp
+        {
+            get
+            {
+                if (_chamber == null) return 0;
+                var temp = _chamber.GetTemp();
+                _report.ActualTemp = temp;
+                return temp;
+            }
+        }
+
+        #endregion
+
+        #region 目标值
+
+        private double _settingVolt;
+
+        private double SettingVolt
+        {
+            get { return _settingVolt; }
+            set
+            {
+                _settingVolt = value;
                 _report.SettingVolt = value;
             }
         }
 
-        private double _tempTarget;
+        private double _settingTemp;
 
-        private double TempTarget
+        private double SettingTemp
         {
-            get { return _tempTarget; }
+            get { return _settingTemp; }
             set
             {
-                _tempTarget = value;
+                _settingTemp = value;
                 _report.SettingTemp = value;
             }
         }
+
+        #endregion
+
 
         #region 从规范中归纳的常量值 SPEC_unit.txt
 
@@ -1351,6 +1399,7 @@ namespace JH.ACU.BLL
             WL2CurrentShort = 95,
         }
 
+        public const int AcuCurrentItemIndex = 97;
         #endregion
 
         /// <summary>
@@ -1418,7 +1467,7 @@ namespace JH.ACU.BLL
 
                 #endregion
 
-                var canTest = _daq.CheckPowerStatus(VoltTarget);
+                var canTest = _daq.CheckPowerStatus(SettingVolt);
                 if (!canTest)
                 {
                     LogHelper.WriteWarningLog(LogFileName, string.Format("外围设备供电不正常[{0}]", i));
