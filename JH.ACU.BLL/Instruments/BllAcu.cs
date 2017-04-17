@@ -302,6 +302,26 @@ namespace JH.ACU.BLL.Instruments
 
         #endregion
 
+        /// <summary>
+        /// 设置碰撞输出状态
+        /// </summary>
+        /// <param name="crashIndex"></param>
+        /// <returns></returns>
+        public bool EnableCrashOut(int crashIndex)
+        {
+            Command command;
+            switch (crashIndex)
+            {
+                default:
+                case 1:
+                    command=Command.CrashOutput;
+                    break;
+                case 2:
+                    command=Command.CrashOutput2;
+                    break;
+            }
+            return Execute(command);
+        }
     }
 
     public enum MemoryWrite : byte
@@ -342,6 +362,7 @@ namespace JH.ACU.BLL.Instruments
         FrontInjectionData = 6,
         FrontInjectionStop = 7,
         CrashOutput = 8,
+        CrashOutput2 = 8,//TODO:需要根据协议重新修改
         ClearOperationTimerCounter = 10,
         ClearFramIgnCounter = 11,
         FramMassErase = 13,

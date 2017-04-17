@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using JH.ACU.DAL;
+using JH.ACU.Lib;
 using JH.ACU.Model;
+using JH.ACU.Model.Config.TestConfig;
 
 namespace JH.ACU.BLL.Instruments
 {
@@ -35,6 +37,7 @@ namespace JH.ACU.BLL.Instruments
         private readonly double _amplify12V = (4.7 + 4.7)/4.7;
         private readonly double _amplifyPow = (10.0 + 4.7)/4.7;
         private bool _disposed;
+
         /// <summary>
         /// PB5不复位常量
         /// </summary>
@@ -166,7 +169,7 @@ namespace JH.ACU.BLL.Instruments
                 D2KDask.SYNCH_OP);
             D2KDask.ThrowException((D2KDask.Error) ret, string.Format("AI Multi读取失败，Channel:{0}", channel));
             var voltsum = pwBuffer.Aggregate<short, long>(0, (current, s) => current + s);
-            return (double) voltsum/pwBuffer.Length*10D/32768D; //QUES:该数值不知是从哪里获得
+            return (double) voltsum/pwBuffer.Length*10D/32768D; //+32768.0是C语言中常见类型short(一些情况下也是int）的取值范围的上限
         }
 
         /// <summary>
@@ -357,10 +360,11 @@ namespace JH.ACU.BLL.Instruments
         }
 
         /// <summary>
-        /// 检查DAQ供电状态
+        /// 检查DAQ供电状态//BUG：还需要修改
         /// </summary>
         /// <param name="voltTarget">目标电压，即Pwr输出电压</param>
         /// <returns></returns>
+        [Obsolete("还需要修正")]
         public bool CheckPowerStatus(double voltTarget)
         {
             foreach (AiChannel aChannel in Enum.GetValues(typeof (AiChannel)))
@@ -386,6 +390,24 @@ namespace JH.ACU.BLL.Instruments
                 }
             }
             return false;
+        }
+
+        public void SetCrashConfig(out short[] buffer)
+        {
+            buffer = new short[5000];
+            ushort bufId;
+            var ret = D2KDask.D2K_AIO_Config((ushort) _mDev, D2KDask.DAQ2K_IntTimeBase,
+                D2KDask.Above_High_Level | D2KDask.CH0ATRIG, 0x80, 0x80); //最后两个参数MES_ANATRIG_H、MES_ANATRIG_L
+            D2KDask.ThrowException((D2KDask.Error) ret);
+            ret = D2KDask.D2K_AI_CH_Config((ushort) _mDev, 0, D2KDask.AD_B_10_V);
+            D2KDask.ThrowException((D2KDask.Error) ret);
+            ret = D2KDask.D2K_AI_Config((ushort) _mDev, D2KDask.DAQ2K_AI_ADCONVSRC_Int,
+                D2KDask.DAQ2K_AI_TRGSRC_SOFT | D2KDask.DAQ2K_AI_TRGMOD_POST, 0, 0, 0, true);
+            D2KDask.ThrowException((D2KDask.Error) ret);
+            ret = D2KDask.D2K_AI_ContBufferSetup((ushort) _mDev, buffer, 5000, out bufId);
+            D2KDask.ThrowException((D2KDask.Error) ret);
+            ret = D2KDask.D2K_AI_ContReadChannel((ushort) _mDev, 0, bufId, 5000, 40000, 40000, D2KDask.SYNCH_OP);
+            D2KDask.ThrowException((D2KDask.Error) ret);
         }
 
         #endregion
@@ -500,9 +522,9 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="boardIndex"></param>
         public void OpenBoard(byte boardIndex)
         {
-            byte mask6 = (byte)(0x30 | _relaysGroupMask[boardIndex, 6]);
-            byte mask7 = (byte)(0x88 | _relaysGroupMask[boardIndex, 7]);
-            byte mask12 = (byte)(0x01 | _relaysGroupMask[boardIndex, 12]);
+            byte mask6 = (byte) (0x30 | _relaysGroupMask[boardIndex, 6]);
+            byte mask7 = (byte) (0x88 | _relaysGroupMask[boardIndex, 7]);
+            byte mask12 = (byte) (0x01 | _relaysGroupMask[boardIndex, 12]);
             SetRelaysGroup(boardIndex, 6, mask6);
             Thread.Sleep(100);
             SetRelaysGroup(boardIndex, 6, mask6);
@@ -785,6 +807,7 @@ namespace JH.ACU.BLL.Instruments
             GC.SuppressFinalize(this);
 
         }
+
         protected void Dispose(bool disposing)
         {
             if (_disposed)
@@ -799,7 +822,7 @@ namespace JH.ACU.BLL.Instruments
             if (_mDev >= 0)
             {
                 ResetAll();
-                D2KDask.D2K_Release_Card((ushort)_mDev);
+                D2KDask.D2K_Release_Card((ushort) _mDev);
                 _mDev = -1;
             }
             //让类型知道自己已经被释放
@@ -807,6 +830,60 @@ namespace JH.ACU.BLL.Instruments
         }
 
         #endregion
+
+        /// <summary>
+        /// in old program//TODO:待验证
+        /// </summary>
+        /// <param name="crashOutType"></param>
+        /// <param name="voltBuf"></param>
+        public void GetCrashCheck(CrashOutType crashOutType, double[] voltBuf)
+        {
+            short i, j = 0, k = 0;
+            var iCount = new short[100];
+            var fRate = new double[100];
+            bool bRet = false;
+
+            for (i = 1; i < 1000; i++)
+            {
+                if (Math.Abs(voltBuf[i] - voltBuf[j]) >= 1)
+                {
+                    iCount[k] = (short) (i - j + 1);
+                    k++;
+                    j = (short) (i + 1);
+                }
+            }
+            switch (crashOutType)
+            {
+                case CrashOutType.Advanced:
+                    for (i = 1; i < 100; i++)
+                    {
+                        if (iCount[i] == 0)
+                        {
+                            for (j = 1; j < (i - 2)/2*2; j++)
+                            {
+                                fRate[j] = (float) iCount[2*j]/iCount[2*j - 1];
+                                if (Math.Abs(2*j - i) <= 1)
+                                {
+                                    k = j;
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    for (i = 1; i < k; i++)
+                    {
+                        if (Math.Abs(fRate[i] - 5.0) <= 0.2 || Math.Abs(fRate[i] - 0.2) <= 0.02) bRet = true;
+                        else bRet = false;//QUES:不知道有什么意义
+                    }
+                    break;
+                case CrashOutType.Conventional:
+                    bRet = Math.Abs(iCount[1]*5 - 200.0) <= 2.0;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("crashOutType", crashOutType, null);
+            }
+        }
     }
 
     public enum AiChannel : ushort

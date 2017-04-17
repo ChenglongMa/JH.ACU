@@ -34,8 +34,18 @@ namespace JH.ACU.Model.Config.TestConfig
 
         [XmlArrayItem("AcuItem", typeof (AcuItems))]
         public List<AcuItems> AcuItems { get; set; }
+        [XmlElement]
+        public CrashOutType CrashOutType { get; set; }
     }
 
+    /// <summary>
+    /// 碰撞输出类型
+    /// </summary>
+    public enum CrashOutType
+    {
+        Advanced=0,
+        Conventional=1,
+    }
     public enum TvType
     {
         LowTempLowVolt,

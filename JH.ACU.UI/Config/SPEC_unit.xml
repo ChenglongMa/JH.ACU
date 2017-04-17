@@ -97,4 +97,5 @@
     <SpecItem Index="96" Description="Autonomous time( )" Specification="200.00-4000.00" UOM="mS" DTC="0x00" />
     <SpecItem Index="97" Description="ACU_CURRENT( )" Specification="20.00-140.00" UOM="mA" DTC="0x00" />
     <SpecItem Index="98" Description="Crash Output Check" Specification="Signal check" UOM="" DTC="0x00" />
+    <SpecItem Index="99" Description="Crash Output2 Check" Specification="Signal check" UOM="" DTC="0x00" />
 </SpecUint>

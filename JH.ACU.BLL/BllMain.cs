@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
 using JH.ACU.BLL.Config;
 using JH.ACU.BLL.Instruments;
@@ -240,12 +238,27 @@ namespace JH.ACU.BLL
 
         }
 
+        /// <summary>
+        /// 碰撞输出测试
+        /// </summary>
+        /// <param name="acuItem"></param>
+        /// <returns></returns>
         private bool TestCrashOut(AcuItems acuItem)
         {
             try
             {
                 var items = acuItem.Items;
-                throw new NotImplementedException();
+                if (items.Contains((int) CrashOutTest.Crash1))
+                {
+                    var res = TestFrame((int) CrashOutTest.Crash1, () => GetCrashOut(acuItem.Index,CrashOutTest.Crash1));
+                    if (!res) return true;
+                }
+                if (items.Contains((int) CrashOutTest.Crash2))
+                {
+                    var res = TestFrame((int)CrashOutTest.Crash2, () => GetCrashOut(acuItem.Index, CrashOutTest.Crash2));
+                    if (!res) return true;
+                }
+                return true;
             }
             catch (Exception ex)
             {
@@ -254,6 +267,74 @@ namespace JH.ACU.BLL
                 LogHelper.WriteErrorLog(LogFileName, e);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 获取碰撞输出状态
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="crashOut"></param>
+        /// <returns></returns>
+        private double GetCrashOut(int acuIndex, CrashOutTest crashOut)
+        {
+            #region 若取消测试
+
+            if (TestWorker.CancellationPending)
+            {
+                TestEventArgs.Cancel = true;
+                _acu.Stop();
+                CloseAllInstrs();
+                return (double)TestResult.Cancelled;
+            }
+
+            #endregion
+            double res;
+            int crashIndex,relayIndex;
+            switch (crashOut)
+            {
+                case CrashOutTest.Crash1:
+                    crashIndex = 1;
+                    relayIndex = 277;
+                    break;
+                case CrashOutTest.Crash2:
+                    crashIndex = 2;
+                    relayIndex = 340;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("crashOut", crashOut, null);
+            }
+            try
+            {
+                //A:ACU、继电器准备
+                AcuExecute(acuIndex, () => _acu.EnableCrashOut(crashIndex));
+                _daq.SetSubRelayStatus((byte) acuIndex, relayIndex, true);
+                //B:开始测试
+                short[] buffer;
+                _daq.SetCrashConfig(out buffer);
+                var voltBuf = new double[1000];
+                var j = 0;
+                for (int i = 0; i < 5000; i++)
+                {
+                    if (i%5 == 0)
+                    {
+                        voltBuf[j] = buffer[i]*10D/32768D;
+                        j++;
+                    }
+                }
+                _daq.GetCrashCheck(TestCondition.CrashOutType, voltBuf);
+                res = (double) TestResult.Passed;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteErrorLog(LogFileName, ex);
+                res = (double)TestResult.Failed;
+            }
+            finally
+            {
+                //C:继电器复位 QUES:是否恢复原来状态
+                _daq.SetSubRelayStatus((byte)acuIndex, relayIndex, false);
+            }
+            return res;
         }
 
         #region ACU电流测试
@@ -296,7 +377,7 @@ namespace JH.ACU.BLL
                         TestEventArgs.Cancel = true;
                         _acu.Stop();
                         CloseAllInstrs();
-                        return (double)TestResult.Cancelled;
+                        return (double) TestResult.Cancelled;
                     }
 
                     #endregion
@@ -304,7 +385,7 @@ namespace JH.ACU.BLL
                     Thread.Sleep(200);
                     res += _dmm.GetCurrent();
                 }
-                _daq.SetSubRelayStatus((byte)acuIndex, 267, false);
+                _daq.SetSubRelayStatus((byte) acuIndex, 267, false);
                 return res/5D;
             }
             catch (Exception ex)
@@ -313,6 +394,7 @@ namespace JH.ACU.BLL
                 return (double) TestResult.Failed;
             }
         }
+
         #endregion
 
         private bool TestHoldTime(AcuItems acuItem)
@@ -336,6 +418,7 @@ namespace JH.ACU.BLL
 
         /// <summary>
         /// 告警灯测试
+        /// QUES:是否恢复原来状态
         /// </summary>
         /// <param name="acuItem"></param>
         /// <returns></returns>
@@ -356,7 +439,7 @@ namespace JH.ACU.BLL
                 }
                 if (items.Contains((int) WLTest.WL1VoltOff))
                 {
-                    if (!TestFrame((int) WLTest.WL1VoltOff,()=>GetWLVolt(acuItem.Index, 1, false)))
+                    if (!TestFrame((int) WLTest.WL1VoltOff, () => GetWLVolt(acuItem.Index, 1, false)))
                     {
                         return true;
                     }
@@ -438,7 +521,7 @@ namespace JH.ACU.BLL
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
                 CloseAllInstrs();
-                return -1;
+                return (double) TestResult.Cancelled;;
             }
 
             #endregion
@@ -448,7 +531,7 @@ namespace JH.ACU.BLL
             {
                 default:
                     LogHelper.WriteWarningLog(LogFileName, "WLTest赋值错误：" + wlTest);
-                    return -1;
+                    return (double) TestResult.Cancelled;;
                 case WLTest.WL1CurrentNormal:
                     wlIndex = 1;
                     relayIndex = 271;
@@ -506,7 +589,7 @@ namespace JH.ACU.BLL
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
                 CloseAllInstrs();
-                return -1;
+                return (double) TestResult.Cancelled;;
             }
 
             #endregion
@@ -646,8 +729,8 @@ namespace JH.ACU.BLL
             _daq.SetSisInTestMode(acuIndex, sisIndex, (SisMode) mode);
             //B:开始测试
             var res = FindSis(minValue, maxValue, dtc, mode);
-            if ((int)res == (int)TestResult.Failed) return (double)TestResult.Failed;
-            if ((int)res == (int)TestResult.Cancelled) return (double)TestResult.Cancelled;
+            if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
+            if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetSisInReadMode(acuIndex, sisIndex);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
@@ -674,7 +757,7 @@ namespace JH.ACU.BLL
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
                 CloseAllInstrs();
-                return (double)TestResult.Cancelled;
+                return (double) TestResult.Cancelled;
             }
 
             #endregion
@@ -684,7 +767,7 @@ namespace JH.ACU.BLL
             {
                 return (maxValue - minValue)/2;
             }
-            if (minValue < 0.1 || maxValue > 2000) return (double)TestResult.Failed;
+            if (minValue < 0.1 || maxValue > 2000) return (double) TestResult.Failed;
             FindResult findresult;
             // 正向 小电阻肯定没有：表示错误码在测试规范的大值处附近
             // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
@@ -811,8 +894,8 @@ namespace JH.ACU.BLL
             _daq.SetBeltInTestMode(acuIndex, belt, (BeltMode) mode);
             //B:开始测试
             var res = FindBelt(minValue, maxValue, dtc, mode);
-            if ((int)res == (int)TestResult.Failed) return (double)TestResult.Failed;
-            if ((int)res == (int)TestResult.Cancelled) return (double)TestResult.Cancelled;
+            if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
+            if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetBeltInReadMode(acuIndex, belt);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
@@ -839,7 +922,7 @@ namespace JH.ACU.BLL
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
                 CloseAllInstrs();
-                return (double)TestResult.Cancelled;
+                return (double) TestResult.Cancelled;
             }
 
             #endregion
@@ -849,7 +932,7 @@ namespace JH.ACU.BLL
             {
                 return (maxValue - minValue)/2;
             }
-            if (minValue < 0.1 || maxValue > 2000) return (double)TestResult.Failed;
+            if (minValue < 0.1 || maxValue > 2000) return (double) TestResult.Failed;
             FindResult findresult;
             // 正向 小电阻肯定没有：表示错误码在测试规范的大值处附近
             // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
@@ -975,9 +1058,9 @@ namespace JH.ACU.BLL
             //A:打开继电器-正常情况下已打开
             //B:开始测试
             var res = FindVolt(minValue, maxValue, dtc, mode);
-            if ((int)res == (int)TestResult.Failed) return (double)TestResult.Failed;
-            if ((int)res == (int)TestResult.Cancelled) return (double)TestResult.Cancelled;
-            _daq.SetSubRelayStatus((byte)acuIndex, 266, true);
+            if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
+            if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
+            _daq.SetSubRelayStatus((byte) acuIndex, 266, true);
             res = ActualVolt; //该返回值为实际测量值
             spec.ResultValue = res;
             //C:复位继电器
@@ -1005,7 +1088,7 @@ namespace JH.ACU.BLL
             {
                 return (maxValue - minValue)/2;
             }
-            if (minValue < 0.1 || maxValue > 20) return (double)TestResult.Failed;
+            if (minValue < 0.1 || maxValue > 20) return (double) TestResult.Failed;
             FindResult findresult;
             // 正向 小电阻肯定没有：表示错误码在测试规范的大值处附近
             // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
@@ -1122,11 +1205,11 @@ namespace JH.ACU.BLL
             //B:开始测试
             var res = FindSquib(minValue, maxValue, dtc, mode); //QUES：该返回值为代码计算出的值，调试时查看与测量结果偏差
             if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
-            if ((int)res == (int)TestResult.Cancelled) return (double)TestResult.Cancelled;
+            if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
-            spec.ResultValue = res;//可以省略
+            spec.ResultValue = res; //可以省略
             //C:复位继电器
             _daq.SetFcReset(acuIndex, squib);
             return res;
@@ -1153,6 +1236,7 @@ namespace JH.ACU.BLL
             }
 
             #endregion
+
             FindResult findresult;
             // 正向 小电阻肯定没有：表示错误码在测试规范的大值处附近
             // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
@@ -1257,10 +1341,11 @@ namespace JH.ACU.BLL
             }
 
             #endregion
+
             //若最大值及最小值之差足够小则返回两者平均值
             if (maxValue - minValue <= GlobalConst.Precision)
             {
-                return (maxValue - minValue) / 2;
+                return (maxValue - minValue)/2;
             }
             if (minValue < 0.1 || maxValue > 2000)
             {
@@ -1284,14 +1369,14 @@ namespace JH.ACU.BLL
             spec.ResultInfo = "Progressing...";
             var progress = GetProgress(specIndex, _tvIndex);
             TestWorker.ReportProgress(progress, _report);
-            var res = func(); 
-            switch ((int)res)
+            var res = func();
+            switch ((int) res)
             {
-                case (int)TestResult.Cancelled:
+                case (int) TestResult.Cancelled:
                     spec.ResultInfo = "Cancelled";
                     TestWorker.ReportProgress(progress, _report);
                     return false;
-                case (int)TestResult.Failed:
+                case (int) TestResult.Failed:
                     spec.ResultInfo = "Failed";
                     break;
                 default:
@@ -1304,16 +1389,17 @@ namespace JH.ACU.BLL
         }
 
         #region 属性字段
+
         public TvType SelectedTvType { get; private set; }
         public NewBackgroundWorker TestWorker { get; private set; }
         private DoWorkEventArgs TestEventArgs { get; set; }
         private NewBackgroundWorker ChamberStay { get; set; }
         private TestCondition TestCondition { get; set; }
         private readonly Report _report;
-        private KeyValuePair<TvType, double[]> _tvItem;//正在测试条件组合
-        private int _tvIndex;//正在测试温度电压组合的项数
-        private int _tvCount;//需要测试温度电压组合总数
-        private int _specCount;//需要测试项的总数
+        private KeyValuePair<TvType, double[]> _tvItem; //正在测试条件组合
+        private int _tvIndex; //正在测试温度电压组合的项数
+        private int _tvCount; //需要测试温度电压组合总数
+        private int _specCount; //需要测试项的总数
 
         #region 实际值
 
@@ -1375,7 +1461,6 @@ namespace JH.ACU.BLL
 
         #endregion
 
-
         #region 从规范中归纳的常量值 SPEC_unit.txt
 
         private const int SquibNum = 16; //回路数常量
@@ -1387,7 +1472,7 @@ namespace JH.ACU.BLL
         private const int SisNum = 6; //侧传感器数常量
         private const int SisModeNum = 2; //侧传感器测试情况常量
 
-        private enum WLTest
+        private enum WLTest : int
         {
             WL1VoltOff = 88,
             WL1VoltOn = 89,
@@ -1399,7 +1484,14 @@ namespace JH.ACU.BLL
             WL2CurrentShort = 95,
         }
 
-        public const int AcuCurrentItemIndex = 97;
+        private const int AcuCurrentItemIndex = 97;
+
+        private enum CrashOutTest : int
+        {
+            Crash1 = 98,
+            Crash2 = 99,
+        }
+
         #endregion
 
         /// <summary>
@@ -1442,7 +1534,6 @@ namespace JH.ACU.BLL
             _pwr = new BllPwr();
             _pwr.Initialize();
         }
-
 
 
         /// <summary>
@@ -1517,11 +1608,7 @@ namespace JH.ACU.BLL
         /// <returns></returns>
         private static Dictionary<TvType, double[]> RemoveTempList(Dictionary<TvType, double[]> tvItems)
         {
-            return
-                tvItems.Where(
-                    tvItem =>
-                        tvItem.Key == TvType.NorTempLowVolt || tvItem.Key == TvType.NorTempNorVolt ||
-                        tvItem.Key == TvType.NorTempHighVolt).ToDictionary(tvItem => tvItem.Key, tvItem => tvItem.Value);
+            return tvItems.Where(tvItem => tvItem.Key == TvType.NorTempLowVolt || tvItem.Key == TvType.NorTempNorVolt || tvItem.Key == TvType.NorTempHighVolt).ToDictionary(tvItem => tvItem.Key, tvItem => tvItem.Value);
         }
 
         /// <summary>
@@ -1578,6 +1665,7 @@ namespace JH.ACU.BLL
         {
             return (int) ((Convert.ToDouble(specIndex)/Convert.ToDouble(_specCount) + tvIndex)/_tvCount*100);
         }
+
         #endregion
 
         #region 公有方法
@@ -1605,6 +1693,7 @@ namespace JH.ACU.BLL
             _dmm.IfNotNull(d => d.Dispose());
             _daq.IfNotNull(d => d.Dispose());
         }
+
         #endregion
     }
 }

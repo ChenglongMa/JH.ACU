@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="原程序\测试流程DEMO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Chamber\TCPClientDEMO\ModbusTCP Sample.exe" />
