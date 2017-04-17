@@ -154,6 +154,17 @@ namespace JH.ACU.UI
             numNorVolt.Value = (decimal) testCondition.Voltage.NorVolt;
             numLowVolt.Value = (decimal) testCondition.Voltage.LowVolt;
             ckbChamberEnable.Checked = testCondition.Temperature.Enable;
+            switch (testCondition.CrashOutType)
+            {
+                case CrashOutType.Advanced:
+                    rdoAdvanced.Checked = true;
+                    break;
+                case CrashOutType.Conventional:
+                    rdoConventional.Checked = true;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
             SetAcuItems(testCondition.AcuItems);
         }
 
@@ -165,17 +176,11 @@ namespace JH.ACU.UI
         {
             var temp = new Temperature
             {
-                Duration = (double) numDuration.Value,
-                HighTemp = new Temp {Value = (double) numHighTemp.Value, Delay = (double) numHighDelay.Value},
-                LowTemp = new Temp {Value = (double) numLowTemp.Value, Delay = (double) numLowDelay.Value},
-                NorTemp = new Temp {Value = (double) numNorTemp.Value, Delay = (double) numNorDelay.Value},
-                Enable = ckbChamberEnable.Checked
+                Duration = (double) numDuration.Value, HighTemp = new Temp {Value = (double) numHighTemp.Value, Delay = (double) numHighDelay.Value}, LowTemp = new Temp {Value = (double) numLowTemp.Value, Delay = (double) numLowDelay.Value}, NorTemp = new Temp {Value = (double) numNorTemp.Value, Delay = (double) numNorDelay.Value}, Enable = ckbChamberEnable.Checked
             };
             var volt = new Voltage
             {
-                HighVolt = (double) numHighVolt.Value,
-                NorVolt = (double) numNorVolt.Value,
-                LowVolt = (double) numLowVolt.Value
+                HighVolt = (double) numHighVolt.Value, NorVolt = (double) numNorVolt.Value, LowVolt = (double) numLowVolt.Value
             };
             var tvItems = new Dictionary<TvType, double[]>();
             if (ckbLL.Checked)
@@ -218,12 +223,18 @@ namespace JH.ACU.UI
             {
                 tvItems.Add(TvType.NorTempNorVolt, new[] {temp.NorTemp.Value, volt.NorVolt, temp.NorTemp.Delay});
             }
+            var crashoutType = CrashOutType.Advanced;
+            if (rdoAdvanced.Checked)
+            {
+                crashoutType = CrashOutType.Advanced;
+            }
+            else if (rdoConventional.Checked)
+            {
+                crashoutType = CrashOutType.Conventional;
+            }
             return new TestCondition
             {
-                Temperature = temp,
-                Voltage = volt,
-                TvItems = tvItems,
-                AcuItems = GetAcuItems(),
+                Temperature = temp, Voltage = volt, TvItems = tvItems, AcuItems = GetAcuItems(), CrashOutType = crashoutType,
             };
         }
 
@@ -252,8 +263,7 @@ namespace JH.ACU.UI
                     {
                         res.Add(new AcuItems
                         {
-                            Index = acuIndex,
-                            Items = new List<int> {Convert.ToInt32(row.Cells[0].Text)}
+                            Index = acuIndex, Items = new List<int> {Convert.ToInt32(row.Cells[0].Text)}
                         });
                     }
                 }
@@ -272,7 +282,6 @@ namespace JH.ACU.UI
                 if (index < 0 || items[index].Items.IsNullOrEmpty()) continue;
                 foreach (var item in items[index].Items)
                 {
-
                     if (!dgSource.DisplayLayout.Bands[0].Columns.Exists(key))
                     {
                         dgSource.DisplayLayout.Bands[0].Columns.Add(key, "ACU #" + i);
@@ -282,7 +291,6 @@ namespace JH.ACU.UI
                     {
                         row.Cells[key].SetValue(true, false);
                         row.Cells[key].Appearance.BackColor = Color.Coral;
-
                     }
                 }
             }

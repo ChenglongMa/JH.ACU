@@ -22,6 +22,8 @@ namespace JH.ACU.Model.Config.TestConfig
 
         [XmlElement]
         public Voltage Voltage { get; set; }
+        [XmlElement]
+        public CrashOutType CrashOutType { get; set; }
 
         /// <summary>
         /// 温度、电压测试项 
@@ -34,8 +36,6 @@ namespace JH.ACU.Model.Config.TestConfig
 
         [XmlArrayItem("AcuItem", typeof (AcuItems))]
         public List<AcuItems> AcuItems { get; set; }
-        [XmlElement]
-        public CrashOutType CrashOutType { get; set; }
     }
 
     /// <summary>

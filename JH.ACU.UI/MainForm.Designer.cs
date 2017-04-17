@@ -326,7 +326,8 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 77);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 80);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -336,14 +337,16 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1099, 622);
-            this.splitContainer1.SplitterDistance = 526;
+            this.splitContainer1.Size = new System.Drawing.Size(1465, 793);
+            this.splitContainer1.SplitterDistance = 701;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -354,14 +357,16 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(526, 622);
-            this.splitContainer3.SplitterDistance = 237;
+            this.splitContainer3.Size = new System.Drawing.Size(701, 793);
+            this.splitContainer3.SplitterDistance = 302;
+            this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 1;
             // 
             // splitContainer4
             // 
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer4.Name = "splitContainer4";
             this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -376,17 +381,19 @@
             // 
             this.splitContainer4.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer4.Panel2MinSize = 60;
-            this.splitContainer4.Size = new System.Drawing.Size(526, 237);
-            this.splitContainer4.SplitterDistance = 60;
+            this.splitContainer4.Size = new System.Drawing.Size(701, 302);
+            this.splitContainer4.SplitterDistance = 76;
+            this.splitContainer4.SplitterWidth = 5;
             this.splitContainer4.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(256, 17);
+            this.label2.Location = new System.Drawing.Point(341, 21);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 20);
+            this.label2.Size = new System.Drawing.Size(124, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "Manual Run";
             // 
@@ -394,9 +401,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(68, 17);
+            this.label1.Location = new System.Drawing.Point(91, 21);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 20);
+            this.label1.Size = new System.Drawing.Size(98, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Auto Run";
             // 
@@ -405,9 +413,10 @@
             this.ledManualRun.ImmediateUpdates = true;
             this.ledManualRun.InteractionMode = NationalInstruments.UI.BooleanInteractionMode.SwitchWhenPressed;
             this.ledManualRun.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
-            this.ledManualRun.Location = new System.Drawing.Point(216, 9);
+            this.ledManualRun.Location = new System.Drawing.Point(288, 11);
+            this.ledManualRun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ledManualRun.Name = "ledManualRun";
-            this.ledManualRun.Size = new System.Drawing.Size(40, 40);
+            this.ledManualRun.Size = new System.Drawing.Size(53, 50);
             this.ledManualRun.TabIndex = 0;
             this.ledManualRun.Click += new System.EventHandler(this.ledManualRun_Click);
             // 
@@ -415,9 +424,10 @@
             // 
             this.ledAutoRun.InteractionMode = NationalInstruments.UI.BooleanInteractionMode.SwitchWhenPressed;
             this.ledAutoRun.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
-            this.ledAutoRun.Location = new System.Drawing.Point(28, 9);
+            this.ledAutoRun.Location = new System.Drawing.Point(37, 11);
+            this.ledAutoRun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ledAutoRun.Name = "ledAutoRun";
-            this.ledAutoRun.Size = new System.Drawing.Size(40, 40);
+            this.ledAutoRun.Size = new System.Drawing.Size(53, 50);
             this.ledAutoRun.TabIndex = 0;
             this.ledAutoRun.Value = true;
             this.ledAutoRun.Click += new System.EventHandler(this.ledAutoRun_Click);
@@ -428,8 +438,10 @@
             this.groupBox1.Controls.Add(this.flowLayoutPanel8);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(526, 173);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(701, 221);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test Condition";
@@ -439,9 +451,10 @@
             this.flowLayoutPanel8.Controls.Add(this.flowLayoutPanel4);
             this.flowLayoutPanel8.Controls.Add(this.flowLayoutPanel7);
             this.flowLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel8.Location = new System.Drawing.Point(3, 17);
+            this.flowLayoutPanel8.Location = new System.Drawing.Point(4, 22);
+            this.flowLayoutPanel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
-            this.flowLayoutPanel8.Size = new System.Drawing.Size(520, 153);
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(693, 195);
             this.flowLayoutPanel8.TabIndex = 0;
             // 
             // flowLayoutPanel4
@@ -452,9 +465,10 @@
             this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel3);
             this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel2);
             this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel1);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(4, 4);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(361, 140);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(475, 166);
             this.flowLayoutPanel4.TabIndex = 11;
             // 
             // flowLayoutPanel3
@@ -464,9 +478,10 @@
             this.flowLayoutPanel3.Controls.Add(this.label5);
             this.flowLayoutPanel3.Controls.Add(this.label6);
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(4, 4);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(49, 91);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(60, 109);
             this.flowLayoutPanel3.TabIndex = 10;
             // 
             // label5
@@ -474,10 +489,10 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(3, 32);
-            this.label5.Margin = new System.Windows.Forms.Padding(3, 32, 3, 0);
+            this.label5.Location = new System.Drawing.Point(4, 40);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 40, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 17);
+            this.label5.Size = new System.Drawing.Size(52, 19);
             this.label5.TabIndex = 7;
             this.label5.Text = "Temp";
             // 
@@ -486,10 +501,10 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(12, 74);
-            this.label6.Margin = new System.Windows.Forms.Padding(3, 25, 3, 0);
+            this.label6.Location = new System.Drawing.Point(16, 90);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 31, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 17);
+            this.label6.Size = new System.Drawing.Size(40, 19);
             this.label6.TabIndex = 7;
             this.label6.Text = "Volt";
             // 
@@ -501,18 +516,20 @@
             this.flowLayoutPanel2.Controls.Add(this.numVoltTarget);
             this.flowLayoutPanel2.Controls.Add(this.ckbChamberEnable);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(58, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(72, 4);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(154, 132);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(205, 156);
             this.flowLayoutPanel2.TabIndex = 9;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Location = new System.Drawing.Point(4, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 17);
+            this.label4.Size = new System.Drawing.Size(80, 19);
             this.label4.TabIndex = 7;
             this.label4.Text = "Set Value";
             // 
@@ -523,10 +540,11 @@
             this.numTempTarget.Font = new System.Drawing.Font("Let\'s go Digital", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numTempTarget.ForeColor = System.Drawing.Color.Lime;
             this.numTempTarget.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("0.00°C");
-            this.numTempTarget.Location = new System.Drawing.Point(3, 20);
+            this.numTempTarget.Location = new System.Drawing.Point(4, 23);
+            this.numTempTarget.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numTempTarget.Name = "numTempTarget";
             this.numTempTarget.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
-            this.numTempTarget.Size = new System.Drawing.Size(148, 37);
+            this.numTempTarget.Size = new System.Drawing.Size(197, 44);
             this.numTempTarget.TabIndex = 1;
             this.numTempTarget.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -536,10 +554,11 @@
             this.numVoltTarget.Font = new System.Drawing.Font("Let\'s go Digital", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numVoltTarget.ForeColor = System.Drawing.Color.Lime;
             this.numVoltTarget.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("0.00  V");
-            this.numVoltTarget.Location = new System.Drawing.Point(3, 63);
+            this.numVoltTarget.Location = new System.Drawing.Point(4, 75);
+            this.numVoltTarget.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numVoltTarget.Name = "numVoltTarget";
             this.numVoltTarget.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
-            this.numVoltTarget.Size = new System.Drawing.Size(148, 37);
+            this.numVoltTarget.Size = new System.Drawing.Size(197, 44);
             this.numVoltTarget.TabIndex = 1;
             this.numVoltTarget.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -549,10 +568,10 @@
             this.ckbChamberEnable.Checked = true;
             this.ckbChamberEnable.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbChamberEnable.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.ckbChamberEnable.Location = new System.Drawing.Point(3, 108);
-            this.ckbChamberEnable.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.ckbChamberEnable.Location = new System.Drawing.Point(4, 129);
+            this.ckbChamberEnable.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
             this.ckbChamberEnable.Name = "ckbChamberEnable";
-            this.ckbChamberEnable.Size = new System.Drawing.Size(127, 21);
+            this.ckbChamberEnable.Size = new System.Drawing.Size(155, 23);
             this.ckbChamberEnable.TabIndex = 0;
             this.ckbChamberEnable.Text = "Chamber Enable";
             this.ckbChamberEnable.UseVisualStyleBackColor = true;
@@ -565,18 +584,20 @@
             this.flowLayoutPanel1.Controls.Add(this.numTempReal);
             this.flowLayoutPanel1.Controls.Add(this.numVoltReal);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(218, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(285, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(138, 103);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(184, 123);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Location = new System.Drawing.Point(4, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 17);
+            this.label3.Size = new System.Drawing.Size(120, 19);
             this.label3.TabIndex = 6;
             this.label3.Text = "Practical Value";
             // 
@@ -588,10 +609,11 @@
             this.numTempReal.ForeColor = System.Drawing.Color.Lime;
             this.numTempReal.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("0.00°C");
             this.numTempReal.InteractionMode = NationalInstruments.UI.NumericEditInteractionModes.Indicator;
-            this.numTempReal.Location = new System.Drawing.Point(3, 20);
+            this.numTempReal.Location = new System.Drawing.Point(4, 23);
+            this.numTempReal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numTempReal.Name = "numTempReal";
             this.numTempReal.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
-            this.numTempReal.Size = new System.Drawing.Size(132, 37);
+            this.numTempReal.Size = new System.Drawing.Size(176, 44);
             this.numTempReal.TabIndex = 1;
             this.numTempReal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -603,10 +625,11 @@
             this.numVoltReal.ForeColor = System.Drawing.Color.Lime;
             this.numVoltReal.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("0.00  V");
             this.numVoltReal.InteractionMode = NationalInstruments.UI.NumericEditInteractionModes.Indicator;
-            this.numVoltReal.Location = new System.Drawing.Point(3, 63);
+            this.numVoltReal.Location = new System.Drawing.Point(4, 75);
+            this.numVoltReal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numVoltReal.Name = "numVoltReal";
             this.numVoltReal.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
-            this.numVoltReal.Size = new System.Drawing.Size(132, 37);
+            this.numVoltReal.Size = new System.Drawing.Size(176, 44);
             this.numVoltReal.TabIndex = 1;
             this.numVoltReal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -616,9 +639,10 @@
             this.flowLayoutPanel7.Controls.Add(this.flowLayoutPanel6);
             this.flowLayoutPanel7.Controls.Add(this.grbCout);
             this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel7.Location = new System.Drawing.Point(370, 3);
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(487, 4);
+            this.flowLayoutPanel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
-            this.flowLayoutPanel7.Size = new System.Drawing.Size(140, 140);
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(186, 174);
             this.flowLayoutPanel7.TabIndex = 13;
             // 
             // flowLayoutPanel6
@@ -627,9 +651,10 @@
             this.flowLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel6.Controls.Add(this.label7);
             this.flowLayoutPanel6.Controls.Add(this.numAcuIndex);
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(4, 4);
+            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(127, 33);
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(162, 40);
             this.flowLayoutPanel6.TabIndex = 12;
             // 
             // label7
@@ -637,10 +662,10 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(0, 8);
+            this.label7.Location = new System.Drawing.Point(0, 10);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 17);
+            this.label7.Size = new System.Drawing.Size(89, 19);
             this.label7.TabIndex = 7;
             this.label7.Text = "ACU Index";
             // 
@@ -650,11 +675,12 @@
             this.numAcuIndex.Font = new System.Drawing.Font("Let\'s go Digital", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numAcuIndex.ForeColor = System.Drawing.Color.Lime;
             this.numAcuIndex.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("00");
-            this.numAcuIndex.Location = new System.Drawing.Point(75, 3);
+            this.numAcuIndex.Location = new System.Drawing.Point(93, 4);
+            this.numAcuIndex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numAcuIndex.Name = "numAcuIndex";
             this.numAcuIndex.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
             this.numAcuIndex.Range = new NationalInstruments.UI.Range(1D, 8D);
-            this.numAcuIndex.Size = new System.Drawing.Size(49, 27);
+            this.numAcuIndex.Size = new System.Drawing.Size(65, 32);
             this.numAcuIndex.TabIndex = 1;
             this.numAcuIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numAcuIndex.Value = 1D;
@@ -663,10 +689,11 @@
             // 
             this.grbCout.Controls.Add(this.flowLayoutPanel5);
             this.grbCout.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.grbCout.Location = new System.Drawing.Point(3, 44);
-            this.grbCout.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.grbCout.Location = new System.Drawing.Point(4, 54);
+            this.grbCout.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
             this.grbCout.Name = "grbCout";
-            this.grbCout.Size = new System.Drawing.Size(123, 78);
+            this.grbCout.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbCout.Size = new System.Drawing.Size(164, 98);
             this.grbCout.TabIndex = 1;
             this.grbCout.TabStop = false;
             this.grbCout.Text = "Crash Out Type";
@@ -677,9 +704,10 @@
             this.flowLayoutPanel5.Controls.Add(this.rdoConventional);
             this.flowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 19);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(4, 24);
+            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(117, 56);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(156, 70);
             this.flowLayoutPanel5.TabIndex = 1;
             // 
             // rdoAdvanced
@@ -687,9 +715,10 @@
             this.rdoAdvanced.AutoSize = true;
             this.rdoAdvanced.Checked = true;
             this.rdoAdvanced.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.rdoAdvanced.Location = new System.Drawing.Point(3, 3);
+            this.rdoAdvanced.Location = new System.Drawing.Point(4, 4);
+            this.rdoAdvanced.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoAdvanced.Name = "rdoAdvanced";
-            this.rdoAdvanced.Size = new System.Drawing.Size(86, 21);
+            this.rdoAdvanced.Size = new System.Drawing.Size(106, 23);
             this.rdoAdvanced.TabIndex = 0;
             this.rdoAdvanced.TabStop = true;
             this.rdoAdvanced.Text = "Advanced";
@@ -699,9 +728,10 @@
             // 
             this.rdoConventional.AutoSize = true;
             this.rdoConventional.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.rdoConventional.Location = new System.Drawing.Point(3, 30);
+            this.rdoConventional.Location = new System.Drawing.Point(4, 35);
+            this.rdoConventional.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoConventional.Name = "rdoConventional";
-            this.rdoConventional.Size = new System.Drawing.Size(108, 21);
+            this.rdoConventional.Size = new System.Drawing.Size(131, 23);
             this.rdoConventional.TabIndex = 0;
             this.rdoConventional.Text = "Conventional";
             this.rdoConventional.UseVisualStyleBackColor = true;
@@ -710,6 +740,7 @@
             // 
             this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer5.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer5.Name = "splitContainer5";
             this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -720,8 +751,9 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.ugTestItems);
-            this.splitContainer5.Size = new System.Drawing.Size(526, 381);
-            this.splitContainer5.SplitterDistance = 127;
+            this.splitContainer5.Size = new System.Drawing.Size(701, 486);
+            this.splitContainer5.SplitterDistance = 162;
+            this.splitContainer5.SplitterWidth = 5;
             this.splitContainer5.TabIndex = 0;
             // 
             // groupBox2
@@ -733,8 +765,10 @@
             this.groupBox2.Controls.Add(this.progressBar);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(526, 127);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(701, 162);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Test Process";
@@ -742,18 +776,20 @@
             // lblAcuName
             // 
             this.lblAcuName.AutoSize = true;
-            this.lblAcuName.Location = new System.Drawing.Point(59, 32);
+            this.lblAcuName.Location = new System.Drawing.Point(79, 40);
+            this.lblAcuName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAcuName.Name = "lblAcuName";
-            this.lblAcuName.Size = new System.Drawing.Size(65, 12);
+            this.lblAcuName.Size = new System.Drawing.Size(87, 15);
             this.lblAcuName.TabIndex = 4;
             this.lblAcuName.Text = "__ /__ /__";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 32);
+            this.label8.Location = new System.Drawing.Point(8, 40);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 12);
+            this.label8.Size = new System.Drawing.Size(63, 15);
             this.label8.TabIndex = 3;
             this.label8.Text = "ACU ID:";
             // 
@@ -761,18 +797,20 @@
             // 
             this.txtDtc.BackColor = System.Drawing.SystemColors.Info;
             this.txtDtc.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtDtc.Location = new System.Drawing.Point(3, 80);
+            this.txtDtc.Location = new System.Drawing.Point(4, 104);
+            this.txtDtc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDtc.Name = "txtDtc";
             this.txtDtc.ReadOnly = true;
-            this.txtDtc.Size = new System.Drawing.Size(520, 21);
+            this.txtDtc.Size = new System.Drawing.Size(693, 25);
             this.txtDtc.TabIndex = 2;
             // 
             // progressBar
             // 
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar.Location = new System.Drawing.Point(3, 101);
+            this.progressBar.Location = new System.Drawing.Point(4, 129);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(520, 23);
+            this.progressBar.Size = new System.Drawing.Size(693, 29);
             this.progressBar.TabIndex = 0;
             this.progressBar.Text = "[Formatted]";
             // 
@@ -838,8 +876,9 @@
             this.ugTestItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugTestItems.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugTestItems.Location = new System.Drawing.Point(0, 0);
+            this.ugTestItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ugTestItems.Name = "ugTestItems";
-            this.ugTestItems.Size = new System.Drawing.Size(526, 250);
+            this.ugTestItems.Size = new System.Drawing.Size(701, 319);
             this.ugTestItems.TabIndex = 1;
             this.ugTestItems.Text = "ultraGrid1";
             // 
@@ -847,6 +886,7 @@
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -857,8 +897,9 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer2.Size = new System.Drawing.Size(569, 622);
-            this.splitContainer2.SplitterDistance = 218;
+            this.splitContainer2.Size = new System.Drawing.Size(759, 793);
+            this.splitContainer2.SplitterDistance = 277;
+            this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
             // 
 //			'UltraChart' properties's serialization: Since 'ChartType' changes the way axes look,
@@ -1045,8 +1086,9 @@
             lineChartAppearance1.ChartText.Add(chartTextAppearance1);
             this.chart.LineChart = lineChartAppearance1;
             this.chart.Location = new System.Drawing.Point(0, 0);
+            this.chart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chart.Name = "chart";
-            this.chart.Size = new System.Drawing.Size(569, 218);
+            this.chart.Size = new System.Drawing.Size(759, 277);
             this.chart.TabIndex = 0;
             this.chart.TitleTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold);
             this.chart.TitleTop.HorizontalAlign = System.Drawing.StringAlignment.Center;
@@ -1067,20 +1109,20 @@
             this.tabControl1.Controls.Add(this.pageHH);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(569, 400);
+            this.tabControl1.Size = new System.Drawing.Size(759, 511);
             this.tabControl1.TabIndex = 1;
             // 
             // pageLL
             // 
             this.pageLL.Controls.Add(this.ugLTLV);
-            this.pageLL.Location = new System.Drawing.Point(4, 22);
-            this.pageLL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pageLL.Location = new System.Drawing.Point(4, 25);
+            this.pageLL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageLL.Name = "pageLL";
-            this.pageLL.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pageLL.Size = new System.Drawing.Size(561, 374);
+            this.pageLL.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pageLL.Size = new System.Drawing.Size(751, 482);
             this.pageLL.TabIndex = 0;
             this.pageLL.Text = "LTLV";
             this.pageLL.UseVisualStyleBackColor = true;
@@ -1146,19 +1188,20 @@
             this.ugLTLV.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.ugLTLV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugLTLV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ugLTLV.Location = new System.Drawing.Point(2, 2);
+            this.ugLTLV.Location = new System.Drawing.Point(3, 2);
+            this.ugLTLV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ugLTLV.Name = "ugLTLV";
-            this.ugLTLV.Size = new System.Drawing.Size(557, 370);
+            this.ugLTLV.Size = new System.Drawing.Size(745, 478);
             this.ugLTLV.TabIndex = 0;
             this.ugLTLV.Text = "ultraGrid1";
             // 
             // pageLN
             // 
             this.pageLN.Controls.Add(this.ugLTNV);
-            this.pageLN.Location = new System.Drawing.Point(4, 22);
-            this.pageLN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pageLN.Location = new System.Drawing.Point(4, 25);
+            this.pageLN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageLN.Name = "pageLN";
-            this.pageLN.Size = new System.Drawing.Size(560, 382);
+            this.pageLN.Size = new System.Drawing.Size(751, 471);
             this.pageLN.TabIndex = 1;
             this.pageLN.Text = "LTNV";
             this.pageLN.UseVisualStyleBackColor = true;
@@ -1225,18 +1268,19 @@
             this.ugLTNV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugLTNV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugLTNV.Location = new System.Drawing.Point(0, 0);
+            this.ugLTNV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ugLTNV.Name = "ugLTNV";
-            this.ugLTNV.Size = new System.Drawing.Size(560, 382);
+            this.ugLTNV.Size = new System.Drawing.Size(751, 471);
             this.ugLTNV.TabIndex = 1;
             this.ugLTNV.Text = "ultraGrid1";
             // 
             // pageLH
             // 
             this.pageLH.Controls.Add(this.ugLTHV);
-            this.pageLH.Location = new System.Drawing.Point(4, 22);
-            this.pageLH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pageLH.Location = new System.Drawing.Point(4, 25);
+            this.pageLH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageLH.Name = "pageLH";
-            this.pageLH.Size = new System.Drawing.Size(560, 382);
+            this.pageLH.Size = new System.Drawing.Size(751, 471);
             this.pageLH.TabIndex = 2;
             this.pageLH.Text = "LTHV";
             this.pageLH.UseVisualStyleBackColor = true;
@@ -1303,18 +1347,19 @@
             this.ugLTHV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugLTHV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugLTHV.Location = new System.Drawing.Point(0, 0);
+            this.ugLTHV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ugLTHV.Name = "ugLTHV";
-            this.ugLTHV.Size = new System.Drawing.Size(560, 382);
+            this.ugLTHV.Size = new System.Drawing.Size(751, 471);
             this.ugLTHV.TabIndex = 1;
             this.ugLTHV.Text = "ultraGrid1";
             // 
             // pageNL
             // 
             this.pageNL.Controls.Add(this.ugNTLV);
-            this.pageNL.Location = new System.Drawing.Point(4, 22);
-            this.pageNL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pageNL.Location = new System.Drawing.Point(4, 25);
+            this.pageNL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageNL.Name = "pageNL";
-            this.pageNL.Size = new System.Drawing.Size(560, 382);
+            this.pageNL.Size = new System.Drawing.Size(751, 471);
             this.pageNL.TabIndex = 3;
             this.pageNL.Text = "NTLV";
             this.pageNL.UseVisualStyleBackColor = true;
@@ -1381,18 +1426,19 @@
             this.ugNTLV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugNTLV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugNTLV.Location = new System.Drawing.Point(0, 0);
+            this.ugNTLV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ugNTLV.Name = "ugNTLV";
-            this.ugNTLV.Size = new System.Drawing.Size(560, 382);
+            this.ugNTLV.Size = new System.Drawing.Size(751, 471);
             this.ugNTLV.TabIndex = 1;
             this.ugNTLV.Text = "ultraGrid1";
             // 
             // pageNN
             // 
             this.pageNN.Controls.Add(this.ugNTNV);
-            this.pageNN.Location = new System.Drawing.Point(4, 22);
-            this.pageNN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pageNN.Location = new System.Drawing.Point(4, 25);
+            this.pageNN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageNN.Name = "pageNN";
-            this.pageNN.Size = new System.Drawing.Size(560, 382);
+            this.pageNN.Size = new System.Drawing.Size(751, 471);
             this.pageNN.TabIndex = 4;
             this.pageNN.Text = "NTNV";
             this.pageNN.UseVisualStyleBackColor = true;
@@ -1459,18 +1505,19 @@
             this.ugNTNV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugNTNV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugNTNV.Location = new System.Drawing.Point(0, 0);
+            this.ugNTNV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ugNTNV.Name = "ugNTNV";
-            this.ugNTNV.Size = new System.Drawing.Size(560, 382);
+            this.ugNTNV.Size = new System.Drawing.Size(751, 471);
             this.ugNTNV.TabIndex = 1;
             this.ugNTNV.Text = "ultraGrid1";
             // 
             // pageNH
             // 
             this.pageNH.Controls.Add(this.ugNTHV);
-            this.pageNH.Location = new System.Drawing.Point(4, 22);
-            this.pageNH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pageNH.Location = new System.Drawing.Point(4, 25);
+            this.pageNH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageNH.Name = "pageNH";
-            this.pageNH.Size = new System.Drawing.Size(560, 382);
+            this.pageNH.Size = new System.Drawing.Size(751, 471);
             this.pageNH.TabIndex = 5;
             this.pageNH.Text = "NTHV";
             this.pageNH.UseVisualStyleBackColor = true;
@@ -1537,18 +1584,19 @@
             this.ugNTHV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugNTHV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugNTHV.Location = new System.Drawing.Point(0, 0);
+            this.ugNTHV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ugNTHV.Name = "ugNTHV";
-            this.ugNTHV.Size = new System.Drawing.Size(560, 382);
+            this.ugNTHV.Size = new System.Drawing.Size(751, 471);
             this.ugNTHV.TabIndex = 1;
             this.ugNTHV.Text = "ultraGrid1";
             // 
             // pageHL
             // 
             this.pageHL.Controls.Add(this.ugHTLV);
-            this.pageHL.Location = new System.Drawing.Point(4, 22);
-            this.pageHL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pageHL.Location = new System.Drawing.Point(4, 25);
+            this.pageHL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageHL.Name = "pageHL";
-            this.pageHL.Size = new System.Drawing.Size(560, 382);
+            this.pageHL.Size = new System.Drawing.Size(751, 471);
             this.pageHL.TabIndex = 6;
             this.pageHL.Text = "HTLV";
             this.pageHL.UseVisualStyleBackColor = true;
@@ -1615,18 +1663,19 @@
             this.ugHTLV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugHTLV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugHTLV.Location = new System.Drawing.Point(0, 0);
+            this.ugHTLV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ugHTLV.Name = "ugHTLV";
-            this.ugHTLV.Size = new System.Drawing.Size(560, 382);
+            this.ugHTLV.Size = new System.Drawing.Size(751, 471);
             this.ugHTLV.TabIndex = 1;
             this.ugHTLV.Text = "ultraGrid1";
             // 
             // pageHN
             // 
             this.pageHN.Controls.Add(this.ugHTNV);
-            this.pageHN.Location = new System.Drawing.Point(4, 22);
-            this.pageHN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pageHN.Location = new System.Drawing.Point(4, 25);
+            this.pageHN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageHN.Name = "pageHN";
-            this.pageHN.Size = new System.Drawing.Size(560, 382);
+            this.pageHN.Size = new System.Drawing.Size(751, 471);
             this.pageHN.TabIndex = 7;
             this.pageHN.Text = "HTNV";
             this.pageHN.UseVisualStyleBackColor = true;
@@ -1693,18 +1742,19 @@
             this.ugHTNV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugHTNV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugHTNV.Location = new System.Drawing.Point(0, 0);
+            this.ugHTNV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ugHTNV.Name = "ugHTNV";
-            this.ugHTNV.Size = new System.Drawing.Size(560, 382);
+            this.ugHTNV.Size = new System.Drawing.Size(751, 471);
             this.ugHTNV.TabIndex = 1;
             this.ugHTNV.Text = "ultraGrid1";
             // 
             // pageHH
             // 
             this.pageHH.Controls.Add(this.ugHTHV);
-            this.pageHH.Location = new System.Drawing.Point(4, 22);
-            this.pageHH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pageHH.Location = new System.Drawing.Point(4, 25);
+            this.pageHH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageHH.Name = "pageHH";
-            this.pageHH.Size = new System.Drawing.Size(560, 382);
+            this.pageHH.Size = new System.Drawing.Size(751, 471);
             this.pageHH.TabIndex = 8;
             this.pageHH.Text = "HTHV";
             this.pageHH.UseVisualStyleBackColor = true;
@@ -1771,14 +1821,16 @@
             this.ugHTHV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugHTHV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugHTHV.Location = new System.Drawing.Point(0, 0);
+            this.ugHTHV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ugHTHV.Name = "ugHTHV";
-            this.ugHTHV.Size = new System.Drawing.Size(560, 382);
+            this.ugHTHV.Size = new System.Drawing.Size(751, 471);
             this.ugHTHV.TabIndex = 1;
             this.ugHTHV.Text = "ultraGrid1";
             // 
             // statusBar
             // 
-            this.statusBar.Location = new System.Drawing.Point(0, 699);
+            this.statusBar.Location = new System.Drawing.Point(0, 873);
+            this.statusBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.statusBar.Name = "statusBar";
             ultraStatusPanel1.Key = "messBar";
             ultraStatusPanel1.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Automatic;
@@ -1793,7 +1845,7 @@
             ultraStatusPanel1,
             ultraStatusPanel2,
             ultraStatusPanel3});
-            this.statusBar.Size = new System.Drawing.Size(1099, 23);
+            this.statusBar.Size = new System.Drawing.Size(1465, 29);
             this.statusBar.TabIndex = 0;
             this.statusBar.Text = "Ready";
             // 
@@ -1803,9 +1855,10 @@
             this._MainForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.Gainsboro;
             this._MainForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._MainForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 77);
+            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 80);
+            this._MainForm_Toolbars_Dock_Area_Left.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this._MainForm_Toolbars_Dock_Area_Left.Name = "_MainForm_Toolbars_Dock_Area_Left";
-            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 622);
+            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 793);
             this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarsManager;
             // 
             // toolBarsManager
@@ -1906,9 +1959,10 @@
             this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.Gainsboro;
             this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1099, 77);
+            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1465, 80);
+            this._MainForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
-            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 622);
+            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 793);
             this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarsManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Top
@@ -1918,8 +1972,9 @@
             this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
             this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
+            this._MainForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
-            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1099, 77);
+            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1465, 80);
             this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarsManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Bottom
@@ -1928,22 +1983,24 @@
             this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.Gainsboro;
             this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
             this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 699);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 873);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
-            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1099, 0);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1465, 0);
             this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarsManager;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1099, 722);
+            this.ClientSize = new System.Drawing.Size(1465, 902);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Left);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Right);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Top);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
