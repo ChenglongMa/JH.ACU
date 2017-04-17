@@ -57,12 +57,18 @@ namespace JH.ACU.BLL.Instruments
 
         private readonly Dmm _dmm;
 
+        /// <summary>
+        /// 数字万用表触发模式和计算模式类
+        /// </summary>
         private class Dmm
         {
             public TriggerSource TriggerSource { get; set; }
             public MathStorage MathStorage { get; set; }
         }
 
+        /// <summary>
+        /// 控制模式
+        /// </summary>
         private enum ControlMode
         {
             Local,
@@ -70,6 +76,9 @@ namespace JH.ACU.BLL.Instruments
             RemoteWithLock
         }
 
+        /// <summary>
+        /// 触发模式
+        /// </summary>
         private enum TriggerSource
         {
             Immediate,
@@ -78,6 +87,9 @@ namespace JH.ACU.BLL.Instruments
             Internal,
         }
 
+        /// <summary>
+        /// 计算模式
+        /// </summary>
         private enum MathStorage
         {
             Off,
@@ -85,6 +97,9 @@ namespace JH.ACU.BLL.Instruments
             OutputBuffer,
         }
 
+        /// <summary>
+        /// 自动归零
+        /// </summary>
         public enum AutoZero
         {
             On,
@@ -220,12 +235,8 @@ namespace JH.ACU.BLL.Instruments
                 Write(command);
                 return Convert.ToDouble(Read(":FETC?"));
             }
-            else
-            {
-                command = "READ?";
-                return Convert.ToDouble(Read(command));
-            }
-
+            command = "READ?";
+            return Convert.ToDouble(Read(command));
         }
 
         public void SetAutoZero(AutoZero autoZero)
