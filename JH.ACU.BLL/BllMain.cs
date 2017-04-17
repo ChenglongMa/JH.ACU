@@ -1457,7 +1457,7 @@ namespace JH.ACU.BLL
         private void RebootAllInstrs()
         {
             CloseAllInstrs();
-            Thread.Sleep(300);
+            Thread.Sleep(500);
             OpenAllInstrs();
         }
 
@@ -1552,7 +1552,7 @@ namespace JH.ACU.BLL
             _pwr.IfNotNull(p => p.Dispose());
             _prs0.IfNotNull(prs => prs.Dispose());
             _prs1.IfNotNull(prs => prs.Dispose());
-            _chamber.IfNotNull(c => c.Dispose());
+            //_chamber.IfNotNull(c => c.Dispose());
             _dmm.IfNotNull(d => d.Dispose());
             _daq.IfNotNull(d => d.Dispose());
         }

@@ -32,7 +32,7 @@ namespace JH.ACU.BLL.Instruments
 
         private readonly SerialSession _serial;
         private bool _realTimeFlag;
-
+        private bool _isConnected;
         private static Instr Config
         {
             get { return BllConfig.GetInstr(InstrName.Acu); }
@@ -40,7 +40,6 @@ namespace JH.ACU.BLL.Instruments
 
 
         #endregion
-
 
         #region 属性
 
@@ -140,8 +139,8 @@ namespace JH.ACU.BLL.Instruments
                 _serial.Write(cs);
                 Thread.Sleep(20);
                 var res = _serial.ReadByteArray(2)[1];
-                return res == 0x4f;
-
+                _isConnected = res == 0x4f;
+                return _isConnected;
             }
             catch (Exception ex)
             {
@@ -152,12 +151,22 @@ namespace JH.ACU.BLL.Instruments
 
         public bool Stop()
         {
-            if (_realTimeFlag)
+            try
             {
-                StopRtFault();
+                if (!_isConnected) return true;
+                if (_realTimeFlag)
+                {
+                    StopRtFault();
+                }
+                var data = new byte[] {0x79, 0xff};
+                _isConnected=WriteAndRead(data)[0] != 0xff;
+                return !_isConnected;
             }
-            var data = new byte[] {0x79, 0xff};
-            return WriteAndRead(data)[0] == 0xff;
+            catch (Exception ex)
+            {
+                LogHelper.WriteErrorLog("BllAcu", ex, "ACU通讯失败");
+                return false;
+            }
         }
 
         /// <summary>
