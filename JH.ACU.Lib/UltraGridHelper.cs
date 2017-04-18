@@ -180,6 +180,32 @@ namespace JH.ACU.Lib
             grid.AutoSizeAllCol();
         }
 
+        public static void SetStyle<T>(this UltraGrid grid, List<T> dataSource, List<FieldMetaInfo> fields)
+        {
+            grid.DisplayLayout.Override.RowSelectorNumberStyle = RowSelectorNumberStyle.VisibleIndex;
+            if (grid.DisplayLayout.Bands.Count == 0)
+                return;
+            var type = typeof (T);
+            foreach (var field in fields)
+            {
+                var propertyName = field.ColName;
+                var pro = type.GetProperties().FirstOrDefault(p => p.Name == propertyName);
+                if (pro == null) continue;
+                var value = pro.GetValue(t, null);
+                var col = grid.DisplayLayout.Bands[0].Columns.Add(propertyName, field.ColDisplayName);
+                col.Style = field.ColumnStyle;
+                col.Hidden = !field.Visible;
+                col.Width = field.Width;
+                col.Header.Caption = field.ColDisplayName;
+                col.Header.VisiblePosition = fields.IndexOf(field);
+                col.CellActivation = field.ReadOnly ? Activation.NoEdit : Activation.AllowEdit;
+            }
+
+            foreach (var t in dataSource)
+            {
+            }
+        }
+
 /*
             /// <summary>
             /// 设置网格控件的列格式
