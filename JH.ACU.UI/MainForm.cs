@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Infragistics.Documents.Excel;
 using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinToolbars;
 using JH.ACU.BLL;
@@ -138,6 +139,10 @@ namespace JH.ACU.UI
             }
         }
 
+        /// <summary>
+        /// 为Grid绑定测试结果
+        /// </summary>
+        /// <param name="grid"></param>
         private void BindingToResultGrid(UltraGrid grid)
         {
             var tvType = (TvType) grid.Tag;
@@ -149,6 +154,9 @@ namespace JH.ACU.UI
             grid.SetGridDefaultStyle();
         }
 
+        /// <summary>
+        /// 设置Tab Grid的Tag
+        /// </summary>
         private void SetGridTag()
         {
             pageLL.Tag = ugLTLV.Tag = TvType.LowTempLowVolt;
@@ -312,6 +320,7 @@ namespace JH.ACU.UI
                     break;
                 case "btnExport": // ButtonTool
                     // Place code here
+                    ExportToExcel();
                     break;
                 case "btnRunPause": // ButtonTool
                     if (e.Tool.SharedProps.Caption == @"Run")
@@ -343,6 +352,47 @@ namespace JH.ACU.UI
 
             }
 
+        }
+
+        /// <summary>
+        /// 导出至Excel中
+        /// </summary>
+        private void ExportToExcel()
+        {
+            try
+            {
+                if (saveFileDialog1.ShowDialog(this) != DialogResult.OK) return;
+                var fileName = saveFileDialog1.FileName;
+                var book = new Workbook(WorkbookFormat.Excel97To2003);
+                var sheetTotal = book.Worksheets.Add(pageTotal.Text);
+                var sheetLtLv = book.Worksheets.Add(pageLL.Text);
+                var sheetLtNv = book.Worksheets.Add(pageLN.Text);
+                var sheetLtHv = book.Worksheets.Add(pageLH.Text);
+                var sheetNtLv = book.Worksheets.Add(pageNL.Text);
+                var sheetNtNv = book.Worksheets.Add(pageNN.Text);
+                var sheetNtHv = book.Worksheets.Add(pageNH.Text);
+                var sheetHtLv = book.Worksheets.Add(pageHL.Text);
+                var sheetHtNv = book.Worksheets.Add(pageHN.Text);
+                var sheetHtHv = book.Worksheets.Add(pageHH.Text);
+                ultraGridExcelExporter1.Export(ugTotal, sheetTotal);
+                ultraGridExcelExporter1.Export(ugLTLV, sheetLtLv);
+                ultraGridExcelExporter1.Export(ugLTNV, sheetLtNv);
+                ultraGridExcelExporter1.Export(ugLTHV, sheetLtHv);
+                ultraGridExcelExporter1.Export(ugNTLV, sheetNtLv);
+                ultraGridExcelExporter1.Export(ugNTNV, sheetNtNv);
+                ultraGridExcelExporter1.Export(ugNTHV, sheetNtHv);
+                ultraGridExcelExporter1.Export(ugHTLV, sheetHtLv);
+                ultraGridExcelExporter1.Export(ugHTNV, sheetHtNv);
+                ultraGridExcelExporter1.Export(ugHTHV, sheetHtHv);
+                book.Save(fileName);
+                MessageBoxHelper.ShowInformationOk("File saved successfully.");
+
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteErrorLog("MainForm", ex, "保存测试结果失败");
+                MessageBoxHelper.ShowError("File saved failed!\n" + ex.Message);
+            }
         }
 
         /// <summary>

@@ -156,7 +156,7 @@
             Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel1 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
             Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel2 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
             Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel3 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.Appearance appearance121 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance133 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("ultraMenu");
             Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool7 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("menuFile");
             Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool15 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("menuConfig");
@@ -190,12 +190,24 @@
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool4 = new Infragistics.Win.UltraWinToolbars.ButtonTool("btnInstrControl");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool18 = new Infragistics.Win.UltraWinToolbars.ButtonTool("btnExport");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool22 = new Infragistics.Win.UltraWinToolbars.ButtonTool("btnInitialize");
-            Infragistics.Win.Appearance appearance122 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance134 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool23 = new Infragistics.Win.UltraWinToolbars.ButtonTool("btnRunPause");
-            Infragistics.Win.Appearance appearance123 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance135 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool24 = new Infragistics.Win.UltraWinToolbars.ButtonTool("btnStop");
-            Infragistics.Win.Appearance appearance124 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance136 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool26 = new Infragistics.Win.UltraWinToolbars.ButtonTool("btnSpecConfig");
+            Infragistics.Win.Appearance appearance121 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance122 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance123 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance124 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance125 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance126 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance127 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance128 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance129 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance130 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance131 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance132 = new Infragistics.Win.Appearance();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
@@ -260,6 +272,10 @@
             this._MainForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.pageTotal = new System.Windows.Forms.TabPage();
+            this.ugTotal = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.ultraGridExcelExporter1 = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -321,13 +337,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.ugHTHV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolBarsManager)).BeginInit();
+            this.pageTotal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ugTotal)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 80);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -346,7 +364,7 @@
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer3.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -366,7 +384,7 @@
             // 
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer4.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer4.Name = "splitContainer4";
             this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -414,7 +432,7 @@
             this.ledManualRun.InteractionMode = NationalInstruments.UI.BooleanInteractionMode.SwitchWhenPressed;
             this.ledManualRun.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
             this.ledManualRun.Location = new System.Drawing.Point(288, 11);
-            this.ledManualRun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ledManualRun.Margin = new System.Windows.Forms.Padding(4);
             this.ledManualRun.Name = "ledManualRun";
             this.ledManualRun.Size = new System.Drawing.Size(53, 50);
             this.ledManualRun.TabIndex = 0;
@@ -425,7 +443,7 @@
             this.ledAutoRun.InteractionMode = NationalInstruments.UI.BooleanInteractionMode.SwitchWhenPressed;
             this.ledAutoRun.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
             this.ledAutoRun.Location = new System.Drawing.Point(37, 11);
-            this.ledAutoRun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ledAutoRun.Margin = new System.Windows.Forms.Padding(4);
             this.ledAutoRun.Name = "ledAutoRun";
             this.ledAutoRun.Size = new System.Drawing.Size(53, 50);
             this.ledAutoRun.TabIndex = 0;
@@ -438,9 +456,9 @@
             this.groupBox1.Controls.Add(this.flowLayoutPanel8);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(701, 221);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -452,7 +470,7 @@
             this.flowLayoutPanel8.Controls.Add(this.flowLayoutPanel7);
             this.flowLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel8.Location = new System.Drawing.Point(4, 22);
-            this.flowLayoutPanel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel8.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
             this.flowLayoutPanel8.Size = new System.Drawing.Size(693, 195);
             this.flowLayoutPanel8.TabIndex = 0;
@@ -466,7 +484,7 @@
             this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel2);
             this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel1);
             this.flowLayoutPanel4.Location = new System.Drawing.Point(4, 4);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(475, 166);
             this.flowLayoutPanel4.TabIndex = 11;
@@ -479,7 +497,7 @@
             this.flowLayoutPanel3.Controls.Add(this.label6);
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(4, 4);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(60, 109);
             this.flowLayoutPanel3.TabIndex = 10;
@@ -517,7 +535,7 @@
             this.flowLayoutPanel2.Controls.Add(this.ckbChamberEnable);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(72, 4);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(205, 156);
             this.flowLayoutPanel2.TabIndex = 9;
@@ -541,7 +559,7 @@
             this.numTempTarget.ForeColor = System.Drawing.Color.Lime;
             this.numTempTarget.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("0.00°C");
             this.numTempTarget.Location = new System.Drawing.Point(4, 23);
-            this.numTempTarget.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numTempTarget.Margin = new System.Windows.Forms.Padding(4);
             this.numTempTarget.Name = "numTempTarget";
             this.numTempTarget.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
             this.numTempTarget.Size = new System.Drawing.Size(197, 44);
@@ -555,7 +573,7 @@
             this.numVoltTarget.ForeColor = System.Drawing.Color.Lime;
             this.numVoltTarget.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("0.00  V");
             this.numVoltTarget.Location = new System.Drawing.Point(4, 75);
-            this.numVoltTarget.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numVoltTarget.Margin = new System.Windows.Forms.Padding(4);
             this.numVoltTarget.Name = "numVoltTarget";
             this.numVoltTarget.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
             this.numVoltTarget.Size = new System.Drawing.Size(197, 44);
@@ -585,7 +603,7 @@
             this.flowLayoutPanel1.Controls.Add(this.numVoltReal);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(285, 4);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(184, 123);
             this.flowLayoutPanel1.TabIndex = 8;
@@ -610,7 +628,7 @@
             this.numTempReal.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("0.00°C");
             this.numTempReal.InteractionMode = NationalInstruments.UI.NumericEditInteractionModes.Indicator;
             this.numTempReal.Location = new System.Drawing.Point(4, 23);
-            this.numTempReal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numTempReal.Margin = new System.Windows.Forms.Padding(4);
             this.numTempReal.Name = "numTempReal";
             this.numTempReal.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
             this.numTempReal.Size = new System.Drawing.Size(176, 44);
@@ -626,7 +644,7 @@
             this.numVoltReal.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("0.00  V");
             this.numVoltReal.InteractionMode = NationalInstruments.UI.NumericEditInteractionModes.Indicator;
             this.numVoltReal.Location = new System.Drawing.Point(4, 75);
-            this.numVoltReal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numVoltReal.Margin = new System.Windows.Forms.Padding(4);
             this.numVoltReal.Name = "numVoltReal";
             this.numVoltReal.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
             this.numVoltReal.Size = new System.Drawing.Size(176, 44);
@@ -640,7 +658,7 @@
             this.flowLayoutPanel7.Controls.Add(this.grbCout);
             this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel7.Location = new System.Drawing.Point(487, 4);
-            this.flowLayoutPanel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
             this.flowLayoutPanel7.Size = new System.Drawing.Size(186, 174);
             this.flowLayoutPanel7.TabIndex = 13;
@@ -652,7 +670,7 @@
             this.flowLayoutPanel6.Controls.Add(this.label7);
             this.flowLayoutPanel6.Controls.Add(this.numAcuIndex);
             this.flowLayoutPanel6.Location = new System.Drawing.Point(4, 4);
-            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(162, 40);
             this.flowLayoutPanel6.TabIndex = 12;
@@ -676,7 +694,7 @@
             this.numAcuIndex.ForeColor = System.Drawing.Color.Lime;
             this.numAcuIndex.FormatMode = NationalInstruments.UI.NumericFormatMode.CreateGenericMode("00");
             this.numAcuIndex.Location = new System.Drawing.Point(93, 4);
-            this.numAcuIndex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numAcuIndex.Margin = new System.Windows.Forms.Padding(4);
             this.numAcuIndex.Name = "numAcuIndex";
             this.numAcuIndex.OutOfRangeMode = NationalInstruments.UI.NumericOutOfRangeMode.CoerceToRange;
             this.numAcuIndex.Range = new NationalInstruments.UI.Range(1D, 8D);
@@ -692,7 +710,7 @@
             this.grbCout.Location = new System.Drawing.Point(4, 54);
             this.grbCout.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
             this.grbCout.Name = "grbCout";
-            this.grbCout.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbCout.Padding = new System.Windows.Forms.Padding(4);
             this.grbCout.Size = new System.Drawing.Size(164, 98);
             this.grbCout.TabIndex = 1;
             this.grbCout.TabStop = false;
@@ -705,7 +723,7 @@
             this.flowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel5.Location = new System.Drawing.Point(4, 24);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Size = new System.Drawing.Size(156, 70);
             this.flowLayoutPanel5.TabIndex = 1;
@@ -716,7 +734,7 @@
             this.rdoAdvanced.Checked = true;
             this.rdoAdvanced.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.rdoAdvanced.Location = new System.Drawing.Point(4, 4);
-            this.rdoAdvanced.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoAdvanced.Margin = new System.Windows.Forms.Padding(4);
             this.rdoAdvanced.Name = "rdoAdvanced";
             this.rdoAdvanced.Size = new System.Drawing.Size(106, 23);
             this.rdoAdvanced.TabIndex = 0;
@@ -729,7 +747,7 @@
             this.rdoConventional.AutoSize = true;
             this.rdoConventional.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.rdoConventional.Location = new System.Drawing.Point(4, 35);
-            this.rdoConventional.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoConventional.Margin = new System.Windows.Forms.Padding(4);
             this.rdoConventional.Name = "rdoConventional";
             this.rdoConventional.Size = new System.Drawing.Size(131, 23);
             this.rdoConventional.TabIndex = 0;
@@ -740,7 +758,7 @@
             // 
             this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer5.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer5.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer5.Name = "splitContainer5";
             this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -765,9 +783,9 @@
             this.groupBox2.Controls.Add(this.progressBar);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(701, 162);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
@@ -798,7 +816,7 @@
             this.txtDtc.BackColor = System.Drawing.SystemColors.Info;
             this.txtDtc.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtDtc.Location = new System.Drawing.Point(4, 104);
-            this.txtDtc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDtc.Margin = new System.Windows.Forms.Padding(4);
             this.txtDtc.Name = "txtDtc";
             this.txtDtc.ReadOnly = true;
             this.txtDtc.Size = new System.Drawing.Size(693, 25);
@@ -808,7 +826,7 @@
             // 
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.progressBar.Location = new System.Drawing.Point(4, 129);
-            this.progressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(693, 29);
             this.progressBar.TabIndex = 0;
@@ -876,7 +894,7 @@
             this.ugTestItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugTestItems.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugTestItems.Location = new System.Drawing.Point(0, 0);
-            this.ugTestItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ugTestItems.Margin = new System.Windows.Forms.Padding(4);
             this.ugTestItems.Name = "ugTestItems";
             this.ugTestItems.Size = new System.Drawing.Size(701, 319);
             this.ugTestItems.TabIndex = 1;
@@ -886,7 +904,7 @@
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -989,7 +1007,7 @@
             this.chart.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.chart.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.chart.Axis.Y.MinorGridLines.Visible = false;
-            this.chart.Axis.Y.TickmarkInterval = 40D;
+            this.chart.Axis.Y.TickmarkInterval = 50D;
             this.chart.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.chart.Axis.Y.Visible = true;
             this.chart.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -1016,7 +1034,7 @@
             this.chart.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.chart.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.chart.Axis.Y2.MinorGridLines.Visible = false;
-            this.chart.Axis.Y2.TickmarkInterval = 40D;
+            this.chart.Axis.Y2.TickmarkInterval = 50D;
             this.chart.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.chart.Axis.Y2.Visible = false;
             this.chart.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -1086,7 +1104,7 @@
             lineChartAppearance1.ChartText.Add(chartTextAppearance1);
             this.chart.LineChart = lineChartAppearance1;
             this.chart.Location = new System.Drawing.Point(0, 0);
-            this.chart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chart.Margin = new System.Windows.Forms.Padding(4);
             this.chart.Name = "chart";
             this.chart.Size = new System.Drawing.Size(759, 277);
             this.chart.TabIndex = 0;
@@ -1107,6 +1125,7 @@
             this.tabControl1.Controls.Add(this.pageHL);
             this.tabControl1.Controls.Add(this.pageHN);
             this.tabControl1.Controls.Add(this.pageHH);
+            this.tabControl1.Controls.Add(this.pageTotal);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1189,7 +1208,7 @@
             this.ugLTLV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugLTLV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugLTLV.Location = new System.Drawing.Point(3, 2);
-            this.ugLTLV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ugLTLV.Margin = new System.Windows.Forms.Padding(4);
             this.ugLTLV.Name = "ugLTLV";
             this.ugLTLV.Size = new System.Drawing.Size(745, 478);
             this.ugLTLV.TabIndex = 0;
@@ -1201,7 +1220,7 @@
             this.pageLN.Location = new System.Drawing.Point(4, 25);
             this.pageLN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageLN.Name = "pageLN";
-            this.pageLN.Size = new System.Drawing.Size(751, 471);
+            this.pageLN.Size = new System.Drawing.Size(751, 482);
             this.pageLN.TabIndex = 1;
             this.pageLN.Text = "LTNV";
             this.pageLN.UseVisualStyleBackColor = true;
@@ -1268,9 +1287,9 @@
             this.ugLTNV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugLTNV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugLTNV.Location = new System.Drawing.Point(0, 0);
-            this.ugLTNV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ugLTNV.Margin = new System.Windows.Forms.Padding(4);
             this.ugLTNV.Name = "ugLTNV";
-            this.ugLTNV.Size = new System.Drawing.Size(751, 471);
+            this.ugLTNV.Size = new System.Drawing.Size(751, 482);
             this.ugLTNV.TabIndex = 1;
             this.ugLTNV.Text = "ultraGrid1";
             // 
@@ -1280,7 +1299,7 @@
             this.pageLH.Location = new System.Drawing.Point(4, 25);
             this.pageLH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageLH.Name = "pageLH";
-            this.pageLH.Size = new System.Drawing.Size(751, 471);
+            this.pageLH.Size = new System.Drawing.Size(751, 482);
             this.pageLH.TabIndex = 2;
             this.pageLH.Text = "LTHV";
             this.pageLH.UseVisualStyleBackColor = true;
@@ -1347,9 +1366,9 @@
             this.ugLTHV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugLTHV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugLTHV.Location = new System.Drawing.Point(0, 0);
-            this.ugLTHV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ugLTHV.Margin = new System.Windows.Forms.Padding(4);
             this.ugLTHV.Name = "ugLTHV";
-            this.ugLTHV.Size = new System.Drawing.Size(751, 471);
+            this.ugLTHV.Size = new System.Drawing.Size(751, 482);
             this.ugLTHV.TabIndex = 1;
             this.ugLTHV.Text = "ultraGrid1";
             // 
@@ -1359,7 +1378,7 @@
             this.pageNL.Location = new System.Drawing.Point(4, 25);
             this.pageNL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageNL.Name = "pageNL";
-            this.pageNL.Size = new System.Drawing.Size(751, 471);
+            this.pageNL.Size = new System.Drawing.Size(751, 482);
             this.pageNL.TabIndex = 3;
             this.pageNL.Text = "NTLV";
             this.pageNL.UseVisualStyleBackColor = true;
@@ -1426,9 +1445,9 @@
             this.ugNTLV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugNTLV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugNTLV.Location = new System.Drawing.Point(0, 0);
-            this.ugNTLV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ugNTLV.Margin = new System.Windows.Forms.Padding(4);
             this.ugNTLV.Name = "ugNTLV";
-            this.ugNTLV.Size = new System.Drawing.Size(751, 471);
+            this.ugNTLV.Size = new System.Drawing.Size(751, 482);
             this.ugNTLV.TabIndex = 1;
             this.ugNTLV.Text = "ultraGrid1";
             // 
@@ -1438,7 +1457,7 @@
             this.pageNN.Location = new System.Drawing.Point(4, 25);
             this.pageNN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageNN.Name = "pageNN";
-            this.pageNN.Size = new System.Drawing.Size(751, 471);
+            this.pageNN.Size = new System.Drawing.Size(751, 482);
             this.pageNN.TabIndex = 4;
             this.pageNN.Text = "NTNV";
             this.pageNN.UseVisualStyleBackColor = true;
@@ -1505,9 +1524,9 @@
             this.ugNTNV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugNTNV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugNTNV.Location = new System.Drawing.Point(0, 0);
-            this.ugNTNV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ugNTNV.Margin = new System.Windows.Forms.Padding(4);
             this.ugNTNV.Name = "ugNTNV";
-            this.ugNTNV.Size = new System.Drawing.Size(751, 471);
+            this.ugNTNV.Size = new System.Drawing.Size(751, 482);
             this.ugNTNV.TabIndex = 1;
             this.ugNTNV.Text = "ultraGrid1";
             // 
@@ -1517,7 +1536,7 @@
             this.pageNH.Location = new System.Drawing.Point(4, 25);
             this.pageNH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageNH.Name = "pageNH";
-            this.pageNH.Size = new System.Drawing.Size(751, 471);
+            this.pageNH.Size = new System.Drawing.Size(751, 482);
             this.pageNH.TabIndex = 5;
             this.pageNH.Text = "NTHV";
             this.pageNH.UseVisualStyleBackColor = true;
@@ -1584,9 +1603,9 @@
             this.ugNTHV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugNTHV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugNTHV.Location = new System.Drawing.Point(0, 0);
-            this.ugNTHV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ugNTHV.Margin = new System.Windows.Forms.Padding(4);
             this.ugNTHV.Name = "ugNTHV";
-            this.ugNTHV.Size = new System.Drawing.Size(751, 471);
+            this.ugNTHV.Size = new System.Drawing.Size(751, 482);
             this.ugNTHV.TabIndex = 1;
             this.ugNTHV.Text = "ultraGrid1";
             // 
@@ -1596,7 +1615,7 @@
             this.pageHL.Location = new System.Drawing.Point(4, 25);
             this.pageHL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageHL.Name = "pageHL";
-            this.pageHL.Size = new System.Drawing.Size(751, 471);
+            this.pageHL.Size = new System.Drawing.Size(751, 482);
             this.pageHL.TabIndex = 6;
             this.pageHL.Text = "HTLV";
             this.pageHL.UseVisualStyleBackColor = true;
@@ -1663,9 +1682,9 @@
             this.ugHTLV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugHTLV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugHTLV.Location = new System.Drawing.Point(0, 0);
-            this.ugHTLV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ugHTLV.Margin = new System.Windows.Forms.Padding(4);
             this.ugHTLV.Name = "ugHTLV";
-            this.ugHTLV.Size = new System.Drawing.Size(751, 471);
+            this.ugHTLV.Size = new System.Drawing.Size(751, 482);
             this.ugHTLV.TabIndex = 1;
             this.ugHTLV.Text = "ultraGrid1";
             // 
@@ -1675,7 +1694,7 @@
             this.pageHN.Location = new System.Drawing.Point(4, 25);
             this.pageHN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageHN.Name = "pageHN";
-            this.pageHN.Size = new System.Drawing.Size(751, 471);
+            this.pageHN.Size = new System.Drawing.Size(751, 482);
             this.pageHN.TabIndex = 7;
             this.pageHN.Text = "HTNV";
             this.pageHN.UseVisualStyleBackColor = true;
@@ -1742,9 +1761,9 @@
             this.ugHTNV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugHTNV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugHTNV.Location = new System.Drawing.Point(0, 0);
-            this.ugHTNV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ugHTNV.Margin = new System.Windows.Forms.Padding(4);
             this.ugHTNV.Name = "ugHTNV";
-            this.ugHTNV.Size = new System.Drawing.Size(751, 471);
+            this.ugHTNV.Size = new System.Drawing.Size(751, 482);
             this.ugHTNV.TabIndex = 1;
             this.ugHTNV.Text = "ultraGrid1";
             // 
@@ -1754,7 +1773,7 @@
             this.pageHH.Location = new System.Drawing.Point(4, 25);
             this.pageHH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageHH.Name = "pageHH";
-            this.pageHH.Size = new System.Drawing.Size(751, 471);
+            this.pageHH.Size = new System.Drawing.Size(751, 482);
             this.pageHH.TabIndex = 8;
             this.pageHH.Text = "HTHV";
             this.pageHH.UseVisualStyleBackColor = true;
@@ -1821,16 +1840,16 @@
             this.ugHTHV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ugHTHV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ugHTHV.Location = new System.Drawing.Point(0, 0);
-            this.ugHTHV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ugHTHV.Margin = new System.Windows.Forms.Padding(4);
             this.ugHTHV.Name = "ugHTHV";
-            this.ugHTHV.Size = new System.Drawing.Size(751, 471);
+            this.ugHTHV.Size = new System.Drawing.Size(751, 482);
             this.ugHTHV.TabIndex = 1;
             this.ugHTHV.Text = "ultraGrid1";
             // 
             // statusBar
             // 
             this.statusBar.Location = new System.Drawing.Point(0, 873);
-            this.statusBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.statusBar.Margin = new System.Windows.Forms.Padding(4);
             this.statusBar.Name = "statusBar";
             ultraStatusPanel1.Key = "messBar";
             ultraStatusPanel1.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Automatic;
@@ -1856,15 +1875,15 @@
             this._MainForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._MainForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 80);
-            this._MainForm_Toolbars_Dock_Area_Left.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._MainForm_Toolbars_Dock_Area_Left.Margin = new System.Windows.Forms.Padding(4);
             this._MainForm_Toolbars_Dock_Area_Left.Name = "_MainForm_Toolbars_Dock_Area_Left";
             this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 793);
             this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarsManager;
             // 
             // toolBarsManager
             // 
-            appearance121.BackColor = System.Drawing.Color.Gainsboro;
-            this.toolBarsManager.Appearance = appearance121;
+            appearance133.BackColor = System.Drawing.Color.Gainsboro;
+            this.toolBarsManager.Appearance = appearance133;
             this.toolBarsManager.DesignerFlags = 1;
             this.toolBarsManager.DockWithinContainer = this;
             this.toolBarsManager.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
@@ -1919,17 +1938,17 @@
             buttonTool15.SharedPropsInternal.Caption = "PRS#1";
             buttonTool16.SharedPropsInternal.Caption = "Chamber";
             buttonTool4.SharedPropsInternal.Caption = "Instrument Control";
-            buttonTool18.SharedPropsInternal.Caption = "Export Test Result";
-            appearance122.Image = global::JH.ACU.UI.Properties.Resources.settingNew;
-            buttonTool22.SharedPropsInternal.AppearancesLarge.Appearance = appearance122;
+            buttonTool18.SharedPropsInternal.Caption = "Save as";
+            appearance134.Image = global::JH.ACU.UI.Properties.Resources.settingNew;
+            buttonTool22.SharedPropsInternal.AppearancesLarge.Appearance = appearance134;
             buttonTool22.SharedPropsInternal.Caption = "Initialize";
             buttonTool22.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
-            appearance123.Image = global::JH.ACU.UI.Properties.Resources.StartBlue;
-            buttonTool23.SharedPropsInternal.AppearancesLarge.Appearance = appearance123;
+            appearance135.Image = global::JH.ACU.UI.Properties.Resources.StartBlue;
+            buttonTool23.SharedPropsInternal.AppearancesLarge.Appearance = appearance135;
             buttonTool23.SharedPropsInternal.Caption = "Run";
             buttonTool23.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
-            appearance124.Image = global::JH.ACU.UI.Properties.Resources.stopRed;
-            buttonTool24.SharedPropsInternal.AppearancesLarge.Appearance = appearance124;
+            appearance136.Image = global::JH.ACU.UI.Properties.Resources.stopRed;
+            buttonTool24.SharedPropsInternal.AppearancesLarge.Appearance = appearance136;
             buttonTool24.SharedPropsInternal.Caption = "Stop";
             buttonTool24.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
             buttonTool26.SharedPropsInternal.Caption = "Specification Config";
@@ -1960,7 +1979,7 @@
             this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1465, 80);
-            this._MainForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._MainForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(4);
             this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
             this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 793);
             this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarsManager;
@@ -1972,7 +1991,7 @@
             this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
             this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
-            this._MainForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._MainForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(4);
             this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
             this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1465, 80);
             this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarsManager;
@@ -1984,10 +2003,95 @@
             this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
             this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 873);
-            this._MainForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(4);
             this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
             this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1465, 0);
             this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarsManager;
+            // 
+            // pageTotal
+            // 
+            this.pageTotal.Controls.Add(this.ugTotal);
+            this.pageTotal.Location = new System.Drawing.Point(4, 25);
+            this.pageTotal.Name = "pageTotal";
+            this.pageTotal.Padding = new System.Windows.Forms.Padding(3);
+            this.pageTotal.Size = new System.Drawing.Size(751, 482);
+            this.pageTotal.TabIndex = 9;
+            this.pageTotal.Text = "Total";
+            this.pageTotal.UseVisualStyleBackColor = true;
+            // 
+            // ugTotal
+            // 
+            appearance121.BackColor = System.Drawing.SystemColors.Window;
+            appearance121.BorderColor = System.Drawing.SystemColors.InactiveCaption;
+            this.ugTotal.DisplayLayout.Appearance = appearance121;
+            this.ugTotal.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
+            this.ugTotal.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.ugTotal.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            this.ugTotal.DisplayLayout.EmptyRowSettings.ShowEmptyRows = true;
+            this.ugTotal.DisplayLayout.EmptyRowSettings.Style = Infragistics.Win.UltraWinGrid.EmptyRowStyle.AlignWithDataRows;
+            appearance122.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance122.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance122.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance122.BorderColor = System.Drawing.SystemColors.Window;
+            this.ugTotal.DisplayLayout.GroupByBox.Appearance = appearance122;
+            appearance123.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.ugTotal.DisplayLayout.GroupByBox.BandLabelAppearance = appearance123;
+            this.ugTotal.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            appearance124.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            appearance124.BackColor2 = System.Drawing.SystemColors.Control;
+            appearance124.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance124.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.ugTotal.DisplayLayout.GroupByBox.PromptAppearance = appearance124;
+            this.ugTotal.DisplayLayout.MaxColScrollRegions = 1;
+            this.ugTotal.DisplayLayout.MaxRowScrollRegions = 1;
+            appearance125.BackColor = System.Drawing.SystemColors.Window;
+            appearance125.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ugTotal.DisplayLayout.Override.ActiveCellAppearance = appearance125;
+            appearance126.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance126.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.ugTotal.DisplayLayout.Override.ActiveRowAppearance = appearance126;
+            this.ugTotal.DisplayLayout.Override.AllowColMoving = Infragistics.Win.UltraWinGrid.AllowColMoving.NotAllowed;
+            this.ugTotal.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
+            this.ugTotal.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
+            appearance127.BackColor = System.Drawing.SystemColors.Window;
+            this.ugTotal.DisplayLayout.Override.CardAreaAppearance = appearance127;
+            appearance128.BorderColor = System.Drawing.Color.Silver;
+            appearance128.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
+            this.ugTotal.DisplayLayout.Override.CellAppearance = appearance128;
+            this.ugTotal.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            this.ugTotal.DisplayLayout.Override.CellPadding = 0;
+            appearance129.BackColor = System.Drawing.SystemColors.Control;
+            appearance129.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance129.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance129.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance129.BorderColor = System.Drawing.SystemColors.Window;
+            this.ugTotal.DisplayLayout.Override.GroupByRowAppearance = appearance129;
+            appearance130.TextHAlignAsString = "Left";
+            this.ugTotal.DisplayLayout.Override.HeaderAppearance = appearance130;
+            this.ugTotal.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+            this.ugTotal.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
+            appearance131.BackColor = System.Drawing.SystemColors.Window;
+            appearance131.BorderColor = System.Drawing.Color.Silver;
+            this.ugTotal.DisplayLayout.Override.RowAppearance = appearance131;
+            this.ugTotal.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
+            appearance132.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ugTotal.DisplayLayout.Override.TemplateAddRowAppearance = appearance132;
+            this.ugTotal.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.ugTotal.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.ugTotal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ugTotal.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ugTotal.Location = new System.Drawing.Point(3, 3);
+            this.ugTotal.Margin = new System.Windows.Forms.Padding(4);
+            this.ugTotal.Name = "ugTotal";
+            this.ugTotal.Size = new System.Drawing.Size(745, 476);
+            this.ugTotal.TabIndex = 2;
+            this.ugTotal.Text = "ultraGrid1";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "xls";
+            this.saveFileDialog1.Filter = "Data File|*.xls|All Files|*.*";
+            this.saveFileDialog1.RestoreDirectory = true;
             // 
             // MainForm
             // 
@@ -2000,7 +2104,7 @@
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Top);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
@@ -2075,6 +2179,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ugHTHV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolBarsManager)).EndInit();
+            this.pageTotal.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ugTotal)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2145,6 +2251,10 @@
         private Infragistics.Win.UltraWinGrid.UltraGrid ugHTLV;
         private Infragistics.Win.UltraWinGrid.UltraGrid ugHTNV;
         private Infragistics.Win.UltraWinGrid.UltraGrid ugHTHV;
+        private System.Windows.Forms.TabPage pageTotal;
+        private Infragistics.Win.UltraWinGrid.UltraGrid ugTotal;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter ultraGridExcelExporter1;
 
     }
 }
