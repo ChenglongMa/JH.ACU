@@ -50,7 +50,7 @@ namespace JH.ACU.BLL
             {
                 #region 若取消
 
-                if (ChamberStay.CancellationPending||TestWorker.CancellationPending||!TestWorker.IsBusy)
+                if (ChamberStay.CancellationPending || TestWorker.CancellationPending || !TestWorker.IsBusy)
                 {
                     _chamber.Stop();
                     e.Cancel = true;
@@ -60,13 +60,14 @@ namespace JH.ACU.BLL
                 #endregion
 
                 Thread.Sleep(30000);
+
                 #region 通知UI
 
                 _report.Message = "Chamber is staying...";
                 _report.ActualTemp = ActualTemp;
                 var progress = 60 +
                                Math.Abs((Environment.TickCount - tick)/(TestCondition.Temperature.Duration*60*1000))*40;
-                TestWorker.ReportProgress((int)progress, _report);
+                TestWorker.ReportProgress((int) progress, _report);
 
                 #endregion
 
@@ -106,13 +107,14 @@ namespace JH.ACU.BLL
         {
             TestEventArgs = e;
             _report.Message = "Test is running...";
-            var tvItems = (Dictionary<TvType, double[]>)e.Argument; //传入温度电压测试条件集合
+            var tvItems = (Dictionary<TvType, double[]>) e.Argument; //传入温度电压测试条件集合
             _tvCount = tvItems.Count;
             foreach (var tvItem in tvItems) //tvItem[0]:温度值;tvItem[1]:电压值
             {
                 _tvItem = tvItem;
                 _tvIndex = tvItems.IndexOf(tvItem);
                 SelectedTvType = tvItem.Key;
+
                 #region 通知UI
 
                 SettingTemp = tvItem.Value[0];
@@ -129,6 +131,7 @@ namespace JH.ACU.BLL
                 }
                 _report.ChamberEnable = TestCondition.Temperature.Enable;
                 TestWorker.ReportProgress(0, _report);
+
                 #endregion
 
                 #region 温度操作
@@ -199,7 +202,7 @@ namespace JH.ACU.BLL
                     _specCount = acuItem.Items.Count;
                     var boardIndex = acuItem.Index;
                     if (boardIndex < 0 || boardIndex > 7) continue;
-                    _report.AcuIndex = boardIndex + 1;//ACU Index显示值从1开始
+                    _report.AcuIndex = boardIndex + 1; //ACU Index显示值从1开始
                     _daq.OpenBoard((byte) boardIndex);
                     //QUES:DAQ读取PIN脚电压,测试外部环境,如失败则抛出异常中止测试
                     if (!AcuExecute(boardIndex))
@@ -250,12 +253,12 @@ namespace JH.ACU.BLL
                 var items = acuItem.Items;
                 if (items.Contains((int) CrashOutTest.Crash1))
                 {
-                    var res = TestFrame((int) CrashOutTest.Crash1, () => GetCrashOut(acuItem.Index,CrashOutTest.Crash1));
+                    var res = TestFrame((int) CrashOutTest.Crash1, () => GetCrashOut(acuItem.Index, CrashOutTest.Crash1));
                     if (!res) return true;
                 }
                 if (items.Contains((int) CrashOutTest.Crash2))
                 {
-                    var res = TestFrame((int)CrashOutTest.Crash2, () => GetCrashOut(acuItem.Index, CrashOutTest.Crash2));
+                    var res = TestFrame((int) CrashOutTest.Crash2, () => GetCrashOut(acuItem.Index, CrashOutTest.Crash2));
                     if (!res) return true;
                 }
                 return true;
@@ -284,12 +287,13 @@ namespace JH.ACU.BLL
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
                 CloseAllInstrs();
-                return (double)TestResult.Cancelled;
+                return (double) TestResult.Cancelled;
             }
 
             #endregion
+
             double res;
-            int crashIndex,relayIndex;
+            int crashIndex, relayIndex;
             switch (crashOut)
             {
                 case CrashOutTest.Crash1:
@@ -327,12 +331,12 @@ namespace JH.ACU.BLL
             catch (Exception ex)
             {
                 LogHelper.WriteErrorLog(LogFileName, ex);
-                res = (double)TestResult.Failed;
+                res = (double) TestResult.Failed;
             }
             finally
             {
                 //C:继电器复位 QUES:是否恢复原来状态
-                _daq.SetSubRelayStatus((byte)acuIndex, relayIndex, false);
+                _daq.SetSubRelayStatus((byte) acuIndex, relayIndex, false);
             }
             return res;
         }
@@ -465,7 +469,9 @@ namespace JH.ACU.BLL
 
                 if (items.Contains((int) WLTest.WL1CurrentNormal))
                 {
-                    if (!TestFrame((int) WLTest.WL1CurrentNormal, () => GetWLCurr(acuItem.Index, WLTest.WL1CurrentNormal)))
+                    if (
+                        !TestFrame((int) WLTest.WL1CurrentNormal,
+                            () => GetWLCurr(acuItem.Index, WLTest.WL1CurrentNormal)))
                     {
                         return true;
                     }
@@ -479,7 +485,9 @@ namespace JH.ACU.BLL
                 }
                 if (items.Contains((int) WLTest.WL2CurrentNormal))
                 {
-                    if (!TestFrame((int) WLTest.WL2CurrentNormal, () => GetWLCurr(acuItem.Index, WLTest.WL2CurrentNormal)))
+                    if (
+                        !TestFrame((int) WLTest.WL2CurrentNormal,
+                            () => GetWLCurr(acuItem.Index, WLTest.WL2CurrentNormal)))
                     {
                         return true;
                     }
@@ -521,7 +529,8 @@ namespace JH.ACU.BLL
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
                 CloseAllInstrs();
-                return (double) TestResult.Cancelled;;
+                return (double) TestResult.Cancelled;
+                ;
             }
 
             #endregion
@@ -531,7 +540,8 @@ namespace JH.ACU.BLL
             {
                 default:
                     LogHelper.WriteWarningLog(LogFileName, "WLTest赋值错误：" + wlTest);
-                    return (double) TestResult.Cancelled;;
+                    return (double) TestResult.Cancelled;
+                    ;
                 case WLTest.WL1CurrentNormal:
                     wlIndex = 1;
                     relayIndex = 271;
@@ -589,7 +599,8 @@ namespace JH.ACU.BLL
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
                 CloseAllInstrs();
-                return (double) TestResult.Cancelled;;
+                return (double) TestResult.Cancelled;
+                ;
             }
 
             #endregion
@@ -686,7 +697,8 @@ namespace JH.ACU.BLL
                 {
                     for (int iSis = 0; iSis < SisNum; iSis++)
                     {
-                        var itemIndex = SisNum*(iMode - 1) + iSis + SquibNum*SquibModeNum + BeltModeNum*BeltNum + VoltModeNum*VoltNum;
+                        var itemIndex = SisNum*(iMode - 1) + iSis + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
+                                        VoltModeNum*VoltNum;
                         if (acuItem.Items.Contains(itemIndex))
                         {
                             var sis = iSis;
@@ -720,7 +732,8 @@ namespace JH.ACU.BLL
         {
             double minValue, maxValue;
             byte dtc;
-            var itemIndex = SisNum*(mode - 1) + sisIndex + SquibNum*SquibModeNum + BeltModeNum*BeltNum + VoltModeNum*VoltNum;
+            var itemIndex = SisNum*(mode - 1) + sisIndex + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
+                            VoltModeNum*VoltNum;
             var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //0：先设置好电阻箱//QUES:测试时验证是否合理
             _prs0.SetResistance(maxValue);
@@ -734,7 +747,7 @@ namespace JH.ACU.BLL
             _daq.SetSisInReadMode(acuIndex, sisIndex);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
-            spec.ResultValue = res;
+            spec.ResultValueList[acuIndex] = res;
             //C:复位继电器
             _daq.SetSisReset(acuIndex, sisIndex);
             return res;
@@ -899,7 +912,7 @@ namespace JH.ACU.BLL
             _daq.SetBeltInReadMode(acuIndex, belt);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
-            spec.ResultValue = res;
+            spec.ResultValueList[acuIndex] = res;
             //C:复位继电器
             _daq.SetBeltReset(acuIndex, belt);
             return res;
@@ -1062,7 +1075,7 @@ namespace JH.ACU.BLL
             if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetSubRelayStatus((byte) acuIndex, 266, true);
             res = ActualVolt; //该返回值为实际测量值
-            spec.ResultValue = res;
+            spec.ResultValueList[acuIndex] = res;
             //C:复位继电器
             _daq.SetSubRelayStatus((byte) acuIndex, 266, false);
 
@@ -1209,7 +1222,7 @@ namespace JH.ACU.BLL
             _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
-            spec.ResultValue = res; //可以省略
+            spec.ResultValueList[acuIndex] = res;
             //C:复位继电器
             _daq.SetFcReset(acuIndex, squib);
             return res;
@@ -1381,7 +1394,7 @@ namespace JH.ACU.BLL
                     break;
                 default:
                     spec.ResultInfo = "Passed";
-                    spec.ResultValue = res;
+                    //spec.ResultValueList[acuIndex] = res;
                     break;
             }
             TestWorker.ReportProgress(progress, _report);
@@ -1608,7 +1621,11 @@ namespace JH.ACU.BLL
         /// <returns></returns>
         private static Dictionary<TvType, double[]> RemoveTempList(Dictionary<TvType, double[]> tvItems)
         {
-            return tvItems.Where(tvItem => tvItem.Key == TvType.NorTempLowVolt || tvItem.Key == TvType.NorTempNorVolt || tvItem.Key == TvType.NorTempHighVolt).ToDictionary(tvItem => tvItem.Key, tvItem => tvItem.Value);
+            return
+                tvItems.Where(
+                    tvItem =>
+                        tvItem.Key == TvType.NorTempLowVolt || tvItem.Key == TvType.NorTempNorVolt ||
+                        tvItem.Key == TvType.NorTempHighVolt).ToDictionary(tvItem => tvItem.Key, tvItem => tvItem.Value);
         }
 
         /// <summary>
@@ -1677,7 +1694,9 @@ namespace JH.ACU.BLL
         public void Start(TestCondition testCondition)
         {
             TestCondition = testCondition;
-            var tvItems = TestCondition.Temperature.Enable ? TestCondition.TvItems : RemoveTempList(TestCondition.TvItems);
+            var tvItems = TestCondition.Temperature.Enable
+                ? TestCondition.TvItems
+                : RemoveTempList(TestCondition.TvItems);
             TestWorker.RunWorkerAsync(tvItems);
         }
 

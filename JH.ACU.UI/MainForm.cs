@@ -47,6 +47,16 @@ namespace JH.ACU.UI
             _bllMain.TestWorker.RunWorkerCompleted += TestWorker_RunWorkerCompleted;
             SetControlEnabled(!IsBusy);
             BindingControls(_report);
+
+            #region ugTestItems
+
+            if (ugTestItems.Rows.Count > 0)
+            {
+                ugTestItems.Rows[0].Selected = true;
+            }
+
+            #endregion
+
         }
 
 

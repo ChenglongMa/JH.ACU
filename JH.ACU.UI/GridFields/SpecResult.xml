@@ -4,5 +4,12 @@
   <Field ColName="Specification" ColDisplayName="Specification" Width="60" ColumnStyle="Default" Visible="true" ReadOnly="true" />
   <Field ColName="Uom" ColDisplayName="UOM" Width="20" ColumnStyle="Default" Visible="true" ReadOnly="true" />
   <Field ColName="DtcString" ColDisplayName="DTC" Width="30" ColumnStyle="Default" Visible="true" ReadOnly="true" />
-  <Field ColName="ResultValue" ColDisplayName="Result" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="AcuResult1" ColDisplayName="ACU#1" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="AcuResult2" ColDisplayName="ACU#2" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="AcuResult3" ColDisplayName="ACU#3" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="AcuResult4" ColDisplayName="ACU#4" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="AcuResult5" ColDisplayName="ACU#5" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="AcuResult6" ColDisplayName="ACU#6" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="AcuResult7" ColDisplayName="ACU#7" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="AcuResult8" ColDisplayName="ACU#8" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
 </Fields>
