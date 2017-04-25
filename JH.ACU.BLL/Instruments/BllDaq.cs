@@ -560,6 +560,7 @@ namespace JH.ACU.BLL.Instruments
             {
                 SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
+            beltIndex--;
             //Tips:以下注释以DSB为例
             SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 0], false); //k200
             SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 1], true); //k201
@@ -577,6 +578,7 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="beltIndex"></param>
         public void SetBeltInReadMode(int acuIndex, int beltIndex)
         {
+            beltIndex--;
             //Tips:以下注释以DSB为例
             SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 0], true); //k200
             SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 1], false); //k201
@@ -592,6 +594,7 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="beltIndex"></param>
         public void SetBeltReset(int acuIndex, int beltIndex)
         {
+            beltIndex--;
             //Tips:以下注释以DSB为例
             SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 0], true); //k200
             SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 1], false); //k201

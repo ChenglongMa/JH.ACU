@@ -270,7 +270,7 @@ namespace JH.ACU.UI
             finally
             {
                 SetControlEnabled(true);
-                _bllMain.CloseAllInstrs();
+                _bllMain.CloseAllInstrs(true);
             }
 
         }
@@ -424,7 +424,7 @@ namespace JH.ACU.UI
                 Temperature = new Temperature
                 {
                     Enable = ckbChamberEnable.Checked,
-                    Duration = Properties.Settings.Default.Duration,
+                    Duration = BLL.Properties.Settings.Default.Duration,
                     NorTemp = new Temp{Value = numTempTarget.Value,Delay = 0}
                 },
                 Voltage = new Voltage

@@ -139,16 +139,14 @@ namespace JH.ACU.BLL
                 if (TestCondition.Temperature.Enable) //若值为Ture则执行温度操作
                 {
                     _report.Message = "Chamber is working...";
-                    //if (_chamber == null)
-                    //{
-                    //    _chamber = new BllChamber();
-                    //}
-                    //var actualTemp = _chamber.GetTemp();
-                    //_chamber.SetTemp(SettingTemp); //设置温度值
-                    //_chamber.Run();
+                    if (_chamber == null)
+                    {
+                        _chamber = new BllChamber();
+                    }
+                    var initTemp = _chamber.GetTemp();//初始温度值
+                    _chamber.SetTemp(SettingTemp); //设置温度值
+                    _chamber.Run();
                     var tick = Environment.TickCount; //获取当前时刻值
-                    int timeSpan;
-                    bool flag;
                     do
                     {
                         #region 若取消
@@ -167,16 +165,17 @@ namespace JH.ACU.BLL
                         #region 通知UI
 
                         _report.ActualTemp = ActualTemp;
-                        var progress = Math.Abs(_report.ActualTemp / SettingTemp) * 60;
-                        //var progress = (1 - (Math.Abs(_report.ActualTemp - SettingTemp) / Math.Abs(actualTemp - SettingTemp))) * 60;
-                        TestWorker.ReportProgress((int)progress, _report);
+                        var progress = (1 -
+                                        Math.Abs(_report.ActualTemp - SettingTemp)/Math.Abs(initTemp - SettingTemp))*
+                                       60;
+                        TestWorker.ReportProgress((int) progress, _report);
 
                         #endregion
-                        timeSpan = Environment.TickCount - tick;
-                        flag=Math.Abs(SettingTemp - ActualTemp) < 1 && timeSpan < 60 * 60 * 1000;
-                    } while (flag);
+                    } while (Math.Abs(SettingTemp - ActualTemp) > 0.5 && Environment.TickCount - tick < 60*60*1000);
                     if (TestCondition.Temperature.Duration > 0)
-                    { ChamberStay.RunWorkerAsync(); }
+                    {
+                        ChamberStay.RunWorkerAsync();
+                    }
                     var delay = Convert.ToInt32(tvItem.Value[2]);
                     Thread.Sleep(delay);
                 }
@@ -200,7 +199,7 @@ namespace JH.ACU.BLL
 
                     if (TestWorker.CancellationPending)
                     {
-                        CloseAllInstrs();
+                        CloseAllInstrs(true);
                         e.Cancel = true;
                         return;
                     }
@@ -272,7 +271,6 @@ namespace JH.ACU.BLL
             }
             catch (Exception ex)
             {
-                //QUES:测试过程有异常是否直接跳过后面测试
                 var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
                 LogHelper.WriteErrorLog(LogFileName, e);
                 return false;
@@ -293,7 +291,7 @@ namespace JH.ACU.BLL
             {
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
-                CloseAllInstrs();
+                CloseAllInstrs(true);
                 return (double) TestResult.Cancelled;
             }
 
@@ -366,7 +364,6 @@ namespace JH.ACU.BLL
             }
             catch (Exception ex)
             {
-                //QUES:测试过程有异常是否直接跳过后面测试
                 var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
                 LogHelper.WriteErrorLog(LogFileName, e);
                 return false;
@@ -387,7 +384,7 @@ namespace JH.ACU.BLL
                     {
                         TestEventArgs.Cancel = true;
                         _acu.Stop();
-                        CloseAllInstrs();
+                        CloseAllInstrs(true);
                         return (double) TestResult.Cancelled;
                     }
 
@@ -418,7 +415,6 @@ namespace JH.ACU.BLL
             }
             catch (Exception ex)
             {
-                //QUES:测试过程有异常是否直接跳过后面测试
                 var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
                 LogHelper.WriteErrorLog(LogFileName, e);
                 return false;
@@ -513,7 +509,6 @@ namespace JH.ACU.BLL
             }
             catch (Exception ex)
             {
-                //QUES:测试过程有异常是否直接跳过后面测试
                 var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
                 LogHelper.WriteErrorLog(LogFileName, e);
                 return false;
@@ -535,7 +530,7 @@ namespace JH.ACU.BLL
             {
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
-                CloseAllInstrs();
+                CloseAllInstrs(true);
                 return (double) TestResult.Cancelled;
                 ;
             }
@@ -605,7 +600,7 @@ namespace JH.ACU.BLL
             {
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
-                CloseAllInstrs();
+                CloseAllInstrs(true);
                 return (double) TestResult.Cancelled;
                 ;
             }
@@ -672,10 +667,9 @@ namespace JH.ACU.BLL
                 //B:Belt测试
                 //TODO:规范需要修改
                 //同一测试情况归于一类
-                //TODO:索引初始值需要确认
-                for (int iMode = 0; iMode < BeltModeNum; iMode++)
+                for (int iMode = 1; iMode <= BeltModeNum; iMode++)
                 {
-                    for (int iBelt = 0; iBelt < BeltNum; iBelt++)
+                    for (int iBelt = 1; iBelt <= BeltNum; iBelt++)
                     {
                         var itemIndex = BeltNum*(iMode - 1) + iBelt + SquibNum*SquibModeNum;
                         if (acuItem.Items.Contains(itemIndex))
@@ -688,7 +682,7 @@ namespace JH.ACU.BLL
                     }
                 }
                 //C:Volt测试
-                for (int iMode = 0; iMode < VoltModeNum; iMode++)
+                for (int iMode = 1; iMode <= VoltModeNum; iMode++)
                 {
                     var itemIndex = VoltNum*(iMode - 1) + 1 + SquibNum*SquibModeNum + BeltModeNum*BeltNum;
                     if (acuItem.Items.Contains(itemIndex))
@@ -701,9 +695,9 @@ namespace JH.ACU.BLL
                 _pwr.OutputVoltage = SettingVolt; //电压测试完成后将外围电压恢复到原先状态
                 _pwr.OutPutState = true; //可省略，保险起见保留此句
                 //D:SIS测试
-                for (int iMode = 0; iMode < SisModeNum; iMode++)
+                for (int iMode = 1; iMode <= SisModeNum; iMode++)
                 {
-                    for (int iSis = 0; iSis < SisNum; iSis++)
+                    for (int iSis = 1; iSis <= SisNum; iSis++)
                     {
                         var itemIndex = SisNum*(iMode - 1) + iSis + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
                                         VoltModeNum*VoltNum;
@@ -720,7 +714,6 @@ namespace JH.ACU.BLL
             }
             catch (Exception ex)
             {
-                //QUES:测试过程有异常是否直接跳过后面测试
                 var e = new Exception(string.Format("ACU{0}异常：{1}", acuItem.Index, ex.Message));
                 LogHelper.WriteErrorLog(LogFileName, e);
                 return false;
@@ -743,7 +736,7 @@ namespace JH.ACU.BLL
             var itemIndex = SisNum*(mode - 1) + sisIndex + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
                             VoltModeNum*VoltNum;
             var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
-            //0：先设置好电阻箱//QUES:测试时验证是否合理
+            //0：先设置好电阻箱
             _prs0.SetResistance(maxValue);
             _prs1.SetResistance(maxValue);
             //A:打开继电器
@@ -754,8 +747,8 @@ namespace JH.ACU.BLL
             if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetSisInReadMode(acuIndex, sisIndex);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
-            res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
-            spec.ResultValueList[acuIndex] = res;
+            res -= Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
+            SetSpecResult(acuIndex, ref spec, res);
             //C:复位继电器
             _daq.SetSisReset(acuIndex, sisIndex);
             return res;
@@ -777,7 +770,7 @@ namespace JH.ACU.BLL
             {
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
-                CloseAllInstrs();
+                CloseAllInstrs(true);
                 return (double) TestResult.Cancelled;
             }
 
@@ -908,7 +901,7 @@ namespace JH.ACU.BLL
             double maxValue;
             byte dtc;
             var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
-            //0：先设置好电阻箱//QUES:测试时验证是否合理
+            //0：先设置好电阻箱
             _prs0.SetResistance(maxValue);
             _prs1.SetResistance(maxValue);
             //A:打开继电器
@@ -919,8 +912,8 @@ namespace JH.ACU.BLL
             if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetBeltInReadMode(acuIndex, belt);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
-            res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
-            spec.ResultValueList[acuIndex] = res;
+            res -= Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
+            SetSpecResult(acuIndex, ref spec, res);
             //C:复位继电器
             _daq.SetBeltReset(acuIndex, belt);
             return res;
@@ -942,7 +935,7 @@ namespace JH.ACU.BLL
             {
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
-                CloseAllInstrs();
+                CloseAllInstrs(true);
                 return (double) TestResult.Cancelled;
             }
 
@@ -1083,7 +1076,7 @@ namespace JH.ACU.BLL
             if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetSubRelayStatus((byte) acuIndex, 266, true);
             res = ActualVolt; //该返回值为实际测量值
-            spec.ResultValueList[acuIndex] = res;
+            SetSpecResult(acuIndex,ref spec,res);
             //C:复位继电器
             _daq.SetSubRelayStatus((byte) acuIndex, 266, false);
 
@@ -1098,7 +1091,7 @@ namespace JH.ACU.BLL
             {
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
-                CloseAllInstrs();
+                CloseAllInstrs(true);
                 return (double) TestResult.Cancelled;
             }
 
@@ -1218,7 +1211,7 @@ namespace JH.ACU.BLL
             double maxValue;
             byte dtc;
             var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
-            //0：先设置好电阻箱//QUES:测试时验证是否合理
+            //0：先设置好电阻箱
             _prs0.SetResistance(maxValue);
             _prs1.SetResistance(maxValue);
             //A:打开继电器
@@ -1229,8 +1222,8 @@ namespace JH.ACU.BLL
             if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
-            res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
-            //spec.ResultValueList[acuIndex] = res;
+            res -= Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
+            SetSpecResult(acuIndex, ref spec, res);
             //C:复位继电器
             _daq.SetFcReset(acuIndex, squib);
             return res;
@@ -1252,7 +1245,7 @@ namespace JH.ACU.BLL
             {
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
-                CloseAllInstrs();
+                CloseAllInstrs(true);
                 return (double) TestResult.Cancelled;
             }
 
@@ -1487,9 +1480,9 @@ namespace JH.ACU.BLL
         private const int SquibNum = 16; //回路数常量
         private const int SquibModeNum = 4; //回路测试情况常量
         private const int BeltNum = 3; //开关数常量
-        private const int BeltModeNum = 4; //开关测试情况常量
-        public const int VoltNum = 1; //测电压处常量
-        public const int VoltModeNum = 2; //电压测试情况常量
+        private const int BeltModeNum = 4; //开关测试情况常量//bug：实际值为3
+        private const int VoltNum = 1; //测电压处常量
+        private const int VoltModeNum = 2; //电压测试情况常量
         private const int SisNum = 6; //侧传感器数常量
         private const int SisModeNum = 2; //侧传感器测试情况常量
 
@@ -1618,7 +1611,7 @@ namespace JH.ACU.BLL
         /// </summary>
         private void RebootAllInstrs()
         {
-            CloseAllInstrs();
+            CloseAllInstrs(false);
             Thread.Sleep(500);
             OpenAllInstrs();
         }
@@ -1682,6 +1675,43 @@ namespace JH.ACU.BLL
         }
 
         /// <summary>
+        /// 给相应ACU结果赋值
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <param name="spec"></param>
+        /// <param name="value"></param>
+        private void SetSpecResult(int acuIndex, ref SpecItem spec, object value)
+        {
+            switch (acuIndex)
+            {
+                case 0:
+                    spec.AcuResult1 = value;
+                    return;
+                case 1:
+                    spec.AcuResult2 = value;
+                    return;
+                case 2:
+                    spec.AcuResult3 = value;
+                    return;
+                case 3:
+                    spec.AcuResult4 = value;
+                    return;
+                case 4:
+                    spec.AcuResult5 = value;
+                    return;
+                case 5:
+                    spec.AcuResult6 = value;
+                    return;
+                case 6:
+                    spec.AcuResult7 = value;
+                    return;
+                case 7:
+                    spec.AcuResult8 = value;
+                    return;
+            }
+        }
+
+        /// <summary>
         /// 根据测试项和温度电压组合项计算进度值
         /// </summary>
         /// <param name="specIndex"></param>
@@ -1712,12 +1742,16 @@ namespace JH.ACU.BLL
         /// <summary>
         /// 关闭所有仪器
         /// </summary>
-        public void CloseAllInstrs()
+        /// <param name="closeChamber">是否关闭温箱</param>
+        public void CloseAllInstrs(bool closeChamber)
         {
             _pwr.IfNotNull(p => p.Dispose());
             _prs0.IfNotNull(prs => prs.Dispose());
             _prs1.IfNotNull(prs => prs.Dispose());
-            //_chamber.IfNotNull(c => c.Dispose());
+            if (closeChamber)
+            {
+                _chamber.IfNotNull(c => c.Dispose());
+            }
             _dmm.IfNotNull(d => d.Dispose());
             _daq.IfNotNull(d => d.Dispose());
         }

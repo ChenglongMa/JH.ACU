@@ -99,15 +99,14 @@ namespace JH.ACU.UI
 
         private void btnDefault_Click(object sender, EventArgs e)
         {
-            numDuration.Value = (decimal) Properties.Settings.Default.Duration;
-            numHighTemp.Value = (decimal) Properties.Settings.Default.HighTemp;
-            numLowTemp.Value = (decimal) Properties.Settings.Default.LowTemp;
-            numNorTemp.Value = (decimal) Properties.Settings.Default.NorTemp;
-            numHighVolt.Value = (decimal) Properties.Settings.Default.HighVolt;
-            numNorVolt.Value = (decimal) Properties.Settings.Default.NorVolt;
-            numLowVolt.Value = (decimal) Properties.Settings.Default.LowVolt;
-            ckbChamberEnable.Checked = Properties.Settings.Default.TempEnable;
-
+            numDuration.Value = (decimal) BLL.Properties.Settings.Default.Duration;
+            numHighTemp.Value = (decimal) BLL.Properties.Settings.Default.HighTemp;
+            numLowTemp.Value = (decimal) BLL.Properties.Settings.Default.LowTemp;
+            numNorTemp.Value = (decimal) BLL.Properties.Settings.Default.NorTemp;
+            numHighVolt.Value = (decimal) BLL.Properties.Settings.Default.HighVolt;
+            numNorVolt.Value = (decimal) BLL.Properties.Settings.Default.NorVolt;
+            numLowVolt.Value = (decimal) BLL.Properties.Settings.Default.LowVolt;
+            ckbChamberEnable.Checked = BLL.Properties.Settings.Default.TempEnable;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

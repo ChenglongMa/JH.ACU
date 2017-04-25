@@ -60,9 +60,6 @@ namespace JH.ACU.Model
         /// </summary>
         public static double Precision { get; set; }
 
-        [Obsolete("该属性待迁移到默认设置中")]
-        public static double AmendResistance { get; set; } //TODO:获取修正值
-
         #endregion
 
     }
