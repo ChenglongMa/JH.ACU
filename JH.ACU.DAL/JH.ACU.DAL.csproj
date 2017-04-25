@@ -68,9 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="D2KDask.cs" />
-    <Compile Include="DalGpib.cs" />
-    <Compile Include="DalSerial.cs" />
-    <Compile Include="IDalVisa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
