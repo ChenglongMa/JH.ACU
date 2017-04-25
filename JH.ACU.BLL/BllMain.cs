@@ -48,7 +48,7 @@ namespace JH.ACU.BLL
             var tick = Environment.TickCount;
             do
             {
-                #region 若取消
+                #region 若取消或测试结束
 
                 if (ChamberStay.CancellationPending || TestWorker.CancellationPending || !TestWorker.IsBusy)
                 {

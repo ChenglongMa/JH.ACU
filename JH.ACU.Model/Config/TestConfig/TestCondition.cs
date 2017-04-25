@@ -22,9 +22,11 @@ namespace JH.ACU.Model.Config.TestConfig
 
         [XmlElement]
         public Voltage Voltage { get; set; }
+
         [XmlElement]
         public CrashOutType CrashOutType { get; set; }
 
+        private Dictionary<TvType, double[]> _tvItems;
         /// <summary>
         /// 温度、电压测试项 
         /// double[0]:TempValue;
@@ -32,7 +34,13 @@ namespace JH.ACU.Model.Config.TestConfig
         /// double[2]:TempDelay(min);
         /// </summary>
         [XmlIgnore]
-        public Dictionary<TvType, double[]> TvItems { get; set; }
+        public Dictionary<TvType, double[]> TvItems {
+            get
+            {
+                if (_tvItems == null) return null;
+                var newDic = _tvItems.OrderBy(t => t.Key).ToDictionary(t => t.Key, t => t.Value);
+                return newDic;
+            }set { _tvItems = value; } }
 
         [XmlArrayItem("AcuItem", typeof (AcuItems))]
         public List<AcuItems> AcuItems { get; set; }
@@ -43,22 +51,33 @@ namespace JH.ACU.Model.Config.TestConfig
     /// </summary>
     public enum CrashOutType
     {
-        Advanced=0,
-        Conventional=1,
+        Advanced = 0,
+        Conventional = 1,
     }
+
+    /// <summary>
+    /// 温度电压组合类型，其后数字为排序
+    /// </summary>
     public enum TvType
     {
-        LowTempLowVolt,
-        LowTempNorVolt,
-        LowTempHighVolt,
+        LowTempLowVolt = 0,
+        LowTempNorVolt = 1,
+        LowTempHighVolt = 2,
 
-        NorTempLowVolt,
-        NorTempNorVolt,
-        NorTempHighVolt,
+        HighTempLowVolt = 3,
+        HighTempNorVolt = 4,
+        HighTempHighVolt = 5,
 
-        HighTempLowVolt,
-        HighTempNorVolt,
-        HighTempHighVolt,
+        NorTempLowVolt = 6,
+        NorTempNorVolt = 7,
+        NorTempHighVolt = 8,
 
     }
 }
+
+
+
+
+
+
+
