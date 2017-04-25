@@ -12,7 +12,7 @@ namespace JH.ACU.Model
     {
         static GlobalConst()
         {
-            Precision = 0.01;
+            Precision = 1;//TODO:待修改
         }
 
         /// <summary>

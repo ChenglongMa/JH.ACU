@@ -59,7 +59,7 @@ namespace JH.ACU.BLL
 
                 #endregion
 
-                Thread.Sleep(30000);
+                Thread.Sleep(3000);
 
                 #region 通知UI
 
@@ -139,12 +139,16 @@ namespace JH.ACU.BLL
                 if (TestCondition.Temperature.Enable) //若值为Ture则执行温度操作
                 {
                     _report.Message = "Chamber is working...";
-                    if (_chamber == null)
-                    {
-                        _chamber = new BllChamber();
-                    }
-                    _chamber.SetTemp(SettingTemp); //设置温度值
+                    //if (_chamber == null)
+                    //{
+                    //    _chamber = new BllChamber();
+                    //}
+                    //var actualTemp = _chamber.GetTemp();
+                    //_chamber.SetTemp(SettingTemp); //设置温度值
+                    //_chamber.Run();
                     var tick = Environment.TickCount; //获取当前时刻值
+                    int timeSpan;
+                    bool flag;
                     do
                     {
                         #region 若取消
@@ -158,17 +162,21 @@ namespace JH.ACU.BLL
 
                         #endregion
 
-                        Thread.Sleep(30000);
+                        Thread.Sleep(3000);
 
                         #region 通知UI
 
                         _report.ActualTemp = ActualTemp;
-                        var progress = Math.Abs(_report.ActualTemp/SettingTemp)*60;
-                        TestWorker.ReportProgress((int) progress, _report);
+                        var progress = Math.Abs(_report.ActualTemp / SettingTemp) * 60;
+                        //var progress = (1 - (Math.Abs(_report.ActualTemp - SettingTemp) / Math.Abs(actualTemp - SettingTemp))) * 60;
+                        TestWorker.ReportProgress((int)progress, _report);
 
                         #endregion
-                    } while (Math.Abs(SettingTemp - ActualTemp) <= 1 || Environment.TickCount - tick < 60*60*1000);
-                    ChamberStay.RunWorkerAsync();
+                        timeSpan = Environment.TickCount - tick;
+                        flag=Math.Abs(SettingTemp - ActualTemp) < 1 && timeSpan < 60 * 60 * 1000;
+                    } while (flag);
+                    if (TestCondition.Temperature.Duration > 0)
+                    { ChamberStay.RunWorkerAsync(); }
                     var delay = Convert.ToInt32(tvItem.Value[2]);
                     Thread.Sleep(delay);
                 }
@@ -209,8 +217,7 @@ namespace JH.ACU.BLL
                     {
                         continue;
                     }
-                    _report.AcuName = string.Format("{0}/{1}/{2}/{3}/{4}/{5}", _acu.RomCs, _acu.RomVer, _acu.Mlfb,
-                        _acu.AcuSn, _acu.LabVer, _acu.ParaVer);
+
 
                     // QUES:B: ReadMemory WriteMemory Kline出错的可能性非常低
                     //以上步骤测试ACU有没有故障,返回故障码
@@ -665,6 +672,7 @@ namespace JH.ACU.BLL
                 //B:Belt测试
                 //TODO:规范需要修改
                 //同一测试情况归于一类
+                //TODO:索引初始值需要确认
                 for (int iMode = 0; iMode < BeltModeNum; iMode++)
                 {
                     for (int iBelt = 0; iBelt < BeltNum; iBelt++)
@@ -1222,7 +1230,7 @@ namespace JH.ACU.BLL
             _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
             res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             res += GlobalConst.AmendResistance; //根据线阻 修正测试结果
-            spec.ResultValueList[acuIndex] = res;
+            //spec.ResultValueList[acuIndex] = res;
             //C:复位继电器
             _daq.SetFcReset(acuIndex, squib);
             return res;
@@ -1358,7 +1366,7 @@ namespace JH.ACU.BLL
             //若最大值及最小值之差足够小则返回两者平均值
             if (maxValue - minValue <= GlobalConst.Precision)
             {
-                return (maxValue - minValue)/2;
+                return (maxValue + minValue)/2;
             }
             if (minValue < 0.1 || maxValue > 2000)
             {
@@ -1587,6 +1595,7 @@ namespace JH.ACU.BLL
                 }
                 if (_acu.Start())
                 {
+                    _report.AcuName = string.Format("{0}/{1}/{2}/{3}/{4}/{5}", _acu.RomCs, _acu.RomVer, _acu.Mlfb, _acu.AcuSn, _acu.LabVer, _acu.ParaVer);
                     if (func == null)
                     {
                         isStart = true;

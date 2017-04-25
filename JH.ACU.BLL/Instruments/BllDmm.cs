@@ -110,7 +110,6 @@ namespace JH.ACU.BLL.Instruments
         /// <summary>
         /// 获取或设置采样点数
         /// </summary>
-        [Obsolete("测试失败", true)]
         public int SampleCount
         {
             get { return Convert.ToInt32(Read("SAMP:COUN?")); }
@@ -214,7 +213,6 @@ namespace JH.ACU.BLL.Instruments
             _dmm.TriggerSource = trigger;
             Write(command);
         }
-        [Obsolete("测试失败",true)]
         private void SetMultiPoint(int triggerCount = 1, int sampleCount = 1)
         {
             if (triggerCount <=1 || sampleCount <= 1)
@@ -278,7 +276,7 @@ namespace JH.ACU.BLL.Instruments
                 Display = true;
 #endif
 
-                //SampleCount = 2500;//设置失败
+                SampleCount = 2500;
                 var id = Idn;
                 if (!id.Contains("34401") && !id.Contains("34410") && !id.Contains("4411"))
                 {
@@ -303,7 +301,7 @@ namespace JH.ACU.BLL.Instruments
         public double Read()
         {
             SetTrigger(TriggerSource.Immediate);
-            //SetMultiPoint(1, 1);
+            SetMultiPoint(1, 1);
             return DmmRead(_dmm);
         }
 
@@ -315,7 +313,7 @@ namespace JH.ACU.BLL.Instruments
         public double Read(int sampleCount)
         {
             SetTrigger(TriggerSource.Immediate);
-            //SetMultiPoint(sampleCount: sampleCount);
+            SetMultiPoint(sampleCount: sampleCount);
             return DmmRead(_dmm);
         }
 
@@ -382,15 +380,15 @@ namespace JH.ACU.BLL.Instruments
         }
 
         /// <summary>
-        /// 获取实时电压(single point)
+        /// 获取实时电压
         /// </summary>
         /// <param name="range"></param>
         /// <param name="resolution"></param>
         /// <returns></returns>
-        public double GetVoltage(double range = 0, double resolution = 0)
+        public double GetVoltage(double range = 0, double resolution = 0, int sample = 1)
         {
             SetFunction(DcVolt, range, resolution);
-            return Read();
+            return Read(sample);
         }
 
         /// <summary>

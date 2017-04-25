@@ -147,6 +147,7 @@
             this.cmbInstrName = new System.Windows.Forms.ComboBox();
             this.btnWrite = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel18 = new System.Windows.Forms.FlowLayoutPanel();
             this.label23 = new System.Windows.Forms.Label();
             this.numRelayIndex = new System.Windows.Forms.NumericUpDown();
@@ -177,34 +178,21 @@
             this.led301 = new NationalInstruments.UI.WindowsForms.Led();
             this.led302 = new NationalInstruments.UI.WindowsForms.Led();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds20.ItemTemplate)).BeginInit();
             this.flowSubRelays.SuspendLayout();
             this.flowLayoutPanel15.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds21.ItemTemplate)).BeginInit();
             this.flowLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds22.ItemTemplate)).BeginInit();
             this.flowLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds23.ItemTemplate)).BeginInit();
             this.flowLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds24.ItemTemplate)).BeginInit();
             this.flowLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds25.ItemTemplate)).BeginInit();
             this.flowLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds26.ItemTemplate)).BeginInit();
             this.flowLayoutPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds27.ItemTemplate)).BeginInit();
             this.flowLayoutPanel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds28.ItemTemplate)).BeginInit();
             this.flowLayoutPanel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds31.ItemTemplate)).BeginInit();
             this.flowLayoutPanel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds32.ItemTemplate)).BeginInit();
             this.flowLayoutPanel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds33.ItemTemplate)).BeginInit();
             this.flowLayoutPanel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds34.ItemTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -246,7 +234,6 @@
             this.groupBox2.SuspendLayout();
             this.flowBoard.SuspendLayout();
             this.flowLayoutPanel17.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ledBoard.ItemTemplate)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.flowMainRelays.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.led300)).BeginInit();
@@ -258,16 +245,16 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 547);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 557);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(996, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1011, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStatus
             // 
             this.toolStatus.Name = "toolStatus";
-            this.toolStatus.Size = new System.Drawing.Size(44, 17);
+            this.toolStatus.Size = new System.Drawing.Size(35, 17);
             this.toolStatus.Text = "Ready";
             // 
             // leds20
@@ -980,8 +967,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel19);
-            this.splitContainer1.Size = new System.Drawing.Size(996, 547);
-            this.splitContainer1.SplitterDistance = 452;
+            this.splitContainer1.Size = new System.Drawing.Size(1011, 557);
+            this.splitContainer1.SplitterDistance = 458;
             this.splitContainer1.TabIndex = 6;
             // 
             // flowLayoutPanel16
@@ -995,7 +982,7 @@
             this.flowLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel16.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel16.Name = "flowLayoutPanel16";
-            this.flowLayoutPanel16.Size = new System.Drawing.Size(452, 547);
+            this.flowLayoutPanel16.Size = new System.Drawing.Size(458, 557);
             this.flowLayoutPanel16.TabIndex = 0;
             // 
             // groupBox4
@@ -1588,6 +1575,7 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.button1);
             this.groupBox9.Controls.Add(this.flowLayoutPanel18);
             this.groupBox9.Controls.Add(this.flowLayoutPanel1);
             this.groupBox9.Controls.Add(this.swDaqOpen);
@@ -1597,6 +1585,16 @@
             this.groupBox9.TabIndex = 5;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "DAQ Card";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(282, 82);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // flowLayoutPanel18
             // 
@@ -1750,7 +1748,7 @@
             this.flowLayoutPanel19.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel19.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel19.Name = "flowLayoutPanel19";
-            this.flowLayoutPanel19.Size = new System.Drawing.Size(540, 547);
+            this.flowLayoutPanel19.Size = new System.Drawing.Size(549, 557);
             this.flowLayoutPanel19.TabIndex = 8;
             // 
             // groupBox2
@@ -1967,7 +1965,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 569);
+            this.ClientSize = new System.Drawing.Size(1011, 579);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "InstrumentControlForm";
@@ -1975,7 +1973,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InstrumentControlForm_FormClosed);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds20.ItemTemplate)).EndInit();
             this.flowSubRelays.ResumeLayout(false);
             this.flowSubRelays.PerformLayout();
             this.flowLayoutPanel15.ResumeLayout(false);
@@ -1984,40 +1981,28 @@
             this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds21.ItemTemplate)).EndInit();
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds22.ItemTemplate)).EndInit();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds23.ItemTemplate)).EndInit();
             this.flowLayoutPanel6.ResumeLayout(false);
             this.flowLayoutPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds24.ItemTemplate)).EndInit();
             this.flowLayoutPanel7.ResumeLayout(false);
             this.flowLayoutPanel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds25.ItemTemplate)).EndInit();
             this.flowLayoutPanel8.ResumeLayout(false);
             this.flowLayoutPanel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds26.ItemTemplate)).EndInit();
             this.flowLayoutPanel9.ResumeLayout(false);
             this.flowLayoutPanel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds27.ItemTemplate)).EndInit();
             this.flowLayoutPanel10.ResumeLayout(false);
             this.flowLayoutPanel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds28.ItemTemplate)).EndInit();
             this.flowLayoutPanel11.ResumeLayout(false);
             this.flowLayoutPanel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds31.ItemTemplate)).EndInit();
             this.flowLayoutPanel12.ResumeLayout(false);
             this.flowLayoutPanel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds32.ItemTemplate)).EndInit();
             this.flowLayoutPanel14.ResumeLayout(false);
             this.flowLayoutPanel14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds33.ItemTemplate)).EndInit();
             this.flowLayoutPanel13.ResumeLayout(false);
             this.flowLayoutPanel13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leds34.ItemTemplate)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -2067,7 +2052,6 @@
             this.flowBoard.PerformLayout();
             this.flowLayoutPanel17.ResumeLayout(false);
             this.flowLayoutPanel17.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ledBoard.ItemTemplate)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.flowMainRelays.ResumeLayout(false);
@@ -2209,5 +2193,6 @@
         private NationalInstruments.UI.WindowsForms.Switch swRes1Open;
         private System.Windows.Forms.Button btnSetRes1;
         private System.Windows.Forms.NumericUpDown numSetRes1;
+        private System.Windows.Forms.Button button1;
     }
 }

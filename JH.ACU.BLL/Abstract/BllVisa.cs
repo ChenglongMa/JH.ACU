@@ -106,7 +106,7 @@ namespace JH.ACU.BLL.Abstract
 
         #region Basis Method
 
-        public string Read(string command, int delay = 0) //TODO:待测试delay时间
+        public string Read(string command, int delay = 100) //TODO:待测试delay时间
         {
             RawIo.Write(command + "\n");
             Thread.Sleep(delay);
@@ -210,7 +210,7 @@ namespace JH.ACU.BLL.Abstract
                 // 清理托管资源
             }
             // 清理非托管资源
-            if (!MbSession.IsDisposed)
+            if (MbSession!=null&&!MbSession.IsDisposed)
             {
                 Reset();
                 MbSession.Dispose();

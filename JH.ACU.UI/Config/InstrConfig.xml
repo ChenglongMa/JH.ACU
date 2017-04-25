@@ -15,6 +15,6 @@
     <Gpib Address="22" />
   </Instr>
   <Instr Name="Chamber" Type="Tcp">
-    <TcpIp IPAddress="192.168.1.101" Port="502" Timeout="2000" />
+    <TcpIp IPAddress="192.168.2.5" Port="3000" Timeout="2000" />
   </Instr>
 </InstrConfig>

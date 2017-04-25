@@ -752,7 +752,7 @@ namespace JH.ACU.DAL
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_ContVScale(ushort wCardNumber, ushort adRange, IntPtr readingArray,
-            out double[] voltageArray, int count); //QUES:Ôö¼Óout¹Ø¼ü×Ö
+            double[] voltageArray, int count); 
 
         [DllImport("D2K-Dask.dll")]
         public static extern short D2K_AI_ContVScale(ushort wCardNumber, ushort adRange, IntPtr readingArray,

@@ -694,6 +694,12 @@ namespace JH.ACU.UI
 
         #endregion
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _dmm.GetVoltage(sample:2500);
+
+        }
+
 
 
     }

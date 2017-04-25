@@ -110,7 +110,7 @@ namespace JH.ACU.BLL.Instruments
             D2KDask.ThrowException((D2KDask.Error) res, channel, mask);
         }
 
-        private double AiReadChannel(ushort channel) //TODO:private
+        private double AiReadChannel(ushort channel)
         {
             double value;
             var res = D2KDask.D2K_AI_VReadChannel((ushort) _mDev, channel, out value);
@@ -122,16 +122,14 @@ namespace JH.ACU.BLL.Instruments
         /// in D2KDASK DEMO
         /// </summary>
         /// <returns></returns>
-        [Obsolete("测试失败")]
-        private double[] AiReadSingleBuffer(ushort channel)
+        private double AiReadSingleBuffer(ushort channel)
         {
             ushort bufId;
             byte stopped;
             uint accessCnt;
             uint startPos;
             var dataBuffer = Marshal.AllocHGlobal(sizeof (short)*1000);
-            double[] voltageArray;
-
+            var voltageArray = new double[1000];
             var ret = D2KDask.D2K_AI_Config((ushort) _mDev, D2KDask.DAQ2K_AI_ADCONVSRC_Int, D2KDask.DAQ2K_AI_TRGSRC_SOFT,
                 0, 0, 1, true);
             D2KDask.ThrowException((D2KDask.Error) ret, channel);
@@ -147,17 +145,18 @@ namespace JH.ACU.BLL.Instruments
 
             ret = D2KDask.D2K_AI_AsyncClear((ushort) _mDev, out startPos, out accessCnt);
             D2KDask.ThrowException((D2KDask.Error) ret, channel);
-            //BUG:下面这句有问题
-            ret = D2KDask.D2K_AI_ContVScale((ushort) _mDev, D2KDask.AD_B_10_V, dataBuffer, out voltageArray, 1000);
+            ret = D2KDask.D2K_AI_ContVScale((ushort) _mDev, D2KDask.AD_B_10_V, dataBuffer, voltageArray, 1000);
             D2KDask.ThrowException((D2KDask.Error) ret, channel);
-            return voltageArray;
+            Marshal.FreeHGlobal(dataBuffer);
+            return voltageArray.Average();
         }
 
         /// <summary>
-        /// in old program//TODO；待测试
+        /// in old program
         /// </summary>
         /// <param name="channel"></param>
         /// <returns></returns>
+        [Obsolete("测试失败",true)]
         private double AiReadSingleBuffer2(ushort channel)
         {
             short[] pwBuffer = {};
@@ -246,7 +245,9 @@ namespace JH.ACU.BLL.Instruments
 
         private double GetVoltFromChannelByMulti(AiChannel channel)
         {
-            var res = AiReadSingleBuffer2((ushort) channel);
+            //var res = AiReadSingleBuffer2((ushort) channel);
+            var res = AiReadSingleBuffer((ushort)channel);
+            //var res = Fun((ushort)channel)[0];
             switch (channel)
             {
                 case AiChannel._5VCh:
@@ -360,28 +361,39 @@ namespace JH.ACU.BLL.Instruments
         }
 
         /// <summary>
-        /// 检查DAQ供电状态//BUG：还需要修改
+        /// 检查DAQ供电状态
         /// </summary>
         /// <param name="voltTarget">目标电压，即Pwr输出电压</param>
         /// <returns></returns>
-        [Obsolete("还需要修正")]
         public bool CheckPowerStatus(double voltTarget)
         {
-            foreach (AiChannel aChannel in Enum.GetValues(typeof (AiChannel)))
+            foreach (AiChannel aChannel in Enum.GetValues(typeof(AiChannel)))
             {
                 var channel = aChannel;
-                foreach (var res in from AiReadMode aMode in Enum.GetValues(typeof (AiReadMode))
-                    where channel != AiChannel.Tsensor
-                    select GetVoltFromChannel(channel, aMode))
+                foreach (var res in from AiReadMode aMode in Enum.GetValues(typeof(AiReadMode))
+                                    where channel != AiChannel.Tsensor
+                                    select GetVoltFromChannel(channel, aMode))
                 {
                     switch (aChannel)
                     {
                         case AiChannel._5VCh:
-                            return Math.Abs(res - 5D) < 1D;
+                            if (Math.Abs(res - 5D) > 1D)
+                            {
+                                return false;
+                            }
+                            break;
                         case AiChannel._12VCh:
-                            return Math.Abs(res - 12D) < 1D;
+                            if (Math.Abs(res - 12D) > 1D)
+                            {
+                                return false;
+                            }
+                            break;
                         case AiChannel.PowCh:
-                            return Math.Abs(res - voltTarget) < 1D;
+                            if (Math.Abs(res - voltTarget) > 1D)
+                            {
+                                return false;
+                            }
+                            break;
                         case AiChannel.Tsensor:
                             break;
                         default:
@@ -389,7 +401,7 @@ namespace JH.ACU.BLL.Instruments
                     }
                 }
             }
-            return false;
+            return true;
         }
 
         public void SetCrashConfig(out short[] buffer)
@@ -491,7 +503,6 @@ namespace JH.ACU.BLL.Instruments
 
             #region 模拟量输入
 
-            //TODO：待完善
             ret = D2KDask.D2K_AI_CH_Config((ushort) _mDev, -1, D2KDask.AD_B_10_V);
             D2KDask.ThrowException((D2KDask.Error) ret, new Exception("AI配置失败"));
 
@@ -661,6 +672,7 @@ namespace JH.ACU.BLL.Instruments
             {
                 SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
+            squibIndex--;
             //Tips:以下注释以FC#1为例
             switch (mode)
             {
@@ -711,6 +723,7 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="mode"></param>
         public void SetFcInReadMode(int acuIndex, int squibIndex, SquibMode mode)
         {
+            squibIndex--;
             //Tips:以下注释以FC#1为例
             switch (mode)
             {
@@ -761,6 +774,7 @@ namespace JH.ACU.BLL.Instruments
             {
                 SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
+            squibIndex--;
             //Tips:以下注释以FC#1为例
             SetMainRelayStatus(300, false);
             SetMainRelayStatus(301, false);

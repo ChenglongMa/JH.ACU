@@ -292,7 +292,8 @@ namespace JH.ACU.BLL.Instruments
         {
             byte[] temp = {0x79, (byte) command};
             var res = WriteAndRead(temp);
-            return res[0] != 0x0a;
+            //return res[0] != 0x0a;
+            return true;//TODO:待修改
         }
 
         public void Dispose()
