@@ -796,7 +796,7 @@ namespace JH.ACU.BLL
             //若最大值及最小值之差足够小则返回两者平均值
             if (maxValue - minValue <= GlobalConst.Precision)
             {
-                return (maxValue - minValue)/2;
+                return (maxValue + minValue)/2;
             }
             if (minValue < 0.1 || maxValue > 2000) return (double) TestResult.Failed;
             FindResult findresult;
@@ -961,7 +961,7 @@ namespace JH.ACU.BLL
             //若最大值及最小值之差足够小则返回两者平均值
             if (maxValue - minValue <= GlobalConst.Precision)
             {
-                return (maxValue - minValue)/2;
+                return (maxValue + minValue)/2;
             }
             if (minValue < 0.1 || maxValue > 2000) return (double) TestResult.Failed;
             FindResult findresult;
@@ -1117,7 +1117,7 @@ namespace JH.ACU.BLL
             //若最大值及最小值之差足够小则返回两者平均值
             if (maxValue - minValue <= GlobalConst.Precision)
             {
-                return (maxValue - minValue)/2;
+                return (maxValue + minValue)/2;
             }
             if (minValue < 0.1 || maxValue > 20) return (double) TestResult.Failed;
             FindResult findresult;
@@ -1256,134 +1256,139 @@ namespace JH.ACU.BLL
         /// <returns></returns>
         private double FindSquib(double minValue, double maxValue, byte dtc, int mode)
         {
-            #region 若取消测试
-
-            if (TestWorker.CancellationPending)
+            //for (int i = 0; i < 3; i++)
+            while (true)//TODO:需要修改测试方法
             {
-                TestEventArgs.Cancel = true;
-                _acu.Stop();
-                CloseAllInstrs(true);
-                return (double) TestResult.Cancelled;
+                #region 若取消测试
+
+                if (TestWorker.CancellationPending)
+                {
+                    TestEventArgs.Cancel = true;
+                    _acu.Stop();
+                    CloseAllInstrs(true);
+                    return (double) TestResult.Cancelled;
+                }
+
+                #endregion
+
+                var valueLen = maxValue - minValue;
+                FindResult findresult;
+                // 正向 小电阻肯定没有：表示错误码在测试规范的大值处附近
+                // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
+                bool forwardMax, acuConnect;
+                BllPrs prs;
+
+                #region 根据测试模式设置寻找方向及电阻箱选择
+
+                switch ((SquibMode) mode)
+                {
+                    default:
+                    case SquibMode.TooHigh:
+                        forwardMax = true;
+                        prs = _prs0;
+                        break;
+                    case SquibMode.TooLow:
+                        forwardMax = false;
+                        prs = _prs0;
+                        break;
+                    case SquibMode.ToGround:
+                        forwardMax = false;
+                        prs = _prs1;
+                        break;
+                    case SquibMode.ToBattery:
+                        forwardMax = false;
+                        prs = _prs1;
+                        break;
+                }
+
+                #endregion
+
+                #region 设置电阻箱输出阻值并检查ACU是否报错
+
+                prs.SetResistance(minValue);
+                var findMin = _acu.HasFoundDtc(dtc, out acuConnect);
+                if (!acuConnect)
+                {
+                    throw new Exception("ACU连接失败");
+                }
+                prs.SetResistance(maxValue);
+                var findMax = _acu.HasFoundDtc(dtc, out acuConnect);
+                if (!acuConnect)
+                {
+                    throw new Exception("ACU连接失败");
+                }
+
+                #endregion
+
+                #region 根据ACU反馈给FindResult赋值
+
+                if (!forwardMax)
+                {
+                    findMax = !findMax;
+                    findMin = !findMin;
+                }
+                if (!findMax && !findMin)
+                {
+                    findresult = FindResult.AboveMax;
+                }
+                else if (findMax && !findMin)
+                {
+                    findresult = FindResult.InBetween;
+                }
+                else if (findMax)
+                {
+                    findresult = FindResult.UnderMin;
+                }
+                else
+                {
+                    findresult = FindResult.Error;
+                }
+
+                #endregion
+
+                #region 根据FindResult值重新设定大小范围
+
+                switch (findresult)
+                {
+                    case FindResult.Error:
+                        throw new Exception(string.Format("寻找DTC:0x{0}失败", dtc.ToString("X2")));
+                    case FindResult.InBetween:
+                        var mid = (maxValue + minValue)/2;
+                        if (forwardMax)
+                        {
+                            maxValue = mid;
+                        }
+                        else
+                        {
+                            minValue = mid;
+                        }
+                        break;
+                    case FindResult.UnderMin:
+                        maxValue = minValue;
+                        minValue = minValue/2.0;
+                        break;
+                    case FindResult.AboveMax:
+                        minValue = maxValue;
+                        maxValue = maxValue*2.0;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                #endregion
+
+                //若最大值及最小值之差足够小则返回两者平均值
+                if (maxValue - minValue <= GlobalConst.Precision)
+                {
+                    return (maxValue + minValue)/2;
+                }
+                if (minValue < 0.1 || maxValue > 2000)
+                {
+                    return (double) TestResult.Failed;
+                }
+                //递归调用精确查找结果
             }
-
-            #endregion
-
-            FindResult findresult;
-            // 正向 小电阻肯定没有：表示错误码在测试规范的大值处附近
-            // 反向 大电阻肯定没有：表示错误码在测试范围的小值处附近
-            bool forwardMax, acuConnect;
-            BllPrs prs;
-
-            #region 根据测试模式设置寻找方向及电阻箱选择
-
-            switch ((SquibMode) mode)
-            {
-                default:
-                case SquibMode.TooHigh:
-                    forwardMax = true;
-                    prs = _prs0;
-                    break;
-                case SquibMode.TooLow:
-                    forwardMax = false;
-                    prs = _prs0;
-                    break;
-                case SquibMode.ToGround:
-                    forwardMax = false;
-                    prs = _prs1;
-                    break;
-                case SquibMode.ToBattery:
-                    forwardMax = false;
-                    prs = _prs1;
-                    break;
-            }
-
-            #endregion
-
-            #region 设置电阻箱输出阻值并检查ACU是否报错
-
-            prs.SetResistance(minValue);
-            var findMin = _acu.HasFoundDtc(dtc, out acuConnect);
-            if (!acuConnect)
-            {
-                throw new Exception("ACU连接失败");
-            }
-            prs.SetResistance(maxValue);
-            var findMax = _acu.HasFoundDtc(dtc, out acuConnect);
-            if (!acuConnect)
-            {
-                throw new Exception("ACU连接失败");
-            }
-
-            #endregion
-
-            #region 根据ACU反馈给FindResult赋值
-
-            if (!forwardMax)
-            {
-                findMax = !findMax;
-                findMin = !findMin;
-            }
-            if (!findMax && !findMin)
-            {
-                findresult = FindResult.AboveMax;
-            }
-            else if (findMax && !findMin)
-            {
-                findresult = FindResult.InBetween;
-            }
-            else if (findMax)
-            {
-                findresult = FindResult.UnderMin;
-            }
-            else
-            {
-                findresult = FindResult.Error;
-            }
-
-            #endregion
-
-            #region 根据FindResult值重新设定大小范围
-
-            switch (findresult)
-            {
-                case FindResult.Error:
-                    throw new Exception(string.Format("寻找DTC:0x{0}失败", dtc.ToString("X2")));
-                case FindResult.InBetween:
-                    var mid = (maxValue + minValue)/2;
-                    if (forwardMax)
-                    {
-                        maxValue = mid;
-                    }
-                    else
-                    {
-                        minValue = mid;
-                    }
-                    break;
-                case FindResult.UnderMin:
-                    maxValue = minValue;
-                    minValue = minValue/2.0;
-                    break;
-                case FindResult.AboveMax:
-                    minValue = maxValue;
-                    maxValue = maxValue*2.0;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            #endregion
-
-            //若最大值及最小值之差足够小则返回两者平均值
-            if (maxValue - minValue <= GlobalConst.Precision)
-            {
-                return (maxValue + minValue)/2;
-            }
-            if (minValue < 0.1 || maxValue > 2000)
-            {
-                return (double) TestResult.Failed;
-            }
-            //递归调用精确查找结果
-            return FindSquib(minValue, maxValue, dtc, mode);
+            
         }
 
         #endregion
@@ -1498,7 +1503,7 @@ namespace JH.ACU.BLL
         private const int SquibNum = 16; //回路数常量
         private const int SquibModeNum = 4; //回路测试情况常量
         private const int BeltNum = 3; //开关数常量
-        private const int BeltModeNum = 4; //开关测试情况常量//bug：实际值为3
+        private const int BeltModeNum = 3; //开关测试情况常量//bug：理论值为4
         private const int VoltNum = 1; //测电压处常量
         private const int VoltModeNum = 2; //电压测试情况常量
         private const int SisNum = 6; //侧传感器数常量

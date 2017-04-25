@@ -9,8 +9,8 @@
     <SpecItem Index="8" Description="PCAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x1F" />
     <SpecItem Index="9" Description="RDSAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x22" />
     <SpecItem Index="10" Description="RPSAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x25" />
-    <SpecItem Index="11" Description="RPSAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x25" />
-    <SpecItem Index="12" Description="RPSAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x25" />
+    <SpecItem Index="11" Description="DKAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x07" />
+    <SpecItem Index="12" Description="PKAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x0D" />
     <SpecItem Index="13" Description="RPSAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x25" />
     <SpecItem Index="14" Description="RPSAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x25" />
     <SpecItem Index="15" Description="RPSAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x25" />
@@ -25,8 +25,8 @@
     <SpecItem Index="24" Description="PCAB Squib Resistance Too Low or Short" Specification="0.40-1.60" UOM="Ohm" DTC="0x20" />
     <SpecItem Index="25" Description="RDSAB Squib Resistance Too Low or Short" Specification="0.40-1.60" UOM="Ohm" DTC="0x23" />
     <SpecItem Index="26" Description="RPSAB Squib Resistance Too Low or Short" Specification="0.40-1.60" UOM="Ohm" DTC="0x26" />
-    <SpecItem Index="27" Description="RPSAB Squib Resistance Too Low or Short" Specification="0.40-1.60" UOM="Ohm" DTC="0x26" />
-    <SpecItem Index="28" Description="RPSAB Squib Resistance Too Low or Short" Specification="0.40-1.60" UOM="Ohm" DTC="0x26" />
+    <SpecItem Index="27" Description="DKAB Squib Resistance Too Low or Short" Specification="0.40-1.60" UOM="Ohm" DTC="0x08" />
+    <SpecItem Index="28" Description="PKAB Squib Resistance Too Low or Short" Specification="0.40-1.60" UOM="Ohm" DTC="0x0E" />
     <SpecItem Index="29" Description="RPSAB Squib Resistance Too Low or Short" Specification="0.40-1.60" UOM="Ohm" DTC="0x26" />
     <SpecItem Index="30" Description="RPSAB Squib Resistance Too Low or Short" Specification="0.40-1.60" UOM="Ohm" DTC="0x26" />
     <SpecItem Index="31" Description="RPSAB Squib Resistance Too Low or Short" Specification="0.40-1.60" UOM="Ohm" DTC="0x26" />
@@ -40,8 +40,8 @@
     <SpecItem Index="39" Description="DCAB Squib Short to Ground" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x38" />
     <SpecItem Index="40" Description="PCAB Squib Short to Ground" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3A" />
     <SpecItem Index="41" Description="RDSAB Squib Short to Ground" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3C" />
-    <SpecItem Index="42" Description="RPSAB Squib Short to Ground" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3E" />
-    <SpecItem Index="43" Description="RPSAB Squib Short to Ground" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3E" />
+    <SpecItem Index="42" Description="DKAB Squib Short to Ground" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x2A" />
+    <SpecItem Index="43" Description="PKAB Squib Short to Ground" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x2E" />
     <SpecItem Index="44" Description="RPSAB Squib Short to Ground" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3E" />
     <SpecItem Index="45" Description="RPSAB Squib Short to Ground" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3E" />
     <SpecItem Index="46" Description="RPSAB Squib Short to Ground" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3E" />
@@ -56,8 +56,8 @@
     <SpecItem Index="55" Description="DCAB Squib Short to Battery" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x37" />
     <SpecItem Index="56" Description="PCAB Squib Short to Battery" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x39" />
     <SpecItem Index="57" Description="RDSAB Squib Short to Battery" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3B" />
-    <SpecItem Index="58" Description="RPSAB Squib Short to Battery" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3D" />
-    <SpecItem Index="59" Description="RPSAB Squib Short to Battery" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3D" />
+    <SpecItem Index="58" Description="DKAB Squib Short to Battery" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x29" />
+    <SpecItem Index="59" Description="PKAB Squib Short to Battery" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x2D" />
     <SpecItem Index="60" Description="RPSAB Squib Short to Battery" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3D" />
     <SpecItem Index="61" Description="RPSAB Squib Short to Battery" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3D" />
     <SpecItem Index="62" Description="RPSAB Squib Short to Battery" Specification="1000.00-10000.00" UOM="Ohm" DTC="0x3D" />
