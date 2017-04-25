@@ -26,6 +26,23 @@ namespace JH.ACU.BLL
             ChamberStay = new NewBackgroundWorker();
             ChamberStay.DoWork += ChamberStay_DoWork;
             ChamberStay.RunWorkerCompleted += ChamberStay_RunWorkerCompleted;
+            ChamberReset = new NewBackgroundWorker();
+            ChamberReset.DoWork+=ChamberReset_DoWork;
+        }
+
+        private void ChamberReset_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (!TestCondition.Temperature.Enable) return;
+            _chamber = _chamber ?? new BllChamber();
+            _chamber.SetTemp(25);
+            _chamber.Run();
+            while (Math.Abs(ActualTemp-25)>0.5)
+            {
+                SettingTemp = 25;
+                ChamberReset.ReportProgress(0,_report);
+                Thread.Sleep(3000);
+            }
+            _chamber.Stop();
         }
 
         private void ChamberStay_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -78,7 +95,7 @@ namespace JH.ACU.BLL
         }
 
         /// <summary>
-        /// 测试完成时执行 //TODO:UI层还可以写一下同样方法
+        /// 测试完成时执行
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -92,8 +109,8 @@ namespace JH.ACU.BLL
             {
                 //正常完成
             }
-
-
+            _acu.IfNotNull(a => a.Stop());
+            CloseAllInstrs(true);
         }
 
         /// <summary>
@@ -1408,6 +1425,7 @@ namespace JH.ACU.BLL
         public NewBackgroundWorker TestWorker { get; private set; }
         private DoWorkEventArgs TestEventArgs { get; set; }
         private NewBackgroundWorker ChamberStay { get; set; }
+        public NewBackgroundWorker ChamberReset { get; private set; }
         private TestCondition TestCondition { get; set; }
         private readonly Report _report;
         private KeyValuePair<TvType, double[]> _tvItem; //正在测试条件组合
@@ -1743,14 +1761,14 @@ namespace JH.ACU.BLL
         /// 关闭所有仪器
         /// </summary>
         /// <param name="closeChamber">是否关闭温箱</param>
-        public void CloseAllInstrs(bool closeChamber)
+        private void CloseAllInstrs(bool closeChamber)
         {
             _pwr.IfNotNull(p => p.Dispose());
             _prs0.IfNotNull(prs => prs.Dispose());
             _prs1.IfNotNull(prs => prs.Dispose());
-            if (closeChamber)
+            if (closeChamber && _chamber != null)
             {
-                _chamber.IfNotNull(c => c.Dispose());
+                ChamberReset.RunWorkerAsync();
             }
             _dmm.IfNotNull(d => d.Dispose());
             _daq.IfNotNull(d => d.Dispose());

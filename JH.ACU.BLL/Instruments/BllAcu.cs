@@ -292,8 +292,11 @@ namespace JH.ACU.BLL.Instruments
         {
             byte[] temp = {0x79, (byte) command};
             var res = WriteAndRead(temp);
-            //return res[0] != 0x0a;
-            return true;//TODO:待修改
+            if (res.IsNullOrEmpty())
+            {
+                return false;
+            }
+            return res[0] != 0x0a;
         }
 
         public void Dispose()
@@ -363,7 +366,7 @@ namespace JH.ACU.BLL.Instruments
         FrontInjectionData = 6,
         FrontInjectionStop = 7,
         CrashOutput = 8,
-        CrashOutput2 = 8,//TODO:需要根据协议重新修改
+        CrashOutput2 = 8,//TODO:协议中相同
         ClearOperationTimerCounter = 10,
         ClearFramIgnCounter = 11,
         FramMassErase = 13,

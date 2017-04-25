@@ -153,6 +153,18 @@
             Infragistics.Win.Appearance appearance118 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance119 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance120 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance121 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance122 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance123 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance124 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance125 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance126 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance127 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance128 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance129 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance130 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance131 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance132 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel1 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
             Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel2 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
             Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel3 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
@@ -196,18 +208,6 @@
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool24 = new Infragistics.Win.UltraWinToolbars.ButtonTool("btnStop");
             Infragistics.Win.Appearance appearance136 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool26 = new Infragistics.Win.UltraWinToolbars.ButtonTool("btnSpecConfig");
-            Infragistics.Win.Appearance appearance121 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance122 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance123 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance124 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance125 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance126 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance127 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance128 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance129 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance130 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance131 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance132 = new Infragistics.Win.Appearance();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
@@ -266,16 +266,16 @@
             this.ugHTNV = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.pageHH = new System.Windows.Forms.TabPage();
             this.ugHTHV = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.pageTotal = new System.Windows.Forms.TabPage();
+            this.ugTotal = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.statusBar = new Infragistics.Win.UltraWinStatusBar.UltraStatusBar();
             this._MainForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.toolBarsManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this._MainForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.pageTotal = new System.Windows.Forms.TabPage();
-            this.ugTotal = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.ultraGridExcelExporter1 = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
+            this.toolBarsManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -335,10 +335,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ugHTNV)).BeginInit();
             this.pageHH.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ugHTHV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.statusBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolBarsManager)).BeginInit();
             this.pageTotal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ugTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.statusBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolBarsManager)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -376,7 +376,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
             this.splitContainer3.Size = new System.Drawing.Size(701, 793);
-            this.splitContainer3.SplitterDistance = 302;
+            this.splitContainer3.SplitterDistance = 278;
             this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 1;
             // 
@@ -399,8 +399,8 @@
             // 
             this.splitContainer4.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer4.Panel2MinSize = 60;
-            this.splitContainer4.Size = new System.Drawing.Size(701, 302);
-            this.splitContainer4.SplitterDistance = 76;
+            this.splitContainer4.Size = new System.Drawing.Size(701, 278);
+            this.splitContainer4.SplitterDistance = 58;
             this.splitContainer4.SplitterWidth = 5;
             this.splitContainer4.TabIndex = 0;
             // 
@@ -459,7 +459,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(701, 221);
+            this.groupBox1.Size = new System.Drawing.Size(701, 215);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test Condition";
@@ -472,7 +472,7 @@
             this.flowLayoutPanel8.Location = new System.Drawing.Point(4, 22);
             this.flowLayoutPanel8.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
-            this.flowLayoutPanel8.Size = new System.Drawing.Size(693, 195);
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(693, 189);
             this.flowLayoutPanel8.TabIndex = 0;
             // 
             // flowLayoutPanel4
@@ -660,7 +660,7 @@
             this.flowLayoutPanel7.Location = new System.Drawing.Point(487, 4);
             this.flowLayoutPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
-            this.flowLayoutPanel7.Size = new System.Drawing.Size(186, 174);
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(186, 166);
             this.flowLayoutPanel7.TabIndex = 13;
             // 
             // flowLayoutPanel6
@@ -769,8 +769,8 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.ugTestItems);
-            this.splitContainer5.Size = new System.Drawing.Size(701, 486);
-            this.splitContainer5.SplitterDistance = 162;
+            this.splitContainer5.Size = new System.Drawing.Size(701, 510);
+            this.splitContainer5.SplitterDistance = 119;
             this.splitContainer5.SplitterWidth = 5;
             this.splitContainer5.TabIndex = 0;
             // 
@@ -786,7 +786,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(701, 162);
+            this.groupBox2.Size = new System.Drawing.Size(701, 119);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Test Process";
@@ -815,7 +815,7 @@
             // 
             this.txtDtc.BackColor = System.Drawing.SystemColors.Info;
             this.txtDtc.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtDtc.Location = new System.Drawing.Point(4, 104);
+            this.txtDtc.Location = new System.Drawing.Point(4, 61);
             this.txtDtc.Margin = new System.Windows.Forms.Padding(4);
             this.txtDtc.Name = "txtDtc";
             this.txtDtc.ReadOnly = true;
@@ -825,7 +825,7 @@
             // progressBar
             // 
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar.Location = new System.Drawing.Point(4, 129);
+            this.progressBar.Location = new System.Drawing.Point(4, 86);
             this.progressBar.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(693, 29);
@@ -896,7 +896,7 @@
             this.ugTestItems.Location = new System.Drawing.Point(0, 0);
             this.ugTestItems.Margin = new System.Windows.Forms.Padding(4);
             this.ugTestItems.Name = "ugTestItems";
-            this.ugTestItems.Size = new System.Drawing.Size(701, 319);
+            this.ugTestItems.Size = new System.Drawing.Size(701, 386);
             this.ugTestItems.TabIndex = 1;
             this.ugTestItems.Text = "ultraGrid1";
             // 
@@ -1007,7 +1007,7 @@
             this.chart.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.chart.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.chart.Axis.Y.MinorGridLines.Visible = false;
-            this.chart.Axis.Y.TickmarkInterval = 50D;
+            this.chart.Axis.Y.TickmarkInterval = 20D;
             this.chart.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.chart.Axis.Y.Visible = true;
             this.chart.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -1034,7 +1034,7 @@
             this.chart.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.chart.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.chart.Axis.Y2.MinorGridLines.Visible = false;
-            this.chart.Axis.Y2.TickmarkInterval = 50D;
+            this.chart.Axis.Y2.TickmarkInterval = 20D;
             this.chart.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.chart.Axis.Y2.Visible = false;
             this.chart.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -1846,6 +1846,85 @@
             this.ugHTHV.TabIndex = 1;
             this.ugHTHV.Text = "ultraGrid1";
             // 
+            // pageTotal
+            // 
+            this.pageTotal.Controls.Add(this.ugTotal);
+            this.pageTotal.Location = new System.Drawing.Point(4, 25);
+            this.pageTotal.Name = "pageTotal";
+            this.pageTotal.Padding = new System.Windows.Forms.Padding(3);
+            this.pageTotal.Size = new System.Drawing.Size(751, 482);
+            this.pageTotal.TabIndex = 9;
+            this.pageTotal.Text = "Total";
+            this.pageTotal.UseVisualStyleBackColor = true;
+            // 
+            // ugTotal
+            // 
+            appearance121.BackColor = System.Drawing.SystemColors.Window;
+            appearance121.BorderColor = System.Drawing.SystemColors.InactiveCaption;
+            this.ugTotal.DisplayLayout.Appearance = appearance121;
+            this.ugTotal.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
+            this.ugTotal.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.ugTotal.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            this.ugTotal.DisplayLayout.EmptyRowSettings.ShowEmptyRows = true;
+            this.ugTotal.DisplayLayout.EmptyRowSettings.Style = Infragistics.Win.UltraWinGrid.EmptyRowStyle.AlignWithDataRows;
+            appearance122.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance122.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance122.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance122.BorderColor = System.Drawing.SystemColors.Window;
+            this.ugTotal.DisplayLayout.GroupByBox.Appearance = appearance122;
+            appearance123.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.ugTotal.DisplayLayout.GroupByBox.BandLabelAppearance = appearance123;
+            this.ugTotal.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            appearance124.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            appearance124.BackColor2 = System.Drawing.SystemColors.Control;
+            appearance124.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance124.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.ugTotal.DisplayLayout.GroupByBox.PromptAppearance = appearance124;
+            this.ugTotal.DisplayLayout.MaxColScrollRegions = 1;
+            this.ugTotal.DisplayLayout.MaxRowScrollRegions = 1;
+            appearance125.BackColor = System.Drawing.SystemColors.Window;
+            appearance125.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ugTotal.DisplayLayout.Override.ActiveCellAppearance = appearance125;
+            appearance126.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance126.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.ugTotal.DisplayLayout.Override.ActiveRowAppearance = appearance126;
+            this.ugTotal.DisplayLayout.Override.AllowColMoving = Infragistics.Win.UltraWinGrid.AllowColMoving.NotAllowed;
+            this.ugTotal.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
+            this.ugTotal.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
+            appearance127.BackColor = System.Drawing.SystemColors.Window;
+            this.ugTotal.DisplayLayout.Override.CardAreaAppearance = appearance127;
+            appearance128.BorderColor = System.Drawing.Color.Silver;
+            appearance128.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
+            this.ugTotal.DisplayLayout.Override.CellAppearance = appearance128;
+            this.ugTotal.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            this.ugTotal.DisplayLayout.Override.CellPadding = 0;
+            appearance129.BackColor = System.Drawing.SystemColors.Control;
+            appearance129.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance129.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance129.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance129.BorderColor = System.Drawing.SystemColors.Window;
+            this.ugTotal.DisplayLayout.Override.GroupByRowAppearance = appearance129;
+            appearance130.TextHAlignAsString = "Left";
+            this.ugTotal.DisplayLayout.Override.HeaderAppearance = appearance130;
+            this.ugTotal.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+            this.ugTotal.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
+            appearance131.BackColor = System.Drawing.SystemColors.Window;
+            appearance131.BorderColor = System.Drawing.Color.Silver;
+            this.ugTotal.DisplayLayout.Override.RowAppearance = appearance131;
+            this.ugTotal.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
+            appearance132.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ugTotal.DisplayLayout.Override.TemplateAddRowAppearance = appearance132;
+            this.ugTotal.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.ugTotal.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.ugTotal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ugTotal.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ugTotal.Location = new System.Drawing.Point(3, 3);
+            this.ugTotal.Margin = new System.Windows.Forms.Padding(4);
+            this.ugTotal.Name = "ugTotal";
+            this.ugTotal.Size = new System.Drawing.Size(745, 476);
+            this.ugTotal.TabIndex = 2;
+            this.ugTotal.Text = "ultraGrid1";
+            // 
             // statusBar
             // 
             this.statusBar.Location = new System.Drawing.Point(0, 873);
@@ -1879,6 +1958,48 @@
             this._MainForm_Toolbars_Dock_Area_Left.Name = "_MainForm_Toolbars_Dock_Area_Left";
             this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 793);
             this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarsManager;
+            // 
+            // _MainForm_Toolbars_Dock_Area_Right
+            // 
+            this._MainForm_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.Gainsboro;
+            this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
+            this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1465, 80);
+            this._MainForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(4);
+            this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
+            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 793);
+            this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarsManager;
+            // 
+            // _MainForm_Toolbars_Dock_Area_Top
+            // 
+            this._MainForm_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._MainForm_Toolbars_Dock_Area_Top.BackColor = System.Drawing.Color.Gainsboro;
+            this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
+            this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
+            this._MainForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(4);
+            this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
+            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1465, 80);
+            this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarsManager;
+            // 
+            // _MainForm_Toolbars_Dock_Area_Bottom
+            // 
+            this._MainForm_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.Gainsboro;
+            this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
+            this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 873);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(4);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
+            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1465, 0);
+            this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarsManager;
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "xls";
+            this.saveFileDialog1.Filter = "Data File|*.xls|All Files|*.*";
+            this.saveFileDialog1.RestoreDirectory = true;
             // 
             // toolBarsManager
             // 
@@ -1972,127 +2093,6 @@
             buttonTool26});
             this.toolBarsManager.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.ultraToolbarsManager1_ToolClick);
             // 
-            // _MainForm_Toolbars_Dock_Area_Right
-            // 
-            this._MainForm_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.Gainsboro;
-            this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
-            this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1465, 80);
-            this._MainForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(4);
-            this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
-            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 793);
-            this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarsManager;
-            // 
-            // _MainForm_Toolbars_Dock_Area_Top
-            // 
-            this._MainForm_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Top.BackColor = System.Drawing.Color.Gainsboro;
-            this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
-            this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
-            this._MainForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(4);
-            this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
-            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1465, 80);
-            this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarsManager;
-            // 
-            // _MainForm_Toolbars_Dock_Area_Bottom
-            // 
-            this._MainForm_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.Gainsboro;
-            this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
-            this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 873);
-            this._MainForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(4);
-            this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
-            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1465, 0);
-            this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarsManager;
-            // 
-            // pageTotal
-            // 
-            this.pageTotal.Controls.Add(this.ugTotal);
-            this.pageTotal.Location = new System.Drawing.Point(4, 25);
-            this.pageTotal.Name = "pageTotal";
-            this.pageTotal.Padding = new System.Windows.Forms.Padding(3);
-            this.pageTotal.Size = new System.Drawing.Size(751, 482);
-            this.pageTotal.TabIndex = 9;
-            this.pageTotal.Text = "Total";
-            this.pageTotal.UseVisualStyleBackColor = true;
-            // 
-            // ugTotal
-            // 
-            appearance121.BackColor = System.Drawing.SystemColors.Window;
-            appearance121.BorderColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ugTotal.DisplayLayout.Appearance = appearance121;
-            this.ugTotal.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
-            this.ugTotal.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            this.ugTotal.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            this.ugTotal.DisplayLayout.EmptyRowSettings.ShowEmptyRows = true;
-            this.ugTotal.DisplayLayout.EmptyRowSettings.Style = Infragistics.Win.UltraWinGrid.EmptyRowStyle.AlignWithDataRows;
-            appearance122.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            appearance122.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance122.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance122.BorderColor = System.Drawing.SystemColors.Window;
-            this.ugTotal.DisplayLayout.GroupByBox.Appearance = appearance122;
-            appearance123.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.ugTotal.DisplayLayout.GroupByBox.BandLabelAppearance = appearance123;
-            this.ugTotal.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            appearance124.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            appearance124.BackColor2 = System.Drawing.SystemColors.Control;
-            appearance124.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance124.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.ugTotal.DisplayLayout.GroupByBox.PromptAppearance = appearance124;
-            this.ugTotal.DisplayLayout.MaxColScrollRegions = 1;
-            this.ugTotal.DisplayLayout.MaxRowScrollRegions = 1;
-            appearance125.BackColor = System.Drawing.SystemColors.Window;
-            appearance125.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ugTotal.DisplayLayout.Override.ActiveCellAppearance = appearance125;
-            appearance126.BackColor = System.Drawing.SystemColors.Highlight;
-            appearance126.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ugTotal.DisplayLayout.Override.ActiveRowAppearance = appearance126;
-            this.ugTotal.DisplayLayout.Override.AllowColMoving = Infragistics.Win.UltraWinGrid.AllowColMoving.NotAllowed;
-            this.ugTotal.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
-            this.ugTotal.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
-            appearance127.BackColor = System.Drawing.SystemColors.Window;
-            this.ugTotal.DisplayLayout.Override.CardAreaAppearance = appearance127;
-            appearance128.BorderColor = System.Drawing.Color.Silver;
-            appearance128.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
-            this.ugTotal.DisplayLayout.Override.CellAppearance = appearance128;
-            this.ugTotal.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
-            this.ugTotal.DisplayLayout.Override.CellPadding = 0;
-            appearance129.BackColor = System.Drawing.SystemColors.Control;
-            appearance129.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance129.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance129.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance129.BorderColor = System.Drawing.SystemColors.Window;
-            this.ugTotal.DisplayLayout.Override.GroupByRowAppearance = appearance129;
-            appearance130.TextHAlignAsString = "Left";
-            this.ugTotal.DisplayLayout.Override.HeaderAppearance = appearance130;
-            this.ugTotal.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-            this.ugTotal.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
-            appearance131.BackColor = System.Drawing.SystemColors.Window;
-            appearance131.BorderColor = System.Drawing.Color.Silver;
-            this.ugTotal.DisplayLayout.Override.RowAppearance = appearance131;
-            this.ugTotal.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
-            appearance132.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ugTotal.DisplayLayout.Override.TemplateAddRowAppearance = appearance132;
-            this.ugTotal.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-            this.ugTotal.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.ugTotal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ugTotal.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ugTotal.Location = new System.Drawing.Point(3, 3);
-            this.ugTotal.Margin = new System.Windows.Forms.Padding(4);
-            this.ugTotal.Name = "ugTotal";
-            this.ugTotal.Size = new System.Drawing.Size(745, 476);
-            this.ugTotal.TabIndex = 2;
-            this.ugTotal.Text = "ultraGrid1";
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.DefaultExt = "xls";
-            this.saveFileDialog1.Filter = "Data File|*.xls|All Files|*.*";
-            this.saveFileDialog1.RestoreDirectory = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -2107,7 +2107,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainForm";
+            this.Text = "PerformanceTest";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -2177,10 +2177,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ugHTNV)).EndInit();
             this.pageHH.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ugHTHV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.statusBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolBarsManager)).EndInit();
             this.pageTotal.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ugTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.statusBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolBarsManager)).EndInit();
             this.ResumeLayout(false);
 
         }

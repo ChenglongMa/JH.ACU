@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("JH.Acu.UI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("PerformanceTest")]
+[assembly: AssemblyDescription("用于性能测试试验")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Lenovo")]
-[assembly: AssemblyProduct("JH.Acu.UI")]
-[assembly: AssemblyCopyright("Copyright © Lenovo 2016")]
+[assembly: AssemblyCompany("北京万得嘉瑞汽车技术有限公司")]
+[assembly: AssemblyProduct("PerformanceTest")]
+[assembly: AssemblyCopyright("Copyright © Wonder 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 // 将 ComVisible 设置为 false 使此程序集中的类型

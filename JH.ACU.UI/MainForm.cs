@@ -45,6 +45,8 @@ namespace JH.ACU.UI
             _bllMain = new BllMain();
             _bllMain.TestWorker.ProgressChanged += TestWorker_ProgressChanged;
             _bllMain.TestWorker.RunWorkerCompleted += TestWorker_RunWorkerCompleted;
+            _bllMain.ChamberReset.RunWorkerCompleted+=ChamberReset_RunWorkerCompleted;
+            _bllMain.ChamberReset.ProgressChanged += TestWorker_ProgressChanged;
             SetControlEnabled(!IsBusy);
             BindingControls(_report);
 
@@ -59,6 +61,11 @@ namespace JH.ACU.UI
 
         }
 
+        private void ChamberReset_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            SetControlEnabled(true);
+            MessageBoxHelper.ShowInformationOk("测试已完成");
+        }
 
         #region 属性字段
 
@@ -251,7 +258,9 @@ namespace JH.ACU.UI
             {
                 if (e.Error != null)
                 {
-                    throw e.Error;
+                    LogHelper.WriteErrorLog("MainForm", e.Error);
+                    statusBar.Panels["messBar"].Text = @"测试过程有错误，详情请查看日志";
+                    progressBar.Value = 0;
                 }
                 if (e.Cancelled)
                 {
@@ -269,8 +278,6 @@ namespace JH.ACU.UI
             }
             finally
             {
-                SetControlEnabled(true);
-                _bllMain.CloseAllInstrs(true);
             }
 
         }
