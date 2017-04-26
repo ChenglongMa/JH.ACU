@@ -427,8 +427,8 @@ namespace JH.ACU.BLL
             try
             {
                 var items = acuItem.Items;
-
-                throw new NotImplementedException();
+                return true;//TODO:待修改
+                //throw new NotImplementedException();
             }
             catch (Exception ex)
             {
