@@ -212,11 +212,11 @@ namespace JH.ACU.BLL.Instruments
         /// 指示是否找到指定故障码
         /// </summary>
         /// <param name="code">指定故障码</param>
-        /// <param name="connect"></param>
         /// <returns></returns>
-        public bool HasFoundDtc(byte code, out bool connect)
+        public bool HasFoundDtc(byte code)
         {
-            connect = ReadRtFault();
+            var connect = ReadRtFault();
+            if (!connect) throw new Exception("ACU连接失败");
             //最多重复10次
             for (int i = 0; i < 10; i++)
             {
@@ -228,7 +228,6 @@ namespace JH.ACU.BLL.Instruments
                 }
             }
             StopRtFault();
-            //outBytes = RealTimeData;
             return false;
         }
 

@@ -278,6 +278,7 @@ namespace JH.ACU.UI
             }
             finally
             {
+				SetControlEnabled(true);
             }
 
         }

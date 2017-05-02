@@ -216,6 +216,7 @@
     <Content Include="Config\SPEC_unit.txt" />
     <Content Include="Config\SPEC_unit.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="GridFields\SpecInitialForm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
