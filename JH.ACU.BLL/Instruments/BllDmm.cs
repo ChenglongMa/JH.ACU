@@ -5,6 +5,8 @@ using JH.ACU.Model;
 using NationalInstruments.Visa;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using JH.ACU.Lib;
 
 namespace JH.ACU.BLL.Instruments
 {
@@ -49,7 +51,7 @@ namespace JH.ACU.BLL.Instruments
         /// <summary>
         /// 获取或设置前面板显示器状态
         /// </summary>
-        private bool Display
+        public bool Display
         {
             get { return Read("DISPlay?") == "1"; }
             set { Write(value ? "DISPlay ON" : "DISPlay OFF"); }
@@ -186,10 +188,9 @@ namespace JH.ACU.BLL.Instruments
             }
         }
 
-        //QUES:need public?
         private void SetTrigger(TriggerSource trigger, bool isAuto = true, double delay = 0)
         {
-            var command = isAuto ? ":TRIG:DEL:AUTO ON;" : ":TRIG:DEL " + delay;
+            var command = isAuto ? ":TRIG:DEL:AUTO ON;" : ":TRIG:DEL " + delay + ";";
             switch (trigger)
             {
                 case TriggerSource.Immediate:
@@ -215,10 +216,6 @@ namespace JH.ACU.BLL.Instruments
         }
         private void SetMultiPoint(int triggerCount = 1, int sampleCount = 1)
         {
-            if (triggerCount <=1 || sampleCount <= 1)
-            {
-                return;
-            }
             var command = string.Format(":TRIG:COUN {0};", triggerCount);
             command += string.Format(":SAMP:COUN {0};", sampleCount);
             Write(command);
@@ -235,6 +232,28 @@ namespace JH.ACU.BLL.Instruments
             }
             command = "READ?";
             return Convert.ToDouble(Read(command));
+        }
+
+        private double[] DmmReadBytes()
+        {
+            var res=new List<double>();
+            MbSession.TimeoutMilliseconds = 100000;
+            var msg = Read("READ?");
+            if (msg.Contains(","))
+            {
+                var array = msg.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+                res.AddRange(array.Select(Convert.ToDouble));
+            }
+            else
+            {
+                double result;
+                if(double.TryParse(msg, out result))
+                {
+                    res.Add(result);
+                }
+            }
+            MbSession.TimeoutMilliseconds = 10000;
+            return res.ToArray();
         }
 
         public void SetAutoZero(AutoZero autoZero)
@@ -271,7 +290,7 @@ namespace JH.ACU.BLL.Instruments
             {
                 MbSession.TimeoutMilliseconds = 10000;
                 DmmClear();
-                Display = false; 
+                Display = false;
 #if DEBUG
                 Display = true;
 #endif
@@ -289,8 +308,9 @@ namespace JH.ACU.BLL.Instruments
             }
             catch (Exception ex)
             {
+                var msg = Error;
                 MbSession.Dispose();
-                throw new Exception(Error, ex);
+                throw new Exception(msg, ex);
             }
         }
 
@@ -301,7 +321,7 @@ namespace JH.ACU.BLL.Instruments
         public double Read()
         {
             SetTrigger(TriggerSource.Immediate);
-            SetMultiPoint(1, 1);
+            //SetMultiPoint(1, 1);
             return DmmRead(_dmm);
         }
 
@@ -310,11 +330,15 @@ namespace JH.ACU.BLL.Instruments
         /// </summary>
         /// <param name="sampleCount"></param>
         /// <returns></returns>
-        public double Read(int sampleCount)
+        public double[] Read(int sampleCount)
         {
-            SetTrigger(TriggerSource.Immediate);
+            if (sampleCount <= 1)
+            {
+                return new[] {Read()};
+            }
+            SetTrigger(TriggerSource.Immediate, false, 0.001347);
             SetMultiPoint(sampleCount: sampleCount);
-            return DmmRead(_dmm);
+            return DmmReadBytes();
         }
 
         /// <summary>
@@ -385,7 +409,20 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="range"></param>
         /// <param name="resolution"></param>
         /// <returns></returns>
-        public double GetVoltage(double range = 0, double resolution = 0, int sample = 1)
+        public double GetVoltage(double range = 0, double resolution = 0)
+        {
+            SetFunction(DcVolt, range, resolution);
+            return Read();
+        }
+
+        /// <summary>
+        /// 获取实时电压
+        /// </summary>
+        /// <param name="sample"></param>
+        /// <param name="range"></param>
+        /// <param name="resolution"></param>
+        /// <returns></returns>
+        public double[] GetVoltage(int sample, double range = 0, double resolution = 0)
         {
             SetFunction(DcVolt, range, resolution);
             return Read(sample);

@@ -37,17 +37,17 @@
             // led3
             // 
             this.led3.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
-            this.led3.Location = new System.Drawing.Point(28, 43);
+            this.led3.Location = new System.Drawing.Point(105, 214);
             this.led3.Name = "led3";
-            this.led3.Size = new System.Drawing.Size(123, 79);
-            this.led3.TabIndex = 4;
+            this.led3.Size = new System.Drawing.Size(408, 154);
+            this.led3.TabIndex = 10;
             // 
             // numericEdit1
             // 
-            this.numericEdit1.Location = new System.Drawing.Point(179, 68);
+            this.numericEdit1.Location = new System.Drawing.Point(83, 152);
             this.numericEdit1.Name = "numericEdit1";
             this.numericEdit1.Size = new System.Drawing.Size(120, 21);
-            this.numericEdit1.TabIndex = 5;
+            this.numericEdit1.TabIndex = 11;
             // 
             // BaseForm
             // 
@@ -68,6 +68,8 @@
 
         private NationalInstruments.UI.WindowsForms.Led led3;
         private NationalInstruments.UI.WindowsForms.NumericEdit numericEdit1;
+
+
 
 
 

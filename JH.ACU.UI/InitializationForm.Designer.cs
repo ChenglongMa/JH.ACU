@@ -42,6 +42,23 @@
             Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("ACU Index#1");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("ACU Index#2");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("ACU Index#3");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("ACU Index#4");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("ACU Index#5");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("ACU Index#6");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("ACU Index#7");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("ACU Index#8");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("ACU", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8});
             this.grbTvValue = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -99,6 +116,13 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.ultraGrid1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnUnselectAll = new System.Windows.Forms.Button();
             this.grbTvValue.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNorTemp)).BeginInit();
@@ -127,6 +151,14 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbTvValue
@@ -770,7 +802,7 @@
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(1048, 752);
-            this.splitContainer1.SplitterDistance = 665;
+            this.splitContainer1.SplitterDistance = 664;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 6;
             // 
@@ -782,7 +814,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1048, 665);
+            this.tabControl1.Size = new System.Drawing.Size(1048, 664);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage1
@@ -794,18 +826,18 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1040, 636);
+            this.tabPage1.Size = new System.Drawing.Size(1040, 635);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Temp/Volt Setting";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dgSource);
+            this.tabPage2.Controls.Add(this.splitContainer3);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1040, 636);
+            this.tabPage2.Size = new System.Drawing.Size(1040, 635);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ACU SpecUnit Setting";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -869,9 +901,9 @@
             this.dgSource.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.dgSource.DisplayLayout.ViewStyle = Infragistics.Win.UltraWinGrid.ViewStyle.SingleBand;
             this.dgSource.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgSource.Location = new System.Drawing.Point(3, 3);
+            this.dgSource.Location = new System.Drawing.Point(0, 0);
             this.dgSource.Name = "dgSource";
-            this.dgSource.Size = new System.Drawing.Size(1034, 630);
+            this.dgSource.Size = new System.Drawing.Size(721, 565);
             this.dgSource.TabIndex = 6;
             this.dgSource.Text = "ultraGrid2";
             this.dgSource.CellChange += new Infragistics.Win.UltraWinGrid.CellEventHandler(this.dgSource_CellChange);
@@ -888,14 +920,14 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1048, 82);
+            this.panel1.Size = new System.Drawing.Size(1048, 83);
             this.panel1.TabIndex = 2;
             // 
             // btnApply
             // 
             this.btnApply.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnApply.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnApply.Location = new System.Drawing.Point(568, 19);
+            this.btnApply.Location = new System.Drawing.Point(568, 20);
             this.btnApply.Margin = new System.Windows.Forms.Padding(4);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(100, 29);
@@ -907,7 +939,7 @@
             // btnLoad
             // 
             this.btnLoad.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnLoad.Location = new System.Drawing.Point(219, 19);
+            this.btnLoad.Location = new System.Drawing.Point(219, 20);
             this.btnLoad.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(100, 29);
@@ -920,7 +952,7 @@
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(743, 19);
+            this.btnCancel.Location = new System.Drawing.Point(743, 20);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 29);
@@ -931,7 +963,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSave.Location = new System.Drawing.Point(394, 19);
+            this.btnSave.Location = new System.Drawing.Point(394, 20);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 29);
@@ -961,6 +993,124 @@
             this.ultraGrid1.Name = "ultraGrid1";
             this.ultraGrid1.Size = new System.Drawing.Size(550, 80);
             this.ultraGrid1.TabIndex = 0;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.treeView1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.dgSource);
+            this.splitContainer2.Size = new System.Drawing.Size(1034, 565);
+            this.splitContainer2.SplitterDistance = 309;
+            this.splitContainer2.TabIndex = 7;
+            // 
+            // treeView1
+            // 
+            this.treeView1.CheckBoxes = true;
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.ImageIndex = 1;
+            this.treeView1.ImageList = this.imageList1;
+            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Name = "treeView1";
+            treeNode1.ImageIndex = 1;
+            treeNode1.Name = "tnAcu0";
+            treeNode1.Text = "ACU Index#1";
+            treeNode2.ImageIndex = 1;
+            treeNode2.Name = "tnAcu1";
+            treeNode2.Text = "ACU Index#2";
+            treeNode3.Name = "tnAcu2";
+            treeNode3.Text = "ACU Index#3";
+            treeNode4.Name = "tnAcu3";
+            treeNode4.Text = "ACU Index#4";
+            treeNode5.Name = "tnAcu4";
+            treeNode5.Text = "ACU Index#5";
+            treeNode6.Name = "tnAcu5";
+            treeNode6.Text = "ACU Index#6";
+            treeNode7.Name = "tnAcu6";
+            treeNode7.Text = "ACU Index#7";
+            treeNode8.Name = "tnAcu7";
+            treeNode8.Text = "ACU Index#8";
+            treeNode9.ImageIndex = 0;
+            treeNode9.Name = "tnAcuRoot";
+            treeNode9.Text = "ACU";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode9});
+            this.treeView1.SelectedImageIndex = 3;
+            this.treeView1.Size = new System.Drawing.Size(309, 565);
+            this.treeView1.TabIndex = 0;
+            this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.btnUnselectAll);
+            this.splitContainer3.Panel1.Controls.Add(this.btnSelectAll);
+            this.splitContainer3.Panel1.Controls.Add(this.btnDel);
+            this.splitContainer3.Panel1.Controls.Add(this.btnAdd);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer3.Size = new System.Drawing.Size(1034, 629);
+            this.splitContainer3.SplitterDistance = 60;
+            this.splitContainer3.TabIndex = 8;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(28, 15);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(100, 29);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnDel
+            // 
+            this.btnDel.Location = new System.Drawing.Point(152, 15);
+            this.btnDel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(100, 29);
+            this.btnDel.TabIndex = 3;
+            this.btnDel.Text = "Delete";
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Location = new System.Drawing.Point(710, 15);
+            this.btnSelectAll.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(100, 29);
+            this.btnSelectAll.TabIndex = 3;
+            this.btnSelectAll.Text = "SelectAll";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
+            // btnUnselectAll
+            // 
+            this.btnUnselectAll.Location = new System.Drawing.Point(834, 15);
+            this.btnUnselectAll.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUnselectAll.Name = "btnUnselectAll";
+            this.btnUnselectAll.Size = new System.Drawing.Size(109, 29);
+            this.btnUnselectAll.TabIndex = 3;
+            this.btnUnselectAll.Text = "DeselectAll";
+            this.btnUnselectAll.UseVisualStyleBackColor = true;
+            this.btnUnselectAll.Click += new System.EventHandler(this.btnUnselectAll_Click);
             // 
             // InitializationForm
             // 
@@ -1007,6 +1157,14 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1070,5 +1228,12 @@
         private System.Windows.Forms.NumericUpDown numHighDelay;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.Button btnUnselectAll;
+        private System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.Button btnDel;
     }
 }

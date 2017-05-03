@@ -263,6 +263,8 @@ namespace JH.ACU.BLL
 
         }
 
+        #region 碰撞输出测试
+
         /// <summary>
         /// 碰撞输出测试
         /// </summary>
@@ -356,11 +358,13 @@ namespace JH.ACU.BLL
             }
             finally
             {
-                //C:继电器复位 QUES:是否恢复原来状态
+                //C:继电器复位 
                 _daq.SetSubRelayStatus((byte) acuIndex, relayIndex, false);
             }
             return res;
         }
+
+        #endregion
 
         #region ACU电流测试
 
@@ -421,13 +425,23 @@ namespace JH.ACU.BLL
 
         #endregion
 
+        #region 能量保持测试方法
+
+        /// <summary>
+        /// 能量保持时间测试
+        /// </summary>
+        /// <param name="acuItem"></param>
+        /// <returns></returns>
         private bool TestHoldTime(AcuItems acuItem)
         {
             try
             {
                 var items = acuItem.Items;
-                return true;//TODO:待修改
-                //throw new NotImplementedException();
+                if (items.Contains(AcuHoldTimeItemIndex))
+                {
+                    TestFrame(AcuHoldTimeItemIndex, () => FindHoldTime(acuItem.Index));
+                }
+                return true;
             }
             catch (Exception ex)
             {
@@ -437,11 +451,58 @@ namespace JH.ACU.BLL
             }
         }
 
+        /// <summary>
+        /// 查找能量保持时间
+        /// </summary>
+        /// <param name="acuIndex"></param>
+        /// <returns></returns>
+        private double FindHoldTime(int acuIndex)
+        {
+            //0:DAQ操作
+            _daq.SetSubRelayStatus((byte) acuIndex, 264, true);
+            _daq.SetSubRelayStatus((byte) acuIndex, 265, true);
+            _daq.SetSubRelayStatus((byte) acuIndex, 272, true);
+            //1:DMM操作
+            AcuExecute(acuIndex, () => _acu.EnableWarnLamp(1, true));
+            //var volt = ActualVolt;
+            _dmm.SetAutoZero(BllDmm.AutoZero.Off);
+            _dmm.Display = false;
+            AcuExecute(acuIndex, () => _acu.Stop()); //将ACU退出S模式
+            Thread.Sleep(1000);
+            //2:开始测试
+            _daq.SetSubRelayStatus((byte) acuIndex, 265, false); //ACU断电
+            var tick = Environment.TickCount; //开始时间
+            var data = _dmm.GetVoltage(2500, 20, 0.1); //TODO:同步到UI
+            var duration = Environment.TickCount - tick;
+            //3:计算HoldTime//QUES:数据待确认
+            var len = data.Length;
+            var index = 0;
+            for (var i = 0; i < len; i++)
+            {
+                if (Math.Abs(data[i] - 3) < 0.5)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            var holdTime = Convert.ToDouble(index)/Convert.ToDouble(len)*Convert.ToDouble(duration);
+            //4:恢复原状
+            _dmm.Reset();
+            _daq.CloseBoard((byte) acuIndex);
+            _daq.OpenBoard((byte) acuIndex);
+            AcuExecute(acuIndex);
+            var spec = FindSpec(AcuHoldTimeItemIndex);
+            SetSpecResult(acuIndex, ref spec, holdTime);
+            if (index == 0) return (double)TestResult.Failed;
+            return holdTime;
+        }
+
+        #endregion
+
         #region 告警灯测试方法
 
         /// <summary>
         /// 告警灯测试
-        /// QUES:是否恢复原来状态
         /// </summary>
         /// <param name="acuItem"></param>
         /// <returns></returns>
@@ -671,7 +732,6 @@ namespace JH.ACU.BLL
                     for (int iSquib = 1; iSquib <= SquibNum; iSquib++)
                     {
                         var itemIndex = SquibNum*(iMode - 1) + iSquib;
-                        Debug.WriteLine(itemIndex);
                         if (acuItem.Items.Contains(itemIndex))
                         {
                             var squib = iSquib;
@@ -720,7 +780,7 @@ namespace JH.ACU.BLL
                     {
                         var itemIndex = SisNum*(iMode - 1) + iSis + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
                                         VoltModeNum*VoltNum;
-                        Debug.WriteLine(itemIndex);
+                        Debug.WriteLine("sis"+itemIndex);
                         if (acuItem.Items.Contains(itemIndex))
                         {
                             var sis = iSis;
@@ -757,7 +817,6 @@ namespace JH.ACU.BLL
                             VoltModeNum*VoltNum;
             var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //0：先设置好电阻箱
-            _prs0.SetResistance(maxValue);
             _prs1.SetResistance(maxValue);
             //A:打开继电器
             _daq.SetSisInTestMode(acuIndex, sisIndex, (SisMode) mode);
@@ -868,7 +927,7 @@ namespace JH.ACU.BLL
             //A:打开继电器
             _daq.SetFcInTestMode(acuIndex, squib, (SquibMode) mode);
             //B:开始测试
-            var res = FindRes(prs, ascending, minValue, maxValue, dtc); //QUES：该返回值为代码计算出的值，调试时查看与测量结果偏差
+            var res = FindRes(prs, ascending, minValue, maxValue, dtc);
             if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
             if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
@@ -1096,6 +1155,7 @@ namespace JH.ACU.BLL
             WL2CurrentShort = 95,
         }
 
+        private const int AcuHoldTimeItemIndex = 96;
         private const int AcuCurrentItemIndex = 97;
 
         private enum CrashOutTest : int
@@ -1163,12 +1223,11 @@ namespace JH.ACU.BLL
                     prs = _prs1;
                     break;
                 case BeltMode.ToGround:
-                    throw new NotImplementedException("配置待定");
+                    throw new NotImplementedException("配置待定,暂时不测试");
                     ascending = false;
                     prs = _prs1;
                     break;
-                case BeltMode.ToBattery:
-                    throw new NotImplementedException("配置待定");
+                case BeltMode.ToBattery://QUES：需要确认
                     ascending = false;
                     prs = _prs1;
                     break;
@@ -1249,7 +1308,7 @@ namespace JH.ACU.BLL
         private bool FindDtc<T>(T instr,double value,byte dtc) where T:BllVisa
         {
             var prs = instr as BllPrs;
-            prs.IfNotNull(p => p.SetResistance(value));
+            prs.IfNotNull(p => p.SetResistance(value - Properties.Settings.Default.AmendResistance));//QUES:此处是否应该减去线阻
             var pwr = instr as BllPwr;
             pwr.IfNotNull(p =>
             {

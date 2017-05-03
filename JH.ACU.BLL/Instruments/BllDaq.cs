@@ -804,15 +804,6 @@ namespace JH.ACU.BLL.Instruments
             _relaysGroupMask = new byte[8, 14];
             _currBoard = -1;
             _currGroup = -1;
-
-            #region 原程序内代码段
-
-            //QUES:作用未知
-            //// 保持子板选择使能有效
-            //iRetCode = D2K_DO_WritePort(m_iHandleCard, Channel_P1B, 0x08);
-            //if (iRetCode != NoError) return false;
-
-            #endregion
         }
 
         #endregion

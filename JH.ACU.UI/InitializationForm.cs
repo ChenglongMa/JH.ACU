@@ -32,6 +32,7 @@ namespace JH.ACU.UI
 
         private readonly List<FieldMetaInfo> _fields;
         public TestCondition TestCondition { get; private set; }
+        private readonly List<SpecItem> _specItems = BllConfig.GetSpecItems();
 
         #endregion
 
@@ -164,7 +165,7 @@ namespace JH.ACU.UI
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            SetAcuItems(testCondition.AcuItems);
+            BuildTree(testCondition);
         }
 
         /// <summary>
@@ -244,71 +245,39 @@ namespace JH.ACU.UI
         private List<AcuItems> GetAcuItems()
         {
             var res = new List<AcuItems>();
-            foreach (var row in dgSource.Rows)
+            var root = treeView1.Nodes["tnAcuRoot"];
+            for (int i = 0; i < 8; i++)
             {
-                for (int i = 1; i < 9; i++)
+                var key = "tnAcu" + i;
+                var childNode = root.Nodes.Find(key, false).FirstOrDefault();
+                if (childNode == null)
                 {
-                    if (!Convert.ToBoolean(row.Cells["Acu" + i].Text)) continue;
-                    var acuIndex = i - 1;
-                    // ReSharper disable once AccessToModifiedClosure
-                    var index = res.IndexOf(a => a.Index == acuIndex);
-                    var acuItem = res.Find(a => a.Index == acuIndex);
-
-                    if (acuItem != null)
-                    {
-                        acuItem.Items.Add(Convert.ToInt32(row.Cells[0].Text));
-                    }
-                    else
-                    {
-                        res.Add(new AcuItems
-                        {
-                            Index = acuIndex, Items = new List<int> {Convert.ToInt32(row.Cells[0].Text)}
-                        });
-                    }
+                    continue;
                 }
+                var list =
+                    (from TreeNode node in childNode.Nodes select node.Tag).OfType<SpecItem>()
+                        .Select(spec => spec.Index)
+                        .ToList();
+                res.Add(new AcuItems {Index = i, Items = list});
             }
-            return res.OrderBy(a => a.Index).ToList();
-        }
-
-        private void SetAcuItems(List<AcuItems> items)
-        {
-            for (int i = 1; i < 9; i++)
-            {
-                var key = "Acu" + i;
-                var acuIndex = i - 1;
-                // ReSharper disable once AccessToModifiedClosure
-                var index = items.IndexOf(a => a.Index == acuIndex);
-                if (index < 0 || items[index].Items.IsNullOrEmpty()) continue;
-                foreach (var item in items[index].Items)
-                {
-                    if (!dgSource.DisplayLayout.Bands[0].Columns.Exists(key))
-                    {
-                        dgSource.DisplayLayout.Bands[0].Columns.Add(key, "ACU #" + i);
-                    }
-                    var row = dgSource.Rows.FirstOrDefault(r => r.Cells[0].Text == item.ToString());
-                    if (row != null)
-                    {
-                        row.Cells[key].SetValue(true, false);
-                        row.Cells[key].Appearance.BackColor = Color.Coral;
-                    }
-                }
-            }
+            return res;
         }
 
         private void BindingSourceTable()
         {
-            var list = new BindingList<SpecItem>(BllConfig.GetSpecItems());
+            var list = new BindingList<SpecItem>(_specItems);
             dgSource.DataSource = list;
             dgSource.SetStyle(_fields);
-            for (int i = 1; i < 9; i++)
-            {
-                dgSource.DisplayLayout.Bands[0].Columns.Add("Acu" + i, "ACU #" + i);
-                var col = dgSource.DisplayLayout.Bands[0].Columns["Acu" + i];
-                col.DataType = typeof (bool);
-                col.Style = ColumnStyle.CheckBox;
-                col.CellActivation = Activation.AllowEdit;
-                col.DefaultCellValue = false;
-            }
+            dgSource.DisplayLayout.Override.CellClickAction = CellClickAction.RowSelect;
+            //for (int i = 1; i < 9; i++)
+            //{
+            //    dgSource.DisplayLayout.Bands[0].Columns.Add("Acu" + i, "ACU #" + i);
+            //    var col = dgSource.DisplayLayout.Bands[0].Columns["Acu" + i];
+            //    col.DataType = typeof (bool);
+            //    col.Style = ColumnStyle.CheckBox;
+            //    col.CellActivation = Activation.AllowEdit;
+            //    col.DefaultCellValue = false;
+            //}
         }
 
         /// <summary>
@@ -328,6 +297,123 @@ namespace JH.ACU.UI
             {
                 e.Cell.ActiveAppearance.BackColor = Convert.ToBoolean(e.Cell.Text) ? Color.Coral : DefaultBackColor;
                 e.Cell.Appearance.BackColor = Convert.ToBoolean(e.Cell.Text) ? Color.Coral : DefaultBackColor;
+            }
+        }
+
+        private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            var node = e.Node;
+            foreach (TreeNode childTn in node.Nodes)
+            {
+                childTn.Checked = node.Checked;
+            }
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            foreach (var row in dgSource.Rows)
+            {
+                row.Selected = true;
+            }
+        }
+
+        private void btnUnselectAll_Click(object sender, EventArgs e)
+        {
+            foreach (var row in dgSource.Rows)
+            {
+                row.Selected = false;
+            }
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (dgSource.Selected == null || dgSource.Selected.Rows.Count == 0)
+            {
+                MessageBoxHelper.ShowError("请选择需要测试项");
+                return;
+            }
+            var root = treeView1.Nodes["tnAcuRoot"];
+            var specList =
+                (from UltraGridRow row in dgSource.Selected.Rows select row.ListObject).OfType<SpecItem>().ToList();
+            var hasSelectNode = root.Nodes.Cast<TreeNode>().Any(childNode => childNode.Checked);
+            if (!hasSelectNode)
+            {
+                MessageBoxHelper.ShowError("请选择ACU项");
+                return;
+            }
+            RootNodeAddItems(specList);
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            var root = treeView1.Nodes["tnAcuRoot"];
+            foreach (TreeNode childNode in root.Nodes)
+            {
+                for (var i = childNode.Nodes.Count - 1; i >= 0; i--)
+                {
+                    if (childNode.Nodes[i].Checked)
+                    {
+                        childNode.Nodes.Remove(childNode.Nodes[i]);
+                    }
+                }
+            }
+        }
+
+        private void BuildTree(TestCondition testCondition)
+        {
+            var root = treeView1.Nodes["tnAcuRoot"];
+            foreach (var acu in testCondition.AcuItems)
+            {
+                var childNode = root.Nodes.Find("tnAcu" + acu.Index, false).FirstOrDefault();
+                if (childNode == null)
+                {
+                    continue;
+                }
+                foreach (var item in acu.Items)
+                {
+                    var spec = _specItems.Find(s => s.Index == item);
+                    if (spec == null)
+                    {
+                        continue;
+                    }
+                    var node = new TreeNode(spec.Description)
+                    {
+                        Tag = spec,
+                        ImageIndex = 2,
+                        Name = spec.Index.ToString()
+                    };
+                    if (!childNode.Nodes.ContainsKey(node.Name))
+                    {
+                        childNode.Nodes.Add(node);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 给树控件根节点添加测试项
+        /// </summary>
+        /// <param name="items"></param>
+        private void RootNodeAddItems(List<SpecItem> items)
+        {
+            var root = treeView1.Nodes["tnAcuRoot"];
+            foreach (TreeNode childNode in root.Nodes)
+            {
+                if (!childNode.Checked) continue;
+                foreach (var specItem in items)
+                {
+                    var node = new TreeNode(specItem.Description)
+                    {
+                        Tag = specItem,
+                        ImageIndex = 2,
+                        Name = specItem.Index.ToString()
+                    };
+                    if (!childNode.Nodes.ContainsKey(node.Name))
+                    {
+                        childNode.Nodes.Add(node);
+                    }
+                }
             }
         }
     }

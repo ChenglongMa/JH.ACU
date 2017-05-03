@@ -36,7 +36,6 @@ namespace JH.ACU.Lib
             }
             catch(Exception ex)
             {
-                //QUES:待确认
                 MessageBoxHelper.ShowError(ex.Message);
             }
 

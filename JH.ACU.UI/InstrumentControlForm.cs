@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using JH.ACU.BLL.Abstract;
 using JH.ACU.BLL.Instruments;
+using JH.ACU.BLL.Properties;
 using JH.ACU.Lib;
 using JH.ACU.Model;
 using NationalInstruments.Restricted;
@@ -589,7 +590,7 @@ namespace JH.ACU.UI
             {
                 LightenRelay(groupIndex);
             }
-
+            Application.DoEvents();
         }
 
         /// <summary>
@@ -694,13 +695,92 @@ namespace JH.ACU.UI
 
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnRelayTest_Click(object sender, EventArgs e)
         {
-            _dmm.GetVoltage(sample:2500);
-
+            try
+            {
+                toolStatus.Text = @"Relay Testing..." + Settings.Default.AmendResistance;
+                if (_daq == null)
+                {
+                    _daq = new BllDaq();
+                    _daq.Initialize();
+                }
+                if (_prs0 == null)
+                {
+                    _prs0 = new BllPrs(InstrName.Prs0);
+                    _prs0.Initialize();
+                }
+                if (_prs1 == null)
+                {
+                    _prs1 = new BllPrs(InstrName.Prs1);
+                    _prs1.Initialize();
+                }
+                if (_dmm == null)
+                {
+                    _dmm = new BllDmm();
+                    _dmm.Initialize();
+                }
+                var list = new List<double>();
+                for (int boardIndex = 0; boardIndex < 8; boardIndex++)
+                {
+                    if (boardIndex > 0)
+                    {
+                        _daq.CloseBoard((byte) (boardIndex-1));
+                    }
+                    _daq.OpenBoard((byte) boardIndex);
+                    RefreshLedStatus();
+                    for (int squibIndex = 1; squibIndex <= 16; squibIndex++)
+                    {
+                        _prs0.SetResistance(1.0);
+                        _daq.SetFcInReadMode(boardIndex, squibIndex, SquibMode.TooHigh);
+                        RefreshLedStatus();
+                        var res = _dmm.GetFourWireRes();
+                        var value = res - 1.0;
+                        if (value >= 0 && value < 1)
+                        {
+                            list.Add(value);
+                        }
+                        _daq.SetFcReset(boardIndex, squibIndex);
+                    }
+                    for (int belt = 1; belt <= 3; belt++)
+                    {
+                        _prs1.SetResistance(1.0);
+                        _daq.SetBeltInReadMode(boardIndex, belt);
+                        RefreshLedStatus();
+                        var res = _dmm.GetFourWireRes();
+                        var value = res - 1.0;
+                        if (value >= 0 && value < 1)
+                        {
+                            list.Add(value);
+                        }
+                        _daq.SetBeltReset(boardIndex, belt);
+                    }
+                    for (int sis = 1; sis <= 6; sis++)
+                    {
+                        _prs1.SetResistance(1.0);
+                        _daq.SetSisInReadMode(boardIndex, sis);
+                        RefreshLedStatus();
+                        var res = _dmm.GetFourWireRes();
+                        var value = res - 1.0;
+                        if (value >= 0 && value < 1)
+                        {
+                            list.Add(value);
+                        }
+                        _daq.SetSisReset(boardIndex, sis);
+                    }
+                }
+                var resValue = list.Average();
+                Settings.Default.AmendResistance = resValue;
+                Settings.Default.Save();
+                MessageBoxHelper.ShowInformationOk("线阻测试已完成，重启后生效");
+                toolStatus.Text = @"Ready";
+            }
+            catch (Exception ex)
+            {
+                toolStatus.Text = ex.Message;
+                LogHelper.WriteErrorLog("RelayTest", ex);
+                MessageBoxHelper.ShowError("测试失败\n错误信息：" + ex.Message);
+            }
         }
-
-
-
     }
 }

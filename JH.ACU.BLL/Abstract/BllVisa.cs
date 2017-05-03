@@ -106,20 +106,36 @@ namespace JH.ACU.BLL.Abstract
 
         #region Basis Method
 
-        public string Read(string command, int delay = 100) //TODO:待测试delay时间
+        public string Read(string command, int delay = 50)
         {
-            RawIo.Write(command + "\n");
-            Thread.Sleep(delay);
-            var res = RawIo.ReadString().Replace("\n", "");
-            if (command != "SYSTem:ERRor?")
+            LogHelper.WriteWarningLog("测试记录", "Read:" + command);
+            try
             {
-                ThrowException(command);
+                RawIo.Write(command + "\n");
+                Thread.Sleep(delay);
+                var result = RawIo.ReadString();
+                while (!result.Contains("\n"))
+                {
+                    result += RawIo.ReadString();
+                }
+                var res = result.Replace("\n", "");
+                return res;
             }
-            return res;
+            catch (Exception ex)
+            {
+                if (command != "SYSTem:ERRor?")
+                {
+                    ThrowException(command);
+                }
+                LogHelper.WriteErrorLog("BllVisa", ex);
+                return null;
+            }
         }
 
         public void Write(string command)
         {
+            LogHelper.WriteWarningLog("测试记录", "Write:" + command);
+
             RawIo.Write(command + "\n");
         }
 

@@ -151,7 +151,7 @@ namespace JH.ACU.BLL.Instruments
         }
 
         /// <summary>
-        /// 设置输出电压
+        /// 设置输出电阻
         /// </summary>
         /// <param name="resValue">单位：欧姆</param>
         public void SetResistance(double resValue)
