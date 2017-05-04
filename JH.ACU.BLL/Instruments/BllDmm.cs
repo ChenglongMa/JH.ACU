@@ -322,7 +322,7 @@ namespace JH.ACU.BLL.Instruments
         public double Read()
         {
             SetTrigger(TriggerSource.Immediate);
-            //SetMultiPoint(1, 1);
+            SetMultiPoint(1, 1);
             return DmmRead(_dmm);
         }
 

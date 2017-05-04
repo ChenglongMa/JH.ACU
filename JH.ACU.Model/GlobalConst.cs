@@ -200,8 +200,8 @@ namespace JH.ACU.Model
     /// </summary>
     public enum BatteryMode
     {
-        TooHigh,
-        TooLow,
+        TooHigh=1,
+        TooLow=2,
     }
 
     ///// <summary>

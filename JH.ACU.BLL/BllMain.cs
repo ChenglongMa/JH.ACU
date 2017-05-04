@@ -415,7 +415,20 @@ namespace JH.ACU.BLL
                     res += _dmm.GetCurrent();
                 }
                 _daq.SetSubRelayStatus((byte) acuIndex, 267, false);
-                return res/5D;
+                double minValue, maxValue;
+                byte dtc;
+                var spec = FindSpec(AcuCurrentItemIndex, out minValue, out maxValue, out dtc);
+                if (spec.Uom.ToLower().Contains("m"))
+                {
+                    res *= 1000;
+                }
+                res /= 5D;
+                SetSpecResult(acuIndex, ref spec, res);
+                if (res < minValue || res > maxValue)
+                {
+                    return (double)TestResult.Failed;
+                }
+                return res;
             }
             catch (Exception ex)
             {
@@ -476,12 +489,12 @@ namespace JH.ACU.BLL
             var tick = Environment.TickCount; //开始时间
             var data = _dmm.DmmReadBytes(); //TODO:同步到UI
             var duration = Environment.TickCount - tick;
-            //3:计算HoldTime//QUES:数据待确认
+            //3:计算HoldTime
             var len = data.Length;
             var index = 0;
             for (var i = 0; i < len; i++)
             {
-                if (Math.Abs(data[i] - 0.3) <= 0.1)
+                if (Math.Abs(data[i] - 0.3) <= 0.1)//QUES:数据待确认
                 {
                     index = i;
                     break;
@@ -611,18 +624,19 @@ namespace JH.ACU.BLL
                 _acu.Stop();
                 CloseAllInstrs(true);
                 return (double) TestResult.Cancelled;
-                ;
             }
 
             #endregion
 
+            double minValue, maxValue;
+            byte dtc;
+            var spec = FindSpec((int) wlTest, out minValue, out maxValue, out dtc);
             int wlIndex, relayIndex, relayIndex2 = -1;
             switch (wlTest)
             {
                 default:
                     LogHelper.WriteWarningLog(LogFileName, "WLTest赋值错误：" + wlTest);
-                    return (double) TestResult.Cancelled;
-                    ;
+                    return (double) TestResult.Failed;
                 case WLTest.WL1CurrentNormal:
                     wlIndex = 1;
                     relayIndex = 271;
@@ -654,12 +668,21 @@ namespace JH.ACU.BLL
             }
             //B:开始测试
             var res = _dmm.GetCurrent();
+            if (spec.Uom.ToLower().Contains("m"))
+            {
+                res *= 1000;
+            }
+            SetSpecResult(acuIndex, ref spec, res);
             //C:复位设置
             _daq.SetSubRelayStatus((byte) acuIndex, 264, false);
             _daq.SetSubRelayStatus((byte) acuIndex, relayIndex, false);
             if (relayIndex2 > 0) //大于0表示测试项为Short类
             {
                 _daq.SetSubRelayStatus((byte) acuIndex, relayIndex2, false);
+            }
+            if (res < minValue || res > maxValue)
+            {
+                return (double)TestResult.Failed;
             }
             return res;
         }
@@ -689,17 +712,28 @@ namespace JH.ACU.BLL
             //A:打开设置
             AcuExecute(acuIndex, () => _acu.EnableWarnLamp(wLIndex, isOn));
             _daq.SetSubRelayStatus((byte) acuIndex, 264, true);
+            int itemIndex = 0;
             switch (wLIndex)
             {
                 case 1:
                     _daq.SetSubRelayStatus((byte) acuIndex, 272, true);
+                    itemIndex = (int) (isOn ? WLTest.WL1VoltOn : WLTest.WL1VoltOff);
                     break;
                 case 2:
                     _daq.SetSubRelayStatus((byte) acuIndex, 276, true);
+                    itemIndex = (int)(isOn ? WLTest.WL2VoltOn : WLTest.WL2VoltOff);
                     break;
             }
+            double minValue, maxValue;
+            byte dtc;
+            var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
             //B:开始测试
             var res = ActualVolt;
+            if (spec.Uom.ToLower().Contains("m"))
+            {
+                res *= 1000;
+            }
+            SetSpecResult(acuIndex, ref spec, res);
             //C:复位设置
             switch (wLIndex)
             {
@@ -709,6 +743,10 @@ namespace JH.ACU.BLL
                 case 2:
                     _daq.SetSubRelayStatus((byte) acuIndex, 276, false);
                     break;
+            }
+            if (res < minValue || res > maxValue)
+            {
+                return (double) TestResult.Failed;
             }
             return res;
         }
@@ -782,7 +820,6 @@ namespace JH.ACU.BLL
                     {
                         var itemIndex = SisNum*(iMode - 1) + iSis + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
                                         VoltModeNum*VoltNum;
-                        Debug.WriteLine("sis"+itemIndex);
                         if (acuItem.Items.Contains(itemIndex))
                         {
                             var sis = iSis;
@@ -972,6 +1009,7 @@ namespace JH.ACU.BLL
                 #endregion
 
                 var findMin = FindDtc(instr, minValue, dtc);
+                Thread.Sleep(1000);
                 var findMax = FindDtc(instr, maxValue, dtc);
 
                 var findresult = GetFindResult(ascending, findMin, findMax);
@@ -1427,8 +1465,9 @@ namespace JH.ACU.BLL
                 var spec = _report.SpecUnitsDict[_tvItem.Key].Find(s => s.Index == itemIndex);
                 if (spec == null) throw new FileNotFoundException(string.Format("未找到项目:{0}", itemIndex));
                 var range = spec.Specification.Split(new[] {'-'}, StringSplitOptions.RemoveEmptyEntries);
-                minValue = double.Parse(range[0]);
-                maxValue = double.Parse(range[1]);
+                double value;
+                minValue = double.TryParse(range[0], out value) ? value : double.NegativeInfinity;
+                maxValue = double.TryParse(range[1], out value) ? value : double.PositiveInfinity;
                 dtc = spec.Dtc;
                 return spec;
             }

@@ -176,7 +176,6 @@ namespace JH.ACU.BLL.Instruments
         {
             _serial.AnyCharacterReceived -= _serial_AnyCharacterReceived;
             _serial.DiscardEvent(SerialSessionEventType.AnyCharacterReceived);
-
             _serial.BreakState = LineState.Asserted;
             Thread.Sleep(100);
             _serial.BreakState = LineState.Unasserted;
@@ -195,6 +194,8 @@ namespace JH.ACU.BLL.Instruments
                 RealTimeData = new List<byte>();
                 byte[] temp = {0x75};
                 _serial.Write(AddChecksum(temp));
+                Thread.Sleep(50);
+                var data=_serial.ReadByteArray(_serial.AvailableNumber);
                 _serial.AnyCharacterReceived += _serial_AnyCharacterReceived;
                 _serial.EnableEvent(SerialSessionEventType.AnyCharacterReceived, EventMechanism.Handler);
                 _realTimeFlag = true;
