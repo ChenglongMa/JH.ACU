@@ -122,18 +122,18 @@ namespace JH.ACU.BLL.Instruments
         /// in D2KDASK DEMO
         /// </summary>
         /// <returns></returns>
-        private double AiReadSingleBuffer(ushort channel)
+        public double[] AiReadSingleBuffer(ushort channel,int bufferSize=1000)
         {
             ushort bufId;
             byte stopped;
             uint accessCnt;
             uint startPos;
-            var dataBuffer = Marshal.AllocHGlobal(sizeof (short)*1000);
-            var voltageArray = new double[1000];
+            var dataBuffer = Marshal.AllocHGlobal(sizeof(short) * bufferSize);
+            var voltageArray = new double[bufferSize];
             var ret = D2KDask.D2K_AI_Config((ushort) _mDev, D2KDask.DAQ2K_AI_ADCONVSRC_Int, D2KDask.DAQ2K_AI_TRGSRC_SOFT,
                 0, 0, 1, true);
             D2KDask.ThrowException((D2KDask.Error) ret, channel);
-            ret = D2KDask.D2K_AI_ContBufferSetup((ushort) _mDev, dataBuffer, 1000, out bufId);
+            ret = D2KDask.D2K_AI_ContBufferSetup((ushort) _mDev, dataBuffer, (uint) bufferSize, out bufId);
             D2KDask.ThrowException((D2KDask.Error) ret, channel);
             ret = D2KDask.D2K_AI_ContReadChannel((ushort) _mDev, channel, bufId, 1000, 400, 400, D2KDask.ASYNCH_OP);
             D2KDask.ThrowException((D2KDask.Error) ret, channel); //             100,40000,40000
@@ -145,10 +145,10 @@ namespace JH.ACU.BLL.Instruments
 
             ret = D2KDask.D2K_AI_AsyncClear((ushort) _mDev, out startPos, out accessCnt);
             D2KDask.ThrowException((D2KDask.Error) ret, channel);
-            ret = D2KDask.D2K_AI_ContVScale((ushort) _mDev, D2KDask.AD_B_10_V, dataBuffer, voltageArray, 1000);
+            ret = D2KDask.D2K_AI_ContVScale((ushort)_mDev, D2KDask.AD_B_10_V, dataBuffer, voltageArray, bufferSize);
             D2KDask.ThrowException((D2KDask.Error) ret, channel);
             Marshal.FreeHGlobal(dataBuffer);
-            return voltageArray.Average();
+            return voltageArray;
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace JH.ACU.BLL.Instruments
         private double GetVoltFromChannelByMulti(AiChannel channel)
         {
             //var res = AiReadSingleBuffer2((ushort) channel);
-            var res = AiReadSingleBuffer((ushort)channel);
+            var res = AiReadSingleBuffer((ushort)channel).Average();
             //var res = Fun((ushort)channel)[0];
             switch (channel)
             {
@@ -406,6 +406,7 @@ namespace JH.ACU.BLL.Instruments
 
         public void SetCrashConfig(out short[] buffer)
         {
+            var dataBuffer = Marshal.AllocHGlobal(sizeof(short) * 5000);
             buffer = new short[5000];
             ushort bufId;
             var ret = D2KDask.D2K_AIO_Config((ushort) _mDev, D2KDask.DAQ2K_IntTimeBase,
@@ -416,10 +417,16 @@ namespace JH.ACU.BLL.Instruments
             ret = D2KDask.D2K_AI_Config((ushort) _mDev, D2KDask.DAQ2K_AI_ADCONVSRC_Int,
                 D2KDask.DAQ2K_AI_TRGSRC_SOFT | D2KDask.DAQ2K_AI_TRGMOD_POST, 0, 0, 0, true);
             D2KDask.ThrowException((D2KDask.Error) ret);
-            ret = D2KDask.D2K_AI_ContBufferSetup((ushort) _mDev, buffer, 5000, out bufId);
+            ret = D2KDask.D2K_AI_ContBufferSetup((ushort)_mDev, dataBuffer, 5000, out bufId);
             D2KDask.ThrowException((D2KDask.Error) ret);
             ret = D2KDask.D2K_AI_ContReadChannel((ushort) _mDev, 0, bufId, 5000, 40000, 40000, D2KDask.SYNCH_OP);
             D2KDask.ThrowException((D2KDask.Error) ret);
+            //后加的
+            //ret = D2KDask.D2K_AI_ContVScale((ushort)_mDev, D2KDask.AD_B_10_V, dataBuffer, buffer, 5000);
+            //D2KDask.ThrowException((D2KDask.Error)ret);
+            Marshal.Copy(dataBuffer, buffer, 0, 5000);
+            Marshal.FreeHGlobal(dataBuffer);
+
         }
 
         #endregion

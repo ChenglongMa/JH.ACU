@@ -337,6 +337,7 @@ namespace JH.ACU.BLL
                 AcuExecute(acuIndex, () => _acu.EnableCrashOut(crashIndex));
                 _daq.SetSubRelayStatus((byte) acuIndex, relayIndex, true);
                 //B:开始测试
+                //var buffer = _daq.AiReadSingleBuffer(0, 5000);
                 short[] buffer;
                 _daq.SetCrashConfig(out buffer);
                 var voltBuf = new double[1000];

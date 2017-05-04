@@ -187,13 +187,16 @@ namespace JH.ACU.BLL.Instruments
         /// 读取实时故障
         /// </summary>
         /// <returns></returns>
-        public bool ReadRtFault()
+        public bool RealTimeService(params byte[] command)
         {
             try
             {
+                if (command.IsNullOrEmpty())
+                {
+                    return false;
+                }
                 RealTimeData = new List<byte>();
-                byte[] temp = {0x75};
-                _serial.Write(AddChecksum(temp));
+                _serial.Write(AddChecksum(command));
                 Thread.Sleep(50);
                 var data=_serial.ReadByteArray(_serial.AvailableNumber);
                 _serial.AnyCharacterReceived += _serial_AnyCharacterReceived;
@@ -209,6 +212,12 @@ namespace JH.ACU.BLL.Instruments
             }
         }
 
+        public byte FindRealTimeValue(byte code)
+        {
+            var connect = RealTimeService(0x77, code);
+            if (!connect) throw new Exception("ACU连接失败");
+            throw new NotImplementedException("待确认");
+        }
         /// <summary>
         /// 指示是否找到指定故障码
         /// </summary>
@@ -216,7 +225,7 @@ namespace JH.ACU.BLL.Instruments
         /// <returns></returns>
         public bool HasFoundDtc(byte code)
         {
-            var connect = ReadRtFault();
+            var connect = RealTimeService(0x75);
             if (!connect) throw new Exception("ACU连接失败");
             //最多重复10次
             for (int i = 0; i < 10; i++)
