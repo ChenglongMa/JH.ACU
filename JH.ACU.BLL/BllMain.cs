@@ -460,8 +460,8 @@ namespace JH.ACU.BLL
         private double FindHoldTime(int acuIndex)
         {
             //0:DAQ操作
-            _daq.SetSubRelayStatus((byte) acuIndex, 201, true);
-            _daq.SetSubRelayStatus((byte) acuIndex, 202, true);
+            _daq.SetSubRelayStatus((byte)acuIndex, 201, true);
+            _daq.SetSubRelayStatus((byte)acuIndex, 202, true);
             _daq.SetSubRelayStatus((byte) acuIndex, 214, true);
             //1:DMM操作
             _dmm.SetAutoZero(BllDmm.AutoZero.Off);
@@ -472,7 +472,7 @@ namespace JH.ACU.BLL
             AcuExecute(acuIndex, () => _acu.Stop()); //将ACU退出S模式
             Thread.Sleep(1000);
             //2:开始测试
-            _daq.SetSubRelayStatus((byte) acuIndex, 265, false); //ACU断电
+            //_daq.SetSubRelayStatus((byte) acuIndex, 265, false); //ACU断电
             var tick = Environment.TickCount; //开始时间
             var data = _dmm.DmmReadBytes(); //TODO:同步到UI
             var duration = Environment.TickCount - tick;
@@ -481,7 +481,7 @@ namespace JH.ACU.BLL
             var index = 0;
             for (var i = 0; i < len; i++)
             {
-                if (Math.Abs(data[i] - 0.5) <= 0.1)
+                if (Math.Abs(data[i] - 0.3) <= 0.1)
                 {
                     index = i;
                     break;

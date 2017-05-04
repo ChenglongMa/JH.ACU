@@ -212,7 +212,7 @@ namespace JH.ACU.UI
                   NumericEditInteractionModes.Text;
             ckbChamberEnable.Enabled = enabled;
             grbCout.Enabled = enabled;
-            toolBarsManager.Tools["btnInitialize"].SharedProps.Enabled = enabled;
+            toolBarsManager.Tools["btnInitialize"].SharedProps.Enabled = _isAuto;
             toolBarsManager.Tools["btnStop"].SharedProps.Enabled = !enabled;
             toolBarsManager.Tools["btnRunPause"].SharedProps.Enabled = enabled;
             toolBarsManager.Tools["menuFile"].SharedProps.Enabled = enabled;
