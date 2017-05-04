@@ -194,7 +194,7 @@ namespace JH.ACU.UI
         /// <summary>
         /// 设置控件是否可用
         /// </summary>
-        private void SetControlEnabled(bool enabled)
+        public void SetControlEnabled(bool enabled)
         {
             ledAutoRun.Enabled = enabled;
             ledManualRun.Enabled = enabled;

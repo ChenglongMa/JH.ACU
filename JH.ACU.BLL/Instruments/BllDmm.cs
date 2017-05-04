@@ -34,7 +34,7 @@ namespace JH.ACU.BLL.Instruments
 
         #region 属性 字段
 
-        private const string DcVolt = ":CONF:VOLT:DC ";
+        public const string DcVolt = ":CONF:VOLT:DC ";
         private const string AcVolt = ":CONF:VOLT:AC ";
         private const string TwoWireRes = ":CONF:RES ";
         private const string FourWireRes = ":CONF:FRES ";
@@ -81,7 +81,7 @@ namespace JH.ACU.BLL.Instruments
         /// <summary>
         /// 触发模式
         /// </summary>
-        private enum TriggerSource
+        public enum TriggerSource
         {
             Immediate,
             Bus,
@@ -188,7 +188,7 @@ namespace JH.ACU.BLL.Instruments
             }
         }
 
-        private void SetTrigger(TriggerSource trigger, bool isAuto = true, double delay = 0)
+        public void SetTrigger(TriggerSource trigger, bool isAuto = true, double delay = 0)
         {
             var command = isAuto ? ":TRIG:DEL:AUTO ON;" : ":TRIG:DEL " + delay + ";";
             switch (trigger)
@@ -214,7 +214,8 @@ namespace JH.ACU.BLL.Instruments
             _dmm.TriggerSource = trigger;
             Write(command);
         }
-        private void SetMultiPoint(int triggerCount = 1, int sampleCount = 1)
+
+        public void SetMultiPoint(int triggerCount = 1, int sampleCount = 1)
         {
             var command = string.Format(":TRIG:COUN {0};", triggerCount);
             command += string.Format(":SAMP:COUN {0};", sampleCount);
@@ -234,7 +235,7 @@ namespace JH.ACU.BLL.Instruments
             return Convert.ToDouble(Read(command));
         }
 
-        private double[] DmmReadBytes()
+        public double[] DmmReadBytes()
         {
             var res=new List<double>();
             MbSession.TimeoutMilliseconds = 100000;

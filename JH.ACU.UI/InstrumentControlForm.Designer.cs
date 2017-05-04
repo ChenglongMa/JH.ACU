@@ -147,6 +147,7 @@
             this.cmbInstrName = new System.Windows.Forms.ComboBox();
             this.btnWrite = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnRelayTest = new System.Windows.Forms.Button();
             this.flowLayoutPanel18 = new System.Windows.Forms.FlowLayoutPanel();
             this.label23 = new System.Windows.Forms.Label();
@@ -177,6 +178,10 @@
             this.led300 = new NationalInstruments.UI.WindowsForms.Led();
             this.led301 = new NationalInstruments.UI.WindowsForms.Led();
             this.led302 = new NationalInstruments.UI.WindowsForms.Led();
+            this.fcIndex = new System.Windows.Forms.NumericUpDown();
+            this.modeIndex = new System.Windows.Forms.NumericUpDown();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.flowSubRelays.SuspendLayout();
             this.flowLayoutPanel15.SuspendLayout();
@@ -239,6 +244,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.led300)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.led301)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.led302)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fcIndex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modeIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -968,7 +975,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel19);
             this.splitContainer1.Size = new System.Drawing.Size(1011, 557);
-            this.splitContainer1.SplitterDistance = 457;
+            this.splitContainer1.SplitterDistance = 456;
             this.splitContainer1.TabIndex = 6;
             // 
             // flowLayoutPanel16
@@ -982,7 +989,7 @@
             this.flowLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel16.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel16.Name = "flowLayoutPanel16";
-            this.flowLayoutPanel16.Size = new System.Drawing.Size(457, 557);
+            this.flowLayoutPanel16.Size = new System.Drawing.Size(456, 557);
             this.flowLayoutPanel16.TabIndex = 0;
             // 
             // groupBox4
@@ -1575,6 +1582,9 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.button1);
+            this.groupBox9.Controls.Add(this.modeIndex);
+            this.groupBox9.Controls.Add(this.fcIndex);
             this.groupBox9.Controls.Add(this.btnRelayTest);
             this.groupBox9.Controls.Add(this.flowLayoutPanel18);
             this.groupBox9.Controls.Add(this.flowLayoutPanel1);
@@ -1585,6 +1595,17 @@
             this.groupBox9.TabIndex = 5;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "DAQ Card";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(282, 56);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(56, 18);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "SQUIB";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnRelayTest
             // 
@@ -1748,7 +1769,7 @@
             this.flowLayoutPanel19.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel19.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel19.Name = "flowLayoutPanel19";
-            this.flowLayoutPanel19.Size = new System.Drawing.Size(550, 557);
+            this.flowLayoutPanel19.Size = new System.Drawing.Size(551, 557);
             this.flowLayoutPanel19.TabIndex = 8;
             // 
             // groupBox2
@@ -1901,6 +1922,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.flowMainRelays);
             this.groupBox1.Controls.Add(this.flowSubRelays);
             this.groupBox1.Location = new System.Drawing.Point(3, 112);
@@ -1960,6 +1983,70 @@
             this.led302.Name = "led302";
             this.led302.Size = new System.Drawing.Size(40, 64);
             this.led302.TabIndex = 6;
+            // 
+            // fcIndex
+            // 
+            this.fcIndex.Location = new System.Drawing.Point(282, 28);
+            this.fcIndex.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.fcIndex.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.fcIndex.Name = "fcIndex";
+            this.fcIndex.Size = new System.Drawing.Size(56, 21);
+            this.fcIndex.TabIndex = 6;
+            this.fcIndex.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // modeIndex
+            // 
+            this.modeIndex.Location = new System.Drawing.Point(344, 28);
+            this.modeIndex.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.modeIndex.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.modeIndex.Name = "modeIndex";
+            this.modeIndex.Size = new System.Drawing.Size(56, 21);
+            this.modeIndex.TabIndex = 6;
+            this.modeIndex.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(182, 41);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "BELT";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(268, 41);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "SIS";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // InstrumentControlForm
             // 
@@ -2058,6 +2145,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.led300)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.led301)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.led302)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fcIndex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modeIndex)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2194,5 +2283,10 @@
         private System.Windows.Forms.Button btnSetRes1;
         private System.Windows.Forms.NumericUpDown numSetRes1;
         private System.Windows.Forms.Button btnRelayTest;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.NumericUpDown modeIndex;
+        private System.Windows.Forms.NumericUpDown fcIndex;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
     }
 }

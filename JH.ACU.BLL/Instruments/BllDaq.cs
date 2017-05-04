@@ -721,8 +721,8 @@ namespace JH.ACU.BLL.Instruments
         /// <summary>
         /// 将指定ACU指定回路设置为DMM读取状态
         /// </summary>
-        /// <param name="acuIndex"></param>
-        /// <param name="squibIndex"></param>
+        /// <param name="acuIndex">从0开始</param>
+        /// <param name="squibIndex">从1开始</param>
         /// <param name="mode"></param>
         public void SetFcInReadMode(int acuIndex, int squibIndex, SquibMode mode)
         {

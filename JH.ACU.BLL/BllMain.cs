@@ -460,27 +460,28 @@ namespace JH.ACU.BLL
         private double FindHoldTime(int acuIndex)
         {
             //0:DAQ操作
-            _daq.SetSubRelayStatus((byte) acuIndex, 264, true);
-            _daq.SetSubRelayStatus((byte) acuIndex, 265, true);
-            _daq.SetSubRelayStatus((byte) acuIndex, 272, true);
+            _daq.SetSubRelayStatus((byte) acuIndex, 201, true);
+            _daq.SetSubRelayStatus((byte) acuIndex, 202, true);
+            _daq.SetSubRelayStatus((byte) acuIndex, 214, true);
             //1:DMM操作
-            AcuExecute(acuIndex, () => _acu.EnableWarnLamp(1, true));
-            //var volt = ActualVolt;
             _dmm.SetAutoZero(BllDmm.AutoZero.Off);
             _dmm.Display = false;
+            _dmm.SetFunction(BllDmm.DcVolt, 20,0.1);
+            _dmm.SetTrigger(BllDmm.TriggerSource.Immediate, false, 0.001347);
+            _dmm.SetMultiPoint(sampleCount:2500);
             AcuExecute(acuIndex, () => _acu.Stop()); //将ACU退出S模式
             Thread.Sleep(1000);
             //2:开始测试
             _daq.SetSubRelayStatus((byte) acuIndex, 265, false); //ACU断电
             var tick = Environment.TickCount; //开始时间
-            var data = _dmm.GetVoltage(2500, 20, 0.1); //TODO:同步到UI
+            var data = _dmm.DmmReadBytes(); //TODO:同步到UI
             var duration = Environment.TickCount - tick;
             //3:计算HoldTime//QUES:数据待确认
             var len = data.Length;
             var index = 0;
             for (var i = 0; i < len; i++)
             {
-                if (Math.Abs(data[i] - 3) < 0.5)
+                if (Math.Abs(data[i] - 0.5) <= 0.1)
                 {
                     index = i;
                     break;
@@ -827,8 +828,8 @@ namespace JH.ACU.BLL
             if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
             if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetSisInReadMode(acuIndex, sisIndex);
-            res = _dmm.GetFourWireRes(); //该返回值为实际测量值
-            res -= Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
+            res = _dmm.GetFourWireRes(20, 0.01); //该返回值为实际测量值
+            //res += Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
             SetSpecResult(acuIndex, ref spec, res);
             //C:复位继电器
             _daq.SetSisReset(acuIndex, sisIndex);
@@ -867,8 +868,8 @@ namespace JH.ACU.BLL
             if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
             if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetBeltInReadMode(acuIndex, belt);
-            res = _dmm.GetFourWireRes(); //该返回值为实际测量值
-            res -= Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
+            res = _dmm.GetFourWireRes(20, 0.01); //该返回值为实际测量值
+            //res += Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
             SetSpecResult(acuIndex, ref spec, res);
             //C:复位继电器
             _daq.SetBeltReset(acuIndex, belt);
@@ -932,8 +933,8 @@ namespace JH.ACU.BLL
             if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
             if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
             _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
-            res = _dmm.GetFourWireRes(); //该返回值为实际测量值
-            res -= Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
+            res = _dmm.GetFourWireRes(20,0.01); //该返回值为实际测量值
+            //res += Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
             SetSpecResult(acuIndex, ref spec, res);
             //C:复位继电器
             _daq.SetFcReset(acuIndex, squib);
@@ -1071,7 +1072,7 @@ namespace JH.ACU.BLL
         private NewBackgroundWorker ChamberStay { get; set; }
         public NewBackgroundWorker ChamberReset { get; private set; }
         private TestCondition TestCondition { get; set; }
-        private readonly Report _report;
+        private Report _report;
         private KeyValuePair<TvType, double[]> _tvItem; //正在测试条件组合
         private int _tvIndex; //正在测试温度电压组合的项数
         private int _tvCount; //需要测试温度电压组合总数
@@ -1310,10 +1311,18 @@ namespace JH.ACU.BLL
         /// <param name="value"></param>
         /// <param name="dtc"></param>
         /// <returns></returns>
-        private bool FindDtc<T>(T instr,double value,byte dtc) where T:BllVisa
+        private bool FindDtc<T>(T instr, double value, byte dtc) where T : BllVisa
         {
             var prs = instr as BllPrs;
-            prs.IfNotNull(p => p.SetResistance(value - Properties.Settings.Default.AmendResistance));//QUES:此处是否应该减去线阻
+            if (prs != null)
+            {
+                //value = value - Properties.Settings.Default.AmendResistance; //QUES:此处是否应该减去线阻
+                //if (value <= 0)
+                //{
+                //    value = Properties.Settings.Default.AmendResistance;
+                //}
+                prs.SetResistance(value);
+            }
             var pwr = instr as BllPwr;
             pwr.IfNotNull(p =>
             {
@@ -1506,6 +1515,7 @@ namespace JH.ACU.BLL
         /// <param name="testCondition"></param>
         public void Start(TestCondition testCondition)
         {
+            _report=new Report();
             TestCondition = testCondition;
             var tvItems = TestCondition.Temperature.Enable
                 ? TestCondition.TvItems

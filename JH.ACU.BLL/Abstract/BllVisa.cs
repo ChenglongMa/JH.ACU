@@ -108,7 +108,6 @@ namespace JH.ACU.BLL.Abstract
 
         public string Read(string command, int delay = 50)
         {
-            LogHelper.WriteWarningLog("测试记录", "Read:" + command);
             try
             {
                 RawIo.Write(command + "\n");
@@ -134,8 +133,6 @@ namespace JH.ACU.BLL.Abstract
 
         public void Write(string command)
         {
-            LogHelper.WriteWarningLog("测试记录", "Write:" + command);
-
             RawIo.Write(command + "\n");
         }
 
@@ -228,7 +225,7 @@ namespace JH.ACU.BLL.Abstract
             // 清理非托管资源
             if (MbSession!=null&&!MbSession.IsDisposed)
             {
-                Reset();
+                //Reset();
                 MbSession.Dispose();
             }
             //让类型知道自己已经被释放

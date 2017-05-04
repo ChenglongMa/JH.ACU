@@ -782,5 +782,28 @@ namespace JH.ACU.UI
                 MessageBoxHelper.ShowError("测试失败\n错误信息：" + ex.Message);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var squib=fcIndex.Value;
+            var mode = (SquibMode)(int)modeIndex.Value;
+            _daq.SetFcInTestMode(1, (int)squib, mode);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var squib = fcIndex.Value;
+            var mode = (BeltMode)(int)modeIndex.Value;
+            _daq.SetBeltInReadMode(1, (int)squib);
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var squib = fcIndex.Value;
+            var mode = (SisMode)(int)modeIndex.Value;
+            _daq.SetSisInTestMode(1, (int)squib, mode);
+
+        }
     }
 }

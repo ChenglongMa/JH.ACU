@@ -29,7 +29,8 @@ namespace JH.ACU.UI
  
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm());
+                _mainForm=new MainForm();
+                Application.Run(_mainForm);
             }
             catch (Exception ex)
             {
@@ -38,11 +39,16 @@ namespace JH.ACU.UI
             }
         }
 
+        private static MainForm _mainForm;
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var ex = (Exception)e.ExceptionObject;
             MessageBoxHelper.ShowError(ex.Message);
             LogHelper.WriteErrorLog("non-UI Exception", ex, string.Format("Runtime terminating: {0}", e.IsTerminating));
+            if (_mainForm != null)
+            {
+                _mainForm.SetControlEnabled(true);
+            }
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
@@ -50,7 +56,10 @@ namespace JH.ACU.UI
             var ex = e.Exception;
             MessageBoxHelper.ShowError(ex.Message);
             LogHelper.WriteErrorLog("UI Exception", ex);
-
+            if (_mainForm != null)
+            {
+                _mainForm.SetControlEnabled(true);
+            }
         }
     }
 }
