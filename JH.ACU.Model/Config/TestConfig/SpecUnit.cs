@@ -162,35 +162,35 @@ namespace JH.ACU.Model.Config.TestConfig
             {
                 var list = new List<double>();
                 double value;
-                if (double.TryParse(AcuResult1 as string, out value))
+                if (AcuResult1 != null && double.TryParse(AcuResult1.ToString(), out value))
                 {
                     list.Add(value);
                 }
-                if (double.TryParse(AcuResult2 as string, out value))
+                if (AcuResult2 != null && double.TryParse(AcuResult2.ToString(), out value))
                 {
                     list.Add(value);
                 }
-                if (double.TryParse(AcuResult3 as string, out value))
+                if (AcuResult3 != null && double.TryParse(AcuResult3.ToString(), out value))
                 {
                     list.Add(value);
                 }
-                if (double.TryParse(AcuResult4 as string, out value))
+                if (AcuResult4 != null && double.TryParse(AcuResult4.ToString(), out value))
                 {
                     list.Add(value);
                 }
-                if (double.TryParse(AcuResult5 as string, out value))
+                if (AcuResult5 != null && double.TryParse(AcuResult5.ToString(), out value))
                 {
                     list.Add(value);
                 }
-                if (double.TryParse(AcuResult6 as string, out value))
+                if (AcuResult6 != null && double.TryParse(AcuResult6.ToString(), out value))
                 {
                     list.Add(value);
                 }
-                if (double.TryParse(AcuResult7 as string, out value))
+                if (AcuResult7 != null && double.TryParse(AcuResult7.ToString(), out value))
                 {
                     list.Add(value);
                 }
-                if (double.TryParse(AcuResult8 as string, out value))
+                if (AcuResult8 != null && double.TryParse(AcuResult8.ToString(), out value))
                 {
                     list.Add(value);
                 }

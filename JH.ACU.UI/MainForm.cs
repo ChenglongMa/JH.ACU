@@ -167,7 +167,7 @@ namespace JH.ACU.UI
         private void BindingToResultGrid(UltraGrid grid)
         {
             var tvType = (TvType) grid.Tag;
-            var list = _report.SpecUnitsDict.ContainsKey(tvType)
+            var list = _report.SpecUnitsDict != null && _report.SpecUnitsDict.ContainsKey(tvType)
                 ? new BindingList<SpecItem>(_report.SpecUnitsDict[tvType])
                 : new BindingList<SpecItem>(BllConfig.GetSpecItems());
             grid.DataSource = list;
