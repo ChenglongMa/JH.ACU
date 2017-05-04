@@ -45,6 +45,7 @@ namespace JH.ACU.BLL
                 Thread.Sleep(3000);
             }
             _chamber.Stop();
+            _chamber.Dispose();
         }
 
         private void ChamberStay_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -112,7 +113,7 @@ namespace JH.ACU.BLL
                 //正常完成
             }
             _acu.IfNotNull(a => a.Stop());
-            CloseAllInstrs(true);
+            CloseAllInstrs(true);//关闭所有仪器并将温箱恢复至常温
         }
 
         /// <summary>
@@ -191,7 +192,7 @@ namespace JH.ACU.BLL
 
                         #endregion
                     } while (Math.Abs(SettingTemp - ActualTemp) > 0.5 && Environment.TickCount - tick < 60*60*1000);
-                    if (TestCondition.Temperature.Duration > 0)
+                    if (TestCondition.Temperature.Duration >= 0)
                     {
                         ChamberStay.RunWorkerAsync();
                     }
@@ -936,6 +937,10 @@ namespace JH.ACU.BLL
             SetSpecResult(acuIndex, ref spec, res);
             //C:复位继电器
             _daq.SetFcReset(acuIndex, squib);
+            if (res < minValue || res > maxValue)
+            {
+                return (double)TestResult.Failed;
+            }
             return res;
         }
 
@@ -1449,7 +1454,7 @@ namespace JH.ACU.BLL
         /// <param name="acuIndex"></param>
         /// <param name="spec"></param>
         /// <param name="value"></param>
-        private void SetSpecResult(int acuIndex, ref SpecItem spec, object value)
+        private static void SetSpecResult(int acuIndex, ref SpecItem spec, object value)
         {
             switch (acuIndex)
             {

@@ -45,7 +45,7 @@ namespace JH.ACU.UI
             _bllMain = new BllMain();
             _bllMain.TestWorker.ProgressChanged += TestWorker_ProgressChanged;
             _bllMain.TestWorker.RunWorkerCompleted += TestWorker_RunWorkerCompleted;
-            _bllMain.ChamberReset.RunWorkerCompleted+=ChamberReset_RunWorkerCompleted;
+            _bllMain.ChamberReset.RunWorkerCompleted += ChamberReset_RunWorkerCompleted;
             _bllMain.ChamberReset.ProgressChanged += TestWorker_ProgressChanged;
             SetControlEnabled(!IsBusy);
             BindingControls(_report);
@@ -86,6 +86,7 @@ namespace JH.ACU.UI
         private readonly List<FieldMetaInfo> _fieldsProgress;
         private readonly List<FieldMetaInfo> _fieldsResult;
         private InitializationForm _conditionForm;
+
         #endregion
 
         #region 私有方法
@@ -102,6 +103,7 @@ namespace JH.ACU.UI
             }
             chart.DataBind();
         }
+
         private void BindingControls(Report report)
         {
             numTempTarget.DataBindings.Add("Value", report, "SettingTemp");
@@ -132,18 +134,18 @@ namespace JH.ACU.UI
             ugTestItems.DataSource = list;
             ugTestItems.SetStyle(_fieldsProgress);
             ugTestItems.SetGridDefaultStyle();
-            ugTestItems.DisplayLayout.Override.CellClickAction=CellClickAction.RowSelect;
+            ugTestItems.DisplayLayout.Override.CellClickAction = CellClickAction.RowSelect;
             foreach (var row in ugTestItems.Rows)
             {
                 var cell = row.Cells["ResultInfo"];
                 var text = cell.Text.ToLower();
                 if (text.Contains("failed"))
                 {
-                    cell.Appearance.ForeColor=Color.Red;
+                    cell.Appearance.ForeColor = Color.Red;
                 }
                 else if (text.Contains("passed"))
                 {
-                    cell.Appearance.ForeColor=Color.Green;
+                    cell.Appearance.ForeColor = Color.Green;
                 }
                 else if (text.Contains("cancelled"))
                 {
@@ -153,6 +155,8 @@ namespace JH.ACU.UI
                 {
                     cell.Appearance.ForeColor = DefaultForeColor;
                 }
+                cell.Appearance.BackColor = text.Contains("progressing") ? Color.Aquamarine : DefaultBackColor;
+
             }
         }
 
@@ -240,7 +244,10 @@ namespace JH.ACU.UI
             BindingToResultGrid(ugHTLV);
             BindingToResultGrid(ugHTNV);
             BindingToResultGrid(ugHTHV);
-            BindingChart(_report.ActualTemp, _report.SettingTemp);
+            if (_report.ChamberEnable)
+            {
+                BindingChart(_report.ActualTemp, _report.SettingTemp);
+            }
             foreach (TabPage page in tabControl1.TabPages)
             {
                 var tvType = (TvType) page.Tag;
@@ -254,6 +261,7 @@ namespace JH.ACU.UI
 
         private void TestWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            string msg = null;
             try
             {
                 if (e.Error != null)
@@ -261,24 +269,41 @@ namespace JH.ACU.UI
                     LogHelper.WriteErrorLog("MainForm", e.Error);
                     statusBar.Panels["messBar"].Text = @"测试过程有错误，详情请查看日志";
                     progressBar.Value = 0;
+                    msg = @"测试过程有错误，详情请查看日志";
                 }
                 if (e.Cancelled)
                 {
                     //操作取消
                     statusBar.Panels["messBar"].Text = @"Test has been cancelled.";
                     progressBar.Value = 0;
+                    msg = "测试已取消";
                 }
                 else
                 {
                     //正常完成
                     statusBar.Panels["messBar"].Text = @"Test has been done!";
                     progressBar.Value = 100;
+                    msg = "测试已完成";
                 }
-
+                if (_bllMain.ChamberReset != null && _bllMain.ChamberReset.IsBusy)
+                {
+                    msg += "\n请等待温箱恢复至常温状态";
+                }
             }
             finally
             {
-				SetControlEnabled(true);
+                if (_bllMain.ChamberReset == null || !_bllMain.ChamberReset.IsBusy)
+                {
+                    SetControlEnabled(true);
+                }
+                if (!msg.IsNullOrEmpty())
+                {
+                    MessageBoxHelper.ShowInformationOk(msg);
+                }
+                else
+                {
+                    MessageBoxHelper.ShowError("测试发生未知错误");
+                }
             }
 
         }
@@ -404,7 +429,6 @@ namespace JH.ACU.UI
                 ultraGridExcelExporter1.Export(ugHTHV, sheetHtHv);
                 book.Save(fileName);
                 MessageBoxHelper.ShowInformationOk("File saved successfully.");
-
             }
             catch (Exception ex)
             {
@@ -433,7 +457,7 @@ namespace JH.ACU.UI
                 {
                     Enable = ckbChamberEnable.Checked,
                     Duration = BLL.Properties.Settings.Default.Duration,
-                    NorTemp = new Temp{Value = numTempTarget.Value,Delay = 0}
+                    NorTemp = new Temp {Value = numTempTarget.Value, Delay = 0}
                 },
                 Voltage = new Voltage
                 {
@@ -441,9 +465,9 @@ namespace JH.ACU.UI
                 },
                 TvItems = new Dictionary<TvType, double[]>
                 {
-                    {TvType.NorTempNorVolt, new[] {numTempTarget.Value, numVoltTarget.Value,0}}
+                    {TvType.NorTempNorVolt, new[] {numTempTarget.Value, numVoltTarget.Value, 0}}
                 },
-                AcuItems = new List<AcuItems> {new AcuItems {Index = (int) numAcuIndex.Value-1, Items = items}}
+                AcuItems = new List<AcuItems> {new AcuItems {Index = (int) numAcuIndex.Value - 1, Items = items}}
             };
             _bllMain.Start(con);
             SetControlEnabled(!IsBusy);
@@ -475,28 +499,17 @@ namespace JH.ACU.UI
         {
             ledManualRun.Value = !ledAutoRun.Value;
             _isAuto = ledAutoRun.Value;
-
+            toolBarsManager.Tools["btnInitialize"].SharedProps.Enabled = _isAuto;
         }
 
         private void ledManualRun_Click(object sender, EventArgs e)
         {
             ledAutoRun.Value = !ledManualRun.Value;
             _isAuto = !ledManualRun.Value;
-
+            toolBarsManager.Tools["btnInitialize"].SharedProps.Enabled = _isAuto;
         }
 
         #endregion
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _report.ActualTemp = 10.3;
-            _report.ActualVolt = 6.5;
-            _report.SettingTemp = 30;
-            _report.SettingVolt += 12;
-            _report.AcuIndex = 4;
-            _report.AcuName = "测试ACU";
-
-        }
 
     }
 }

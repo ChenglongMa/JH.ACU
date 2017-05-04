@@ -12,4 +12,7 @@
   <Field ColName="AcuResult6" ColDisplayName="ACU#6" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
   <Field ColName="AcuResult7" ColDisplayName="ACU#7" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
   <Field ColName="AcuResult8" ColDisplayName="ACU#8" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="MaxValue" ColDisplayName="MaxValue" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="AverValue" ColDisplayName="AverValue" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
+  <Field ColName="MinValue" ColDisplayName="MinValue" Width="100" ColumnStyle="Default" Visible="true" ReadOnly="true" />
 </Fields>

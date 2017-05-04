@@ -270,12 +270,12 @@
             this.ugTotal = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.statusBar = new Infragistics.Win.UltraWinStatusBar.UltraStatusBar();
             this._MainForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.toolBarsManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this._MainForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.ultraGridExcelExporter1 = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
-            this.toolBarsManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -1959,48 +1959,6 @@
             this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 793);
             this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarsManager;
             // 
-            // _MainForm_Toolbars_Dock_Area_Right
-            // 
-            this._MainForm_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.Gainsboro;
-            this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
-            this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1465, 80);
-            this._MainForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(4);
-            this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
-            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 793);
-            this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarsManager;
-            // 
-            // _MainForm_Toolbars_Dock_Area_Top
-            // 
-            this._MainForm_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Top.BackColor = System.Drawing.Color.Gainsboro;
-            this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
-            this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
-            this._MainForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(4);
-            this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
-            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1465, 80);
-            this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarsManager;
-            // 
-            // _MainForm_Toolbars_Dock_Area_Bottom
-            // 
-            this._MainForm_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.Gainsboro;
-            this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
-            this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 873);
-            this._MainForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(4);
-            this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
-            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1465, 0);
-            this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarsManager;
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.DefaultExt = "xls";
-            this.saveFileDialog1.Filter = "Data File|*.xls|All Files|*.*";
-            this.saveFileDialog1.RestoreDirectory = true;
-            // 
             // toolBarsManager
             // 
             appearance133.BackColor = System.Drawing.Color.Gainsboro;
@@ -2092,6 +2050,48 @@
             buttonTool24,
             buttonTool26});
             this.toolBarsManager.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.ultraToolbarsManager1_ToolClick);
+            // 
+            // _MainForm_Toolbars_Dock_Area_Right
+            // 
+            this._MainForm_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.Gainsboro;
+            this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
+            this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1465, 80);
+            this._MainForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(4);
+            this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
+            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 793);
+            this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarsManager;
+            // 
+            // _MainForm_Toolbars_Dock_Area_Top
+            // 
+            this._MainForm_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._MainForm_Toolbars_Dock_Area_Top.BackColor = System.Drawing.Color.Gainsboro;
+            this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
+            this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
+            this._MainForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(4);
+            this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
+            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1465, 80);
+            this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarsManager;
+            // 
+            // _MainForm_Toolbars_Dock_Area_Bottom
+            // 
+            this._MainForm_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.Gainsboro;
+            this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
+            this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 873);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(4);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
+            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1465, 0);
+            this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarsManager;
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "xls";
+            this.saveFileDialog1.Filter = "Data File|*.xls|All Files|*.*";
+            this.saveFileDialog1.RestoreDirectory = true;
             // 
             // MainForm
             // 

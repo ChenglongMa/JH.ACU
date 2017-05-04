@@ -113,6 +113,31 @@ namespace JH.ACU.Model.Config.TestConfig
         [XmlIgnore]
         public object AcuResult8 { get; set; }
 
+        /// <summary>
+        /// 测试最大值
+        /// </summary>
+        [XmlIgnore]
+        public double MaxValue
+        {
+            get { return AcuResultList.IsNullOrEmpty() ? double.NaN : AcuResultList.Max(); }
+        }
+
+        /// <summary>
+        /// 测试平均值
+        /// </summary>
+        public double AverValue
+        {
+            get { return AcuResultList.IsNullOrEmpty() ? double.NaN : AcuResultList.Average(); }
+        }
+
+        /// <summary>
+        /// 测试最小值
+        /// </summary>
+        public double MinValue
+        {
+            get { return AcuResultList.IsNullOrEmpty() ? double.NaN : AcuResultList.Min(); }
+        }
+
         #endregion
 
         ///// <summary>
@@ -130,5 +155,47 @@ namespace JH.ACU.Model.Config.TestConfig
 
         #endregion
 
+        [XmlIgnore]
+        private IEnumerable<double> AcuResultList
+        {
+            get
+            {
+                var list = new List<double>();
+                double value;
+                if (double.TryParse(AcuResult1 as string, out value))
+                {
+                    list.Add(value);
+                }
+                if (double.TryParse(AcuResult2 as string, out value))
+                {
+                    list.Add(value);
+                }
+                if (double.TryParse(AcuResult3 as string, out value))
+                {
+                    list.Add(value);
+                }
+                if (double.TryParse(AcuResult4 as string, out value))
+                {
+                    list.Add(value);
+                }
+                if (double.TryParse(AcuResult5 as string, out value))
+                {
+                    list.Add(value);
+                }
+                if (double.TryParse(AcuResult6 as string, out value))
+                {
+                    list.Add(value);
+                }
+                if (double.TryParse(AcuResult7 as string, out value))
+                {
+                    list.Add(value);
+                }
+                if (double.TryParse(AcuResult8 as string, out value))
+                {
+                    list.Add(value);
+                }
+                return list;
+            }
+        }
     }
 }

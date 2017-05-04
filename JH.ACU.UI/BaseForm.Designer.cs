@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.led3 = new NationalInstruments.UI.WindowsForms.Led();
+            this.led1 = new NationalInstruments.UI.WindowsForms.Led();
             this.numericEdit1 = new NationalInstruments.UI.WindowsForms.NumericEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.led3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericEdit1)).BeginInit();
             this.SuspendLayout();
             // 
-            // led3
+            // led1
             // 
-            this.led3.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
-            this.led3.Location = new System.Drawing.Point(105, 214);
-            this.led3.Name = "led3";
-            this.led3.Size = new System.Drawing.Size(408, 154);
-            this.led3.TabIndex = 10;
+            this.led1.LedStyle = NationalInstruments.UI.LedStyle.Round3D;
+            this.led1.Location = new System.Drawing.Point(219, 343);
+            this.led1.Name = "led1";
+            this.led1.Size = new System.Drawing.Size(97, 121);
+            this.led1.TabIndex = 0;
             // 
             // numericEdit1
             // 
-            this.numericEdit1.Location = new System.Drawing.Point(83, 152);
+            this.numericEdit1.Location = new System.Drawing.Point(272, 275);
             this.numericEdit1.Name = "numericEdit1";
             this.numericEdit1.Size = new System.Drawing.Size(120, 21);
-            this.numericEdit1.TabIndex = 11;
+            this.numericEdit1.TabIndex = 1;
             // 
             // BaseForm
             // 
@@ -55,10 +55,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1058, 659);
             this.Controls.Add(this.numericEdit1);
-            this.Controls.Add(this.led3);
+            this.Controls.Add(this.led1);
             this.Name = "BaseForm";
             this.Text = "AbstractForm";
-            ((System.ComponentModel.ISupportInitialize)(this.led3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.led1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericEdit1)).EndInit();
             this.ResumeLayout(false);
 
@@ -66,8 +66,9 @@
 
         #endregion
 
-        private NationalInstruments.UI.WindowsForms.Led led3;
+        private NationalInstruments.UI.WindowsForms.Led led1;
         private NationalInstruments.UI.WindowsForms.NumericEdit numericEdit1;
+
 
 
 
