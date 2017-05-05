@@ -77,6 +77,7 @@
     <Content Include="原程序\GpibPcRes.cpp" />
     <Content Include="原程序\GpibPcRes.h" />
     <Content Include="原程序\gpib_user.h" />
+    <Content Include="原程序\SPEC_unit.txt" />
     <Content Include="原程序\ThreadMain.cpp" />
     <Content Include="原程序\ThreadMain.h" />
   </ItemGroup>

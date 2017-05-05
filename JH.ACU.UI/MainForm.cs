@@ -49,7 +49,7 @@ namespace JH.ACU.UI
             _bllMain.ChamberReset.ProgressChanged += TestWorker_ProgressChanged;
             SetControlEnabled(!IsBusy);
             BindingControls(_report);
-
+            BindingToTotalGrid(false);
             #region ugTestItems
 
             if (ugTestItems.Rows.Count > 0)
@@ -160,6 +160,91 @@ namespace JH.ACU.UI
             }
         }
 
+        private void BindingToTotalGrid(bool isCalc)
+        {
+            var field = BllFieldConfig.LoadFieldsInfo("SpecTotal.xml");
+            var list = new BindingList<SpecItem>(BllConfig.GetSpecItems());
+            ugTotal.DataSource = list;
+            ugTotal.SetStyle(field);
+            if (!isCalc) return;
+            var lList = new List<List<double>>
+            {
+                TotalAddColumn(ugLTLV),
+                TotalAddColumn(ugLTNV),
+                TotalAddColumn(ugLTHV),
+            };
+            SetAver("lAver", lList);
+            var nList = new List<List<double>>
+            {
+                TotalAddColumn(ugNTLV),
+                TotalAddColumn(ugNTNV),
+                TotalAddColumn(ugNTHV),
+            };
+            SetAver("nAver", nList);
+
+            var hList = new List<List<double>>
+            {
+                TotalAddColumn(ugHTLV),
+                TotalAddColumn(ugHTNV),
+                TotalAddColumn(ugHTHV),
+            };
+            SetAver("hAver", hList);
+            var cols = ugTotal.DisplayLayout.Bands[0].Columns;
+            if (!cols.Exists("sum"))
+            {
+                cols.Add("sum", "Sum AVG");
+            }
+            foreach (var row in ugTotal.Rows)
+            {
+                var tempList = new List<double>
+                {
+                    Convert.ToDouble(row.Cells["lAver"].Value),
+                    Convert.ToDouble(row.Cells["nAver"].Value),
+                    Convert.ToDouble(row.Cells["hAver"].Value),
+                }.Where(l => !double.IsNaN(l)).ToList();
+                row.Cells["sum"].Value = tempList.IsNullOrEmpty() ? double.NaN : tempList.Average();
+            }
+        }
+
+        private void SetAver(string key,List<List<double>> list)
+        {
+            var cols = ugTotal.DisplayLayout.Bands[0].Columns;
+            if (!cols.Exists(key))
+            {
+                cols.Add(key, "AVG");
+            }
+            foreach (var row in ugTotal.Rows)
+            {
+                var index = row.Index;
+                var tempList = list.Select(v => v[index]).Where(l => !double.IsNaN(l)).ToList();
+                var aver = tempList.IsNullOrEmpty() ? double.NaN : tempList.Average();
+                row.Cells[key].Value = aver;
+            }
+        }
+        private List<double> TotalAddColumn(UltraGridBase grid)
+        {
+            var valueList=new List<double>();
+            var tvType = (TvType)grid.Tag;
+            var key = tvType.ToString();
+            var cols = ugTotal.DisplayLayout.Bands[0].Columns;
+            if (!cols.Exists(key))
+            {
+                cols.Add(key);
+            }
+            foreach (var row in ugTotal.Rows)
+            {
+                var index = Convert.ToInt32(row.Cells["Index"].Text);
+                var value = double.NaN;
+                var spec =
+                    grid.Rows.Select(gridRow => gridRow.ListObject)
+                        .OfType<SpecItem>()
+                        .FirstOrDefault(s => s.Index == index);
+                if (spec != null) value = spec.AverValue;
+                row.Cells[key].Value = value;
+                valueList.Add(value);
+            }
+            return valueList;
+        }
         /// <summary>
         /// 为Grid绑定测试结果
         /// </summary>
@@ -270,8 +355,7 @@ namespace JH.ACU.UI
                     statusBar.Panels["messBar"].Text = @"测试过程有错误，详情请查看日志";
                     progressBar.Value = 0;
                     msg = @"测试过程有错误，详情请查看日志";
-                }
-                if (e.Cancelled)
+                }else if (e.Cancelled)
                 {
                     //操作取消
                     statusBar.Panels["messBar"].Text = @"Test has been cancelled.";
@@ -296,9 +380,18 @@ namespace JH.ACU.UI
                 {
                     SetControlEnabled(true);
                 }
+                BindingToTotalGrid(true);
                 if (!msg.IsNullOrEmpty())
                 {
-                    MessageBoxHelper.ShowInformationOk(msg);
+                    // ReSharper disable once PossibleNullReferenceException
+                    if (msg.Contains("错误"))
+                    {
+                        MessageBoxHelper.ShowError(msg);
+                    }
+                    else
+                    {
+                        MessageBoxHelper.ShowInformationOk(msg);
+                    }
                 }
                 else
                 {

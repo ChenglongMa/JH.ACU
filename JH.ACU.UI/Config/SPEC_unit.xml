@@ -1,4 +1,5 @@
 <SpecUint>
+  <!--Tips:该表数据只允许修改Sepcification及DTC值-->
   <SpecItem Index="1" Description="DAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x04" />
   <SpecItem Index="2" Description="PAB Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x0A" />
   <SpecItem Index="3" Description="DBPT Squib Resistance Too High" Specification="4.84-7.28" UOM="Ohm" DTC="0x10" />
@@ -68,42 +69,43 @@
   <SpecItem Index="67" Description="PADS 1  STG &lt;-&gt; OFF" Specification="292.00-360.00" UOM="Ohm" DTC="0x61" />
   <SpecItem Index="68" Description="S/Belt 1  Unbelted &lt;-&gt; Belted" Specification="440.00-630.00" UOM="Ohm" DTC="0x48" />
   <SpecItem Index="69" Description="S/Belt 2  Unbelted &lt;-&gt; Belted" Specification="440.00-630.00" UOM="Ohm" DTC="0x4D" />
-  <SpecItem Index="70" Description="PADS 1  OFF &lt;-&gt; ON" Specification="110.00-372.00" UOM="Ohm" DTC="0x60" />
-  <SpecItem Index="71" Description="S/Belt 1  Belted &lt;-&gt; STB" Specification="750.00-1150.00" UOM="Ohm" DTC="0x45" />
+  <SpecItem Index="70" Description="PADS 1  OFF &lt;-&gt; ON" Specification="440.00-630.00" UOM="Ohm" DTC="0x60" />
+  <SpecItem Index="71" Description="S/Belt 1  Belted &lt;-&gt; STB" Specification="750.00-1151.00" UOM="Ohm" DTC="0x45" />
   <SpecItem Index="72" Description="S/Belt 2  Belted &lt;-&gt; STB" Specification="770.00-1151.00" UOM="Ohm" DTC="0x4A" />
-  <SpecItem Index="73" Description="PADS 1  ON &lt;-&gt; STB" Specification="428.00-600.00" UOM="Ohm" DTC="0x5D" />
+  <SpecItem Index="73" Description="PADS 1  ON &lt;-&gt; STB" Specification="770.00-1151.00" UOM="Ohm" DTC="0x5D" />
   <SpecItem Index="74" Description="Vbatt Too High" Specification="16.50-19.20" UOM="V" DTC="0x01" />
   <SpecItem Index="75" Description="Vbatt Too Low" Specification="8.00-9.00" UOM="V" DTC="0x02" />
-  <SpecItem Index="76" Description="SIS 1 Short to Vbatt" Specification="0.00-10000.00" UOM="Ohm" DTC="0x6D" />
-  <SpecItem Index="77" Description="SIS 2 Short to Vbatt" Specification="0.00-10000.00" UOM="Ohm" DTC="0x6E" />
-  <SpecItem Index="78" Description="SIS 3 Short to Vbatt" Specification="0.00-10000.00" UOM="Ohm" DTC="0x6D" />
-  <SpecItem Index="79" Description="SIS 4 Short to Vbatt" Specification="0.00-10000.00" UOM="Ohm" DTC="0x70" />
-  <SpecItem Index="80" Description="SIS 1 Short to GND" Specification="0.00-10000.00" UOM="Ohm" DTC="0x71" />
-  <SpecItem Index="81" Description="SIS 2 Short to GND" Specification="0.00-10000.00" UOM="Ohm" DTC="0x72" />
-  <SpecItem Index="82" Description="SIS 3 Short to GND" Specification="0.00-10000.00" UOM="Ohm" DTC="0x71" />
-  <SpecItem Index="83" Description="SIS 4 Short to GND" Specification="0.00-10000.00" UOM="Ohm" DTC="0x74" />
-  <SpecItem Index="84" Description="SIS 1 Sensor Output" Specification="NULL" UOM="NULL" DTC="0x8B" />
-  <SpecItem Index="85" Description="SIS 2 Sensor Output" Specification="NULL" UOM="NULL" DTC="0x8C" />
-  <SpecItem Index="86" Description="SIS 3 Sensor Output" Specification="NULL" UOM="NULL" DTC="0x8D" />
-  <SpecItem Index="87" Description="SIS 4 Sensor Output" Specification="NULL" UOM="NULL" DTC="0x8E" />
-  <SpecItem Index="88" Description="WL1_VOLT(OFF)" Specification="7.48-vbatt" UOM="V" DTC="0x00" />
-  <SpecItem Index="89" Description="WL1_VOLT(ON)" Specification="0.00-3.50" UOM="V" DTC="0x00" />
-  <SpecItem Index="90" Description="WL1_CURRENT(normal)" Specification="10.00-100.00" UOM="mA" DTC="0x00" />
-  <SpecItem Index="91" Description="WL1_CURRENT(short)" Specification="150.00-650.00" UOM="mA" DTC="0x00" />
-  <SpecItem Index="92" Description="WL2_VOLT(OFF)" Specification="8.34-vbatt" UOM="V" DTC="0x00" />
-  <SpecItem Index="93" Description="WL2_VOLT(ON)" Specification="0.00-3.50" UOM="V" DTC="0x00" />
-  <SpecItem Index="94" Description="WL2_CURRENT(normal)" Specification="10.00-100.00" UOM="mA" DTC="0x00" />
-  <SpecItem Index="95" Description="WL2_CURRENT(short)" Specification="150.00-650.00" UOM="mA" DTC="0x00" />
-  <SpecItem Index="96" Description="Autonomous time( )" Specification="200.00-4000.00" UOM="mS" DTC="0x00" />
-  <SpecItem Index="97" Description="ACU_CURRENT( )" Specification="20.00-140.00" UOM="mA" DTC="0x00" />
-  <SpecItem Index="98" Description="Crash Output Check" Specification="Signal check" UOM="" DTC="0x00" />
-  <SpecItem Index="99" Description="Crash Output2 Check" Specification="Signal check" UOM="" DTC="0x00" />
-</SpecUint>
-
-
-
-
-
+  <SpecItem Index="76" Description="SIS 1 Short to Vbatt" Specification="10.00-10000.00" UOM="Ohm" DTC="0x6D" />
+  <SpecItem Index="77" Description="SIS 2 Short to Vbatt" Specification="10.00-10000.00" UOM="Ohm" DTC="0x6E" />
+  <SpecItem Index="78" Description="SIS 3 Short to Vbatt" Specification="10.00-10000.00" UOM="Ohm" DTC="0x6D" />
+  <SpecItem Index="79" Description="SIS 4 Short to Vbatt" Specification="10.00-10000.00" UOM="Ohm" DTC="0x70" />
+  <SpecItem Index="80" Description="SIS 5 Short to Vbatt" Specification="10.00-10000.00" UOM="Ohm" DTC="0x70" />
+  <SpecItem Index="81" Description="SIS 6 Short to Vbatt" Specification="10.00-10000.00" UOM="Ohm" DTC="0x70" />
+  <SpecItem Index="82" Description="SIS 1 Short to GND" Specification="0.00-10000.00" UOM="Ohm" DTC="0x71" />
+  <SpecItem Index="83" Description="SIS 2 Short to GND" Specification="0.00-10000.00" UOM="Ohm" DTC="0x72" />
+  <SpecItem Index="84" Description="SIS 3 Short to GND" Specification="0.00-10000.00" UOM="Ohm" DTC="0x71" />
+  <SpecItem Index="85" Description="SIS 4 Short to GND" Specification="0.00-10000.00" UOM="Ohm" DTC="0x74" />
+  <SpecItem Index="86" Description="SIS 5 Short to GND" Specification="0.00-10000.00" UOM="Ohm" DTC="0x74" />
+  <SpecItem Index="87" Description="SIS 6 Short to GND" Specification="0.00-10000.00" UOM="Ohm" DTC="0x74" />
+  <SpecItem Index="88" Description="SIS 1 Sensor Output" Specification="-5.00-5.00" UOM="NULL" DTC="0x8B" />
+  <SpecItem Index="89" Description="SIS 2 Sensor Output" Specification="-5.00-5.00" UOM="NULL" DTC="0x8C" />
+  <SpecItem Index="90" Description="SIS 3 Sensor Output" Specification="-5.00-5.00" UOM="NULL" DTC="0x8D" />
+  <SpecItem Index="91" Description="SIS 4 Sensor Output" Specification="-5.00-5.00" UOM="NULL" DTC="0x8E" />
+  <SpecItem Index="92" Description="SIS 5 Sensor Output" Specification="-5.00-5.00" UOM="NULL" DTC="0x8E" />
+  <SpecItem Index="93" Description="SIS 6 Sensor Output" Specification="-5.00-5.00" UOM="NULL" DTC="0x8E" />
+  <SpecItem Index="94" Description="WL1_VOLT(OFF)" Specification="6.00-vbatt" UOM="V" DTC="0x00" />
+  <SpecItem Index="95" Description="WL1_VOLT(ON)" Specification="0.00-3.50" UOM="V" DTC="0x00" />
+  <SpecItem Index="96" Description="WL1_CURRENT(normal)" Specification="6.00-100.0" UOM="mA" DTC="0x00" />
+  <SpecItem Index="97" Description="WL1_CURRENT(short)" Specification="30.00-150.00" UOM="mA" DTC="0x00" />
+  <SpecItem Index="98" Description="WL2_VOLT(OFF)" Specification="6.00-vbatt" UOM="V" DTC="0x00" />
+  <SpecItem Index="99" Description="WL2_VOLT(ON)" Specification="0.00-4.0" UOM="V" DTC="0x00" />
+  <SpecItem Index="100" Description="WL2_CURRENT(normal)" Specification="10.00-100.00" UOM="mA" DTC="0x00" />
+  <SpecItem Index="101" Description="WL2_CURRENT(short)" Specification="30.00-150.00" UOM="mA" DTC="0x00" />
+  <SpecItem Index="102" Description="Autonomous time( )" Specification="200.00-4000.00" UOM="mS" DTC="0x00" />
+  <SpecItem Index="103" Description="ACU_CURRENT( )" Specification="20.00-140.00" UOM="mA" DTC="0x00" />
+  <SpecItem Index="104" Description="Crash Output Check" Specification="Signal check" UOM="" DTC="0x00" />
+  <SpecItem Index="105" Description="Crash Output2 Check" Specification="Signal check" UOM="" DTC="0x00" />
+</SpecUint>        
 
 
 

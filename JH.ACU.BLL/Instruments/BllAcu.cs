@@ -212,7 +212,7 @@ namespace JH.ACU.BLL.Instruments
             }
         }
 
-        public byte FindRealTimeValue(byte code)
+        public bool FindRealTimeValue(byte code,out double value)//QUES:返回值类型待定
         {
             var connect = RealTimeService(0x77, code);
             if (!connect) throw new Exception("ACU连接失败");

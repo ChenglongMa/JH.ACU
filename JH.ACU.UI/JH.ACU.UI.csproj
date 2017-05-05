@@ -227,6 +227,9 @@
     <Content Include="GridFields\SpecResult.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GridFields\SpecTotal.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NoteBook.txt" />
     <None Include="Resources\logo.ico" />
     <None Include="Resources\select.png" />

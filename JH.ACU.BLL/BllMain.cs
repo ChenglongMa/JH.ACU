@@ -29,7 +29,7 @@ namespace JH.ACU.BLL
             ChamberStay.DoWork += ChamberStay_DoWork;
             ChamberStay.RunWorkerCompleted += ChamberStay_RunWorkerCompleted;
             ChamberReset = new NewBackgroundWorker();
-            ChamberReset.DoWork+=ChamberReset_DoWork;
+            ChamberReset.DoWork += ChamberReset_DoWork;
         }
 
         private void ChamberReset_DoWork(object sender, DoWorkEventArgs e)
@@ -38,10 +38,10 @@ namespace JH.ACU.BLL
             _chamber = _chamber ?? new BllChamber();
             _chamber.SetTemp(25);
             _chamber.Run();
-            while (Math.Abs(ActualTemp-25)>0.5)
+            while (Math.Abs(ActualTemp - 25) > 0.5)
             {
                 SettingTemp = 25;
-                ChamberReset.ReportProgress(0,_report);
+                ChamberReset.ReportProgress(0, _report);
                 Thread.Sleep(3000);
             }
             _chamber.Stop();
@@ -113,7 +113,7 @@ namespace JH.ACU.BLL
                 //正常完成
             }
             _acu.IfNotNull(a => a.Stop());
-            CloseAllInstrs(true);//关闭所有仪器并将温箱恢复至常温
+            CloseAllInstrs(true); //关闭所有仪器并将温箱恢复至常温
         }
 
         /// <summary>
@@ -129,18 +129,16 @@ namespace JH.ACU.BLL
             _report.Message = "Test is running...";
             var tvItems = (Dictionary<TvType, double[]>) e.Argument; //传入温度电压测试条件集合
             _tvCount = tvItems.Count;
-            foreach (var tvItem in tvItems) //tvItem[0]:温度值;tvItem[1]:电压值
+            foreach (var tvItem in tvItems) //tvItem[0]:温度值;tvItem[1]:电压值;tvItem[2]TempDelay(min);
             {
                 _tvItem = tvItem;
                 _tvIndex = tvItems.IndexOf(tvItem);
-                SelectedTvType = tvItem.Key;
 
                 #region 通知UI
 
                 SettingTemp = tvItem.Value[0];
                 SettingVolt = tvItem.Value[1];
-                var specUnits = new List<SpecItem>();
-                specUnits.AddRange(_specUnits);
+                var specUnits = _specUnits.Select(SpecItem.Clone).ToList();
                 if (_report.SpecUnitsDict.ContainsKey(tvItem.Key))
                 {
                     _report.SpecUnitsDict[tvItem.Key] = specUnits;
@@ -163,7 +161,7 @@ namespace JH.ACU.BLL
                     {
                         _chamber = new BllChamber();
                     }
-                    var initTemp = _chamber.GetTemp();//初始温度值
+                    var initTemp = _chamber.GetTemp(); //初始温度值
                     _chamber.SetTemp(SettingTemp); //设置温度值
                     _chamber.Run();
                     var tick = Environment.TickCount; //获取当前时刻值
@@ -197,7 +195,7 @@ namespace JH.ACU.BLL
                         ChamberStay.RunWorkerAsync();
                     }
                     var delay = Convert.ToInt32(tvItem.Value[2]);
-                    Thread.Sleep(delay);
+                    Thread.Sleep(delay*60*1000);
                 }
 
                 #endregion
@@ -215,6 +213,11 @@ namespace JH.ACU.BLL
 
                 foreach (var acuItem in TestCondition.AcuItems)
                 {
+                    foreach (var specItem in _report.SpecUnitsDict[SelectedTvType])
+                    {
+                        specItem.ResultInfo = null;
+                    }
+
                     #region 若取消测试
 
                     if (TestWorker.CancellationPending)
@@ -226,7 +229,7 @@ namespace JH.ACU.BLL
 
                     #endregion
 
-                    _specCount = acuItem.Items.Count;
+                    _specCount = acuItem.Items.Count;//计算进度使用
                     var boardIndex = acuItem.Index;
                     if (boardIndex < 0 || boardIndex > 7) continue;
                     _report.AcuIndex = boardIndex + 1; //ACU Index显示值从1开始
@@ -302,7 +305,7 @@ namespace JH.ACU.BLL
         /// <param name="acuIndex"></param>
         /// <param name="crashOut"></param>
         /// <returns></returns>
-        private double GetCrashOut(int acuIndex, CrashOutTest crashOut)
+        private TestResult GetCrashOut(int acuIndex, CrashOutTest crashOut)
         {
             #region 若取消测试
 
@@ -311,12 +314,12 @@ namespace JH.ACU.BLL
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
                 CloseAllInstrs(true);
-                return (double) TestResult.Cancelled;
+                return TestResult.Cancelled;
             }
 
             #endregion
 
-            double res;
+            TestResult res;
             int crashIndex, relayIndex;
             switch (crashOut)
             {
@@ -351,12 +354,12 @@ namespace JH.ACU.BLL
                     }
                 }
                 _daq.GetCrashCheck(TestCondition.CrashOutType, voltBuf);
-                res = (double) TestResult.Passed;
+                res = TestResult.Passed;
             }
             catch (Exception ex)
             {
                 LogHelper.WriteErrorLog(LogFileName, ex);
-                res = (double) TestResult.Failed;
+                res = TestResult.Failed;
             }
             finally
             {
@@ -392,12 +395,12 @@ namespace JH.ACU.BLL
             }
         }
 
-        private double FindCurr(int acuIndex)
+        private TestResult FindCurr(int acuIndex)
         {
             try
             {
                 _daq.SetSubRelayStatus((byte) acuIndex, 267, true);
-                double res = 0;
+                double resValue = 0;
                 for (int i = 0; i < 5; i++)
                 {
                     #region 若取消测试
@@ -407,13 +410,13 @@ namespace JH.ACU.BLL
                         TestEventArgs.Cancel = true;
                         _acu.Stop();
                         CloseAllInstrs(true);
-                        return (double) TestResult.Cancelled;
+                        return TestResult.Cancelled;
                     }
 
                     #endregion
 
                     Thread.Sleep(200);
-                    res += _dmm.GetCurrent();
+                    resValue += _dmm.GetCurrent();
                 }
                 _daq.SetSubRelayStatus((byte) acuIndex, 267, false);
                 double minValue, maxValue;
@@ -421,20 +424,20 @@ namespace JH.ACU.BLL
                 var spec = FindSpec(AcuCurrentItemIndex, out minValue, out maxValue, out dtc);
                 if (spec.Uom.ToLower().Contains("m"))
                 {
-                    res *= 1000;
+                    resValue *= 1000;
                 }
-                res /= 5D;
-                SetSpecResult(acuIndex, ref spec, res);
-                if (res < minValue || res > maxValue)
+                resValue /= 5D;
+                SetSpecResult(acuIndex, ref spec, resValue);
+                if (resValue < minValue || resValue > maxValue)
                 {
-                    return (double)TestResult.Failed;
+                    return TestResult.Failed;
                 }
-                return res;
+                return TestResult.Passed;
             }
             catch (Exception ex)
             {
                 LogHelper.WriteErrorLog(LogFileName, ex);
-                return (double) TestResult.Failed;
+                return TestResult.Failed;
             }
         }
 
@@ -471,18 +474,18 @@ namespace JH.ACU.BLL
         /// </summary>
         /// <param name="acuIndex"></param>
         /// <returns></returns>
-        private double FindHoldTime(int acuIndex)
+        private TestResult FindHoldTime(int acuIndex)
         {
             //0:DAQ操作
-            _daq.SetSubRelayStatus((byte)acuIndex, 201, true);
-            _daq.SetSubRelayStatus((byte)acuIndex, 202, true);
+            _daq.SetSubRelayStatus((byte) acuIndex, 201, true);
+            _daq.SetSubRelayStatus((byte) acuIndex, 202, true);
             _daq.SetSubRelayStatus((byte) acuIndex, 214, true);
             //1:DMM操作
             _dmm.SetAutoZero(BllDmm.AutoZero.Off);
             _dmm.Display = false;
-            _dmm.SetFunction(BllDmm.DcVolt, 20,0.1);
+            _dmm.SetFunction(BllDmm.DcVolt, 20, 0.1);
             _dmm.SetTrigger(BllDmm.TriggerSource.Immediate, false, 0.001347);
-            _dmm.SetMultiPoint(sampleCount:2500);
+            _dmm.SetMultiPoint(sampleCount: 2500);
             AcuExecute(acuIndex, () => _acu.Stop()); //将ACU退出S模式
             Thread.Sleep(1000);
             //2:开始测试
@@ -495,7 +498,7 @@ namespace JH.ACU.BLL
             var index = 0;
             for (var i = 0; i < len; i++)
             {
-                if (Math.Abs(data[i] - 0.3) <= 0.1)//QUES:数据待确认
+                if (Math.Abs(data[i] - 0.3) <= 0.1) //QUES:数据待确认
                 {
                     index = i;
                     break;
@@ -509,8 +512,7 @@ namespace JH.ACU.BLL
             AcuExecute(acuIndex);
             var spec = FindSpec(AcuHoldTimeItemIndex);
             SetSpecResult(acuIndex, ref spec, holdTime);
-            if (index == 0) return (double)TestResult.Failed;
-            return holdTime;
+            return index == 0 ? TestResult.Failed : TestResult.Passed;
         }
 
         #endregion
@@ -615,7 +617,7 @@ namespace JH.ACU.BLL
         /// <param name="acuIndex"></param>
         /// <param name="wlTest"></param>
         /// <returns></returns>
-        private double GetWLCurr(int acuIndex, WLTest wlTest)
+        private TestResult GetWLCurr(int acuIndex, WLTest wlTest)
         {
             #region 若取消测试
 
@@ -624,7 +626,7 @@ namespace JH.ACU.BLL
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
                 CloseAllInstrs(true);
-                return (double) TestResult.Cancelled;
+                return TestResult.Cancelled;
             }
 
             #endregion
@@ -637,7 +639,7 @@ namespace JH.ACU.BLL
             {
                 default:
                     LogHelper.WriteWarningLog(LogFileName, "WLTest赋值错误：" + wlTest);
-                    return (double) TestResult.Failed;
+                    return TestResult.Failed;
                 case WLTest.WL1CurrentNormal:
                     wlIndex = 1;
                     relayIndex = 271;
@@ -681,11 +683,11 @@ namespace JH.ACU.BLL
             {
                 _daq.SetSubRelayStatus((byte) acuIndex, relayIndex2, false);
             }
-            if (res < minValue || res > maxValue)
+            if (double.IsNaN(res) || res < minValue || res > maxValue)
             {
-                return (double)TestResult.Failed;
+                return TestResult.Failed;
             }
-            return res;
+            return TestResult.Passed;
         }
 
         /// <summary>
@@ -695,7 +697,7 @@ namespace JH.ACU.BLL
         /// <param name="wLIndex"></param>
         /// <param name="isOn"></param>
         /// <returns></returns>
-        private double GetWLVolt(int acuIndex, int wLIndex, bool isOn)
+        private TestResult GetWLVolt(int acuIndex, int wLIndex, bool isOn)
         {
             #region 若取消测试
 
@@ -704,8 +706,7 @@ namespace JH.ACU.BLL
                 TestEventArgs.Cancel = true;
                 _acu.Stop();
                 CloseAllInstrs(true);
-                return (double) TestResult.Cancelled;
-                ;
+                return TestResult.Cancelled;
             }
 
             #endregion
@@ -722,7 +723,7 @@ namespace JH.ACU.BLL
                     break;
                 case 2:
                     _daq.SetSubRelayStatus((byte) acuIndex, 276, true);
-                    itemIndex = (int)(isOn ? WLTest.WL2VoltOn : WLTest.WL2VoltOff);
+                    itemIndex = (int) (isOn ? WLTest.WL2VoltOn : WLTest.WL2VoltOff);
                     break;
             }
             double minValue, maxValue;
@@ -745,11 +746,11 @@ namespace JH.ACU.BLL
                     _daq.SetSubRelayStatus((byte) acuIndex, 276, false);
                     break;
             }
-            if (res < minValue || res > maxValue)
+            if (double.IsNaN(res) || res < minValue || res > maxValue)
             {
-                return (double) TestResult.Failed;
+                return TestResult.Failed;
             }
-            return res;
+            return TestResult.Passed;
         }
 
         #endregion
@@ -790,7 +791,6 @@ namespace JH.ACU.BLL
                     for (int iBelt = 1; iBelt <= BeltNum; iBelt++)
                     {
                         var itemIndex = BeltNum*(iMode - 1) + iBelt + SquibNum*SquibModeNum;
-                        Debug.WriteLine(itemIndex);
                         if (acuItem.Items.Contains(itemIndex))
                         {
                             var belt = iBelt;
@@ -804,7 +804,6 @@ namespace JH.ACU.BLL
                 for (int iMode = 1; iMode <= VoltModeNum; iMode++)
                 {
                     var itemIndex = VoltNum*(iMode - 1) + 1 + SquibNum*SquibModeNum + BeltModeNum*BeltNum;
-                    Debug.WriteLine(itemIndex);
                     if (acuItem.Items.Contains(itemIndex))
                     {
                         var mode = iMode;
@@ -830,6 +829,18 @@ namespace JH.ACU.BLL
                         }
                     }
                 }
+                //E:SIS RT值读取
+                for (int iSis = 1; iSis <= SisNum; iSis++)
+                {
+                    var itemIndex = iSis + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
+                                    VoltModeNum*VoltNum + SisNum*SisModeNum;
+                    if (acuItem.Items.Contains(itemIndex))
+                    {
+                        var sis = iSis;
+                        var res = TestFrame(itemIndex, () => TestSisRtValue(acuItem.Index, sis));
+                        if (!res) return true;
+                    }
+                }
                 return true; //测试过程无异常
             }
             catch (Exception ex)
@@ -849,7 +860,7 @@ namespace JH.ACU.BLL
         /// <param name="sisIndex"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        private double TestSis(int acuIndex, int sisIndex, int mode)
+        private TestResult TestSis(int acuIndex, int sisIndex, int mode)
         {
             double minValue, maxValue;
             byte dtc;
@@ -861,17 +872,44 @@ namespace JH.ACU.BLL
             //A:打开继电器
             _daq.SetSisInTestMode(acuIndex, sisIndex, (SisMode) mode);
             //B:开始测试
-            //var res = FindSis(minValue, maxValue, dtc, mode);
-            var res = FindRes(_prs1, false, minValue, maxValue, dtc);
-            if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
-            if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
-            _daq.SetSisInReadMode(acuIndex, sisIndex);
-            res = _dmm.GetFourWireRes(20, 0.01); //该返回值为实际测量值
-            //res += Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
+            var result = FindRes(_prs1, false, minValue, maxValue, dtc);
+            double res;
+            if (result == TestResult.Passed)
+            {
+                _daq.SetSisInReadMode(acuIndex, sisIndex);
+                res = _dmm.GetFourWireRes(20, 0.01); //该返回值为实际测量值
+            }
+            else
+            {
+                res = double.NaN;
+            }
             SetSpecResult(acuIndex, ref spec, res);
+            //res += Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
             //C:复位继电器
             _daq.SetSisReset(acuIndex, sisIndex);
-            return res;
+            if (double.IsNaN(res) || res < minValue || res > maxValue)
+            {
+                return TestResult.Failed;
+            }
+            return result;
+        }
+
+        private TestResult TestSisRtValue(int acuIndex, int sisIndex)
+        {
+            double minValue, maxValue;
+            byte dtc;
+            var itemIndex = sisIndex + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
+                            VoltModeNum*VoltNum + SisNum*SisModeNum;
+            var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
+            var code = (byte) (sisIndex + 0); //TODO:需要确认code值
+            var res = double.NaN; //QUES:数值类型待定
+            AcuExecute(acuIndex, () => _acu.FindRealTimeValue(code, out res));
+            SetSpecResult(acuIndex, ref spec, res);
+            if (double.IsNaN(res) || res < minValue || res > maxValue)
+            {
+                return TestResult.Failed;
+            }
+            return TestResult.Passed;
         }
 
         #endregion
@@ -885,7 +923,7 @@ namespace JH.ACU.BLL
         /// <param name="belt">开关类型 DSB PSB PADS</param>
         /// <param name="mode">故障情况，共4种</param>
         /// <returns></returns>
-        private double TestBelt(int acuIndex, int belt, int mode)
+        private TestResult TestBelt(int acuIndex, int belt, int mode)
         {
             var itemIndex = BeltNum*(mode - 1) + belt + SquibNum*SquibModeNum;
             double minValue;
@@ -902,23 +940,33 @@ namespace JH.ACU.BLL
             //A:打开继电器
             _daq.SetBeltInTestMode(acuIndex, belt, (BeltMode) mode);
             //B:开始测试
-            var res = FindRes(prs, ascending, minValue, maxValue, dtc);
-            if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
-            if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
-            _daq.SetBeltInReadMode(acuIndex, belt);
-            res = _dmm.GetFourWireRes(20, 0.01); //该返回值为实际测量值
-            //res += Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
+            var result = FindRes(prs, ascending, minValue, maxValue, dtc);
+            double res;
+            if (result == TestResult.Passed)
+            {
+                _daq.SetBeltInReadMode(acuIndex, belt);
+                res = _dmm.GetFourWireRes(20, 0.01); //该返回值为实际测量值
+            }
+            else
+            {
+                res = double.NaN;
+            }
             SetSpecResult(acuIndex, ref spec, res);
+            //res += Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
             //C:复位继电器
             _daq.SetBeltReset(acuIndex, belt);
-            return res;
+            if (double.IsNaN(res) || res < minValue || res > maxValue)
+            {
+                return TestResult.Failed;
+            }
+            return result;
         }
 
         #endregion
 
         #region 电压测试方法
 
-        private double TestVolt(int acuIndex, int mode)
+        private TestResult TestVolt(int acuIndex, int mode)
         {
             var itemIndex = VoltNum*(mode - 1) + 1 + SquibNum*SquibModeNum + BeltModeNum*BeltNum;
             double minValue;
@@ -928,16 +976,26 @@ namespace JH.ACU.BLL
             var ascending = (BatteryMode) mode == BatteryMode.TooHigh;
             //A:打开继电器-正常情况下已打开
             //B:开始测试
-            var res = FindRes(_pwr, ascending, minValue, maxValue, dtc);
-            if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
-            if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
-            _daq.SetSubRelayStatus((byte) acuIndex, 266, true);
-            res = ActualVolt; //该返回值为实际测量值
-            SetSpecResult(acuIndex,ref spec,res);
+            var result = FindRes(_pwr, ascending, minValue, maxValue, dtc);
+            double res;
+            if (result == TestResult.Passed)
+            {
+                _daq.SetSubRelayStatus((byte) acuIndex, 266, true);
+                res = ActualVolt; //该返回值为实际测量值
+            }
+            else
+            {
+                res = double.NaN;
+            }
+            SetSpecResult(acuIndex, ref spec, res);
+            //res += Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
             //C:复位继电器
             _daq.SetSubRelayStatus((byte) acuIndex, 266, false);
-
-            return res;
+            if (double.IsNaN(res) || res < minValue || res > maxValue)
+            {
+                return TestResult.Failed;
+            }
+            return result;
         }
 
         #endregion
@@ -950,7 +1008,7 @@ namespace JH.ACU.BLL
         /// <param name="acuIndex">ACU索引</param>
         /// <param name="squib">回路数 1-16</param>
         /// <param name="mode">故障情况，共4种</param>
-        private double TestSquib(int acuIndex, int squib, int mode)
+        private TestResult TestSquib(int acuIndex, int squib, int mode)
         {
             var itemIndex = SquibNum*(mode - 1) + squib;
             double minValue;
@@ -967,20 +1025,26 @@ namespace JH.ACU.BLL
             //A:打开继电器
             _daq.SetFcInTestMode(acuIndex, squib, (SquibMode) mode);
             //B:开始测试
-            var res = FindRes(prs, ascending, minValue, maxValue, dtc);
-            if ((int) res == (int) TestResult.Failed) return (double) TestResult.Failed;
-            if ((int) res == (int) TestResult.Cancelled) return (double) TestResult.Cancelled;
-            _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
-            res = _dmm.GetFourWireRes(20,0.01); //该返回值为实际测量值
-            //res += Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
+            var result = FindRes(prs, ascending, minValue, maxValue, dtc);
+            double res;
+            if (result == TestResult.Passed)
+            {
+                _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
+                res = _dmm.GetFourWireRes(20, 0.01); //该返回值为实际测量值
+            }
+            else
+            {
+                res = double.NaN;
+            }
             SetSpecResult(acuIndex, ref spec, res);
+            //res += Properties.Settings.Default.AmendResistance; //根据线阻 修正测试结果
             //C:复位继电器
             _daq.SetFcReset(acuIndex, squib);
-            if (res < minValue || res > maxValue)
+            if (double.IsNaN(res) || res < minValue || res > maxValue)
             {
-                return (double)TestResult.Failed;
+                return TestResult.Failed;
             }
-            return res;
+            return result;
         }
 
         /// <summary>
@@ -992,7 +1056,8 @@ namespace JH.ACU.BLL
         /// <param name="maxValue">最大值</param>
         /// <param name="dtc">故障码</param>
         /// <returns></returns>
-        private double FindRes<T>(T instr, bool ascending, double minValue, double maxValue, byte dtc) where T : BllVisa
+        private TestResult FindRes<T>(T instr, bool ascending, double minValue, double maxValue, byte dtc)
+            where T : BllVisa
         {
             var findRange = false;
             for (int i = 0; i < 3; i++)
@@ -1004,13 +1069,12 @@ namespace JH.ACU.BLL
                     TestEventArgs.Cancel = true;
                     _acu.Stop();
                     CloseAllInstrs(true);
-                    return (double) TestResult.Cancelled;
+                    return TestResult.Cancelled;
                 }
 
                 #endregion
 
                 var findMin = FindDtc(instr, minValue, dtc);
-                Thread.Sleep(1000);
                 var findMax = FindDtc(instr, maxValue, dtc);
 
                 var findresult = GetFindResult(ascending, findMin, findMax);
@@ -1038,7 +1102,7 @@ namespace JH.ACU.BLL
 
                 #endregion
             }
-            if (!findRange) return (double) TestResult.Failed;
+            if (!findRange) return TestResult.Failed;
             while (true)
             {
                 #region 若取消测试
@@ -1048,7 +1112,7 @@ namespace JH.ACU.BLL
                     TestEventArgs.Cancel = true;
                     _acu.Stop();
                     CloseAllInstrs(true);
-                    return (double) TestResult.Cancelled;
+                    return TestResult.Cancelled;
                 }
 
                 #endregion
@@ -1057,7 +1121,7 @@ namespace JH.ACU.BLL
                 //若最大值及最小值之差足够小则返回两者平均值
                 if (maxValue - minValue <= GlobalConst.Precision)
                 {
-                    return midValue;
+                    return TestResult.Passed; //midValue;
                 }
                 var findMid = FindDtc(instr, midValue, dtc);
                 if ((ascending && findMid) || (!ascending && !findMid))
@@ -1070,33 +1134,34 @@ namespace JH.ACU.BLL
                 }
             }
         }
+
         #endregion
 
         /// <summary>
         /// 测试框架
+        /// 向UI通知基本的测试进度，比如正在测试项，进度数值
         /// </summary>
         /// <param name="specIndex"></param>
         /// <param name="func">测试方法委托</param>
         /// <returns>测试是否完成,取消则返回False</returns>
-        private bool TestFrame(int specIndex, Func<double> func)
+        private bool TestFrame(int specIndex, Func<TestResult> func)
         {
             var spec = FindSpec(specIndex);
             spec.ResultInfo = "Progressing...";
             var progress = GetProgress(specIndex, _tvIndex);
             TestWorker.ReportProgress(progress, _report);
             var res = func();
-            switch ((int) res)
+            switch (res)
             {
-                case (int) TestResult.Cancelled:
+                case TestResult.Cancelled:
                     spec.ResultInfo = "Cancelled";
                     TestWorker.ReportProgress(progress, _report);
                     return false;
-                case (int) TestResult.Failed:
+                case TestResult.Failed:
                     spec.ResultInfo = "Failed";
                     break;
                 default:
                     spec.ResultInfo = "Passed";
-                    //spec.ResultValueList[acuIndex] = res;
                     break;
             }
             TestWorker.ReportProgress(progress, _report);
@@ -1105,7 +1170,7 @@ namespace JH.ACU.BLL
 
         #region 属性字段
 
-        public TvType SelectedTvType { get; private set; }
+        public TvType SelectedTvType { get { return _tvItem.Key; } }
         public NewBackgroundWorker TestWorker { get; private set; }
         private DoWorkEventArgs TestEventArgs { get; set; }
         private NewBackgroundWorker ChamberStay { get; set; }
@@ -1115,7 +1180,7 @@ namespace JH.ACU.BLL
         private KeyValuePair<TvType, double[]> _tvItem; //正在测试条件组合
         private int _tvIndex; //正在测试温度电压组合的项数
         private int _tvCount; //需要测试温度电压组合总数
-        private int _specCount; //需要测试项的总数
+        private int _specCount; //需要测试项的总数//计算进度使用
 
         #region 实际值
 
@@ -1190,23 +1255,23 @@ namespace JH.ACU.BLL
 
         private enum WLTest : int
         {
-            WL1VoltOff = 88,
-            WL1VoltOn = 89,
-            WL1CurrentNormal = 90,
-            WL1CurrentShort = 91,
-            WL2VoltOff = 92,
-            WL2VoltOn = 93,
-            WL2CurrentNormal = 94,
-            WL2CurrentShort = 95,
+            WL1VoltOff = 94,
+            WL1VoltOn = 95,
+            WL1CurrentNormal = 96,
+            WL1CurrentShort = 97,
+            WL2VoltOff = 98,
+            WL2VoltOn = 99,
+            WL2CurrentNormal = 100,
+            WL2CurrentShort = 101,
         }
 
-        private const int AcuHoldTimeItemIndex = 96;
-        private const int AcuCurrentItemIndex = 97;
+        private const int AcuHoldTimeItemIndex = 102;
+        private const int AcuCurrentItemIndex = 103;
 
         private enum CrashOutTest : int
         {
-            Crash1 = 98,
-            Crash2 = 99,
+            Crash1 = 104,
+            Crash2 = 105,
         }
 
         #endregion
@@ -1272,7 +1337,7 @@ namespace JH.ACU.BLL
                     ascending = false;
                     prs = _prs1;
                     break;
-                case BeltMode.ToBattery://QUES：需要确认
+                case BeltMode.ToBattery: //QUES：需要确认
                     ascending = false;
                     prs = _prs1;
                     break;
@@ -1280,6 +1345,7 @@ namespace JH.ACU.BLL
 
             #endregion
         }
+
         /// <summary>
         /// 根据测试模式设置寻找方向及电阻箱选择
         /// </summary>
@@ -1410,7 +1476,8 @@ namespace JH.ACU.BLL
                 }
                 if (_acu.Start())
                 {
-                    _report.AcuName = string.Format("{0}/{1}/{2}/{3}/{4}/{5}", _acu.RomCs, _acu.RomVer, _acu.Mlfb, _acu.AcuSn, _acu.LabVer, _acu.ParaVer);
+                    _report.AcuName = string.Format("{0}/{1}/{2}/{3}/{4}/{5}", _acu.RomCs, _acu.RomVer, _acu.Mlfb,
+                        _acu.AcuSn, _acu.LabVer, _acu.ParaVer);
                     if (func == null)
                     {
                         isStart = true;
@@ -1463,7 +1530,7 @@ namespace JH.ACU.BLL
         {
             try
             {
-                var spec = _report.SpecUnitsDict[_tvItem.Key].Find(s => s.Index == itemIndex);
+                var spec = _report.SpecUnitsDict[SelectedTvType].Find(s => s.Index == itemIndex);
                 if (spec == null) throw new FileNotFoundException(string.Format("未找到项目:{0}", itemIndex));
                 var range = spec.Specification.Split(new[] {'-'}, StringSplitOptions.RemoveEmptyEntries);
                 double value;
@@ -1487,7 +1554,7 @@ namespace JH.ACU.BLL
         {
             try
             {
-                var spec = _report.SpecUnitsDict[_tvItem.Key].Find(s => s.Index == itemIndex);
+                var spec = _report.SpecUnitsDict[SelectedTvType].Find(s => s.Index == itemIndex);
                 if (spec == null) throw new FileNotFoundException(string.Format("未找到项目:{0}", itemIndex));
                 return spec;
             }
@@ -1555,7 +1622,7 @@ namespace JH.ACU.BLL
         /// <param name="testCondition"></param>
         public void Start(TestCondition testCondition)
         {
-            _report=new Report();
+            _report = new Report();
             TestCondition = testCondition;
             var tvItems = TestCondition.Temperature.Enable
                 ? TestCondition.TvItems
