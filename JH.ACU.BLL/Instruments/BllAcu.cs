@@ -81,13 +81,9 @@ namespace JH.ACU.BLL.Instruments
         {
             if (_serial.AvailableNumber <= 0) return;
             var data = _serial.ReadByteArray(_serial.AvailableNumber);
-            foreach (var d in data)
+            foreach (var d in data.Where(d => !RealTimeData.Contains(d)))
             {
-                if (!RealTimeData.Contains(d))
-                {
-                    RealTimeData.Add(d);
-                }
-
+                RealTimeData.Add(d);
             }
 
         }
@@ -213,11 +209,24 @@ namespace JH.ACU.BLL.Instruments
             }
         }
 
-        public bool FindRealTimeValue(byte code,out double value)//QUES:返回值类型待定
+        /// <summary>
+        /// 查询实时数值命令
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool FindRealTimeValue(byte code,out sbyte value)
         {
             var connect = RealTimeService(0x77, code);
             if (!connect) throw new Exception("ACU连接失败");
-            throw new NotImplementedException("待确认");
+            for (int i = 0; i < 10; i++)
+            {
+                if (RealTimeData.Count <= 0) continue;
+                value = (sbyte) RealTimeData[RealTimeData.Count - 1];
+                return true;
+            }
+            value = sbyte.MinValue;
+            return false;
         }
         /// <summary>
         /// 指示是否找到指定故障码
@@ -380,7 +389,7 @@ namespace JH.ACU.BLL.Instruments
         FrontInjectionData = 6,
         FrontInjectionStop = 7,
         CrashOutput = 8,
-        CrashOutput2 = 8,//TODO:协议中相同
+        CrashOutput2 = 8,
         ClearOperationTimerCounter = 10,
         ClearFramIgnCounter = 11,
         FramMassErase = 13,

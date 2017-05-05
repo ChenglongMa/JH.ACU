@@ -501,10 +501,6 @@ namespace JH.ACU.UI
                             ManualRun();
                         }
                     }
-                    else
-                    {
-                        //TODO:设计暂停方法
-                    }
                     break;
 
                 case "btnStop": // ButtonTool
