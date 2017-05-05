@@ -238,10 +238,10 @@ namespace JH.ACU.BLL
                     {
                         continue;
                     }
-                    //TODO:读取ACU故障但未写入文件
-                    string memoryStr;
-                    AcuExecute(boardIndex, () => _acu.ReadMemory(MemoryRead.FRAM, 0x06, 0x02, 134, out memoryStr));
-                    //以上步骤测试ACU有没有故障,返回故障码
+                    ////TODO:读取ACU故障但未写入文件
+                    //string memoryStr;
+                    //AcuExecute(boardIndex, () => _acu.ReadMemory(MemoryRead.FRAM, 0x06, 0x02, 134, out memoryStr));
+
                     if (!TestHasDtc(acuItem))
                     {
                         //continue;

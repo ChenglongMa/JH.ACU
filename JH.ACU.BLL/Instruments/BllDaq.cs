@@ -628,7 +628,28 @@ namespace JH.ACU.BLL.Instruments
             {
                 SetSubRelayStatus((byte) acuIndex, 273, true); //接通kLine
             }
-            var relayIndex = 279 + sisIndex;
+            int relayIndex = 0;//279 + sisIndex;
+            switch (sisIndex)
+            {
+                case 1:
+                    relayIndex = 280;
+                    break;
+                case 2:
+                    relayIndex = 281;
+                    break;
+                case 3:
+                    relayIndex = 282;
+                    break;
+                case 4:
+                    relayIndex = 283;
+                    break;
+                case 5:
+                    relayIndex = 286;
+                    break;
+                case 6:
+                    relayIndex = 287;
+                    break;
+            }
             SetSubRelayStatus((byte) acuIndex, relayIndex, true);
             SetSubRelayStatus((byte) acuIndex, 284, false);
             SetSubRelayStatus((byte) acuIndex, 285, false);
@@ -643,8 +664,29 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="sisIndex"></param>
         public void SetSisInReadMode(int acuIndex, int sisIndex)
         {
-            var relayIndex = 279 + sisIndex;
-            SetSubRelayStatus((byte) acuIndex, relayIndex, false);
+            int relayIndex = 0;//279 + sisIndex;
+            switch (sisIndex)
+            {
+                case 1:
+                    relayIndex = 280;
+                    break;
+                case 2:
+                    relayIndex = 281;
+                    break;
+                case 3:
+                    relayIndex = 282;
+                    break;
+                case 4:
+                    relayIndex = 283;
+                    break;
+                case 5:
+                    relayIndex = 286;
+                    break;
+                case 6:
+                    relayIndex = 287;
+                    break;
+            }
+            SetSubRelayStatus((byte)acuIndex, relayIndex, false);
             SetMainRelayStatus(301, false);
             SetMainRelayStatus(302, false);
             SetSubRelayStatus((byte) acuIndex, 284, true);
@@ -658,8 +700,29 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="sisIndex"></param>
         public void SetSisReset(int acuIndex, int sisIndex)
         {
-            var relayIndex = 279 + sisIndex;
-            SetSubRelayStatus((byte) acuIndex, relayIndex, false);
+            int relayIndex = 0;//279 + sisIndex;
+            switch (sisIndex)
+            {
+                case 1:
+                    relayIndex = 280;
+                    break;
+                case 2:
+                    relayIndex = 281;
+                    break;
+                case 3:
+                    relayIndex = 282;
+                    break;
+                case 4:
+                    relayIndex = 283;
+                    break;
+                case 5:
+                    relayIndex = 286;
+                    break;
+                case 6:
+                    relayIndex = 287;
+                    break;
+            }
+            SetSubRelayStatus((byte)acuIndex, relayIndex, false);
             SetMainRelayStatus(301, false);
             SetMainRelayStatus(302, false);
             SetSubRelayStatus((byte) acuIndex, 284, false);
