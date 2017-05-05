@@ -258,6 +258,37 @@ namespace JH.ACU.UI
             grid.DataSource = list;
             grid.SetStyle(_fieldsResult);
             grid.SetGridDefaultStyle();
+            foreach (var row in grid.Rows)
+            {
+                var spec = row.ListObject as SpecItem;
+                if(spec==null)continue;
+                if (spec.Specification.Contains("-"))
+                {
+                    var range = spec.Specification.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                    double value;
+                    var minValue = double.TryParse(range[0], out value) ? value : double.NegativeInfinity;
+                    var maxValue = double.TryParse(range[1], out value) ? value : double.PositiveInfinity;
+                    for (int i = 1; i <= 8; i++)
+                    {
+                        var cell = row.Cells["AcuResult" + i];
+                        var cellValue = cell.Value;
+                        double acuResult;
+                        if (cellValue == null || !double.TryParse(cellValue.ToString(), out acuResult)) continue;
+                        if(acuResult<minValue||acuResult>maxValue)
+                        {
+                            cell.Appearance.ForeColor=Color.Red;
+                        }
+                        else
+                        {
+                            cell.Appearance.ForeColor = DefaultForeColor;
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
         }
 
         /// <summary>

@@ -50,6 +50,7 @@ namespace JH.ACU.BLL.Instruments
         public string LabVer { get; set; }
         public string Mlfb { get; set; }
         public string ParaVer { get; set; }
+        private static readonly byte[] ErrorArray = { 0x0a };
 
         #endregion
 
@@ -105,7 +106,7 @@ namespace JH.ACU.BLL.Instruments
         public byte[] WriteAndRead(byte[] dataBytes, int delay = 200)
         {
             if (dataBytes.IsNullOrEmpty()) return null;
-            var errorArray = new byte[] {0x0a};
+            
             var dataWithCs = AddChecksum(dataBytes);
             _serial.Write(dataWithCs);
             Thread.Sleep(delay);
@@ -116,7 +117,7 @@ namespace JH.ACU.BLL.Instruments
                 //执行ECU reset时返回一个字节
                 return res.Skip(dataWithCs.Length).ToArray();
             }
-            return res.Length == dataWithCs.Length + res[dataWithCs.Length] + 1 ? res.Skip(1).ToArray() : errorArray;
+            return res.Length == dataWithCs.Length + res[dataWithCs.Length] + 1 ? res.Skip(1).ToArray() : ErrorArray;
         }
 
         public bool Start()
@@ -248,15 +249,19 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="addressHigh">地址高字节</param>
         /// <param name="addressLow">地址低字节</param>
         /// <param name="readCount">读取数量</param>
+        /// <param name="memoryStr"></param>
         /// <returns></returns>
-        public byte[] ReadMemory(MemoryRead memoryRead, byte addressHigh, byte addressLow, byte readCount)
+        public bool ReadMemory(MemoryRead memoryRead, byte addressHigh, byte addressLow, byte readCount,out string memoryStr)
         {
-            byte[] temp = new byte[4];
+            var temp = new byte[4];
             temp[0] = (byte) memoryRead;
             temp[1] = addressHigh;
             temp[2] = addressLow;
             temp[3] = readCount;
-            return WriteAndRead(temp);
+            var outPut = WriteAndRead(temp);
+            //memoryStr = outPut.Aggregate<byte, string>(null, (current, b) => current + "0x" + b.ToString("X2") + " ");
+            memoryStr = outPut.Aggregate<byte, string>(null, (current, b) => current + b.ToString("X2"));
+            return outPut.Length == 1 && outPut[0] == ErrorArray[0];
         }
 
         /// <summary>

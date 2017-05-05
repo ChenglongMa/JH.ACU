@@ -238,7 +238,9 @@ namespace JH.ACU.BLL
                     {
                         continue;
                     }
-                    // QUES:B: ReadMemory WriteMemory Kline出错的可能性非常低
+                    //TODO:读取ACU故障但未写入文件
+                    string memoryStr;
+                    AcuExecute(boardIndex, () => _acu.ReadMemory(MemoryRead.FRAM, 0x06, 0x02, 134, out memoryStr));
                     //以上步骤测试ACU有没有故障,返回故障码
                     if (!TestHasDtc(acuItem))
                     {
@@ -1532,10 +1534,18 @@ namespace JH.ACU.BLL
             {
                 var spec = _report.SpecUnitsDict[SelectedTvType].Find(s => s.Index == itemIndex);
                 if (spec == null) throw new FileNotFoundException(string.Format("未找到项目:{0}", itemIndex));
-                var range = spec.Specification.Split(new[] {'-'}, StringSplitOptions.RemoveEmptyEntries);
-                double value;
-                minValue = double.TryParse(range[0], out value) ? value : double.NegativeInfinity;
-                maxValue = double.TryParse(range[1], out value) ? value : double.PositiveInfinity;
+                if (spec.Specification.Contains("-"))
+                {
+                    var range = spec.Specification.Split(new[] {'-'}, StringSplitOptions.RemoveEmptyEntries);
+                    double value;
+                    minValue = double.TryParse(range[0], out value) ? value : double.NegativeInfinity;
+                    maxValue = double.TryParse(range[1], out value) ? value : double.PositiveInfinity;
+                }
+                else
+                {
+                    minValue = double.NegativeInfinity;
+                    maxValue = double.PositiveInfinity;
+                }
                 dtc = spec.Dtc;
                 return spec;
             }
