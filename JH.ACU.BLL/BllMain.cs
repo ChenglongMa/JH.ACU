@@ -903,7 +903,7 @@ namespace JH.ACU.BLL
             var itemIndex = sisIndex + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
                             VoltModeNum*VoltNum + SisNum*SisModeNum;
             var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
-            var code = (byte) (sisIndex + 3); //TODO:需要确认code值
+            var code = (byte) (sisIndex + 3); //TODO:需要确认code值，因目前只有4个传感器命令值
             var res = sbyte.MinValue;
             AcuExecute(acuIndex, () => _acu.FindRealTimeValue(code, out res));
             SetSpecResult(acuIndex, ref spec, res);
