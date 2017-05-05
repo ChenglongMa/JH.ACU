@@ -223,8 +223,10 @@ namespace JH.ACU.BLL.Instruments
             {
                 if (RealTimeData.Count <= 0) continue;
                 value = (sbyte) RealTimeData[RealTimeData.Count - 1];
+                StopRtFault();
                 return true;
             }
+            StopRtFault();
             value = sbyte.MinValue;
             return false;
         }
