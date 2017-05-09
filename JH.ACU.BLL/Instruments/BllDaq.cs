@@ -34,8 +34,8 @@ namespace JH.ACU.BLL.Instruments
         private short _mDev = -1;
         private int _currBoard = -1;
         private int _currGroup = -1;
-        private readonly double _amplify12V = (4.7 + 4.7)/4.7;
-        private readonly double _amplifyPow = (10.0 + 4.7)/4.7;
+        private const double Amplify12V = (4.7 + 4.7)/4.7;
+        private const double AmplifyPow = (10.0 + 4.7)/4.7;
         private bool _disposed;
 
         /// <summary>
@@ -232,10 +232,10 @@ namespace JH.ACU.BLL.Instruments
                 case AiChannel._5VCh:
                     break;
                 case AiChannel._12VCh:
-                    res *= _amplify12V;
+                    res *= Amplify12V;
                     break;
                 case AiChannel.PowCh:
-                    res *= _amplifyPow;
+                    res *= AmplifyPow;
                     break;
                 case AiChannel.Tsensor:
                     break;
@@ -253,10 +253,10 @@ namespace JH.ACU.BLL.Instruments
                 case AiChannel._5VCh:
                     break;
                 case AiChannel._12VCh:
-                    res *= _amplify12V;
+                    res *= Amplify12V;
                     break;
                 case AiChannel.PowCh:
-                    res *= _amplifyPow;
+                    res *= AmplifyPow;
                     break;
                 case AiChannel.Tsensor:
                     break;
