@@ -273,6 +273,7 @@ namespace JH.ACU.BLL
 
         /// <summary>
         /// 碰撞输出测试
+        /// QUES:如何判断功能开启
         /// </summary>
         /// <param name="acuItem"></param>
         /// <returns></returns>
@@ -321,6 +322,7 @@ namespace JH.ACU.BLL
 
             #endregion
 
+            var spec = FindSpec((int) crashOut);
             TestResult res;
             int crashIndex, relayIndex;
             switch (crashOut)
@@ -356,12 +358,14 @@ namespace JH.ACU.BLL
                     }
                 }
                 _daq.GetCrashCheck(TestCondition.CrashOutType, voltBuf);
+                SetSpecResult(acuIndex,ref spec,"OK");
                 res = TestResult.Passed;
             }
             catch (Exception ex)
             {
                 LogHelper.WriteErrorLog(LogFileName, ex);
                 res = TestResult.Failed;
+                SetSpecResult(acuIndex, ref spec, "Failed");
             }
             finally
             {
