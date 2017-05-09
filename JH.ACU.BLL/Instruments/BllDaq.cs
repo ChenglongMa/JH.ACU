@@ -466,7 +466,7 @@ namespace JH.ACU.BLL.Instruments
         public void SetMainRelayStatus(int relayIndex, bool enable)
         {
             if (relayIndex < 300 || relayIndex > 302) throw new ArgumentException("输入继电器索引无效", "relayIndex");
-            var iBit = relayIndex%10;
+            var iBit = 0x01 << (relayIndex % 10);
             byte mask;
             if (enable)
             {
