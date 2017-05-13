@@ -672,7 +672,22 @@ namespace JH.ACU.UI
                     MessageBoxHelper.ShowInformationOk("命令行为空");
                     return;
                 }
-                var bll = cmbInstrName.SelectedValue as BllVisa;//bug:此处恒为null
+                BllVisa bll = null;
+                switch (cmbInstrName.Text)
+                {
+                    case "PWR":
+                        bll = _pwr;
+                        break;
+                    case "PRS#1":
+                        bll = _prs0;
+                        break;
+                    case "PRS#2":
+                        bll = _prs1;
+                        break;
+                    case "DMM":
+                        bll = _dmm;
+                        break;
+                }
                 if (bll == null)
                 {
                     MessageBoxHelper.ShowError("相关仪器未启动");
