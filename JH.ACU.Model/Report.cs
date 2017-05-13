@@ -1,6 +1,6 @@
 ﻿/* ==============================================================================
  * 功能描述：Report  
- * 创 建 者：Administrator
+ * 创 建 者：mcl
  * 创建日期：2017/3/23 15:07:16
  * ==============================================================================*/
 using System;
@@ -8,10 +8,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using JH.ACU.Model.Annotations;
 using JH.ACU.Model.Config.TestConfig;
 

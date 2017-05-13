@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstrConfigForm));
             this.lblName = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
             this.lblPortNum = new System.Windows.Forms.Label();
@@ -53,10 +54,10 @@
             this.nTcpTimeout = new System.Windows.Forms.NumericUpDown();
             this.nTcpPort = new System.Windows.Forms.NumericUpDown();
             this.lTcpPort = new System.Windows.Forms.Label();
+            this.panSerial = new System.Windows.Forms.Panel();
             this.panGpib = new System.Windows.Forms.Panel();
             this.cmbGpibAddress = new System.Windows.Forms.ComboBox();
             this.lblGpibAddress = new System.Windows.Forms.Label();
-            this.panSerial = new System.Windows.Forms.Panel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -70,8 +71,8 @@
             this.panTcp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTcpTimeout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nTcpPort)).BeginInit();
-            this.panGpib.SuspendLayout();
             this.panSerial.SuspendLayout();
+            this.panGpib.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,9 +80,10 @@
             // 
             this.lblName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(28, 39);
+            this.lblName.Location = new System.Drawing.Point(37, 49);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(95, 12);
+            this.lblName.Size = new System.Drawing.Size(127, 15);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Instrument Name";
             // 
@@ -89,9 +91,10 @@
             // 
             this.lblType.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(34, 67);
+            this.lblType.Location = new System.Drawing.Point(45, 84);
+            this.lblType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(89, 12);
+            this.lblType.Size = new System.Drawing.Size(119, 15);
             this.lblType.TabIndex = 1;
             this.lblType.Text = "Interface Type";
             // 
@@ -99,10 +102,10 @@
             // 
             this.lblPortNum.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPortNum.AutoSize = true;
-            this.lblPortNum.Location = new System.Drawing.Point(72, 5);
+            this.lblPortNum.Location = new System.Drawing.Point(96, -19);
             this.lblPortNum.Margin = new System.Windows.Forms.Padding(0);
             this.lblPortNum.Name = "lblPortNum";
-            this.lblPortNum.Size = new System.Drawing.Size(29, 12);
+            this.lblPortNum.Size = new System.Drawing.Size(39, 15);
             this.lblPortNum.TabIndex = 1;
             this.lblPortNum.Text = "Port";
             // 
@@ -110,9 +113,10 @@
             // 
             this.lblBaudRate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblBaudRate.AutoSize = true;
-            this.lblBaudRate.Location = new System.Drawing.Point(54, 45);
+            this.lblBaudRate.Location = new System.Drawing.Point(72, 31);
+            this.lblBaudRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBaudRate.Name = "lblBaudRate";
-            this.lblBaudRate.Size = new System.Drawing.Size(53, 12);
+            this.lblBaudRate.Size = new System.Drawing.Size(71, 15);
             this.lblBaudRate.TabIndex = 1;
             this.lblBaudRate.Text = "BaudRate";
             // 
@@ -120,9 +124,10 @@
             // 
             this.lblParity.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblParity.AutoSize = true;
-            this.lblParity.Location = new System.Drawing.Point(63, 85);
+            this.lblParity.Location = new System.Drawing.Point(84, 81);
+            this.lblParity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblParity.Name = "lblParity";
-            this.lblParity.Size = new System.Drawing.Size(41, 12);
+            this.lblParity.Size = new System.Drawing.Size(55, 15);
             this.lblParity.TabIndex = 1;
             this.lblParity.Text = "Parity";
             // 
@@ -130,9 +135,10 @@
             // 
             this.lblDataBits.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDataBits.AutoSize = true;
-            this.lblDataBits.Location = new System.Drawing.Point(51, 125);
+            this.lblDataBits.Location = new System.Drawing.Point(68, 131);
+            this.lblDataBits.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDataBits.Name = "lblDataBits";
-            this.lblDataBits.Size = new System.Drawing.Size(53, 12);
+            this.lblDataBits.Size = new System.Drawing.Size(71, 15);
             this.lblDataBits.TabIndex = 1;
             this.lblDataBits.Text = "DataBits";
             // 
@@ -142,9 +148,10 @@
             this.cmbInstrName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbInstrName.Enabled = false;
             this.cmbInstrName.FormattingEnabled = true;
-            this.cmbInstrName.Location = new System.Drawing.Point(126, 36);
+            this.cmbInstrName.Location = new System.Drawing.Point(168, 45);
+            this.cmbInstrName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbInstrName.Name = "cmbInstrName";
-            this.cmbInstrName.Size = new System.Drawing.Size(121, 20);
+            this.cmbInstrName.Size = new System.Drawing.Size(160, 23);
             this.cmbInstrName.TabIndex = 4;
             this.cmbInstrName.SelectedIndexChanged += new System.EventHandler(this.cmbInstrName_SelectedIndexChanged);
             // 
@@ -153,9 +160,10 @@
             this.cmbInstrType.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbInstrType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbInstrType.FormattingEnabled = true;
-            this.cmbInstrType.Location = new System.Drawing.Point(126, 64);
+            this.cmbInstrType.Location = new System.Drawing.Point(168, 80);
+            this.cmbInstrType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbInstrType.Name = "cmbInstrType";
-            this.cmbInstrType.Size = new System.Drawing.Size(121, 20);
+            this.cmbInstrType.Size = new System.Drawing.Size(160, 23);
             this.cmbInstrType.TabIndex = 4;
             this.cmbInstrType.SelectedIndexChanged += new System.EventHandler(this.cmbInstrType_SelectedIndexChanged);
             // 
@@ -164,9 +172,10 @@
             this.cmbDataBits.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbDataBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDataBits.FormattingEnabled = true;
-            this.cmbDataBits.Location = new System.Drawing.Point(110, 122);
+            this.cmbDataBits.Location = new System.Drawing.Point(147, 127);
+            this.cmbDataBits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbDataBits.Name = "cmbDataBits";
-            this.cmbDataBits.Size = new System.Drawing.Size(121, 20);
+            this.cmbDataBits.Size = new System.Drawing.Size(160, 23);
             this.cmbDataBits.TabIndex = 5;
             this.cmbDataBits.SelectedIndexChanged += new System.EventHandler(this.cmbDataBits_SelectedIndexChanged);
             // 
@@ -175,9 +184,10 @@
             this.cmbParity.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbParity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbParity.FormattingEnabled = true;
-            this.cmbParity.Location = new System.Drawing.Point(110, 82);
+            this.cmbParity.Location = new System.Drawing.Point(147, 77);
+            this.cmbParity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbParity.Name = "cmbParity";
-            this.cmbParity.Size = new System.Drawing.Size(121, 20);
+            this.cmbParity.Size = new System.Drawing.Size(160, 23);
             this.cmbParity.TabIndex = 6;
             this.cmbParity.SelectedIndexChanged += new System.EventHandler(this.cmbParity_SelectedIndexChanged);
             // 
@@ -185,9 +195,10 @@
             // 
             this.cmbBaudRate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbBaudRate.FormattingEnabled = true;
-            this.cmbBaudRate.Location = new System.Drawing.Point(110, 42);
+            this.cmbBaudRate.Location = new System.Drawing.Point(147, 27);
+            this.cmbBaudRate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbBaudRate.Name = "cmbBaudRate";
-            this.cmbBaudRate.Size = new System.Drawing.Size(121, 20);
+            this.cmbBaudRate.Size = new System.Drawing.Size(160, 23);
             this.cmbBaudRate.TabIndex = 7;
             this.cmbBaudRate.SelectedIndexChanged += new System.EventHandler(this.cmbBaudRate_SelectedIndexChanged);
             this.cmbBaudRate.Leave += new System.EventHandler(this.cmbBaudRate_Leave);
@@ -196,19 +207,20 @@
             // 
             this.cmbSerialPort.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbSerialPort.FormattingEnabled = true;
-            this.cmbSerialPort.Location = new System.Drawing.Point(110, 2);
+            this.cmbSerialPort.Location = new System.Drawing.Point(147, -23);
             this.cmbSerialPort.Margin = new System.Windows.Forms.Padding(0);
             this.cmbSerialPort.Name = "cmbSerialPort";
-            this.cmbSerialPort.Size = new System.Drawing.Size(121, 20);
+            this.cmbSerialPort.Size = new System.Drawing.Size(160, 23);
             this.cmbSerialPort.TabIndex = 8;
             this.cmbSerialPort.SelectedIndexChanged += new System.EventHandler(this.cmbSerialPort_SelectedIndexChanged);
             this.cmbSerialPort.Leave += new System.EventHandler(this.cmbSerialPort_Leave);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(95, 18);
+            this.btnSave.Location = new System.Drawing.Point(127, 22);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(100, 29);
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -218,9 +230,10 @@
             // 
             this.lblStopBits.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblStopBits.AutoSize = true;
-            this.lblStopBits.Location = new System.Drawing.Point(52, 165);
+            this.lblStopBits.Location = new System.Drawing.Point(69, 181);
+            this.lblStopBits.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStopBits.Name = "lblStopBits";
-            this.lblStopBits.Size = new System.Drawing.Size(53, 12);
+            this.lblStopBits.Size = new System.Drawing.Size(71, 15);
             this.lblStopBits.TabIndex = 1;
             this.lblStopBits.Text = "StopBits";
             // 
@@ -229,9 +242,10 @@
             this.cmbStopBits.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbStopBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStopBits.FormattingEnabled = true;
-            this.cmbStopBits.Location = new System.Drawing.Point(110, 162);
+            this.cmbStopBits.Location = new System.Drawing.Point(147, 177);
+            this.cmbStopBits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbStopBits.Name = "cmbStopBits";
-            this.cmbStopBits.Size = new System.Drawing.Size(121, 20);
+            this.cmbStopBits.Size = new System.Drawing.Size(160, 23);
             this.cmbStopBits.TabIndex = 5;
             this.cmbStopBits.SelectedIndexChanged += new System.EventHandler(this.cmbStopBits_SelectedIndexChanged);
             // 
@@ -239,7 +253,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -253,9 +267,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(273, 369);
-            this.splitContainer1.SplitterDistance = 100;
-            this.splitContainer1.SplitterWidth = 3;
+            this.splitContainer1.Size = new System.Drawing.Size(364, 461);
+            this.splitContainer1.SplitterDistance = 124;
             this.splitContainer1.TabIndex = 10;
             // 
             // splitContainer2
@@ -264,7 +277,7 @@
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer2.IsSplitterFixed = true;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -278,9 +291,8 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer2.Panel2.Controls.Add(this.btnSave);
-            this.splitContainer2.Size = new System.Drawing.Size(273, 266);
+            this.splitContainer2.Size = new System.Drawing.Size(364, 333);
             this.splitContainer2.SplitterDistance = 200;
-            this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 0;
             // 
             // panTcp
@@ -294,9 +306,9 @@
             this.panTcp.Controls.Add(this.lTcpPort);
             this.panTcp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panTcp.Location = new System.Drawing.Point(0, 0);
-            this.panTcp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panTcp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panTcp.Name = "panTcp";
-            this.panTcp.Size = new System.Drawing.Size(273, 200);
+            this.panTcp.Size = new System.Drawing.Size(364, 200);
             this.panTcp.TabIndex = 11;
             this.panTcp.Visible = false;
             this.panTcp.VisibleChanged += new System.EventHandler(this.panTcp_VisibleChanged);
@@ -305,19 +317,20 @@
             // 
             this.lTcpTimeout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lTcpTimeout.AutoSize = true;
-            this.lTcpTimeout.Location = new System.Drawing.Point(58, 103);
+            this.lTcpTimeout.Location = new System.Drawing.Point(77, 104);
+            this.lTcpTimeout.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lTcpTimeout.Name = "lTcpTimeout";
-            this.lTcpTimeout.Size = new System.Drawing.Size(47, 12);
+            this.lTcpTimeout.Size = new System.Drawing.Size(63, 15);
             this.lTcpTimeout.TabIndex = 1;
             this.lTcpTimeout.Text = "Timeout";
             // 
             // tTcpIp
             // 
             this.tTcpIp.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tTcpIp.Location = new System.Drawing.Point(110, 21);
-            this.tTcpIp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tTcpIp.Location = new System.Drawing.Point(147, 1);
+            this.tTcpIp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tTcpIp.Name = "tTcpIp";
-            this.tTcpIp.Size = new System.Drawing.Size(121, 21);
+            this.tTcpIp.Size = new System.Drawing.Size(160, 25);
             this.tTcpIp.TabIndex = 9;
             this.tTcpIp.Leave += new System.EventHandler(this.tTcpIp_Leave);
             // 
@@ -325,25 +338,24 @@
             // 
             this.lblIp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblIp.AutoSize = true;
-            this.lblIp.Location = new System.Drawing.Point(42, 24);
-            this.lblIp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIp.Location = new System.Drawing.Point(56, 5);
             this.lblIp.Name = "lblIp";
-            this.lblIp.Size = new System.Drawing.Size(65, 12);
+            this.lblIp.Size = new System.Drawing.Size(87, 15);
             this.lblIp.TabIndex = 0;
             this.lblIp.Text = "IP Address";
             // 
             // nTcpTimeout
             // 
             this.nTcpTimeout.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.nTcpTimeout.Location = new System.Drawing.Point(110, 101);
-            this.nTcpTimeout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nTcpTimeout.Location = new System.Drawing.Point(147, 101);
+            this.nTcpTimeout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nTcpTimeout.Maximum = new decimal(new int[] {
             99999,
             0,
             0,
             0});
             this.nTcpTimeout.Name = "nTcpTimeout";
-            this.nTcpTimeout.Size = new System.Drawing.Size(120, 21);
+            this.nTcpTimeout.Size = new System.Drawing.Size(160, 25);
             this.nTcpTimeout.TabIndex = 10;
             this.nTcpTimeout.Value = new decimal(new int[] {
             2000,
@@ -354,15 +366,15 @@
             // nTcpPort
             // 
             this.nTcpPort.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.nTcpPort.Location = new System.Drawing.Point(110, 61);
-            this.nTcpPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nTcpPort.Location = new System.Drawing.Point(147, 51);
+            this.nTcpPort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nTcpPort.Maximum = new decimal(new int[] {
             99999,
             0,
             0,
             0});
             this.nTcpPort.Name = "nTcpPort";
-            this.nTcpPort.Size = new System.Drawing.Size(120, 21);
+            this.nTcpPort.Size = new System.Drawing.Size(160, 25);
             this.nTcpPort.TabIndex = 10;
             this.nTcpPort.Value = new decimal(new int[] {
             502,
@@ -374,45 +386,12 @@
             // 
             this.lTcpPort.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lTcpPort.AutoSize = true;
-            this.lTcpPort.Location = new System.Drawing.Point(72, 63);
+            this.lTcpPort.Location = new System.Drawing.Point(96, 54);
+            this.lTcpPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lTcpPort.Name = "lTcpPort";
-            this.lTcpPort.Size = new System.Drawing.Size(35, 12);
+            this.lTcpPort.Size = new System.Drawing.Size(47, 15);
             this.lTcpPort.TabIndex = 1;
             this.lTcpPort.Text = "Port ";
-            // 
-            // panGpib
-            // 
-            this.panGpib.Controls.Add(this.cmbGpibAddress);
-            this.panGpib.Controls.Add(this.lblGpibAddress);
-            this.panGpib.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panGpib.Location = new System.Drawing.Point(0, 0);
-            this.panGpib.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panGpib.Name = "panGpib";
-            this.panGpib.Size = new System.Drawing.Size(273, 200);
-            this.panGpib.TabIndex = 11;
-            this.panGpib.Visible = false;
-            this.panGpib.VisibleChanged += new System.EventHandler(this.panGpib_VisibleChanged);
-            // 
-            // cmbGpibAddress
-            // 
-            this.cmbGpibAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmbGpibAddress.FormattingEnabled = true;
-            this.cmbGpibAddress.Location = new System.Drawing.Point(110, 24);
-            this.cmbGpibAddress.Name = "cmbGpibAddress";
-            this.cmbGpibAddress.Size = new System.Drawing.Size(121, 20);
-            this.cmbGpibAddress.TabIndex = 8;
-            this.cmbGpibAddress.Leave += new System.EventHandler(this.cmbGpibAddress_Leave);
-            // 
-            // lblGpibAddress
-            // 
-            this.lblGpibAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblGpibAddress.AutoSize = true;
-            this.lblGpibAddress.Location = new System.Drawing.Point(30, 27);
-            this.lblGpibAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblGpibAddress.Name = "lblGpibAddress";
-            this.lblGpibAddress.Size = new System.Drawing.Size(77, 12);
-            this.lblGpibAddress.TabIndex = 0;
-            this.lblGpibAddress.Text = "GPIB Address";
             // 
             // panSerial
             // 
@@ -430,12 +409,46 @@
             this.panSerial.Controls.Add(this.lblDataBits);
             this.panSerial.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panSerial.Location = new System.Drawing.Point(0, 0);
-            this.panSerial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panSerial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panSerial.Name = "panSerial";
-            this.panSerial.Size = new System.Drawing.Size(273, 200);
+            this.panSerial.Size = new System.Drawing.Size(364, 200);
             this.panSerial.TabIndex = 0;
             this.panSerial.Visible = false;
             this.panSerial.VisibleChanged += new System.EventHandler(this.panSerial_VisibleChanged);
+            // 
+            // panGpib
+            // 
+            this.panGpib.Controls.Add(this.cmbGpibAddress);
+            this.panGpib.Controls.Add(this.lblGpibAddress);
+            this.panGpib.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panGpib.Location = new System.Drawing.Point(0, 0);
+            this.panGpib.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panGpib.Name = "panGpib";
+            this.panGpib.Size = new System.Drawing.Size(364, 200);
+            this.panGpib.TabIndex = 11;
+            this.panGpib.Visible = false;
+            this.panGpib.VisibleChanged += new System.EventHandler(this.panGpib_VisibleChanged);
+            // 
+            // cmbGpibAddress
+            // 
+            this.cmbGpibAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbGpibAddress.FormattingEnabled = true;
+            this.cmbGpibAddress.Location = new System.Drawing.Point(147, 5);
+            this.cmbGpibAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbGpibAddress.Name = "cmbGpibAddress";
+            this.cmbGpibAddress.Size = new System.Drawing.Size(160, 23);
+            this.cmbGpibAddress.TabIndex = 8;
+            this.cmbGpibAddress.Leave += new System.EventHandler(this.cmbGpibAddress_Leave);
+            // 
+            // lblGpibAddress
+            // 
+            this.lblGpibAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblGpibAddress.AutoSize = true;
+            this.lblGpibAddress.Location = new System.Drawing.Point(40, 9);
+            this.lblGpibAddress.Name = "lblGpibAddress";
+            this.lblGpibAddress.Size = new System.Drawing.Size(103, 15);
+            this.lblGpibAddress.TabIndex = 0;
+            this.lblGpibAddress.Text = "GPIB Address";
             // 
             // backgroundWorker1
             // 
@@ -448,14 +461,16 @@
             // InstrConfigForm
             // 
             this.AcceptButton = this.btnSave;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(273, 369);
+            this.ClientSize = new System.Drawing.Size(364, 461);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "InstrConfigForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "仪器接口配置";
+            this.Text = "Interface Config";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -470,10 +485,10 @@
             this.panTcp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTcpTimeout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nTcpPort)).EndInit();
-            this.panGpib.ResumeLayout(false);
-            this.panGpib.PerformLayout();
             this.panSerial.ResumeLayout(false);
             this.panSerial.PerformLayout();
+            this.panGpib.ResumeLayout(false);
+            this.panGpib.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 

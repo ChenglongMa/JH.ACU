@@ -116,12 +116,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BaseForm.Designer.cs">
-      <DependentUpon>BaseForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="InitializationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,15 +149,6 @@
     <Compile Include="SpecConfigForm.Designer.cs">
       <DependentUpon>SpecConfigForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestForm.Designer.cs">
-      <DependentUpon>TestForm.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="BaseForm.resx">
-      <DependentUpon>BaseForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="InitializationForm.resx">
       <DependentUpon>InitializationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,9 +174,6 @@
     </Compile>
     <EmbeddedResource Include="SpecConfigForm.resx">
       <DependentUpon>SpecConfigForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestForm.resx">
-      <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

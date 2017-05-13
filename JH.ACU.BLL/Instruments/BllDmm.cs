@@ -5,8 +5,6 @@ using JH.ACU.Model;
 using NationalInstruments.Visa;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using JH.ACU.Lib;
 
 namespace JH.ACU.BLL.Instruments
 {

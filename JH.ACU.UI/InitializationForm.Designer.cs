@@ -30,23 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InitializationForm));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("ACU Index#1");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("ACU Index#2");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("ACU Index#3");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("ACU Index#4");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("ACU Index#5");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("ACU Index#6");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("ACU Index#7");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("ACU Index#8");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("ACU", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6,
-            treeNode7,
-            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("ACU Index#1");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("ACU Index#2");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("ACU Index#3");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("ACU Index#4");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("ACU Index#5");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("ACU Index#6");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("ACU Index#7");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("ACU Index#8");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("ACU", new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17});
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
@@ -164,7 +164,7 @@
             // grbTvValue
             // 
             this.grbTvValue.Controls.Add(this.tableLayoutPanel1);
-            this.grbTvValue.Location = new System.Drawing.Point(292, 23);
+            this.grbTvValue.Location = new System.Drawing.Point(423, 117);
             this.grbTvValue.Margin = new System.Windows.Forms.Padding(4);
             this.grbTvValue.Name = "grbTvValue";
             this.grbTvValue.Padding = new System.Windows.Forms.Padding(4);
@@ -530,7 +530,7 @@
             // grbTvSetting
             // 
             this.grbTvSetting.Controls.Add(this.flowTvSetting);
-            this.grbTvSetting.Location = new System.Drawing.Point(35, 23);
+            this.grbTvSetting.Location = new System.Drawing.Point(166, 117);
             this.grbTvSetting.Margin = new System.Windows.Forms.Padding(4);
             this.grbTvSetting.Name = "grbTvSetting";
             this.grbTvSetting.Padding = new System.Windows.Forms.Padding(4);
@@ -702,7 +702,7 @@
             // 
             this.groupBox5.Controls.Add(this.groupBox6);
             this.groupBox5.Controls.Add(this.ckbChamberEnable);
-            this.groupBox5.Location = new System.Drawing.Point(453, 262);
+            this.groupBox5.Location = new System.Drawing.Point(584, 356);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
@@ -802,7 +802,7 @@
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(1048, 752);
-            this.splitContainer1.SplitterDistance = 663;
+            this.splitContainer1.SplitterDistance = 662;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 6;
             // 
@@ -814,7 +814,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1048, 663);
+            this.tabControl1.Size = new System.Drawing.Size(1048, 662);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage1
@@ -826,7 +826,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1040, 634);
+            this.tabPage1.Size = new System.Drawing.Size(1040, 633);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Temp/Volt Setting";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -837,7 +837,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1040, 634);
+            this.tabPage2.Size = new System.Drawing.Size(1040, 633);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ACU SpecUnit Setting";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -859,8 +859,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer3.Size = new System.Drawing.Size(1034, 628);
-            this.splitContainer3.SplitterDistance = 59;
+            this.splitContainer3.Size = new System.Drawing.Size(1034, 627);
+            this.splitContainer3.SplitterDistance = 58;
             this.splitContainer3.TabIndex = 8;
             // 
             // btnUnselectAll
@@ -932,29 +932,29 @@
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode1.ImageIndex = 1;
-            treeNode1.Name = "tnAcu0";
-            treeNode1.Text = "ACU Index#1";
-            treeNode2.ImageIndex = 1;
-            treeNode2.Name = "tnAcu1";
-            treeNode2.Text = "ACU Index#2";
-            treeNode3.Name = "tnAcu2";
-            treeNode3.Text = "ACU Index#3";
-            treeNode4.Name = "tnAcu3";
-            treeNode4.Text = "ACU Index#4";
-            treeNode5.Name = "tnAcu4";
-            treeNode5.Text = "ACU Index#5";
-            treeNode6.Name = "tnAcu5";
-            treeNode6.Text = "ACU Index#6";
-            treeNode7.Name = "tnAcu6";
-            treeNode7.Text = "ACU Index#7";
-            treeNode8.Name = "tnAcu7";
-            treeNode8.Text = "ACU Index#8";
-            treeNode9.ImageIndex = 0;
-            treeNode9.Name = "tnAcuRoot";
-            treeNode9.Text = "ACU";
+            treeNode10.ImageIndex = 1;
+            treeNode10.Name = "tnAcu0";
+            treeNode10.Text = "ACU Index#1";
+            treeNode11.ImageIndex = 1;
+            treeNode11.Name = "tnAcu1";
+            treeNode11.Text = "ACU Index#2";
+            treeNode12.Name = "tnAcu2";
+            treeNode12.Text = "ACU Index#3";
+            treeNode13.Name = "tnAcu3";
+            treeNode13.Text = "ACU Index#4";
+            treeNode14.Name = "tnAcu4";
+            treeNode14.Text = "ACU Index#5";
+            treeNode15.Name = "tnAcu5";
+            treeNode15.Text = "ACU Index#6";
+            treeNode16.Name = "tnAcu6";
+            treeNode16.Text = "ACU Index#7";
+            treeNode17.Name = "tnAcu7";
+            treeNode17.Text = "ACU Index#8";
+            treeNode18.ImageIndex = 0;
+            treeNode18.Name = "tnAcuRoot";
+            treeNode18.Text = "ACU";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode9});
+            treeNode18});
             this.treeView1.SelectedImageIndex = 3;
             this.treeView1.Size = new System.Drawing.Size(309, 565);
             this.treeView1.TabIndex = 0;
@@ -1038,14 +1038,14 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1048, 84);
+            this.panel1.Size = new System.Drawing.Size(1048, 85);
             this.panel1.TabIndex = 2;
             // 
             // btnApply
             // 
             this.btnApply.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnApply.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnApply.Location = new System.Drawing.Point(568, 21);
+            this.btnApply.Location = new System.Drawing.Point(568, 22);
             this.btnApply.Margin = new System.Windows.Forms.Padding(4);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(100, 29);
@@ -1057,7 +1057,7 @@
             // btnLoad
             // 
             this.btnLoad.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnLoad.Location = new System.Drawing.Point(219, 21);
+            this.btnLoad.Location = new System.Drawing.Point(219, 22);
             this.btnLoad.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(100, 29);
@@ -1070,7 +1070,7 @@
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(743, 21);
+            this.btnCancel.Location = new System.Drawing.Point(743, 22);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 29);
@@ -1081,7 +1081,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSave.Location = new System.Drawing.Point(394, 21);
+            this.btnSave.Location = new System.Drawing.Point(394, 22);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 29);
@@ -1121,8 +1121,10 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1048, 752);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "InitializationForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Initialization";
             this.grbTvValue.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

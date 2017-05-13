@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace JH.ACU.Model
 {
@@ -12,7 +9,6 @@ namespace JH.ACU.Model
     {
         static GlobalConst()
         {
-            Precision = 1;//TODO:待修改
         }
 
         /// <summary>
@@ -50,18 +46,6 @@ namespace JH.ACU.Model
                 };
             }
         }
-
-        public static double[,] TempVoltCondition = new double[3, 3];
-
-        #region FC测试
-
-        /// <summary>
-        /// 测试精度
-        /// </summary>
-        public static double Precision { get; set; }
-
-        #endregion
-
     }
 
     /// <summary>
@@ -111,17 +95,6 @@ namespace JH.ACU.Model
         Gpib,
         Serial,
         Tcp,
-    }
-
-    /// <summary>
-    /// ACU开关枚举,注意顺序
-    /// 与测试规范顺序相同（SPEC_unit.txt）
-    /// </summary>
-    public enum BeltSwitch
-    {
-        Dsb,
-        Psb,
-        Pads
     }
 
     /// <summary>
@@ -203,41 +176,4 @@ namespace JH.ACU.Model
         TooHigh=1,
         TooLow=2,
     }
-
-    ///// <summary>
-    ///// 告警灯测试模式
-    ///// </summary>
-    //public enum WarnLampMode
-    //{
-    //    /// <summary>
-    //    /// 打开时电压
-    //    /// </summary>
-    //    OnVolt,
-
-    //    /// <summary>
-    //    /// 关闭时电压
-    //    /// </summary>
-    //    OffVolt,
-
-    //    /// <summary>
-    //    /// 正常电流
-    //    /// </summary>
-    //    NorCurr,
-
-    //    /// <summary>
-    //    /// 短路电流
-    //    /// </summary>
-    //    ShortCurr,
-    //}
-
-    ///// <summary>
-    ///// 测试类型
-    ///// </summary>
-    //public enum TestType
-    //{
-    //    SquibMode,
-    //    BeltMode,
-    //    SisMode,
-    //    BatteryMode,
-    //}
 }

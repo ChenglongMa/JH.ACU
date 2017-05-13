@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using JH.ACU.BLL.Abstract;
 using JH.ACU.BLL.Instruments;
@@ -699,6 +694,11 @@ namespace JH.ACU.UI
         {
             try
             {
+                if(!MessageBoxHelper.ShowQuestion("即将开始线阻测试，耗时较长\n是否继续？"))
+                {
+                    return;
+                }
+
                 toolStatus.Text = @"Relay Testing..." + Settings.Default.AmendResistance;
                 if (_daq == null)
                 {
@@ -781,29 +781,6 @@ namespace JH.ACU.UI
                 LogHelper.WriteErrorLog("RelayTest", ex);
                 MessageBoxHelper.ShowError("测试失败\n错误信息：" + ex.Message);
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var squib=fcIndex.Value;
-            var mode = (SquibMode)(int)modeIndex.Value;
-            _daq.SetFcInTestMode(BoardIndex, (int)squib, mode);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var squib = fcIndex.Value;
-            var mode = (BeltMode)(int)modeIndex.Value;
-            _daq.SetBeltInReadMode(BoardIndex, (int)squib);
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var squib = fcIndex.Value;
-            var mode = (SisMode)(int)modeIndex.Value;
-            _daq.SetSisInTestMode(BoardIndex, (int)squib, mode);
-
         }
     }
 }

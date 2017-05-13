@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
 using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Lib.GridConfig;
 using JH.ACU.Model.Config.TestConfig;
-using NationalInstruments.Restricted;
-using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace JH.ACU.UI
 {

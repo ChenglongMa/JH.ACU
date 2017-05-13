@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO.Ports;
-using System.Linq;
 using System.Net;
-using System.Resources;
-using System.Text;
 using System.Windows.Forms;
-using Infragistics.Win.UltraWinEditors;
 using Ivi.Visa;
-using JH.ACU.BLL;
 using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model;
