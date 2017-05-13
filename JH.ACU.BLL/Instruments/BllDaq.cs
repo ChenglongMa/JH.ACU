@@ -208,8 +208,7 @@ namespace JH.ACU.BLL.Instruments
         /// <param name="mask">单字节 0x00~0x0F</param>
         private void SelectMainRelay(byte mask)
         {
-            var hMask = (byte) (mask << 4);
-            DoWritePort(D2KDask.Channel_P1CH, hMask);//BUG:不移位试试？
+            DoWritePort(D2KDask.Channel_P1CH, mask);
             _mainRelayMask = mask;
         }
 
@@ -501,7 +500,7 @@ namespace JH.ACU.BLL.Instruments
             D2KDask.ThrowException((D2KDask.Error) ret, new Exception("P1A DIO配置失败"));
             ret = D2KDask.D2K_DIO_PortConfig((ushort) _mDev, D2KDask.Channel_P1B, D2KDask.OUTPUT_PORT);
             D2KDask.ThrowException((D2KDask.Error) ret, new Exception("P1B DIO配置失败"));
-            ret = D2KDask.D2K_DIO_PortConfig((ushort) _mDev, D2KDask.Channel_P1C, D2KDask.OUTPUT_PORT);//BUG:可能有错误
+            ret = D2KDask.D2K_DIO_PortConfig((ushort) _mDev, D2KDask.Channel_P1C, D2KDask.OUTPUT_PORT);
             D2KDask.ThrowException((D2KDask.Error) ret, new Exception("P1C DIO配置失败"));
 
             ResetAll();

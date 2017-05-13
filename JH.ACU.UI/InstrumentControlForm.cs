@@ -787,14 +787,14 @@ namespace JH.ACU.UI
         {
             var squib=fcIndex.Value;
             var mode = (SquibMode)(int)modeIndex.Value;
-            _daq.SetFcInTestMode(1, (int)squib, mode);
+            _daq.SetFcInTestMode(BoardIndex, (int)squib, mode);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             var squib = fcIndex.Value;
             var mode = (BeltMode)(int)modeIndex.Value;
-            _daq.SetBeltInReadMode(1, (int)squib);
+            _daq.SetBeltInReadMode(BoardIndex, (int)squib);
 
         }
 
@@ -802,7 +802,7 @@ namespace JH.ACU.UI
         {
             var squib = fcIndex.Value;
             var mode = (SisMode)(int)modeIndex.Value;
-            _daq.SetSisInTestMode(1, (int)squib, mode);
+            _daq.SetSisInTestMode(BoardIndex, (int)squib, mode);
 
         }
     }

@@ -291,12 +291,7 @@ namespace JH.ACU.BLL.Instruments
             {
                 MbSession.TimeoutMilliseconds = 10000;
                 DmmClear();
-                Display = false;
-#if DEBUG
-                Display = true;
-#endif
-
-                SampleCount = 2500;
+                //SampleCount = 2500;
                 var id = Idn;
                 if (!id.Contains("34401") && !id.Contains("34410") && !id.Contains("4411"))
                 {

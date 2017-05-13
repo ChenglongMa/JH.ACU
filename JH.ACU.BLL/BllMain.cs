@@ -229,7 +229,8 @@ namespace JH.ACU.BLL
 
                     #endregion
 
-                    _specCount = acuItem.Items.Count;//计算进度使用
+                    _specList = acuItem.Items;//计算进度使用
+
                     var boardIndex = acuItem.Index;
                     if (boardIndex < 0 || boardIndex > 7) continue;
                     _report.AcuIndex = boardIndex + 1; //ACU Index显示值从1开始
@@ -495,7 +496,7 @@ namespace JH.ACU.BLL
             AcuExecute(acuIndex, () => _acu.Stop()); //将ACU退出S模式
             Thread.Sleep(1000);
             //2:开始测试
-            //_daq.SetSubRelayStatus((byte) acuIndex, 265, false); //ACU断电
+            _daq.SetSubRelayStatus((byte)acuIndex, 265, false); //ACU断电
             var tick = Environment.TickCount; //开始时间
             var data = _dmm.DmmReadBytes(); //TODO:同步到UI
             var duration = Environment.TickCount - tick;
@@ -790,7 +791,6 @@ namespace JH.ACU.BLL
                     }
                 }
                 //B:Belt测试
-                //TODO:规范需要修改
                 //同一测试情况归于一类
                 for (int iMode = 1; iMode <= BeltModeNum; iMode++)
                 {
@@ -883,7 +883,7 @@ namespace JH.ACU.BLL
             if (result == TestResult.Passed)
             {
                 _daq.SetSisInReadMode(acuIndex, sisIndex);
-                res = _dmm.GetFourWireRes(20, 0.01); //该返回值为实际测量值
+                res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             }
             else
             {
@@ -951,7 +951,7 @@ namespace JH.ACU.BLL
             if (result == TestResult.Passed)
             {
                 _daq.SetBeltInReadMode(acuIndex, belt);
-                res = _dmm.GetFourWireRes(20, 0.01); //该返回值为实际测量值
+                res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             }
             else
             {
@@ -1036,7 +1036,7 @@ namespace JH.ACU.BLL
             if (result == TestResult.Passed)
             {
                 _daq.SetFcInReadMode(acuIndex, squib, (SquibMode) mode);
-                res = _dmm.GetFourWireRes(20, 0.01); //该返回值为实际测量值
+                res = _dmm.GetFourWireRes(); //该返回值为实际测量值
             }
             else
             {
@@ -1186,7 +1186,7 @@ namespace JH.ACU.BLL
         private KeyValuePair<TvType, double[]> _tvItem; //正在测试条件组合
         private int _tvIndex; //正在测试温度电压组合的项数
         private int _tvCount; //需要测试温度电压组合总数
-        private int _specCount; //需要测试项的总数//计算进度使用
+        private List<int> _specList; //需要测试项的总数//计算进度使用
 
         #region 实际值
 
@@ -1538,9 +1538,9 @@ namespace JH.ACU.BLL
             {
                 var spec = _report.SpecUnitsDict[SelectedTvType].Find(s => s.Index == itemIndex);
                 if (spec == null) throw new FileNotFoundException(string.Format("未找到项目:{0}", itemIndex));
-                if (spec.Specification.Contains("-"))
+                if (spec.Specification.Contains("~"))
                 {
-                    var range = spec.Specification.Split(new[] {'-'}, StringSplitOptions.RemoveEmptyEntries);
+                    var range = spec.Specification.Split(new[] {'~'}, StringSplitOptions.RemoveEmptyEntries);
                     double value;
                     minValue = double.TryParse(range[0], out value) ? value : double.NegativeInfinity;
                     maxValue = double.TryParse(range[1], out value) ? value : double.PositiveInfinity;
@@ -1623,7 +1623,11 @@ namespace JH.ACU.BLL
         /// <returns></returns>
         private int GetProgress(int specIndex, int tvIndex)
         {
-            return (int) ((Convert.ToDouble(specIndex)/Convert.ToDouble(_specCount) + tvIndex)/_tvCount*100);
+            var count = _specList.Count;
+            var index = _specList.IndexOf(specIndex);
+            if (index < 0) return 0;
+            var res = (int)((Convert.ToDouble(index) / Convert.ToDouble(count) + tvIndex) / _tvCount * 100);
+            return res;
         }
 
         #endregion

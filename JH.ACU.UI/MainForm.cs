@@ -262,9 +262,9 @@ namespace JH.ACU.UI
             {
                 var spec = row.ListObject as SpecItem;
                 if(spec==null)continue;
-                if (spec.Specification.Contains("-"))
+                if (spec.Specification.Contains("~"))
                 {
-                    var range = spec.Specification.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                    var range = spec.Specification.Split(new[] { '~' }, StringSplitOptions.RemoveEmptyEntries);
                     double value;
                     var minValue = double.TryParse(range[0], out value) ? value : double.NegativeInfinity;
                     var maxValue = double.TryParse(range[1], out value) ? value : double.PositiveInfinity;
