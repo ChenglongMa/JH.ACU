@@ -607,7 +607,7 @@ namespace JH.ACU.BLL.Instruments
             SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 2], true); //k202
             SetSubRelayStatus((byte) acuIndex, BeltGroup[beltIndex, 3], true); //k203
             SetMainRelayStatus(302, false);
-            SetMainRelayStatus(301, false); //QUES:是否赋值未知
+            SetMainRelayStatus(301, false);
 
         }
 
@@ -951,7 +951,7 @@ namespace JH.ACU.BLL.Instruments
                     for (i = 1; i < k; i++)
                     {
                         if (Math.Abs(fRate[i] - 5.0) <= 0.2 || Math.Abs(fRate[i] - 0.2) <= 0.02) bRet = true;
-                        else bRet = false;//QUES:不知道有什么意义
+                        else bRet = false;
                     }
                     break;
                 case CrashOutType.Conventional:

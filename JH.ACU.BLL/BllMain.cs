@@ -505,7 +505,7 @@ namespace JH.ACU.BLL
             var index = 0;
             for (var i = 0; i < len; i++)
             {
-                if (Math.Abs(data[i] - 0.3) <= 0.1) //QUES:数据待确认
+                if (Math.Abs(data[i] - 0.3) <= 0.1) 
                 {
                     index = i;
                     break;
@@ -878,7 +878,7 @@ namespace JH.ACU.BLL
             //A:打开继电器
             _daq.SetSisInTestMode(acuIndex, sisIndex, (SisMode) mode);
             //B:开始测试
-            var result = FindRes(_prs1, false, minValue, maxValue, dtc);
+            var result = FindResult(_prs1, false, minValue, maxValue, dtc);
             double res;
             if (result == TestResult.Passed)
             {
@@ -907,7 +907,7 @@ namespace JH.ACU.BLL
             var itemIndex = sisIndex + SquibNum*SquibModeNum + BeltModeNum*BeltNum +
                             VoltModeNum*VoltNum + SisNum*SisModeNum;
             var spec = FindSpec(itemIndex, out minValue, out maxValue, out dtc);
-            var code = (byte) (sisIndex + 3); //TODO:需要确认code值，因目前只有4个传感器命令值
+            var code = (byte) (sisIndex + 3); //TODO:需要确认code值，因目前只有4个传感器命令值,规范也需要修改
             var res = sbyte.MinValue;
             AcuExecute(acuIndex, () => _acu.FindRealTimeValue(code, out res));
             SetSpecResult(acuIndex, ref spec, res);
@@ -946,7 +946,7 @@ namespace JH.ACU.BLL
             //A:打开继电器
             _daq.SetBeltInTestMode(acuIndex, belt, (BeltMode) mode);
             //B:开始测试
-            var result = FindRes(prs, ascending, minValue, maxValue, dtc);
+            var result = FindResult(prs, ascending, minValue, maxValue, dtc);
             double res;
             if (result == TestResult.Passed)
             {
@@ -982,7 +982,7 @@ namespace JH.ACU.BLL
             var ascending = (BatteryMode) mode == BatteryMode.TooHigh;
             //A:打开继电器-正常情况下已打开
             //B:开始测试
-            var result = FindRes(_pwr, ascending, minValue, maxValue, dtc);
+            var result = FindResult(_pwr, ascending, minValue, maxValue, dtc);
             double res;
             if (result == TestResult.Passed)
             {
@@ -1031,7 +1031,7 @@ namespace JH.ACU.BLL
             //A:打开继电器
             _daq.SetFcInTestMode(acuIndex, squib, (SquibMode) mode);
             //B:开始测试
-            var result = FindRes(prs, ascending, minValue, maxValue, dtc);
+            var result = FindResult(prs, ascending, minValue, maxValue, dtc);
             double res;
             if (result == TestResult.Passed)
             {
@@ -1062,9 +1062,12 @@ namespace JH.ACU.BLL
         /// <param name="maxValue">最大值</param>
         /// <param name="dtc">故障码</param>
         /// <returns></returns>
-        private TestResult FindRes<T>(T instr, bool ascending, double minValue, double maxValue, byte dtc)
+        private TestResult FindResult<T>(T instr, bool ascending, double minValue, double maxValue, byte dtc)
             where T : BllVisa
         {
+            var preMin = GetPrecision(minValue);
+            var preMax = GetPrecision(maxValue);
+            var precision = Math.Min(preMin, preMax);
             var findRange = false;
             for (int i = 0; i < 3; i++)
             {
@@ -1089,14 +1092,14 @@ namespace JH.ACU.BLL
 
                 switch (findresult)
                 {
-                    case FindResult.InBetween:
+                    case Model.FindResult.InBetween:
                         findRange = true;
                         break;
-                    case FindResult.UnderMin:
+                    case Model.FindResult.UnderMin:
                         maxValue = minValue;
                         minValue = minValue/2.0;
                         break;
-                    case FindResult.AboveMax:
+                    case Model.FindResult.AboveMax:
                         minValue = maxValue;
                         maxValue = maxValue*2.0;
                         break;
@@ -1125,7 +1128,7 @@ namespace JH.ACU.BLL
 
                 var midValue = (minValue + maxValue)*0.5;
                 //若最大值及最小值之差足够小则返回两者平均值
-                if (maxValue - minValue <= GlobalConst.Precision)
+                if (maxValue - minValue <= precision)
                 {
                     return TestResult.Passed; //midValue;
                 }
@@ -1343,7 +1346,6 @@ namespace JH.ACU.BLL
                     prs = _prs1;
                     break;
                 case BeltMode.ToGround:
-                    throw new NotImplementedException("配置待定,暂时不测试");
                     ascending = false;
                     prs = _prs1;
                     break;
@@ -1406,17 +1408,17 @@ namespace JH.ACU.BLL
             }
             if (!findMax && !findMin)
             {
-                return FindResult.AboveMax;
+                return Model.FindResult.AboveMax;
             }
             if (findMax && !findMin)
             {
-                return FindResult.InBetween;
+                return Model.FindResult.InBetween;
             }
             if (findMax)
             {
-                return FindResult.UnderMin;
+                return Model.FindResult.UnderMin;
             }
-            return FindResult.Error;
+            return Model.FindResult.Error;
         }
 
         /// <summary>
@@ -1634,6 +1636,22 @@ namespace JH.ACU.BLL
             return res;
         }
 
+        /// <summary>
+        /// 获取测试精度
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        private static double GetPrecision(double num)
+        {
+            var str = num.ToString("G");
+            var location = str.IndexOf('.');
+            if (location < 0)
+            {
+                return 1D;
+            }
+            var digit = str.Length - location - 1;
+            return 1 / Math.Pow(10, digit);
+        }
         #endregion
 
         #region 公有方法
