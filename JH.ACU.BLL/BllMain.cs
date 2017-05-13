@@ -229,7 +229,7 @@ namespace JH.ACU.BLL
 
                     #endregion
 
-                    _specList = acuItem.Items;//计算进度使用
+                    _specList = acuItem.Items; //计算进度使用
 
                     var boardIndex = acuItem.Index;
                     if (boardIndex < 0 || boardIndex > 7) continue;
@@ -359,7 +359,7 @@ namespace JH.ACU.BLL
                     }
                 }
                 _daq.GetCrashCheck(TestCondition.CrashOutType, voltBuf);
-                SetSpecResult(acuIndex,ref spec,"OK");
+                SetSpecResult(acuIndex, ref spec, "OK");
                 res = TestResult.Passed;
             }
             catch (Exception ex)
@@ -496,7 +496,7 @@ namespace JH.ACU.BLL
             AcuExecute(acuIndex, () => _acu.Stop()); //将ACU退出S模式
             Thread.Sleep(1000);
             //2:开始测试
-            _daq.SetSubRelayStatus((byte)acuIndex, 265, false); //ACU断电
+            _daq.SetSubRelayStatus((byte) acuIndex, 265, false); //ACU断电
             var tick = Environment.TickCount; //开始时间
             var data = _dmm.DmmReadBytes(); //TODO:同步到UI
             var duration = Environment.TickCount - tick;
@@ -1176,7 +1176,11 @@ namespace JH.ACU.BLL
 
         #region 属性字段
 
-        public TvType SelectedTvType { get { return _tvItem.Key; } }
+        public TvType SelectedTvType
+        {
+            get { return _tvItem.Key; }
+        }
+
         public NewBackgroundWorker TestWorker { get; private set; }
         private DoWorkEventArgs TestEventArgs { get; set; }
         private NewBackgroundWorker ChamberStay { get; set; }
@@ -1626,7 +1630,7 @@ namespace JH.ACU.BLL
             var count = _specList.Count;
             var index = _specList.IndexOf(specIndex);
             if (index < 0) return 0;
-            var res = (int)((Convert.ToDouble(index) / Convert.ToDouble(count) + tvIndex) / _tvCount * 100);
+            var res = (int) ((Convert.ToDouble(index)/Convert.ToDouble(count) + tvIndex)/_tvCount*100);
             return res;
         }
 

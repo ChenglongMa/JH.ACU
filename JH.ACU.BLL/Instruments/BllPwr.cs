@@ -132,6 +132,12 @@ namespace JH.ACU.BLL.Instruments
                 throw new Exception("程控电源自检失败");
             }
         }
+
+        protected sealed override void Dispose(bool disposing)
+        {
+            OutPutState = false;
+            base.Dispose(disposing);
+        }
         #endregion
 
     }
