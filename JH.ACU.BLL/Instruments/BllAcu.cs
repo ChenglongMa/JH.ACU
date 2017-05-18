@@ -6,6 +6,7 @@ using JH.ACU.BLL.Config;
 using JH.ACU.Lib;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.InstrumentConfig;
+using NationalInstruments.Visa.Internal;
 using NationalInstruments.VisaNS;
 using LineState = NationalInstruments.VisaNS.LineState;
 
@@ -116,6 +117,7 @@ namespace JH.ACU.BLL.Instruments
 
         public bool Start()
         {
+            if (_isConnected) return true;
             try
             {
                 _serial.Clear();
@@ -311,7 +313,7 @@ namespace JH.ACU.BLL.Instruments
         /// </summary>
         /// <param name="command"></param>
         /// <returns>执行命令是否成功</returns>
-        public bool Execute(Command command)
+        private bool Execute(Command command)
         {
             byte[] temp = {0x79, (byte) command};
             var res = WriteAndRead(temp);
@@ -325,6 +327,7 @@ namespace JH.ACU.BLL.Instruments
         public void Dispose()
         {
             Stop();
+            _serial.DisposeIfNotNull();
         }
 
         #endregion

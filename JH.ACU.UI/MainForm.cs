@@ -605,7 +605,7 @@ namespace JH.ACU.UI
                     return;
                 }
             }
-            var con = _conditionForm.TestCondition;
+            var con = BllConfig.GetTestCondition();
             if (con == null)
             {
                 MessageBoxHelper.ShowError("配置文件缺失");

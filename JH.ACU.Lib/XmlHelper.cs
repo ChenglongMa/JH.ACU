@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using NationalInstruments.Restricted;
+using NationalInstruments.Visa.Internal;
 
 namespace JH.ACU.Lib
 {
@@ -101,7 +102,7 @@ namespace JH.ACU.Lib
             }
             finally
             {
-                ms.IfNotNull(m=>m.Dispose());
+                ms.DisposeIfNotNull();
             }
         }
 

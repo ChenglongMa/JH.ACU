@@ -12,6 +12,7 @@ using JH.ACU.Lib.Component;
 using JH.ACU.Model;
 using JH.ACU.Model.Config.TestConfig;
 using NationalInstruments.Restricted;
+using NationalInstruments.Visa.Internal;
 
 namespace JH.ACU.BLL
 {
@@ -111,7 +112,7 @@ namespace JH.ACU.BLL
             {
                 //正常完成
             }
-            _acu.IfNotNull(a => a.Stop());
+            _acu.DisposeIfNotNull();
             CloseAllInstrs(true); //关闭所有仪器并将温箱恢复至常温
         }
 
@@ -221,7 +222,6 @@ namespace JH.ACU.BLL
 
                     if (TestWorker.CancellationPending)
                     {
-                        CloseAllInstrs(true);
                         e.Cancel = true;
                         return;
                     }
@@ -230,6 +230,7 @@ namespace JH.ACU.BLL
 
                     _specList = acuItem.Items; //计算进度使用
 
+                    if (_specList.IsNullOrEmpty()) continue;
                     var boardIndex = acuItem.Index;
                     if (boardIndex < 0 || boardIndex > 7) continue;
                     _report.AcuIndex = boardIndex + 1; //ACU Index显示值从1开始
@@ -315,8 +316,6 @@ namespace JH.ACU.BLL
             if (TestWorker.CancellationPending)
             {
                 TestEventArgs.Cancel = true;
-                _acu.Stop();
-                CloseAllInstrs(true);
                 return TestResult.Cancelled;
             }
 
@@ -414,8 +413,6 @@ namespace JH.ACU.BLL
                     if (TestWorker.CancellationPending)
                     {
                         TestEventArgs.Cancel = true;
-                        _acu.Stop();
-                        CloseAllInstrs(true);
                         return TestResult.Cancelled;
                     }
 
@@ -504,7 +501,7 @@ namespace JH.ACU.BLL
             var index = 0;
             for (var i = 0; i < len; i++)
             {
-                if (Math.Abs(data[i] - 0.3) <= 0.1) 
+                if (Math.Abs(data[i] - 0.3) <= 0.1)
                 {
                     index = i;
                     break;
@@ -630,8 +627,6 @@ namespace JH.ACU.BLL
             if (TestWorker.CancellationPending)
             {
                 TestEventArgs.Cancel = true;
-                _acu.Stop();
-                CloseAllInstrs(true);
                 return TestResult.Cancelled;
             }
 
@@ -710,8 +705,6 @@ namespace JH.ACU.BLL
             if (TestWorker.CancellationPending)
             {
                 TestEventArgs.Cancel = true;
-                _acu.Stop();
-                CloseAllInstrs(true);
                 return TestResult.Cancelled;
             }
 
@@ -1075,8 +1068,6 @@ namespace JH.ACU.BLL
                 if (TestWorker.CancellationPending)
                 {
                     TestEventArgs.Cancel = true;
-                    _acu.Stop();
-                    CloseAllInstrs(true);
                     return TestResult.Cancelled;
                 }
 
@@ -1118,8 +1109,6 @@ namespace JH.ACU.BLL
                 if (TestWorker.CancellationPending)
                 {
                     TestEventArgs.Cancel = true;
-                    _acu.Stop();
-                    CloseAllInstrs(true);
                     return TestResult.Cancelled;
                 }
 
@@ -1465,7 +1454,6 @@ namespace JH.ACU.BLL
                 if (TestWorker.CancellationPending)
                 {
                     TestEventArgs.Cancel = true;
-                    _acu.Stop();
                     return true;
                 }
 
@@ -1649,8 +1637,9 @@ namespace JH.ACU.BLL
                 return 1D;
             }
             var digit = str.Length - location - 1;
-            return 1 / Math.Pow(10, digit);
+            return 1/Math.Pow(10, digit);
         }
+
         #endregion
 
         #region 公有方法
@@ -1675,15 +1664,15 @@ namespace JH.ACU.BLL
         /// <param name="closeChamber">是否关闭温箱</param>
         private void CloseAllInstrs(bool closeChamber)
         {
-            _pwr.IfNotNull(p => p.Dispose());
-            _prs0.IfNotNull(prs => prs.Dispose());
-            _prs1.IfNotNull(prs => prs.Dispose());
+            _pwr.DisposeIfNotNull();
+            _prs0.DisposeIfNotNull();
+            _prs1.DisposeIfNotNull();
             if (closeChamber && _chamber != null)
             {
                 ChamberReset.RunWorkerAsync();
             }
-            _dmm.IfNotNull(d => d.Dispose());
-            _daq.IfNotNull(d => d.Dispose());
+            _dmm.DisposeIfNotNull();
+            _daq.DisposeIfNotNull();
         }
 
         #endregion

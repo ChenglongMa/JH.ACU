@@ -9,6 +9,7 @@ using JH.ACU.Lib;
 using JH.ACU.Model;
 using NationalInstruments.Restricted;
 using NationalInstruments.UI;
+using NationalInstruments.Visa.Internal;
 
 namespace JH.ACU.UI
 {
@@ -99,12 +100,12 @@ namespace JH.ACU.UI
 
         private void InstrumentControlForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _pwr.IfNotNull(p => p.Dispose());
-            _prs0.IfNotNull(prs => prs.Dispose());
-            _prs1.IfNotNull(prs => prs.Dispose());
-            _chamber.IfNotNull(c => c.Dispose());
-            _dmm.IfNotNull(d => d.Dispose());
-            _daq.IfNotNull(d => d.Dispose());
+            _pwr.DisposeIfNotNull();
+            _prs0.DisposeIfNotNull();
+            _prs1.DisposeIfNotNull();
+            _chamber.DisposeIfNotNull();
+            _dmm.DisposeIfNotNull();
+            _daq.DisposeIfNotNull();
         }
 
         #region 程控电源操作
