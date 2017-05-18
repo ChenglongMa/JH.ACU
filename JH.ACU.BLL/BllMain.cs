@@ -263,6 +263,8 @@ namespace JH.ACU.BLL
                     {
                         //continue;
                     }
+                    _acu.DisposeIfNotNull();
+                    _daq.CloseBoard((byte)boardIndex);
 
                 }
 
