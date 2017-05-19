@@ -213,6 +213,10 @@ namespace JH.ACU.BLL
 
                 foreach (var acuItem in TestCondition.AcuItems)
                 {
+                    _specList = acuItem.Items; //计算进度使用
+
+                    if (_specList.IsNullOrEmpty()) continue;
+
                     foreach (var specItem in _report.SpecUnitsDict[SelectedTvType])
                     {
                         specItem.ResultInfo = null;
@@ -228,44 +232,47 @@ namespace JH.ACU.BLL
 
                     #endregion
 
-                    _specList = acuItem.Items; //计算进度使用
-
-                    if (_specList.IsNullOrEmpty()) continue;
                     var boardIndex = acuItem.Index;
                     if (boardIndex < 0 || boardIndex > 7) continue;
                     _report.AcuIndex = boardIndex + 1; //ACU Index显示值从1开始
                     _daq.OpenBoard((byte) boardIndex);
-                    if (!AcuExecute(boardIndex))
+                    try
                     {
-                        continue;
-                    }
-                    ////TODO:读取ACU故障但未写入文件
-                    //string memoryStr;
-                    //AcuExecute(boardIndex, () => _acu.ReadMemory(MemoryRead.FRAM, 0x06, 0x02, 134, out memoryStr));
+                        if (!AcuExecute(boardIndex))
+                        {
+                            LogHelper.WriteWarningLog(LogFileName, string.Format("ACU#{0}通讯失败", boardIndex + 1));
+                            continue;
+                        }
+                        ////TODO:读取ACU故障但未写入文件
+                        //string memoryStr;
+                        //AcuExecute(boardIndex, () => _acu.ReadMemory(MemoryRead.FRAM, 0x06, 0x02, 134, out memoryStr));
 
-                    if (!TestHasDtc(acuItem))
-                    {
-                        //continue;
+                        if (!TestHasDtc(acuItem))
+                        {
+                            //continue;
+                        }
+                        if (!TestWarnLamp(acuItem))
+                        {
+                            //continue;
+                        }
+                        if (!TestHoldTime(acuItem))
+                        {
+                            //continue;
+                        }
+                        if (!TestAcuCurr(acuItem))
+                        {
+                            //continue;
+                        }
+                        if (!TestCrashOut(acuItem))
+                        {
+                            //continue;
+                        }
                     }
-                    if (!TestWarnLamp(acuItem))
+                    finally
                     {
-                        //continue;
+                        _acu.DisposeIfNotNull();
+                        _daq.CloseBoard((byte)boardIndex);
                     }
-                    if (!TestHoldTime(acuItem))
-                    {
-                        //continue;
-                    }
-                    if (!TestAcuCurr(acuItem))
-                    {
-                        //continue;
-                    }
-                    if (!TestCrashOut(acuItem))
-                    {
-                        //continue;
-                    }
-                    _acu.DisposeIfNotNull();
-                    _daq.CloseBoard((byte)boardIndex);
-
                 }
 
             }
