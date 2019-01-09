@@ -3,8 +3,8 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using NationalInstruments.Restricted;
-using NationalInstruments.Visa.Internal;
+
+//using NationalInstruments.Visa.Internal;
 
 namespace JH.ACU.Lib
 {
@@ -13,9 +13,9 @@ namespace JH.ACU.Lib
         private static void XmlSerializeInternal(Stream stream, object o, Encoding encoding)
         {
             if (o == null)
-                throw new ArgumentNullException("o");
+                throw new ArgumentNullException(nameof(o));
             if (encoding == null)
-                throw new ArgumentNullException("encoding");
+                throw new ArgumentNullException(nameof(encoding));
 
             XmlSerializer serializer = new XmlSerializer(o.GetType());
 
@@ -67,7 +67,7 @@ namespace JH.ACU.Lib
         public static void XmlSerializeToFile(object o, string path, Encoding encoding = null)
         {
             if (path.IsNullOrEmpty())
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
             var encode = encoding ?? Encoding.UTF8;
             using (var file = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
@@ -89,7 +89,7 @@ namespace JH.ACU.Lib
             if (encoding == null)
                 throw new ArgumentNullException("encoding");
 
-            XmlSerializer mySerializer = new XmlSerializer(typeof (T));
+            var mySerializer = new XmlSerializer(typeof (T));
             MemoryStream ms = null;
             try
             {
@@ -102,7 +102,7 @@ namespace JH.ACU.Lib
             }
             finally
             {
-                ms.DisposeIfNotNull();
+                ms?.Dispose(); //DisposeIfNotNull();
             }
         }
 
